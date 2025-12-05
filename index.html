@@ -3,98 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suzi Neves – Grounded Operational Support</title>
+  <title>Suzi Neves – Grounded Support for Businesses in Motion</title>
   <style>
+    :root {
+      --bg: #f3ece7;
+      --text: #1b1b1b;
+      --accent: #c27c5b; /* warm terracotta edge */
+      --subtle: #5a5a5a;
+    }
+
     body {
       margin: 0;
-      padding: 0;
-      background: #f4f1ee;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      color: #1d1d1d;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       line-height: 1.55;
     }
 
-    .wrap {
-      max-width: 720px;
+    .page {
+      max-width: 760px;
       margin: 0 auto;
-      padding: 70px 28px 120px;
+      padding: 80px 28px 120px;
+      position: relative;
+    }
+
+    /* left anchor line */
+    .page:before {
+      content: "";
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      width: 4px;
+      height: calc(100% - 120px);
+      background: var(--accent);
+      border-radius: 2px;
+      opacity: 0.8;
     }
 
     h1 {
-      font-size: 42px;
-      margin-bottom: 8px;
+      font-size: 48px;
+      margin: 0 0 8px 0;
       font-weight: 700;
-      color: #111;
+      letter-spacing: -0.5px;
     }
 
     h2 {
-      font-size: 22px;
-      margin-top: 0;
-      margin-bottom: 40px;
+      font-size: 24px;
+      margin: 0 0 50px 0;
+      color: var(--subtle);
       font-weight: 500;
-      color: #333;
+      line-height: 1.4;
     }
 
     p {
-      margin-bottom: 22px;
-      font-size: 18px;
+      font-size: 19px;
+      margin-bottom: 26px;
+      max-width: 650px;
     }
 
     .section-title {
-      margin-top: 60px;
-      font-size: 20px;
+      margin-top: 70px;
+      margin-bottom: 18px;
+      font-size: 22px;
       font-weight: 600;
-      color: #111;
-      margin-bottom: 16px;
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 4px;
     }
 
     ul {
       padding-left: 20px;
-      font-size: 17px;
+      font-size: 18px;
     }
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="page">
     <h1>Suzi Neves</h1>
 
     <h2>For small businesses in motion: grounded support that keeps up—with all of it.</h2>
 
-    <p>
-      I work with people growing real businesses, meeting the relentless pace with instinct, clarity,
-      and a shared drive to make it work.
-    </p>
+    <p>I work with people growing real businesses, meeting the relentless pace with instinct, clarity, and a shared drive to make it work.</p>
 
-    <p>
-      I spent years inside a fast-moving retail and e-commerce company, spanning Shopify,
-      in-person sales systems, product workflows, inventory, and the kind of operational decisions
-      that can’t wait for perfect conditions. They just have to work.
-    </p>
+    <p>I spent years inside a fast-moving retail and e-commerce company, spanning Shopify, in-person sales systems, product workflows, inventory, and the kind of operational decisions that can’t wait for perfect conditions. They just have to work.</p>
 
-    <p>
-      I bring steady follow-through and clear thinking to every business I work with.
-      I get in sync fast, carry real weight, and help make things feel more possible—for the business
-      and for the humans behind it.
-    </p>
+    <p>I bring steady follow-through and clear thinking to every business I work with. I get in sync fast, carry real weight, and help make things feel more possible—for the business and for the humans behind it.</p>
 
-    <p>
-      If that kind of collaboration sounds like a fit, I’d love to talk.
-    </p>
+    <p>If that kind of collaboration sounds like a fit, I’d love to talk.</p>
 
     <div class="section-title">What I Do</div>
     <ul>
       <li>Shopify setup, cleanup, and optimization</li>
       <li>Point-of-sale + inventory workflows that actually make sense</li>
-      <li>Shopify ↔ QuickBooks cleanup, systems, and financial clarity</li>
-      <li>Operational support for busy shop owners who need a second brain</li>
+      <li>Shopify ↔ QuickBooks cleanup and operational clarity</li>
+      <li>Support for busy shop owners who need a second brain</li>
     </ul>
   </div>
 </body>
 </html>
-
