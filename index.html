@@ -21,8 +21,140 @@
 
     body {
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-se
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
 
+    .container {
+      max-width: 760px;
+      width: 100%;
+      background: var(--card);
+      padding: 40px 32px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
 
+    h1 {
+      font-size: 2.2rem;
+      margin: 0 0 0.25rem;
+      font-weight: 600;
+    }
 
+    .one-liner {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.01em;
+    }
 
+    h2 {
+      margin-top: 2.2rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0.6rem 0;
+      line-height: 1.55;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+
+    ul {
+      margin: 0.4rem 0 1rem 1.2rem;
+      padding: 0;
+    }
+
+    li {
+      margin: 0.35rem 0;
+      line-height: 1.45;
+    }
+
+    a.email {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.65rem 1.4rem;
+      background: var(--accent);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    a.email:hover {
+      background: #6e7f66;
+    }
+
+    .footer {
+      margin-top: 2.2rem;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Suzi Neves</h1>
+
+    <div class="one-liner">
+      For small businesses in motion: grounded support that keeps up with all of it.
+    </div>
+
+    <p>
+      I work with people growing real businesses, meeting the relentless pace with instinct, clarity,
+      and a shared drive to make it work.
+    </p>
+
+    <p>
+      Over the past few years, I worked inside a fast-moving retail and e-commerce company, spanning
+      Shopify, in-person sales systems, product systems, inventory, and the operational decisions
+      that don’t wait for perfect conditions. They just have to work. I moved between the front and
+      back of the business, kept pace with growth, filled in gaps, and created structure while the
+      wheels were still turning.
+    </p>
+
+    <p>
+      Now I bring that same clear thinking, steady follow-through, and deep respect to every business
+      I work with. I get in sync, carry real weight, and help make things feel more possible
+      for the business and for the humans behind it.
+    </p>
+
+    <h2>What I Do</h2>
+    <ul>
+      <li>Shopify structure, setup, cleanup, product systems, and POS workflows</li>
+      <li>Inventory processes that match how your shop actually moves</li>
+      <li>Shopify to QuickBooks clarity, payouts, reconciliation, and operational flow</li>
+      <li>Ongoing support for owners who need a grounded second brain</li>
+    </ul>
+
+    <h2>How I Work</h2>
+    <p>
+      Calm, observant, and clear. I move with the pace of the business and build systems that support
+      the way work really happens. My role is steady follow-through, thoughtful structure, and
+      support that holds up under pressure.
+    </p>
+
+    <h2>Start a Conversation</h2>
+    <p>If this feels like the right kind of support, reach out.</p>
+
+    <a class="email" href="mailto:suzineves@gmail.com">Email Suzi</a>
+
+    <div class="footer">
+      © <script>document.write(new Date().getFullYear());</script> Suzi Neves
+    </div>
+  </div>
+
+</body>
+</html>
