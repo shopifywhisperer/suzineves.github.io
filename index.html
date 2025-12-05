@@ -6,12 +6,13 @@
   <title>Suzi Neves – Shopify Whisperer</title>
   <style>
     :root {
-      --bg: #0b0c10;
-      --card: #f9f4ef;
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --border: #e5e7eb;
       --ink-main: #111827;
       --ink-soft: #4b5563;
-      --accent: #b45309;
-      --accent-soft: #fed7aa;
+      --accent: #008060; /* Shopify-ish green */
+      --accent-soft: #ecfdf3;
     }
 
     * {
@@ -21,103 +22,143 @@
     body {
       margin: 0;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at top, #1f2933 0, #020617 55%);
+      background: radial-gradient(circle at top, #e5f2ec 0, #f3f4f6 45%, #e5e7eb 100%);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, sans-serif;
       color: var(--ink-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .shell {
+      max-width: 960px;
+      width: 100%;
     }
 
     .card {
       background: var(--card);
       border-radius: 18px;
-      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
-      max-width: 800px;
-      width: 92%;
-      padding: 32px 26px 30px;
-      margin: 40px 0;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+      padding: 28px 22px 26px;
     }
 
     @media (min-width: 768px) {
+      body {
+        padding: 48px 24px;
+      }
       .card {
-        padding: 40px 40px 38px;
+        padding: 36px 32px 30px;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+        gap: 32px;
       }
     }
 
     .eyebrow {
+      font-size: 0.78rem;
       text-transform: uppercase;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      color: var(--ink-soft);
-      margin-bottom: 0.5rem;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
     }
 
     h1 {
-      font-size: 2.15rem;
-      margin: 0 0 0.35rem;
+      font-size: 2.1rem;
+      margin: 0 0 0.4rem;
       letter-spacing: 0.03em;
     }
 
     .tagline {
-      font-size: 1.1rem;
+      font-size: 1.06rem;
       color: var(--ink-soft);
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.5rem;
       max-width: 34rem;
     }
 
     h2 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       color: var(--ink-soft);
-      margin: 2.1rem 0 0.3rem;
+      margin: 1.9rem 0 0.35rem;
     }
 
     p {
-      margin: 0.4rem 0 0.6rem;
-      font-size: 0.98rem;
-      color: var(--ink-main);
-    }
-
-    ul {
-      margin: 0.4rem 0 0.4rem 1.2rem;
-      padding: 0;
+      margin: 0.35rem 0 0.6rem;
       font-size: 0.96rem;
       color: var(--ink-main);
     }
 
+    ul {
+      margin: 0.4rem 0 0.6rem 1.1rem;
+      padding: 0;
+      font-size: 0.94rem;
+      color: var(--ink-main);
+    }
+
     li + li {
-      margin-top: 0.2rem;
+      margin-top: 0.3rem;
     }
 
     .section {
-      margin-top: 0.6rem;
+      margin-top: 0.4rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar-card {
+      margin-top: 1.8rem;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+    }
+
+    .sidebar-card p {
+      font-size: 0.88rem;
+      margin: 0.25rem 0;
+      color: var(--ink-soft);
     }
 
     .cta-row {
-      margin-top: 2.1rem;
+      margin-top: 1.6rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.65rem;
     }
 
     .cta-button {
-      display: inline-block;
-      padding: 0.65rem 1.35rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.3rem;
       border-radius: 999px;
-      background: var(--ink-main);
+      background: var(--accent);
       color: #f9fafb;
       font-size: 0.9rem;
-      text-decoration: none;
       font-weight: 600;
-      border: 1px solid #000;
+      text-decoration: none;
+      border: 1px solid #065f46;
     }
 
     .cta-button:hover {
-      background: #020617;
+      filter: brightness(0.95);
     }
 
     .cta-note {
@@ -126,7 +167,7 @@
     }
 
     .footer {
-      margin-top: 1.6rem;
+      margin-top: 1.7rem;
       font-size: 0.78rem;
       color: var(--ink-soft);
     }
@@ -142,68 +183,86 @@
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="eyebrow">Shopify Whisperer</div>
-    <h1>Suzi Neves</h1>
-    <div class="tagline">
-      Grounded operational support for businesses in motion.
-    </div>
-
-    <section class="section">
-      <h2>About</h2>
-      <p>
-        I work with people growing real businesses—meeting the relentless pace
-        with instinct, clarity, and a shared drive to make it work.
-      </p>
-      <p>
-        I spent years inside a fast-moving retail and e-commerce company,
-        spanning Shopify, in-person sales systems, inventory, data, and the
-        kind of operational decisions that don’t wait for perfect conditions—
-        they just have to work.
-      </p>
-      <p>
-        Now I bring that same steady follow-through and clear thinking to the
-        businesses I support. I get in sync fast, carry real weight, and help
-        make things feel more possible—for the business and for the humans
-        behind it.
-      </p>
-    </section>
-
-    <section class="section">
-      <h2>What I Do</h2>
-      <ul>
-        <li>Shopify setup, cleanup, and optimization</li>
-        <li>POS + inventory workflows that make sense in real life</li>
-        <li>Shopify ↔ QuickBooks cleanup, systems, and financial clarity</li>
-        <li>
-          Ongoing operational support for owners who need a second brain they
-          can trust
-        </li>
-      </ul>
-    </section>
-
-    <section class="section">
-      <h2>How I Work</h2>
-      <p>
-        My work is quiet, detailed, and built to hold up under pressure. No
-        hype, no jargon—just clear systems that support the way you already do
-        business.
-      </p>
-    </section>
-
-    <section class="section">
-      <h2>Start a Conversation</h2>
-      <p>If this sounds like the kind of partnership you want, reach out.</p>
-      <div class="cta-row">
-        <a class="cta-button" href="mailto:suzineves@gmail.com">Email Suzi</a>
-        <div class="cta-note">No pressure. One calm conversation.</div>
+  <div class="shell">
+    <div class="card">
+      <div class="eyebrow">Shopify Whisperer</div>
+      <h1>Suzi Neves</h1>
+      <div class="tagline">
+        Grounded operational support for businesses that move fast.
       </div>
-    </section>
 
-    <div class="footer">
-      © <script>document.write(new Date().getFullYear());</script> Suzi Neves
+      <div class="layout">
+        <!-- Main column -->
+        <div>
+          <section class="section">
+            <h2>About</h2>
+            <p>
+              I work with people growing real businesses. The kind of work that
+              needs instinct, clear thinking, and a steady partner who can keep pace.
+            </p>
+            <p>
+              I spent years inside a fast moving retail and e-commerce company.
+              Shopify, POS, inventory, financial systems. All running at once.
+              There was rarely time for perfect conditions. Things still had to work.
+            </p>
+            <p>
+              I learned how to steady moving parts and build systems that hold under pressure.
+              Now I bring that experience to the businesses I support. I get in sync quickly,
+              carry real weight, and help things feel more possible for the business and for the
+              humans behind it.
+            </p>
+          </section>
+
+          <section class="section">
+            <h2>What I Do</h2>
+            <ul>
+              <li>Shopify setup, cleanup, and optimization</li>
+              <li>POS and inventory workflows that match how the shop really runs</li>
+              <li>Shopify to QuickBooks cleanup and financial clarity</li>
+              <li>Ongoing operational support for owners who want a trusted second brain</li>
+            </ul>
+          </section>
+
+          <section class="section">
+            <h2>How I Work</h2>
+            <p>
+              Quiet, detailed, and steady. No drama and no jargon. Just clear systems
+              that make your day to day easier to run.
+            </p>
+          </section>
+        </div>
+
+        <!-- Side column -->
+        <div>
+          <div class="pill">For small businesses in motion</div>
+
+          <div class="sidebar-card">
+            <p><strong>Good fit if:</strong></p>
+            <p>• Your systems grew in pieces and now feel heavy.</p>
+            <p>• You want someone who will see the whole picture, not just one app.</p>
+            <p>• You value calm, clear communication and real follow through.</p>
+          </div>
+
+          <section class="section">
+            <h2>Start a Conversation</h2>
+            <p>If this sounds like the support you want, reach out.</p>
+            <div class="cta-row">
+              <a class="cta-button" href="mailto:suzineves@gmail.com">
+                Email Suzi
+              </a>
+              <div class="cta-note">No pressure. One calm conversation.</div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="footer">
+        © <script>document.write(new Date().getFullYear());</script> Suzi Neves
+      </div>
     </div>
-  </main>
+  </div>
 </body>
 </html>
+
+
 
