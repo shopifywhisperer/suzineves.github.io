@@ -1,96 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Suzi Neves – Shopify Whisperer</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #faf8f6;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
-                         Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            color: #222;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 60px 24px 80px;
-        }
-        h1 {
-            font-size: 2.4rem;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        h2 {
-            font-size: 1.4rem;
-            margin-top: 48px;
-            font-weight: 600;
-        }
-        p {
-            margin: 16px 0;
-            font-size: 1.05rem;
-        }
-        a.button {
-            display: inline-block;
-            margin-top: 24px;
-            background: #1f1f1f;
-            color: #fff;
-            padding: 14px 22px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .tagline {
-            font-size: 1.3rem;
-            margin-bottom: 32px;
-            color: #444;
-        }
-        .footer {
-            margin-top: 60px;
-            font-size: 0.9rem;
-            color: #555;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suzi Neves – Shopify Whisperer</title>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #f9f4ef;
+      --ink-main: #111827;
+      --ink-soft: #4b5563;
+      --accent: #b45309;
+      --accent-soft: #fed7aa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #1f2933 0, #020617 55%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+      color: var(--ink-main);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+      max-width: 800px;
+      width: 92%;
+      padding: 32px 26px 30px;
+      margin: 40px 0;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 40px 40px 38px;
+      }
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 2.15rem;
+      margin: 0 0 0.35rem;
+      letter-spacing: 0.03em;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      margin-bottom: 1.8rem;
+      max-width: 34rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin: 2.1rem 0 0.3rem;
+    }
+
+    p {
+      margin: 0.4rem 0 0.6rem;
+      font-size: 0.98rem;
+      color: var(--ink-main);
+    }
+
+    ul {
+      margin: 0.4rem 0 0.4rem 1.2rem;
+      padding: 0;
+      font-size: 0.96rem;
+      color: var(--ink-main);
+    }
+
+    li + li {
+      margin-top: 0.2rem;
+    }
+
+    .section {
+      margin-top: 0.6rem;
+    }
+
+    .cta-row {
+      margin-top: 2.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 0.65rem 1.35rem;
+      border-radius: 999px;
+      background: var(--ink-main);
+      color: #f9fafb;
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid #000;
+    }
+
+    .cta-button:hover {
+      background: #020617;
+    }
+
+    .cta-note {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    .footer {
+      margin-top: 1.6rem;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Suzi Neves</h1>
-        <div class="tagline">Grounded operational support for businesses in motion.</div>
-
-        <p>
-            I work with people growing real businesses—meeting the relentless pace 
-            with instinct, clarity, and a shared drive to make it work.
-        </p>
-
-        <p>
-            I spent years inside a fast-moving retail and e-commerce company, 
-            spanning Shopify, in-person sales systems, inventory, data, and the kind of 
-            operational decisions that don’t wait for perfect conditions—they just have to work.
-        </p>
-
-        <p>
-            Now I bring that same steady follow-through and clear thinking to the businesses 
-            I support. I get in sync fast, carry real weight, and help make things feel more possible—
-            for the business and for the humans behind it.
-        </p>
-
-        <h2>What I Do</h2>
-        <p>Shopify setup, cleanup, and optimization</p>
-        <p>POS + inventory workflows that actually make sense</p>
-        <p>Shopify ↔ QuickBooks cleanup, systems, and financial clarity</p>
-        <p>Ongoing operational support for busy shop owners who need a second brain</p>
-
-        <h2>Start a Conversation</h2>
-        <p>If this sounds like the kind of partnership you want, reach out and let’s talk.</p>
-
-        <a class="button" href="mailto:suzineves@gmail.com">Email Me</a>
-
-        <div class="footer">
-            © <script>document.write(new Date().getFullYear())</script> Suzi Neves
-        </div>
+  <main class="card">
+    <div class="eyebrow">Shopify Whisperer</div>
+    <h1>Suzi Neves</h1>
+    <div class="tagline">
+      Grounded operational support for businesses in motion.
     </div>
+
+    <section class="section">
+      <h2>About</h2>
+      <p>
+        I work with people growing real businesses—meeting the relentless pace
+        with instinct, clarity, and a shared drive to make it work.
+      </p>
+      <p>
+        I spent years inside a fast-moving retail and e-commerce company,
+        spanning Shopify, in-person sales systems, inventory, data, and the
+        kind of operational decisions that don’t wait for perfect conditions—
+        they just have to work.
+      </p>
+      <p>
+        Now I bring that same steady follow-through and clear thinking to the
+        businesses I support. I get in sync fast, carry real weight, and help
+        make things feel more possible—for the business and for the humans
+        behind it.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>What I Do</h2>
+      <ul>
+        <li>Shopify setup, cleanup, and optimization</li>
+        <li>POS + inventory workflows that make sense in real life</li>
+        <li>Shopify ↔ QuickBooks cleanup, systems, and financial clarity</li>
+        <li>
+          Ongoing operational support for owners who need a second brain they
+          can trust
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>How I Work</h2>
+      <p>
+        My work is quiet, detailed, and built to hold up under pressure. No
+        hype, no jargon—just clear systems that support the way you already do
+        business.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Start a Conversation</h2>
+      <p>If this sounds like the kind of partnership you want, reach out.</p>
+      <div class="cta-row">
+        <a class="cta-button" href="mailto:suzineves@gmail.com">Email Suzi</a>
+        <div class="cta-note">No pressure. One calm conversation.</div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <script>document.write(new Date().getFullYear());</script> Suzi Neves
+    </div>
+  </main>
 </body>
 </html>
+
