@@ -12,7 +12,7 @@
 
   <style>
     :root {
-      --page-bg: #f4f4f6;
+      --page-bg: #f3f4f6;
       --ink: #111827;
       --ink-soft: #4b5563;
       --muted: #6b7280;
@@ -21,6 +21,9 @@
       --accent: #c4684e;
       --accent-deep: #9a4a35;
       --accent-soft: #f4d0c1;
+
+      --gold: #fbbf24;
+      --ink-deep: #020617;
     }
 
     /* GLOBAL ------------------------------------------------- */
@@ -36,7 +39,8 @@
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
         "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       color: var(--ink);
-      background-color: var(--page-bg);
+      background:
+        radial-gradient(circle at 0% 0%, #fef3c7 0, #f3f4f6 32%, #e5e7eb 100%);
       -webkit-font-smoothing: antialiased;
       line-height: 1.7;
     }
@@ -65,7 +69,7 @@
       align-items: center;
       justify-content: space-between;
       padding-bottom: 22px;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.14);
     }
 
     .brand {
@@ -84,7 +88,10 @@
       justify-content: center;
       font-size: 0.9rem;
       color: var(--ink);
-      background: #f9fafb;
+      background:
+        radial-gradient(circle at 30% 0%, rgba(248, 250, 252, 0.98), #f97316);
+      color: #0b1120;
+      font-weight: 600;
     }
 
     .brand-text {
@@ -111,15 +118,29 @@
     /* HERO --------------------------------------------------- */
 
     .hero-band {
-      margin: 28px -20px 0;
+      margin: 28px 0 0;
+      position: relative;
+    }
+
+    .hero-band::before {
+      /* top editorial stripe running behind hero + first section */
+      content: "";
+      position: absolute;
+      inset: -28px -40px auto;
+      height: 210px;
+      background:
+        linear-gradient(90deg, var(--ink-deep), #0f172a 40%, #111827 70%, #1f2937);
+      z-index: -2;
     }
 
     .hero {
       position: relative;
-      padding: 52px 20px 64px;
+      padding: 40px 20px 52px;
       color: #f9fafb;
       overflow: hidden;
-      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.45);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.55);
+      border-radius: 18px;
+      isolation: isolate;
     }
 
     /* photo + overlay */
@@ -128,24 +149,40 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(120deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.40)),
-        url("https://images.unsplash.com/photo-1526481280695-3c687fd543c0?auto=format&fit=crop&w=1600&q=80");
+        linear-gradient(120deg, rgba(2, 6, 23, 0.90), rgba(15, 23, 42, 0.40)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80");
       background-size: cover;
       background-position: center;
-      filter: grayscale(55%);
+      filter: grayscale(50%);
       opacity: 1;
+      z-index: -2;
     }
 
-    /* top accent bar */
+    /* angled accent block on right */
     .hero::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
+      top: -40px;
+      right: -140px;
+      width: 340px;
+      height: 260px;
+      background:
+        radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.2), transparent 55%),
+        linear-gradient(140deg, rgba(244, 208, 193, 0.8), rgba(196, 104, 78, 0.9));
+      opacity: 0.9;
+      transform: rotate(-12deg);
+      mix-blend-mode: screen;
+      z-index: -1;
+    }
+
+    /* top micro-bar */
+    .hero-top-bar {
       height: 3px;
-      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      width: 140px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
       opacity: 0.98;
+      border-radius: 999px;
+      margin-bottom: 18px;
     }
 
     .hero-inner {
@@ -158,22 +195,22 @@
     }
 
     .hero-content {
-      max-width: 540px;
+      max-width: 560px;
     }
 
     .hero-eyebrow {
-      font-size: 0.8rem;
-      letter-spacing: 0.24em;
+      font-size: 0.78rem;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: #e5e7eb;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 3vw, 2.8rem);
+      font-size: clamp(2.5rem, 3.2vw, 3rem);
       line-height: 1.05;
-      margin: 0 0 14px;
+      margin: 0 0 12px;
     }
 
     .hero-subtitle {
@@ -185,6 +222,13 @@
     .hero-subtitle span {
       color: #fefce8;
       font-weight: 500;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 16px;
     }
 
     .hero-cta {
@@ -201,7 +245,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 16px 32px rgba(138, 60, 38, 0.6);
+      box-shadow: 0 16px 32px rgba(138, 60, 38, 0.7);
     }
 
     .hero-cta:hover {
@@ -215,15 +259,28 @@
     }
 
     .hero-tagline {
-      margin-top: 14px;
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       color: #d1d5db;
+    }
+
+    .hero-tagline-underline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-tagline-underline::before {
+      content: "";
+      width: 52px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(252, 211, 77, 0.9), transparent);
+      opacity: 0.9;
     }
 
     /* MAIN WRAPPER ------------------------------------------ */
 
     main {
-      margin-top: 52px;
+      margin-top: 56px;
     }
 
     .section-label {
@@ -236,22 +293,38 @@
 
     .section-heading {
       font-size: 1.6rem;
-      margin: 0 0 24px;
+      margin: 0 0 20px;
     }
 
-    /* OVERVIEW BAND (WHAT / HOW / WHO) ---------------------- */
+    /* OVERVIEW STRIP (WHAT / HOW / WHO) --------------------- */
 
     .overview-band {
-      margin: 0 -20px;
-      padding: 40px 20px 46px;
-      background: #fdfdfd;
-      border-top: 1px solid #e5e7eb;
-      border-bottom: 1px solid #e5e7eb;
+      position: relative;
+      padding: 36px 0 40px;
+    }
+
+    .overview-band::before {
+      /* thin gradient rule spanning width */
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -40px;
+      right: -40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), transparent);
+      opacity: 0.8;
     }
 
     .overview-inner {
       max-width: 1040px;
       margin: 0 auto;
+    }
+
+    .overview-kicker {
+      max-width: 620px;
+      margin-bottom: 26px;
+      font-size: 0.96rem;
+      color: var(--ink-soft);
     }
 
     .grid-3 {
@@ -261,32 +334,11 @@
       position: relative;
     }
 
-    /* subtle vertical rules between columns */
-    .grid-3::before,
-    .grid-3::after {
-      content: "";
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      width: 1px;
-      background: rgba(209, 213, 219, 0.9);
-      pointer-events: none;
-    }
-    .grid-3::before {
-      left: 33.33%;
-      transform: translateX(-0.5px);
-    }
-    .grid-3::after {
-      left: 66.66%;
-      transform: translateX(-0.5px);
-    }
-
     .col-block {
-      padding-right: 20px;
+      padding-right: 18px;
     }
     .col-block:last-child {
       padding-right: 0;
-      padding-left: 20px;
     }
 
     .col-label {
@@ -312,38 +364,37 @@
 
     .col-body {
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--muted);
     }
 
-    /* CLIENT WORDS BAND -------------------------------------- */
+    /* CLIENT WORDS – EDITORIAL BLOCK ------------------------ */
 
     .testimonial-band {
-      margin: 0 -20px;
-      padding: 40px 20px 44px;
-      background: #f7f5f3;
-      border-bottom: 1px solid #e5e7eb;
+      position: relative;
+      padding: 44px 0 40px;
+    }
+
+    .testimonial-band::before {
+      content: "";
+      position: absolute;
+      inset: 12px -40px auto;
+      height: 160px;
+      background:
+        radial-gradient(circle at 10% 0, rgba(244, 208, 193, 0.55), transparent 60%);
+      opacity: 0.9;
+      z-index: -1;
     }
 
     .testimonial-inner {
-      max-width: 1040px;
+      max-width: 840px;
       margin: 0 auto;
     }
 
     .testimonial-wrap {
       position: relative;
       padding: 20px 0 0;
-    }
-
-    .testimonial-wrap::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), #fbbf24);
-      opacity: 0.9;
+      border-top: 1px solid rgba(15, 23, 42, 0.12);
     }
 
     .testimonial-quote-mark {
@@ -355,7 +406,7 @@
 
     .testimonial-text {
       margin: 0 0 12px;
-      font-size: 0.98rem;
+      font-size: 1rem;
       color: #374151;
       max-width: 680px;
     }
@@ -370,23 +421,40 @@
       color: var(--ink);
     }
 
-    /* DARK WORKING-TOGETHER BAND ---------------------------- */
+    /* DARK WORKING-TOGETHER STRIP ---------------------------- */
 
     .strip-band {
-      margin: 0 -20px;
-      padding: 40px 20px 44px;
-      background: #050816;
-      color: #e5e7eb;
+      margin-top: 32px;
+      position: relative;
     }
 
     .strip-inner-shell {
       max-width: 1040px;
       margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      background: radial-gradient(circle at 0 0, #1e293b, #020617 70%);
+      color: #e5e7eb;
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.7);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .strip-inner-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(196, 104, 78, 0.24), transparent 40%),
+        radial-gradient(circle at 120% 0, rgba(251, 191, 36, 0.2), transparent 55%);
+      opacity: 1;
+      mix-blend-mode: screen;
+      z-index: -1;
     }
 
     .strip-top-rule {
       height: 3px;
-      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      background: linear-gradient(90deg, var(--accent), var(--gold));
       opacity: 0.98;
       margin-bottom: 22px;
     }
@@ -395,6 +463,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
       gap: 28px;
+      padding: 28px 24px 32px;
     }
 
     .strip-tag {
@@ -420,7 +489,7 @@
       margin: 0 0 10px;
       padding-left: 22px;
       font-size: 0.9rem;
-      color: #d1d5db;
+      color: #e5e7eb;
     }
 
     .strip-list li + li {
@@ -433,7 +502,7 @@
 
     .strip-note {
       font-size: 0.86rem;
-      color: #9ca3af;
+      color: #cbd5f5;
     }
 
     /* FOOTER ------------------------------------------------- */
@@ -448,31 +517,13 @@
     /* RESPONSIVE --------------------------------------------- */
 
     @media (max-width: 960px) {
-      .hero-band {
-        margin: 24px -16px 0;
+      .hero-band::before {
+        inset: -24px -20px auto;
+        height: 200px;
       }
 
       .hero {
-        padding: 46px 18px 56px;
-      }
-
-      .overview-band,
-      .testimonial-band,
-      .strip-band {
-        margin: 0 -16px;
-        padding-inline: 16px;
-      }
-
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .grid-3::before,
-      .grid-3::after {
-        display: none;
-      }
-      .col-block,
-      .col-block:last-child {
-        padding: 0 0 18px;
+        padding: 36px 18px 46px;
       }
 
       .strip {
@@ -489,6 +540,23 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+      }
+
+      .hero-band::before {
+        inset: -24px -16px auto;
+      }
+
+      .strip {
+        padding: 24px 18px 26px;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+      }
+
+      .col-block {
+        padding-right: 0;
       }
     }
   </style>
@@ -511,6 +579,8 @@
       <section class="hero">
         <div class="hero-inner">
           <div class="hero-content">
+            <div class="hero-top-bar"></div>
+
             <div class="hero-eyebrow">Systems &amp; Operations Support</div>
 
             <h1 class="hero-title">
@@ -525,13 +595,17 @@
               and operations work together.</span>
             </p>
 
-            <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
-              Reach Out
-              <span class="arrow">↗</span>
-            </a>
+            <div class="hero-cta-row">
+              <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
+                Reach Out
+                <span class="arrow">↗</span>
+              </a>
 
-            <div class="hero-tagline">
-              Quiet, practical support for the back end of your business.
+              <div class="hero-tagline">
+                <span class="hero-tagline-underline">
+                  Quiet, practical support for the back end of your business.
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -540,11 +614,15 @@
 
     <!-- MAIN CONTENT -->
     <main>
-      <!-- OVERVIEW BAND -->
+      <!-- OVERVIEW STRIP -->
       <section class="overview-band">
         <div class="overview-inner">
           <div class="section-label">Overview</div>
           <h2 class="section-heading">Where I fit inside your business.</h2>
+
+          <p class="overview-kicker">
+            For small businesses in motion: grounded support that keeps up—with all of it.:contentReference[oaicite:0]{index=0}
+          </p>
 
           <div class="grid-3">
             <div class="col-block" id="what">
@@ -583,7 +661,7 @@
         </div>
       </section>
 
-      <!-- CLIENT WORDS BAND -->
+      <!-- CLIENT WORDS -->
       <section class="testimonial-band">
         <div class="testimonial-inner">
           <div class="section-label">Client Words</div>
@@ -602,7 +680,7 @@
         </div>
       </section>
 
-      <!-- DARK WORKING TOGETHER BAND -->
+      <!-- DARK WORKING TOGETHER STRIP -->
       <section class="strip-band">
         <div class="strip-inner-shell">
           <div class="strip-top-rule"></div>
