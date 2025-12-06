@@ -6,18 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg-page: #f3f4f6;
-      --bg-hero: #ffffff;
-      --accent: #ec6a3c;       /* warm but not beige */
-      --accent-soft: #ffe1d1;
-      --text-main: #111827;
+      --page-bg: #eef2f7;
+      --hero-grad-start: #4c3bdc;
+      --hero-grad-mid: #c93e9a;
+      --hero-grad-end: #ff6a4c;
+      --hero-text: #ffffff;
+      --primary-btn: #1c93ff;
+      --primary-btn-hover: #0f75d6;
+      --card-bg: #ffffff;
+      --accent-yellow: #ffd76a;
+      --accent-blue: #4db8ff;
+      --accent-green: #3ddc97;
+      --accent-pink: #ff7ab8;
+      --text-main: #1f2933;
       --text-muted: #6b7280;
-      --radius-lg: 28px;
-      --radius-md: 18px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
-      --shadow-subtle: 0 10px 26px rgba(15, 23, 42, 0.06);
-      --border-soft: rgba(209, 213, 219, 0.8);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --shadow-hero: 0 30px 70px rgba(15, 23, 42, 0.45);
+      --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.12);
     }
 
     * {
@@ -28,13 +34,9 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Helvetica Neue", Arial, sans-serif;
-      color: var(--text-main);
-      background:
-        radial-gradient(circle at top left, #e5f0ff 0, transparent 55%),
-        radial-gradient(circle at bottom right, #ffe7d6 0, transparent 55%),
-        var(--bg-page);
+      background: var(--page-bg);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
+      color: var(--text-main);
     }
 
     a {
@@ -42,10 +44,10 @@
       text-decoration: none;
     }
 
-    .page-shell {
-      max-width: 1080px;
+    .shell {
+      max-width: 1160px;
       margin: 0 auto;
-      padding: 24px 18px 72px;
+      padding: 26px 18px 80px;
     }
 
     /* NAV -------------------------------------------------- */
@@ -54,44 +56,42 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+      color: var(--hero-text);
+      position: relative;
+      z-index: 3;
     }
 
-    .nav-left {
+    .nav-logo {
       display: flex;
       align-items: center;
       gap: 10px;
       font-weight: 600;
-      letter-spacing: 0.08em;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      color: #4b5563;
+      font-size: 0.9rem;
     }
 
     .nav-mark {
-      width: 26px;
-      height: 26px;
-      border-radius: 9px;
-      background: linear-gradient(140deg, #ec6a3c, #facc15);
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #111827;
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 18px;
-      font-size: 0.85rem;
-      color: #6b7280;
+      gap: 26px;
+      font-size: 0.9rem;
+      opacity: 0.9;
     }
 
     .nav-links a {
       position: relative;
-      padding-bottom: 1px;
+      padding-bottom: 2px;
     }
 
     .nav-links a::after {
@@ -100,9 +100,9 @@
       left: 0;
       bottom: 0;
       width: 0;
-      height: 1.5px;
-      background: var(--accent);
+      height: 2px;
       border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
       transition: width 0.18s ease;
     }
 
@@ -111,408 +111,512 @@
     }
 
     .nav-cta {
-      padding: 6px 13px;
-      border-radius: var(--radius-pill);
-      background: #111827;
-      color: #f9fafb;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #1f2933;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.25);
     }
 
-    /* HERO -------------------------------------------------- */
+    /* HERO WRAPPER ---------------------------------------- */
 
-    .hero {
+    .hero-wrap {
       position: relative;
-      border-radius: var(--radius-lg);
-      background: var(--bg-hero);
-      padding: 30px 30px 26px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(229, 231, 235, 0.9);
+      border-radius: var(--radius-xl);
       overflow: hidden;
+      box-shadow: var(--shadow-hero);
+      background: radial-gradient(circle at top left, #ff9c6b 0, #c93e9a 35%, #4c3bdc 80%);
+      color: var(--hero-text);
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -40px -80px auto auto;
-      background:
-        radial-gradient(circle at top right, rgba(236, 106, 60, 0.22), transparent 65%);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-
-    .hero-bottom-line {
-      position: absolute;
-      left: 24px;
-      right: 24px;
-      bottom: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent-soft), transparent);
-      opacity: 0.7;
-    }
-
-    .hero-inner {
+    .hero-top {
+      padding: 24px 34px 70px;
       position: relative;
+      z-index: 2;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.1fr);
-      gap: 34px;
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.3fr);
+      gap: 42px;
       align-items: center;
-      z-index: 1;
-    }
-
-    .hero-tag-row {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .hero-pill {
-      padding: 3px 11px;
-      border-radius: var(--radius-pill);
-      font-size: 0.74rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      background: #f9fafb;
-      color: #4b5563;
-      border: 1px solid rgba(209, 213, 219, 0.9);
     }
 
     .hero-heading {
-      font-size: clamp(2rem, 3vw, 2.5rem);
-      line-height: 1.1;
-      margin: 0 0 12px;
+      font-size: clamp(2.3rem, 3.4vw, 2.9rem);
+      line-height: 1.12;
+      margin: 10px 0 12px;
       letter-spacing: -0.02em;
-      color: #0f172a;
-      max-width: 26rem;
     }
 
-    .hero-body {
+    .hero-lede {
       font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 33rem;
-      margin: 0;
+      max-width: 32rem;
+      opacity: 0.96;
     }
 
-    .hero-body span {
-      color: #7c2d12;
-      font-weight: 500;
+    .hero-lede span {
+      font-weight: 600;
+      color: #ffe8ff;
     }
 
-    .hero-actions {
+    .hero-buttons {
+      margin-top: 22px;
       display: flex;
       flex-wrap: wrap;
+      gap: 16px;
       align-items: center;
-      gap: 14px;
-      margin-top: 20px;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: var(--radius-pill);
+      padding: 11px 24px;
+      border-radius: 999px;
       border: none;
-      font-size: 0.86rem;
-      font-weight: 500;
-      letter-spacing: 0.09em;
+      background: var(--primary-btn);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
-      background: linear-gradient(135deg, #ec6a3c, #fca65b);
-      color: #111827;
-      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-btn-hover);
     }
 
     .btn-primary span.arrow {
+      margin-left: 8px;
       font-size: 1rem;
       transform: translateY(1px);
     }
 
-    .hero-subcopy {
-      font-size: 0.84rem;
-      color: #6b7280;
-      max-width: 220px;
+    .hero-subtext {
+      font-size: 0.85rem;
+      opacity: 0.9;
     }
 
-    .hero-right {
-      text-align: right;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #9ca3af;
-    }
+    /* HERO RIGHT GRAPHIC ---------------------------------- */
 
-    .hero-right span.name {
-      display: block;
-      margin-top: 6px;
-      font-size: 0.9rem;
-      letter-spacing: 0.24em;
-      color: #b45309;
-    }
-
-    /* CLIENT STRIP ----------------------------------------- */
-
-    .client-strip {
-      margin-top: 18px;
-      border-radius: 18px;
-      background: #ffffff;
-      padding: 10px 18px;
+    .hero-graphic {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      justify-self: flex-end;
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0, transparent 65%);
+      border: 2px solid rgba(255, 255, 255, 0.35);
       display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 8px;
-      font-size: 0.86rem;
-      color: #4b5563;
-      box-shadow: var(--shadow-subtle);
-      border: 1px solid rgba(229, 231, 235, 0.9);
+      align-items: center;
+      justify-content: center;
     }
 
-    .client-strip-label {
-      font-size: 0.7rem;
+    .hero-ring {
+      position: absolute;
+      width: 76%;
+      height: 76%;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.32);
+    }
+
+    .hero-ring::before,
+    .hero-ring::after {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border-radius: inherit;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-monogram {
+      position: relative;
+      font-size: 6.5rem;
+      font-weight: 300;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 12px 32px rgba(15, 23, 42, 0.55);
+    }
+
+    .hero-chip {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: #0b1120;
+      box-shadow: 0 12px 22px rgba(15, 23, 42, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #9a6b49;
     }
 
-    .client-strip-quote {
-      font-style: italic;
+    .chip-yellow { top: 12%; left: 12%; background: var(--accent-yellow); color: #1f2933; }
+    .chip-blue   { top: 18%; right: -6%; background: var(--accent-blue); }
+    .chip-house  { bottom: 12%; left: -4%; background: var(--accent-green); }
+    .chip-chart  { bottom: -4%; right: 10%; background: var(--accent-pink); }
+
+    .hero-chip-inner {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.12);
+      border: 2px solid rgba(255, 255, 255, 0.65);
     }
 
-    /* SECTIONS --------------------------------------------- */
+    /* HERO WAVE ------------------------------------------- */
 
-    .sections {
-      margin-top: 44px;
+    .hero-wave {
+      position: relative;
+      width: 100%;
+      height: 80px;
+      margin-top: -40px;
+      overflow: hidden;
     }
 
-    .section-heading {
-      font-size: 0.9rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 6px;
+    .hero-wave svg {
+      width: 110%;
+      height: 100%;
+      display: block;
+      transform: translateX(-3%);
     }
 
-    .section-subtitle {
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin: 0 0 20px;
-      letter-spacing: -0.01em;
-      color: #111827;
-      max-width: 32rem;
+    /* CONTENT SECTIONS ------------------------------------ */
+
+    .content {
+      background: var(--card-bg);
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+      margin-top: -2px;
+      padding: 36px 34px 40px;
+      box-shadow: var(--shadow-card);
     }
 
-    .snapshot-grid {
+    .feature-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 32px;
+      margin-bottom: 40px;
     }
 
-    .snapshot {
-      background: #ffffff;
-      border-radius: var(--radius-md);
-      padding: 16px 14px 14px;
-      box-shadow: var(--shadow-subtle);
-      border: 1px solid var(--border-soft);
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
     }
 
-    .snapshot-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 6px;
+    .feature-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: #f5f7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
     }
 
-    .snapshot-title {
-      font-size: 0.98rem;
+    .feature-icon.blue   { background: #e3f2ff; color: #2563eb; }
+    .feature-icon.pink   { background: #ffe5f3; color: #db2777; }
+    .feature-icon.purple { background: #ece4ff; color: #7c3aed; }
+
+    .feature-title {
+      margin: 0 0 4px;
       font-weight: 600;
-      margin-bottom: 6px;
+      font-size: 1.02rem;
     }
 
-    .snapshot-body {
-      font-size: 0.9rem;
+    .feature-text {
+      margin: 0;
       color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* TOOLS SECTION --------------------------------------- */
+
+    .tools {
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    .tools-heading {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .tools-sub {
+      margin: 0 0 24px;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 16px;
+      margin-bottom: 22px;
+      font-size: 0.85rem;
+    }
+
+    .tool-tag {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #f3f4ff;
+      color: #4b5563;
+    }
+
+    .tool-showcase {
+      max-width: 560px;
+      margin: 0 auto;
+      border-radius: 20px;
+      border: 1px solid #e5e7eb;
+      background: linear-gradient(145deg, #f9fafb, #eef2ff);
+      padding: 16px;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+      text-align: left;
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .tool-logo {
+      width: 100%;
+      height: 80px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, #10b981, #059669);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ecfdf5;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .tool-copy-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .tool-copy-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0;
     }
 
     /* FOOTER ---------------------------------------------- */
 
     .footer {
-      margin-top: 44px;
-      font-size: 0.82rem;
+      margin-top: 26px;
+      font-size: 0.8rem;
       color: #9ca3af;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      text-align: center;
     }
 
     /* RESPONSIVE ------------------------------------------ */
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
+      .hero-top {
+        padding: 20px 22px 70px;
+      }
+      .content {
+        padding: 26px 22px 34px;
+      }
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-graphic {
+        margin: 20px auto 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        padding: 18px 14px 60px;
+      }
+      .feature-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .tool-showcase {
+        grid-template-columns: 1fr;
+      }
       .nav {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
       }
-
-      .hero {
-        padding: 24px 20px 22px;
-        border-radius: 22px;
-      }
-
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 18px;
-      }
-
-      .hero-right {
-        text-align: left;
-      }
-
-      .snapshot-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .page-shell {
-        padding: 18px 14px 60px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero-heading {
-        font-size: 1.9rem;
-      }
-
-      .hero-body {
-        font-size: 0.95rem;
+      .nav-links {
+        gap: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page-shell">
-    <!-- NAV -->
-    <header class="nav">
-      <div class="nav-left">
-        <div class="nav-mark">SN</div>
-        <div>Suzi Neves · Systems &amp; Ops</div>
-      </div>
-      <nav class="nav-links">
-        <a href="#who">Who I Work With</a>
-        <a href="#how">How I Work</a>
-        <a href="#what">What I Do</a>
-        <a href="#reach" class="nav-cta">Reach Out</a>
-      </nav>
-    </header>
+  <div class="shell">
+    <!-- HERO WRAPPER (gradient + nav + hero content + wave) -->
+    <div class="hero-wrap">
+      <div class="hero-top">
+        <!-- NAV -->
+        <header class="nav">
+          <div class="nav-logo">
+            <div class="nav-mark">S</div>
+            <div>Suzi Neves</div>
+          </div>
+          <nav class="nav-links">
+            <a href="#what">What I Do</a>
+            <a href="#how">How I Work</a>
+            <a href="#who">Who I Work With</a>
+            <a href="#contact" class="nav-cta">Contact</a>
+          </nav>
+        </header>
 
-    <!-- HERO -->
-    <main>
-      <section class="hero">
-        <div class="hero-inner">
+        <!-- HERO CONTENT -->
+        <div class="hero-grid">
           <div>
-            <div class="hero-tag-row">
-              <span class="hero-pill">Shopify</span>
-              <span class="hero-pill">Bookkeeping</span>
-              <span class="hero-pill">Operations</span>
-            </div>
+            <p style="margin:0;font-size:0.9rem;letter-spacing:0.16em;text-transform:uppercase;opacity:.85;">
+              Shopify · Bookkeeping · Operations
+            </p>
 
             <h1 class="hero-heading">
               Getting your business systems to work together.
             </h1>
 
-            <p class="hero-body">
+            <p class="hero-lede">
               You are running a business that moves in every direction at once.
               Sales, bookkeeping, inventory, events, payouts, and the day to day
               decisions all connect. When one part slips, everything feels heavier.
-              I bring your systems into sync so
-              <span>Shopify, your bookkeeping, and operations</span>
-              work together and the work gets easier.
+              <span>I bring your systems into sync so Shopify, your bookkeeping,
+              and operations work together.</span>
             </p>
 
-            <div class="hero-actions" id="reach">
+            <div class="hero-buttons" id="contact">
               <a href="mailto:suzi@example.com" class="btn-primary">
-                <span>Reach Out</span>
+                Reach Out
                 <span class="arrow">↗</span>
               </a>
-              <div class="hero-subcopy">
+              <div class="hero-subtext">
                 Quiet, practical support for the back end of your business.
               </div>
             </div>
           </div>
 
-          <div class="hero-right">
-            <div>Systems &amp; Operations Support</div>
-            <span class="name">SUZI&nbsp;NEVES</span>
+          <div class="hero-graphic" aria-hidden="true">
+            <div class="hero-ring"></div>
+            <div class="hero-monogram">s</div>
+
+            <div class="hero-chip chip-yellow">
+              <div class="hero-chip-inner"></div>
+            </div>
+            <div class="hero-chip chip-blue">
+              <div class="hero-chip-inner"></div>
+            </div>
+            <div class="hero-chip chip-house">
+              <div class="hero-chip-inner"></div>
+            </div>
+            <div class="hero-chip chip-chart">
+              <div class="hero-chip-inner"></div>
+            </div>
           </div>
         </div>
-        <div class="hero-bottom-line"></div>
-      </section>
+      </div>
 
-      <!-- CLIENT WORDS -->
-      <section class="client-strip">
-        <span class="client-strip-label">Client Words</span>
-        <span class="client-strip-quote">
-          “Suzi sees the whole picture. Our store, our books, and our day to day
-          finally feel like they are on the same team instead of pulling in
-          different directions.”
-        </span>
-        <span>— Name, Title or Business</span>
-      </section>
+      <!-- WAVE DIVIDER -->
+      <div class="hero-wave">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path fill="#ffffff" fill-opacity="1"
+            d="M0,224L48,213.3C96,203,192,181,288,165.3C384,149,480,139,576,138.7C672,139,768,149,864,149.3C960,149,1056,139,1152,149.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+          </path>
+        </svg>
+      </div>
 
-      <!-- SNAPSHOT / WHO HOW WHAT -->
-      <section class="sections">
-        <div class="section-heading">Working Together</div>
-        <h2 class="section-subtitle">
-          A clear back end so you can focus on the part you are actually good at.
-        </h2>
-
-        <div class="snapshot-grid">
-          <article class="snapshot" id="who">
-            <div class="snapshot-label">Who I Work With</div>
-            <div class="snapshot-title">Owners who are stretched thin.</div>
-            <div class="snapshot-body">
-              You are in it every day, juggling product, events, money movement,
-              and constant decisions — and the back end is fighting you.
+      <!-- WHITE CONTENT AREA -->
+      <div class="content">
+        <!-- THREE FEATURES -->
+        <div class="feature-row">
+          <div class="feature-item" id="what">
+            <div class="feature-icon blue">⚙️</div>
+            <div>
+              <h3 class="feature-title">What I Do</h3>
+              <p class="feature-text">
+                I handle the pieces that connect your store, your bookkeeping, and
+                your operations so reports match reality and money movement makes sense.
+              </p>
             </div>
-          </article>
+          </div>
 
-          <article class="snapshot" id="how">
-            <div class="snapshot-label">How I Work</div>
-            <div class="snapshot-title">Small, steady passes.</div>
-            <div class="snapshot-body">
-              We start with a walkthrough of what feels messy, then clean things
-              up in phases so you can keep running the business while the systems
-              get better.
+          <div class="feature-item" id="how">
+            <div class="feature-icon pink">🧭</div>
+            <div>
+              <h3 class="feature-title">How I Work</h3>
+              <p class="feature-text">
+                We start with a walkthrough of what feels messy, then clean things
+                up in small, steady phases so you can keep the business running
+                while the systems get better.
+              </p>
             </div>
-          </article>
+          </div>
 
-          <article class="snapshot" id="what">
-            <div class="snapshot-label">What I Do</div>
-            <div class="snapshot-title">Glue between your tools.</div>
-            <div class="snapshot-body">
-              I handle the pieces that connect your store, your bookkeeping, and
-              your operations so reports match reality and day to day work feels lighter.
+          <div class="feature-item" id="who">
+            <div class="feature-icon purple">💬</div>
+            <div>
+              <h3 class="feature-title">Who I Work With</h3>
+              <p class="feature-text">
+                Owners who are stretched thin and want the back end to stop
+                fighting them so they can focus on the part they are actually good at.
+              </p>
             </div>
-          </article>
+          </div>
         </div>
-      </section>
-    </main>
 
-    <!-- FOOTER -->
+        <!-- TOOLS / STACK -->
+        <section class="tools">
+          <h2 class="tools-heading">The tools I work with.</h2>
+          <p class="tools-sub">
+            I use a mix of platforms and workflows so we can choose what fits your business
+            instead of forcing everything into one tool.
+          </p>
+
+          <div class="tool-tags">
+            <span class="tool-tag">Shopify</span>
+            <span class="tool-tag">QuickBooks Online</span>
+            <span class="tool-tag">Shopify &rarr; QBO Sync</span>
+            <span class="tool-tag">Inventory &amp; payouts</span>
+            <span class="tool-tag">Reporting setup</span>
+          </div>
+
+          <div class="tool-showcase">
+            <div class="tool-logo">S⇄Q</div>
+            <div>
+              <div class="tool-copy-title">Shopify and QuickBooks in sync.</div>
+              <p class="tool-copy-text">
+                Cleaning up products, payouts, and accounts so the store,
+                the books, and your day to day work are telling the same story.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
     <footer class="footer">
-      <div>© <span id="year"></span> Suzi Neves · Shopify Whisperer</div>
-      <div>Based online · working with owners across the US</div>
+      © <span id="year"></span> Suzi Neves · Systems &amp; Operations Support
     </footer>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
