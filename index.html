@@ -14,7 +14,6 @@
     :root {
       --page-bg: #f4f4f6;
       --surface: #ffffff;
-      --surface-soft: #f8f7f5;
       --ink: #111827;
       --ink-soft: #4b5563;
       --muted: #6b7280;
@@ -66,7 +65,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 24px;
+      padding-bottom: 22px;
       border-bottom: 1px solid var(--border-subtle);
     }
 
@@ -115,25 +114,25 @@
     .hero {
       position: relative;
       margin: 28px -20px 0;
-      padding: 60px 20px 72px; /* shorter hero */
+      padding: 52px 20px 64px; /* shorter, tighter */
       color: #f9fafb;
       overflow: hidden;
       border-radius: 0 0 32px 32px;
       box-shadow: 0 22px 60px rgba(15, 23, 42, 0.45);
     }
 
-    /* architectural light & shadow, no people */
+    /* Architectural light & shadow photo, no people */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(135deg, rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.96)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+        linear-gradient(120deg, rgba(15, 23, 42, 0.80), rgba(15, 23, 42, 0.45)),
+        url("https://images.unsplash.com/photo-1526481280695-3c687fd543c0?auto=format&fit=crop&w=1600&q=80");
       background-size: cover;
       background-position: center;
-      filter: grayscale(70%);
-      opacity: 0.96;
+      filter: grayscale(55%);
+      opacity: 1;
     }
 
     /* top editorial accent bar */
@@ -173,11 +172,11 @@
     .hero-title {
       font-size: clamp(2.4rem, 3vw, 2.8rem);
       line-height: 1.05;
-      margin: 0 0 16px;
+      margin: 0 0 14px;
     }
 
     .hero-subtitle {
-      margin: 0 0 22px;
+      margin: 0 0 20px;
       font-size: 0.98rem;
       color: #e5e7eb;
     }
@@ -191,12 +190,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 11px 26px;
+      padding: 10px 24px;
       border-radius: 999px;
       border: none;
       background: var(--accent);
       color: #fdf6f0;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -215,8 +214,8 @@
     }
 
     .hero-tagline {
-      margin-top: 16px;
-      font-size: 0.88rem;
+      margin-top: 14px;
+      font-size: 0.86rem;
       color: #d1d5db;
     }
 
@@ -236,167 +235,134 @@
 
     .section-heading {
       font-size: 1.6rem;
-      margin: 0 0 28px;
+      margin: 0 0 24px;
     }
 
-    /* WHAT / HOW / WHO -------------------------------------- */
+    /* THREE-COLUMN EDITORIAL ROW (WHAT / HOW / WHO) --------- */
 
-    .card-row {
+    .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 28px;
-    }
-
-    .edit-card {
       position: relative;
-      background: var(--surface);
-      border-radius: 18px;
-      border: 1px solid var(--border-subtle);
-      padding: 20px 20px 22px;
-      overflow: hidden;
     }
 
-    /* editorial top rule */
-    .edit-card::before {
+    /* subtle vertical separators between columns */
+    .grid-3::before,
+    .grid-3::after {
       content: "";
       position: absolute;
-      inset-inline: 0;
-      top: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), #fbbf24);
-      opacity: 0.95;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background: rgba(209, 213, 219, 0.9);
+      pointer-events: none;
+    }
+    .grid-3::before {
+      left: 33.33%;
+      transform: translateX(-0.5px);
+    }
+    .grid-3::after {
+      left: 66.66%;
+      transform: translateX(-0.5px);
     }
 
-    .edit-inner {
-      position: relative;
-      z-index: 1;
+    .col-block {
+      padding-right: 18px;
+    }
+    .col-block:last-child {
+      padding-right: 0;
+      padding-left: 18px;
     }
 
-    .edit-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      gap: 12px;
-    }
-
-    .edit-label {
+    .col-label {
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: #9ca3af;
+      margin-bottom: 6px;
     }
 
-    .edit-icon-badge {
-      width: 26px;
-      height: 26px;
+    .col-title {
+      font-size: 1.02rem;
+      margin: 0 0 4px;
+    }
+
+    .col-rule {
+      width: 56px;
+      height: 3px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.95rem;
-      background: #f9fafb;
-      color: #4b5563;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 8px 0 10px;
     }
 
-    .edit-title {
-      font-size: 1.06rem;
-      margin: 0 0 6px;
-    }
-
-    .edit-body {
+    .col-body {
       margin: 0;
       font-size: 0.9rem;
       color: var(--muted);
     }
 
-    .edit-underline {
-      margin-top: 10px;
-      width: 56px;
-      height: 3px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-    }
-
-    /* TESTIMONIAL ------------------------------------------- */
+    /* TESTIMONIAL STRIP (NO BOX) ---------------------------- */
 
     .testimonial-section {
-      margin-top: 60px;
+      margin-top: 56px;
     }
 
-    .testimonial-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 12px;
-    }
-
-    .testimonial-card {
-      max-width: 720px;
-      background: var(--surface);
-      border-radius: 22px;
-      border: 1px solid var(--border-subtle);
-      padding: 26px 26px 28px;
+    .testimonial-wrap {
       position: relative;
-      overflow: hidden;
+      padding: 20px 0 0;
     }
 
-    /* thin accent rule at top to match hero/cards */
-    .testimonial-card::before {
+    .testimonial-wrap::before {
       content: "";
       position: absolute;
-      inset-inline: 0;
+      left: 0;
+      right: 0;
       top: 0;
-      height: 3px;
+      height: 2px;
       background: linear-gradient(90deg, var(--accent), #fbbf24);
-      opacity: 0.98;
-    }
-
-    .testimonial-inner {
-      position: relative;
-      z-index: 1;
+      opacity: 0.9;
     }
 
     .testimonial-quote-mark {
-      font-size: 2rem;
-      color: rgba(196, 104, 78, 0.6);
+      font-size: 2.2rem;
+      color: rgba(196, 104, 78, 0.7);
+      line-height: 1;
       margin-bottom: 6px;
     }
 
     .testimonial-text {
-      margin: 0 0 16px;
-      font-size: 0.96rem;
+      margin: 0 0 12px;
+      font-size: 0.98rem;
       color: #374151;
+      max-width: 680px;
     }
 
-    .testimonial-name {
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .testimonial-role {
-      font-size: 0.84rem;
+    .testimonial-meta {
+      font-size: 0.86rem;
       color: var(--muted);
     }
 
-    /* DARK STRIP -------------------------------------------- */
+    .testimonial-name {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* DARK STRIP (EDITORIAL BAND) --------------------------- */
 
     .strip {
-      margin-top: 64px;
-      padding: 34px 26px;
+      margin-top: 60px;
+      padding: 28px 26px 30px;
       border-radius: 22px;
       background: #050816;
       color: #e5e7eb;
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 32px;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 28px;
       position: relative;
       overflow: hidden;
     }
 
-    /* same accent bar at top */
     .strip::before {
       content: "";
       position: absolute;
@@ -417,12 +383,12 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: #9ca3af;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .strip-heading {
       font-size: 1.4rem;
-      margin: 0 0 14px;
+      margin: 0 0 10px;
     }
 
     .strip-body {
@@ -432,7 +398,7 @@
     }
 
     .strip-list {
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       padding-left: 22px;
       font-size: 0.9rem;
       color: #d1d5db;
@@ -454,7 +420,7 @@
     /* FOOTER ------------------------------------------------- */
 
     .footer {
-      margin-top: 44px;
+      margin-top: 40px;
       font-size: 0.8rem;
       color: #9ca3af;
       text-align: center;
@@ -465,7 +431,19 @@
     @media (max-width: 960px) {
       .hero {
         margin: 24px -16px 0;
-        padding: 52px 18px 64px;
+        padding: 46px 18px 56px;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .grid-3::before,
+      .grid-3::after {
+        display: none;
+      }
+      .col-block,
+      .col-block:last-child {
+        padding: 0 0 18px;
       }
 
       .strip {
@@ -475,17 +453,13 @@
 
     @media (max-width: 720px) {
       .shell {
-        padding: 24px 16px 64px;
+        padding: 24px 16px 60px;
       }
 
       .nav {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-      }
-
-      .card-row {
-        grid-template-columns: minmax(0, 1fr);
       }
     }
   </style>
@@ -540,70 +514,55 @@
         <div class="section-label">Overview</div>
         <h2 class="section-heading">Where I fit inside your business.</h2>
 
-        <div class="card-row">
-          <article class="edit-card" id="what">
-            <div class="edit-inner">
-              <div class="edit-header">
-                <div class="edit-label">What I Do</div>
-                <div class="edit-icon-badge">⚙️</div>
-              </div>
-              <h3 class="edit-title">Glue between your tools.</h3>
-              <div class="edit-underline"></div>
-              <p class="edit-body">
-                I handle the connective tissue between your store, your bookkeeping,
-                and your operations so reports match reality and money movement
-                finally makes sense instead of feeling mysterious.
-              </p>
-            </div>
-          </article>
+        <div class="grid-3">
+          <div class="col-block" id="what">
+            <div class="col-label">What I Do</div>
+            <h3 class="col-title">Glue between your tools.</h3>
+            <div class="col-rule"></div>
+            <p class="col-body">
+              I handle the connective tissue between your store, your bookkeeping,
+              and your operations so reports match reality and money movement
+              finally makes sense instead of feeling mysterious.
+            </p>
+          </div>
 
-          <article class="edit-card" id="how">
-            <div class="edit-inner">
-              <div class="edit-header">
-                <div class="edit-label">How I Work</div>
-                <div class="edit-icon-badge">🧭</div>
-              </div>
-              <h3 class="edit-title">Small, steady passes.</h3>
-              <div class="edit-underline"></div>
-              <p class="edit-body">
-                We start with what feels heavy, walk through Shopify, your books,
-                and the workflows around both, then clean things up in phases so
-                you can keep running the business while the systems get better.
-              </p>
-            </div>
-          </article>
+          <div class="col-block" id="how">
+            <div class="col-label">How I Work</div>
+            <h3 class="col-title">Small, steady passes.</h3>
+            <div class="col-rule"></div>
+            <p class="col-body">
+              We start with what feels heavy, walk through Shopify, your books,
+              and the workflows around both, then clean things up in phases so
+              you can keep running the business while the systems get better.
+            </p>
+          </div>
 
-          <article class="edit-card" id="who">
-            <div class="edit-inner">
-              <div class="edit-header">
-                <div class="edit-label">Who I Work With</div>
-                <div class="edit-icon-badge">💬</div>
-              </div>
-              <h3 class="edit-title">Owners who are stretched thin.</h3>
-              <div class="edit-underline"></div>
-              <p class="edit-body">
-                You are in it every day and the back end is fighting you. You want
-                your systems to feel grounded so you can focus on the part you are
-                actually good at, instead of constantly chasing loose ends.
-              </p>
-            </div>
-          </article>
+          <div class="col-block" id="who">
+            <div class="col-label">Who I Work With</div>
+            <h3 class="col-title">Owners who are stretched thin.</h3>
+            <div class="col-rule"></div>
+            <p class="col-body">
+              You are in it every day and the back end is fighting you. You want
+              your systems to feel grounded so you can focus on the part you are
+              actually good at, instead of constantly chasing loose ends.
+            </p>
+          </div>
         </div>
       </section>
 
-      <!-- TESTIMONIAL -->
+      <!-- TESTIMONIAL STRIP -->
       <section class="testimonial-section">
-        <div class="testimonial-label">Client Words</div>
-        <div class="testimonial-card">
-          <div class="testimonial-inner">
-            <div class="testimonial-quote-mark">“</div>
-            <p class="testimonial-text">
-              Suzi sees the whole picture. Our store, our books, and our day to day
-              finally feel like they are on the same team instead of pulling in
-              different directions.
-            </p>
-            <div class="testimonial-name">Client Name Here</div>
-            <div class="testimonial-role">Owner, Business Name</div>
+        <div class="section-label">Client Words</div>
+        <div class="testimonial-wrap">
+          <div class="testimonial-quote-mark">“</div>
+          <p class="testimonial-text">
+            Suzi sees the whole picture. Our store, our books, and our day to day
+            finally feel like they are on the same team instead of pulling in
+            different directions.
+          </p>
+          <div class="testimonial-meta">
+            <span class="testimonial-name">Client Name Here</span>,
+            <span class="testimonial-role">Owner, Business Name</span>
           </div>
         </div>
       </section>
