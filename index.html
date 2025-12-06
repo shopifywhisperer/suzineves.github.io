@@ -6,104 +6,232 @@
   <title>Suzi Neves – Grounded Support for Businesses in Motion</title>
   <style>
     :root {
-      --bg: #f3ece7;
-      --text: #1b1b1b;
-      --accent: #c27c5b; /* warm terracotta edge */
-      --subtle: #5a5a5a;
+      --bg: #0f172a;      /* deep slate */
+      --card: #f5f1eb;    /* warm paper */
+      --ink: #151515;
+      --ink-soft: #555;
+      --accent: #c57a54;  /* controlled wildfire */
+      --accent-soft: #e3b9a0;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.55;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 50%, #000 100%);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
     }
 
-    .page {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 80px 28px 120px;
-      position: relative;
+    .card {
+      max-width: 980px;
+      width: 100%;
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid #e0dacf;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
-    /* left anchor line */
-    .page:before {
-      content: "";
-      position: absolute;
-      top: 60px;
-      left: 10px;
-      width: 4px;
-      height: calc(100% - 120px);
-      background: var(--accent);
-      border-radius: 2px;
-      opacity: 0.8;
+    @media (min-width: 800px) {
+      .card {
+        flex-direction: row;
+      }
     }
 
-    h1 {
-      font-size: 48px;
-      margin: 0 0 8px 0;
-      font-weight: 700;
-      letter-spacing: -0.5px;
+    .side {
+      background: linear-gradient(160deg, var(--accent) 0, var(--accent-soft) 40%, #f5f1eb 40%);
+      padding: 32px 26px 32px 28px;
+      flex: 0 0 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    h2 {
-      font-size: 24px;
-      margin: 0 0 50px 0;
-      color: var(--subtle);
+    .side-top h1 {
+      margin: 0 0 6px 0;
+      font-size: 32px;
+      letter-spacing: 0.03em;
+    }
+
+    .tagline {
+      font-size: 16px;
       font-weight: 500;
-      line-height: 1.4;
+      max-width: 230px;
     }
 
-    p {
-      font-size: 19px;
-      margin-bottom: 26px;
-      max-width: 650px;
+    .side-bottom {
+      margin-top: 32px;
+      font-size: 14px;
+      color: #2a1a16;
     }
 
-    .section-title {
-      margin-top: 70px;
-      margin-bottom: 18px;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--text);
-      border-bottom: 2px solid var(--accent);
+    .email {
       display: inline-block;
-      padding-bottom: 4px;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: #1f2933;
+      color: #f9f9f9;
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .email:hover {
+      filter: brightness(1.05);
+    }
+
+    .main {
+      padding: 32px 28px 40px;
+      flex: 1;
+    }
+
+    .intro p {
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 0 16px;
+      color: var(--ink);
+    }
+
+    .section {
+      margin-top: 32px;
+    }
+
+    .section h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-soft);
+      margin: 0 0 10px;
+    }
+
+    .section-title-underline {
+      width: 42px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0 0 12px;
     }
 
     ul {
-      padding-left: 20px;
-      font-size: 18px;
+      margin: 0;
+      padding-left: 18px;
+      font-size: 16px;
     }
 
     li {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .muted {
+      color: var(--ink-soft);
+      font-size: 14px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 799px) {
+      .side {
+        background: linear-gradient(160deg, var(--accent) 0, var(--accent-soft) 55%, #f5f1eb 55%);
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <h1>Suzi Neves</h1>
+  <div class="card">
+    <!-- LEFT SIDE: IDENTITY + ONE-LINER + CONTACT -->
+    <div class="side">
+      <div class="side-top">
+        <h1>Suzi Neves</h1>
+        <div class="tagline">
+          For small businesses in motion: grounded support that keeps up—with all of it.
+        </div>
+      </div>
+      <div class="side-bottom">
+        <div>Based in motion. Working with owners who are in it for real.</div>
+        <a class="email" href="mailto:suzineves@gmail.com">Email Suzi</a>
+      </div>
+    </div>
 
-    <h2>For small businesses in motion: grounded support that keeps up—with all of it.</h2>
+    <!-- RIGHT SIDE: STORY + DETAILS -->
+    <div class="main">
+      <div class="intro">
+        <p>
+          I work with people growing real businesses—meeting the relentless pace with instinct,
+          clarity, and a shared drive to make it work.
+        </p>
+        <p>
+          Over the past few years, I worked inside a fast-moving retail and e-commerce company,
+          spanning Shopify, in-person sales systems, product systems, inventory, and the kind of
+          operational decisions that don’t wait for perfect conditions—they just have to work.
+          I moved between the front and back of the business, kept pace with growth, filled in gaps,
+          and created structure while the wheels were still turning.
+        </p>
+        <p>
+          Now, I bring that same clear thinking, steady follow-through, and deep respect to every
+          business I work with. I get in sync, carry real weight, and help make things feel more
+          possible—for the business, and for the humans behind it.
+        </p>
+        <p>
+          If that kind of collaboration sounds like a fit, I’d love to talk.
+        </p>
+      </div>
 
-    <p>I work with people growing real businesses, meeting the relentless pace with instinct, clarity, and a shared drive to make it work.</p>
+      <div class="section">
+        <h2>What I Do</h2>
+        <div class="section-title-underline"></div>
+        <ul>
+          <li>Shopify structure, setup, cleanup, product systems, and POS workflows</li>
+          <li>Inventory processes that match how your shop actually moves</li>
+          <li>Shopify ➝ QuickBooks clarity, payouts, reconciliation, and operational flow</li>
+          <li>Ongoing support for owners who want a grounded second brain</li>
+        </ul>
+      </div>
 
-    <p>I spent years inside a fast-moving retail and e-commerce company, spanning Shopify, in-person sales systems, product workflows, inventory, and the kind of operational decisions that can’t wait for perfect conditions. They just have to work.</p>
+      <div class="section">
+        <h2>How I Work</h2>
+        <div class="section-title-underline"></div>
+        <p>
+          Grounded, observant, and clear. I move with the pace of the business and build systems
+          that support the way work really happens. I pay attention to people, patterns, and
+          pressure points—and design workflows that hold up under real conditions.
+        </p>
+        <p>
+          My role is steady follow-through, thoughtful structure, and the kind of support that
+          sits quietly in the background while you focus on the parts only you can do.
+        </p>
+      </div>
 
-    <p>I bring steady follow-through and clear thinking to every business I work with. I get in sync fast, carry real weight, and help make things feel more possible—for the business and for the humans behind it.</p>
-
-    <p>If that kind of collaboration sounds like a fit, I’d love to talk.</p>
-
-    <div class="section-title">What I Do</div>
-    <ul>
-      <li>Shopify setup, cleanup, and optimization</li>
-      <li>Point-of-sale + inventory workflows that actually make sense</li>
-      <li>Shopify ↔ QuickBooks cleanup and operational clarity</li>
-      <li>Support for busy shop owners who need a second brain</li>
-    </ul>
+      <div class="section">
+        <h2>Start a Conversation</h2>
+        <div class="section-title-underline"></div>
+        <p>
+          If you’re running a business that’s in motion and you need someone who can step in,
+          carry real weight, and help calm the operational noise, send a note and we can see
+          whether it’s a fit.
+        </p>
+        <p class="muted">
+          One straightforward conversation. No pressure, no hard sell—just a clear look at
+          what you’re carrying and what support could look like.
+        </p>
+      </div>
+    </div>
   </div>
 </body>
 </html>
