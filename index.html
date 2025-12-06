@@ -6,18 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
-      --bg: #050816;
-      --bg-alt: #0b1220;
-      --card: #111827;
-      --accent: #e4744f;
-      --accent-soft: #f3d4c3;
-      --text-main: #f9fafb;
-      --text-muted: #9ca3af;
-      --border-subtle: #1f2937;
-      --max-width: 900px;
+      --bg: #f4f1ec;          /* soft neutral background */
+      --bg-accent: #ebe4dc;   /* subtle panel tint */
+      --card: #ffffff;        /* cards and hero */
+      --accent: #c8643f;      /* terracotta */
+      --accent-soft: #f0b79a; /* soft accent */
+      --text-main: #111827;   /* main text */
+      --text-muted: #6b7280;  /* muted text */
+      --border-subtle: #e0d7ce;
+      --shadow-soft: 0 14px 36px rgba(15, 23, 42, 0.12);
+      --max-width: 880px;
       --radius-lg: 18px;
       --radius-pill: 999px;
-      --shadow-soft: 0 18px 44px rgba(0, 0, 0, 0.45);
     }
 
     * {
@@ -29,7 +29,7 @@
       padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #111827 0, #050816 40%, #020617 100%);
+      background: radial-gradient(circle at top left, #f7f3ee 0, #f4f1ec 40%, #f1ece6 100%);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
     }
@@ -37,12 +37,12 @@
     .page {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 40px 18px 72px;
+      padding: 40px 18px 64px;
     }
 
     @media (min-width: 768px) {
       .page {
-        padding: 52px 24px 84px;
+        padding: 52px 24px 80px;
       }
     }
 
@@ -50,10 +50,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 14px;
+      padding: 4px 12px;
       border-radius: var(--radius-pill);
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(249, 250, 251, 0.15);
+      background: #f9f5f0;
+      border: 1px solid #e7ddd3;
       font-size: 12px;
       color: var(--text-muted);
     }
@@ -63,81 +63,78 @@
       height: 8px;
       border-radius: 999px;
       background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(228, 116, 79, 0.22);
+      box-shadow: 0 0 0 4px rgba(200, 100, 63, 0.25);
     }
 
     .hero {
       display: grid;
-      gap: 24px;
-      padding: 32px 24px 26px;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at top right, rgba(228, 116, 79, 0.18), transparent 55%),
-        linear-gradient(145deg, #020617, #050816 55%, #020617 100%);
+      gap: 22px;
+      padding: 26px 22px 22px;
+      border-radius: 22px;
+      background: var(--card);
       box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(148, 163, 184, 0.25);
+      border: 1px solid var(--border-subtle);
     }
 
-    @media (min-width: 880px) {
+    @media (min-width: 860px) {
       .hero {
-        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-        align-items: stretch;
+        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.3fr);
+        align-items: start;
       }
     }
 
     .hero-main h1 {
-      font-size: 28px;
+      font-size: 26px;
       line-height: 1.25;
-      margin: 18px 0 12px;
-      letter-spacing: 0.02em;
-      text-transform: none;
+      margin: 16px 0 10px;
+      letter-spacing: 0.01em;
     }
 
     @media (min-width: 768px) {
       .hero-main h1 {
-        font-size: 32px;
+        font-size: 30px;
       }
     }
 
     .hero-main p {
-      margin: 0 0 18px;
+      margin: 0 0 16px;
       font-size: 15px;
       line-height: 1.7;
       color: var(--text-muted);
-      max-width: 38rem;
+      max-width: 40rem;
     }
 
     .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 10px 16px;
-      margin-top: 4px;
+      gap: 8px 16px;
+      margin-top: 2px;
     }
 
     .cta-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 20px;
+      padding: 9px 20px;
       border-radius: var(--radius-pill);
       border: none;
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      background: linear-gradient(135deg, var(--accent), #f97316);
-      color: #0b1120;
-      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.6);
+      background: linear-gradient(135deg, var(--accent), #e98a52);
+      color: #111827;
+      box-shadow: 0 8px 24px rgba(148, 92, 60, 0.35);
       cursor: pointer;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
     }
 
     .cta-primary:hover {
       transform: translateY(-1px);
       filter: brightness(1.03);
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 12px 32px rgba(148, 92, 60, 0.4);
     }
 
     .cta-secondary {
@@ -146,21 +143,21 @@
     }
 
     .cta-secondary span {
-      color: var(--accent-soft);
+      color: var(--accent);
     }
 
     .hero-side {
-      border-radius: 18px;
-      background: linear-gradient(145deg, #020617, #020617 60%, #020617 100%);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 18px 18px 16px;
+      border-radius: 16px;
+      background: #faf6f2;
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 14px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .hero-side-title {
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--text-muted);
@@ -170,28 +167,28 @@
     .pill-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
 
     .pill {
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: var(--radius-pill);
       font-size: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      border: 1px solid #e0d5cb;
       color: var(--text-muted);
-      background: rgba(15, 23, 42, 0.95);
+      background: #fdf9f5;
     }
 
     .pill.accent {
-      border-color: rgba(228, 116, 79, 0.9);
-      color: var(--accent-soft);
-      background: rgba(15, 23, 42, 0.98);
+      border-color: rgba(200, 100, 63, 0.9);
+      color: #7b3b23;
+      background: #fcefe6;
     }
 
     .hero-note {
       font-size: 12px;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .hero-note strong {
@@ -200,37 +197,30 @@
     }
 
     .sections {
-      margin-top: 32px;
+      margin-top: 28px;
       display: grid;
-      gap: 20px;
+      gap: 16px;
     }
 
     .section {
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.9);
+      border-radius: 16px;
+      background: #f9f5f0;
       border: 1px solid var(--border-subtle);
-      padding: 20px 18px 18px;
+      padding: 16px 16px 14px;
     }
 
     @media (min-width: 768px) {
       .section {
-        padding: 22px 22px 20px;
+        padding: 18px 18px 16px;
       }
     }
 
     .section h2 {
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin: 0 0 10px;
-    }
-
-    .section p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-muted);
       margin: 0 0 8px;
-      max-width: 46rem;
+      color: #374151;
     }
 
     .section ul {
@@ -238,8 +228,8 @@
       padding-left: 18px;
       font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 46rem;
+      line-height: 1.6;
+      max-width: 44rem;
     }
 
     .section li + li {
@@ -247,9 +237,9 @@
     }
 
     .footer {
-      margin-top: 28px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 1px solid #e1d7ce;
       font-size: 12px;
       color: var(--text-muted);
       display: flex;
@@ -259,7 +249,7 @@
     }
 
     .footer a {
-      color: var(--accent-soft);
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -280,19 +270,18 @@
         <h1>Getting your business systems to work together.</h1>
 
         <p>
-          You’re running a business that moves in every direction at once. Sales, bookkeeping,
-          inventory, events, payouts, and the day to day decisions all connect. When one part
-          slips, everything feels heavier. I bring your systems into sync so Shopify, QuickBooks,
-          and operations work together and the work gets easier.
+          You are running a business that moves in every direction at once. Sales, bookkeeping,
+          inventory, events, payouts, and the day to day decisions all connect. When one part slips,
+          everything feels heavier. I bring your systems into sync so Shopify, QuickBooks, and
+          operations work together and the work gets easier.
         </p>
 
         <div class="hero-cta-row">
-          <a class="cta-primary" href="mailto:suzi@example.com">
+          <a class="cta-primary" href="mailto:suzi@radpurpose.com">
             Reach out
           </a>
           <div class="cta-secondary">
-            Not sure where to start?
-            <span>Tell me what feels heavy.</span>
+            <span>You do not have to explain everything at once.</span>
           </div>
         </div>
       </section>
@@ -304,7 +293,7 @@
             <span class="pill accent">Shopify and QuickBooks in sync</span>
             <span class="pill">Products, variants, collections</span>
             <span class="pill">Payouts, refunds, reporting</span>
-            <span class="pill">POS and online alignment</span>
+            <span class="pill">Point of sale and online alignment</span>
           </div>
         </div>
 
@@ -350,7 +339,7 @@
       <div>Quiet, practical support for the back end of your business.</div>
       <div>
         Ready to talk?
-        <a href="mailto:suzi@example.com">Send an email</a>.
+        <a href="mailto:suzi@radpurpose.com">Send an email</a>.
       </div>
     </footer>
   </main>
