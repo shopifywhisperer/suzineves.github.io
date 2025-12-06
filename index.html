@@ -8,21 +8,20 @@
   <style>
     :root {
       --page-bg: #e5e7eb;
-      --shell-bg: #f9fafb;
-      --hero-bg-top: #111827;
-      --hero-bg-bottom: #1f2937;
-      --hero-border: #f97316;
-      --warm-accent: #c8643f;
-      --warm-soft: #f4e2d5;
+      --hero-left-bg: #0f172a;   /* deep slate */
+      --hero-right-bg1: #f4e2d5; /* warm light */
+      --hero-right-bg2: #e4b494; /* warm mid */
+      --accent: #c8643f;
+      --accent-soft: #fbbf93;
       --text-main: #111827;
       --text-muted: #4b5563;
       --text-light: #e5e7eb;
-      --radius-lg: 12px;
-      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-md: 10px;
       --radius-pill: 999px;
-      --shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.25);
-      --shadow-light: 0 8px 18px rgba(15, 23, 42, 0.12);
-      --max-width: 1000px;
+      --shadow-strong: 0 18px 40px rgba(15,23,42,0.4);
+      --shadow-soft: 0 10px 24px rgba(15,23,42,0.18);
+      --max-width: 1080px;
     }
 
     * { box-sizing: border-box; }
@@ -32,7 +31,7 @@
       padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.45), transparent 55%),
+        radial-gradient(circle at top left, rgba(255,255,255,0.5), transparent 55%),
         var(--page-bg);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
@@ -41,55 +40,46 @@
     .page {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 24px 16px 48px;
+      padding: 26px 16px 52px;
     }
 
     @media (min-width: 768px) {
-      .page { padding: 32px 20px 56px; }
+      .page { padding: 32px 20px 60px; }
     }
 
-    /* OUTER SHELL */
+    /* HERO WRAPPER */
 
-    .shell {
-      background: var(--shell-bg);
+    .hero-shell {
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      padding: 22px 18px 20px;
-    }
-
-    @media (min-width: 768px) {
-      .shell { padding: 26px 22px 22px; }
-    }
-
-    /* HERO */
-
-    .hero {
-      background:
-        linear-gradient(to right, rgba(15,23,42,0.9), rgba(15,23,42,0.96)),
-        linear-gradient(135deg, var(--hero-bg-top), var(--hero-bg-bottom));
-      border-radius: var(--radius-md);
-      color: var(--text-light);
-      padding: 18px 16px 18px;
-      border-left: 4px solid var(--hero-border);
-      box-shadow: var(--shadow-light);
-      position: relative;
+      box-shadow: var(--shadow-strong);
       overflow: hidden;
+      background: #020617;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      min-height: 260px;
+    }
+
+    @media (max-width: 799px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* LEFT SIDE: COPY */
+
+    .hero-left {
+      background:
+        radial-gradient(circle at top left, rgba(248,250,252,0.08), transparent 55%),
+        linear-gradient(135deg, #111827, var(--hero-left-bg));
+      color: var(--text-light);
+      padding: 20px 18px 20px;
     }
 
     @media (min-width: 768px) {
-      .hero { padding: 22px 20px 20px; }
-    }
-
-    /* subtle hero texture line */
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -60px;
-      top: 12px;
-      width: 160px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(249,115,22,0.6), transparent);
-      opacity: 0.85;
+      .hero-left { padding: 24px 22px 22px; }
     }
 
     .hero-top-row {
@@ -149,7 +139,7 @@
       justify-content: center;
       padding: 8px 20px;
       border-radius: var(--radius-pill);
-      background: linear-gradient(135deg, var(--warm-accent), #f59e5b);
+      background: linear-gradient(135deg, var(--accent), #f59e5b);
       color: #111827;
       font-size: 13px;
       font-weight: 600;
@@ -168,24 +158,116 @@
       color: #d1d5db;
     }
 
+    /* RIGHT SIDE: BIG NAME BLOCK */
+
+    .hero-right {
+      position: relative;
+      background: radial-gradient(circle at top left, var(--hero-right-bg1), var(--hero-right-bg2));
+      padding: 18px 18px 16px;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .hero-right { padding: 22px 22px 18px; }
+    }
+
+    /* subtle texture lines */
+    .hero-right::before,
+    .hero-right::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+    }
+
+    .hero-right::before {
+      width: 160%;
+      height: 120px;
+      top: -50px;
+      left: -30%;
+      transform: rotate(-7deg);
+    }
+
+    .hero-right::after {
+      width: 140%;
+      height: 110px;
+      bottom: -60px;
+      right: -20%;
+      transform: rotate(8deg);
+    }
+
+    .name-block {
+      position: relative;
+      align-self: center;
+      text-align: right;
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .name-label {
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: #7c2d12;
+      margin-bottom: 6px;
+    }
+
+    .name-lines {
+      line-height: 0.9;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(15,23,42,0.12);
+      font-weight: 700;
+      font-size: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .name-lines { font-size: 48px; }
+    }
+
+    .name-lines span {
+      display: block;
+    }
+
+    .name-accent-bar {
+      margin-top: 10px;
+      margin-left: auto;
+      width: 60px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    }
+
+    .name-subtext {
+      margin-top: 10px;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #7c2d12;
+      max-width: 16rem;
+      margin-left: auto;
+    }
+
     /* TESTIMONIAL STRIP */
 
     .testimonial {
-      margin-top: 18px;
-      background: linear-gradient(135deg, var(--warm-soft), #fefaf6);
+      margin-top: 16px;
+      background: linear-gradient(135deg, #f4e2d5, #fefaf6);
       border-radius: var(--radius-md);
-      padding: 14px 14px 12px;
+      padding: 12px 14px 10px;
       border: 1px solid #f3d4ba;
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
       gap: 10px;
       align-items: center;
+      box-shadow: var(--shadow-soft);
     }
 
     @media (max-width: 639px) {
       .testimonial {
         grid-template-columns: minmax(0, 1fr);
-        padding: 12px 12px 10px;
       }
     }
 
@@ -209,16 +291,16 @@
       white-space: nowrap;
     }
 
-    /* INFO SECTIONS */
+    /* INFO GRID */
 
     .info-grid {
-      margin-top: 24px;
+      margin-top: 26px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: minmax(0,1fr);
       gap: 14px;
     }
 
-    @media (min-width: 860px) {
+    @media (min-width: 880px) {
       .info-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -229,7 +311,7 @@
       border-radius: var(--radius-md);
       padding: 14px 14px 12px;
       border: 1px solid #e5e5e4;
-      box-shadow: var(--shadow-light);
+      box-shadow: var(--shadow-soft);
     }
 
     .info-kicker {
@@ -241,10 +323,10 @@
     }
 
     .info-divider {
-      width: 28px;
+      width: 26px;
       height: 2px;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--warm-accent), #fbbf93);
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
       margin-bottom: 8px;
     }
 
@@ -261,20 +343,20 @@
 
     /* FOOTER */
 
-    .shell-footer {
+    .footer-line {
       margin-top: 18px;
       font-size: 12px;
       color: #6b7280;
       text-align: right;
     }
 
-    .shell-footer a {
-      color: var(--warm-accent);
+    .footer-line a {
+      color: var(--accent);
       text-decoration: none;
       font-weight: 500;
     }
 
-    .shell-footer a:hover {
+    .footer-line a:hover {
       text-decoration: underline;
     }
 
@@ -283,89 +365,110 @@
 
 <body>
   <main class="page">
-    <div class="shell">
 
-      <!-- HERO -->
-      <header class="hero">
-        <div class="hero-top-row">
-          <div class="hero-name">Suzi Neves</div>
-          <div class="hero-tag">Shopify · Bookkeeping · Operations</div>
-        </div>
+    <!-- HERO -->
+    <section class="hero-shell">
+      <div class="hero-grid">
 
-        <h1 class="hero-heading">Getting your business systems to work together.</h1>
+        <!-- LEFT: COPY -->
+        <header class="hero-left">
+          <div class="hero-top-row">
+            <div class="hero-name">Suzi Neves</div>
+            <div class="hero-tag">Shopify · Bookkeeping · Operations</div>
+          </div>
 
-        <p class="hero-sub">
-          You are running a business that moves in every direction at once. Sales, bookkeeping,
-          inventory, events, payouts, and the day to day decisions all connect. When one part slips,
-          everything feels heavier. I bring your systems into sync so Shopify, your bookkeeping,
-          and operations work together and the work gets easier.
-        </p>
+          <h1 class="hero-heading">Getting your business systems to work together.</h1>
 
-        <div class="hero-bottom-row">
-          <a class="hero-cta" href="mailto:suzi@radpurpose.com">Reach out</a>
-          <div class="hero-note">Quiet, practical support for the back end of your business.</div>
-        </div>
-      </header>
-
-      <!-- TESTIMONIAL -->
-      <section class="testimonial">
-        <div class="testimonial-label">Client words</div>
-        <div class="testimonial-text">
-          “Suzi sees the whole picture. Our store, our books, and our day to day finally feel like
-          they are on the same team instead of pulling in different directions.”
-          <span class="testimonial-author">— Name, Title or Business</span>
-        </div>
-      </section>
-
-      <!-- INFO GRID -->
-      <section class="info-grid">
-
-        <article class="info-card">
-          <div class="info-kicker">Who I work with</div>
-          <div class="info-divider"></div>
-          <p class="info-body">
-            I am best for owners who are stretched thin and want the back end of the business to stop fighting them.
-            You are in it every day, juggling product, events, money movement, and all the decisions in between.
-            You want your systems to feel grounded so you can focus on the part you are actually good at.
+          <p class="hero-sub">
+            You are running a business that moves in every direction at once. Sales, bookkeeping,
+            inventory, events, payouts, and the day to day decisions all connect. When one part slips,
+            everything feels heavier. I bring your systems into sync so Shopify, your bookkeeping,
+            and operations work together and the work gets easier.
           </p>
-        </article>
 
-        <article class="info-card">
-          <div class="info-kicker">How I work</div>
-          <div class="info-divider"></div>
-          <p class="info-body">
-            We start with a walkthrough of what feels messy or heavy. I look at Shopify, your books, and the workflows
-            around both, and map out what is really going on.
-          </p>
-          <p class="info-body">
-            From there, we clean things up in small, steady phases so you can keep running the business while the systems
-            get better. Once everything is stable, you choose whether you want me to stay on monthly or hand it back with
-            clear notes and simple habits.
-          </p>
-        </article>
+          <div class="hero-bottom-row">
+            <a class="hero-cta" href="mailto:suzi@radpurpose.com">Reach out</a>
+            <div class="hero-note">Quiet, practical support for the back end of your business.</div>
+          </div>
+        </header>
 
-        <article class="info-card">
-          <div class="info-kicker">What I do</div>
-          <div class="info-divider"></div>
-          <p class="info-body">
-            I handle the pieces that connect your store, your bookkeeping, and your operations. That includes monthly
-            bookkeeping support, syncing Shopify and QuickBooks so reports match reality, and untangling payouts, refunds,
-            discounts, and daily money movement.
-          </p>
-          <p class="info-body">
-            I also clean up products, variants, and collections so your store matches how you actually sell, and put light
-            structure around events, inventory, and daily tasks. The goal is simple: a business that feels lighter to run,
-            with numbers you can trust.
-          </p>
-        </article>
+        <!-- RIGHT: BIG NAME BLOCK -->
+        <aside class="hero-right">
+          <div class="name-block">
+            <div class="name-label">Systems & operations support</div>
+            <div class="name-lines">
+              <span>SUZI</span>
+              <span>NEVES</span>
+            </div>
+            <div class="name-accent-bar"></div>
+            <div class="name-subtext">
+              Calm, grounded support that brings Shopify, your books, and the day to day work into one working system.
+            </div>
+          </div>
+        </aside>
 
-      </section>
-
-      <div class="shell-footer">
-        When you are ready: <a href="mailto:suzi@radpurpose.com">suzi@radpurpose.com</a>
       </div>
+    </section>
 
+    <!-- TESTIMONIAL -->
+    <section class="testimonial">
+      <div class="testimonial-label">Client words</div>
+      <div class="testimonial-text">
+        “Suzi sees the whole picture. Our store, our books, and our day to day finally feel like
+        they are on the same team instead of pulling in different directions.”
+        <span class="testimonial-author">— Name, Title or Business</span>
+      </div>
+    </section>
+
+    <!-- INFO GRID -->
+    <section class="info-grid">
+
+      <article class="info-card">
+        <div class="info-kicker">Who I work with</div>
+        <div class="info-divider"></div>
+        <p class="info-body">
+          I am best for owners who are stretched thin and want the back end of the business to stop fighting them.
+          You are in it every day, juggling product, events, money movement, and all the decisions in between.
+          You want your systems to feel grounded so you can focus on the part you are actually good at.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-kicker">How I work</div>
+        <div class="info-divider"></div>
+        <p class="info-body">
+          We start with a walkthrough of what feels messy or heavy. I look at Shopify, your books, and the workflows
+          around both, and map out what is really going on.
+        </p>
+        <p class="info-body">
+          From there, we clean things up in small, steady phases so you can keep running the business while the systems
+          get better. Once everything is stable, you choose whether you want me to stay on monthly or hand it back with
+          clear notes and simple habits.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-kicker">What I do</div>
+        <div class="info-divider"></div>
+        <p class="info-body">
+          I handle the pieces that connect your store, your bookkeeping, and your operations. That includes monthly
+          bookkeeping support, syncing Shopify and QuickBooks so reports match reality, and untangling payouts, refunds,
+          discounts, and daily money movement.
+        </p>
+        <p class="info-body">
+          I also clean up products, variants, and collections so your store matches how you actually sell, and put light
+          structure around events, inventory, and daily tasks. The goal is simple: a business that feels lighter to run,
+          with numbers you can trust.
+        </p>
+      </article>
+
+    </section>
+
+    <div class="footer-line">
+      When you are ready: <a href="mailto:suzi@radpurpose.com">suzi@radpurpose.com</a>
     </div>
+
   </main>
 </body>
 </html>
+
