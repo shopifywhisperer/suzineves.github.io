@@ -6,42 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --page-bg: #f1e5dc;        /* warm neutral */
-      --hero-bg: #f7eee7;
+      --page-bg: #f2e7de;        /* warm neutral */
+      --hero-bg: #f9f1ea;
       --card-bg: #ffffff;
-      --accent: #b55232;         /* deeper terracotta */
-      --accent-hover: #9c4223;
-      --accent-soft: #f2c1a1;
-      --ink: #1f2933;
-      --text-main: #111827;
+      --accent: #a4472a;         /* deeper terracotta */
+      --accent-hover: #8b3620;
+      --ink: #111827;
+      --text-main: #1f2933;
       --text-muted: #6b7280;
       --radius-lg: 28px;
       --radius-md: 18px;
-      --radius-sm: 12px;
-      --shadow-soft: 0 20px 50px rgba(15, 23, 42, 0.16);
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.20);
       --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.12);
       --border-subtle: rgba(209, 213, 219, 0.9);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, -apple-system,
         "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, #fdf7f2 0, #f1e5dc 52%, #e3d3c4 100%);
-      -webkit-font-smoothing: antialiased;
       color: var(--text-main);
       line-height: 1.6;
+      background-color: var(--page-bg);
+      background-image:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.75) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(148,163,184,0.20) 0, transparent 55%),
+        linear-gradient(135deg, #f6ece3 0, #f0e2d7 40%, #e3d2c4 100%);
+      -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .shell {
       max-width: 1120px;
@@ -49,89 +45,89 @@
       padding: 24px 18px 80px;
     }
 
-    /* NAV -------------------------------------------------- */
+    /* HEADER / BRAND -------------------------------------- */
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 8px 0 18px;
-      font-size: 0.92rem;
     }
 
-    .nav-left {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #4b5563;
-      font-size: 0.78rem;
+      gap: 12px;
     }
 
-    .nav-mark {
-      width: 28px;
-      height: 28px;
+    .brand-mark {
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
-      border: 2px solid rgba(103, 65, 49, 0.6);
+      border: 2px solid rgba(90, 54, 38, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
-      color: #f9f5f2;
-      background: radial-gradient(circle at top left, #c87a54, #7c422a);
-      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.4);
+      font-size: 0.95rem;
+      color: #fdf6f0;
+      background: radial-gradient(circle at top left, #c87a54, #6f3923);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.45);
     }
 
-    .nav-links {
+    .brand-text {
       display: flex;
-      align-items: center;
-      gap: 22px;
-      color: #4b5563;
+      flex-direction: column;
+      gap: 2px;
     }
 
-    .nav-links a {
-      position: relative;
-      padding-bottom: 2px;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--accent);
-      transition: width 0.18s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: #111827;
-      color: #f9fafb;
-      font-size: 0.84rem;
-      font-weight: 500;
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.45);
+      color: var(--ink);
     }
 
-    /* HERO -------------------------------------------------- */
+    .brand-tagline {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6b7280;
+    }
+
+    /* HERO ------------------------------------------------- */
 
     .hero {
-      padding: 52px 32px 46px;
+      position: relative;
+      padding: 52px 32px 50px;
       border-radius: var(--radius-lg);
       background: var(--hero-bg);
       text-align: center;
       box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    /* subtle texture / shadows inside hero */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40px;
+      background-image:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.7) 0, transparent 58%),
+        radial-gradient(circle at 120% 20%, rgba(15,23,42,0.15) 0, transparent 55%),
+        repeating-linear-gradient(135deg,
+          rgba(255,255,255,0.15) 0,
+          rgba(255,255,255,0.15) 1px,
+          transparent 1px,
+          transparent 4px);
+      mix-blend-mode: soft-light;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-eyebrow {
@@ -143,7 +139,7 @@
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 3.2vw, 2.9rem);
+      font-size: clamp(2.4rem, 3.1vw, 2.9rem);
       line-height: 1.1;
       margin: 0 0 16px;
       letter-spacing: -0.02em;
@@ -176,12 +172,10 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 18px 36px rgba(116, 54, 32, 0.6);
+      box-shadow: 0 20px 40px rgba(97, 38, 20, 0.65);
     }
 
-    .hero-cta:hover {
-      background: var(--accent-hover);
-    }
+    .hero-cta:hover { background: var(--accent-hover); }
 
     .hero-cta span.arrow {
       margin-left: 8px;
@@ -195,201 +189,150 @@
       color: #4b5563;
     }
 
-    /* HERO GRAPHIC STRIP ----------------------------------- */
+    /* ABSTRACT STACKED CARDS ------------------------------- */
 
-    .hero-image-strip {
+    .hero-graphic-strip {
       margin-top: 40px;
       display: flex;
       justify-content: center;
     }
 
-    .hero-image-frame {
+    .hero-graphic-frame {
       max-width: 760px;
       width: 100%;
       border-radius: 24px;
       background: #fdfbf9;
       border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-soft);
-      padding: 18px 22px;
+      box-shadow: var(--shadow-card);
+      padding: 20px 22px;
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 22px;
       align-items: center;
     }
 
-    .hero-graphic-wrap {
-      border-radius: 18px;
-      background: radial-gradient(circle at top left, #fef5ee, #e9d5c6);
+    .stack-wrap {
+      position: relative;
       min-height: 170px;
-      position: relative;
-      overflow: hidden;
-      padding: 14px 14px 12px;
     }
 
-    /* abstract system UI graphic */
-    .ui-layout {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 14px;
-      background: #111827;
-      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.75);
-      padding: 10px;
-      display: grid;
-      grid-template-columns: 0.75fr 1.4fr;
-      gap: 10px;
-    }
-
-    .ui-sidebar {
-      border-radius: 10px;
-      background: #0b1220;
-      padding: 8px 6px;
-      display: grid;
-      gap: 6px;
-    }
-
-    .ui-pill {
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #fbbf24, #f97316);
-    }
-
-    .ui-pill.muted {
-      background: linear-gradient(90deg, #4b5563, #6b7280);
-    }
-
-    .ui-main {
-      border-radius: 10px;
-      background: #020617;
-      padding: 8px;
+    .stack-card {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.18);
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      padding: 14px 16px 16px;
       display: grid;
       grid-template-rows: auto 1fr;
       gap: 8px;
-    }
-
-    .ui-chart {
-      border-radius: 10px;
-      background: radial-gradient(circle at top left, #0f766e, #1f2937);
-      position: relative;
       overflow: hidden;
     }
 
-    .ui-chart::before,
-    .ui-chart::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      border: 1px solid rgba(226, 232, 240, 0.45);
+    .stack-card:nth-child(1) {
+      transform: translate(-10px, 18px) rotate(-3deg);
+      background: #fdf6f0;
     }
 
-    .ui-chart::before {
-      width: 140%;
-      height: 140%;
-      top: 40%;
-      left: -30%;
+    .stack-card:nth-child(2) {
+      transform: translate(8px, -6px) rotate(2deg);
+      background: #f7ede6;
     }
 
-    .ui-chart::after {
-      width: 110%;
-      height: 110%;
-      top: 50%;
-      left: -18%;
+    .stack-card:nth-child(3) {
+      transform: translate(26px, 26px) rotate(-1deg);
+      background: #f3e6dd;
     }
 
-    .ui-dot {
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #fef3c7;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    .stack-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
     }
 
-    .ui-dot.d1 { top: 10%; left: 30%; }
-    .ui-dot.d2 { top: 35%; left: 65%; }
-    .ui-dot.d3 { bottom: 15%; left: 42%; }
+    .stack-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
 
-    .ui-row {
+    .stack-lines {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
+      gap: 5px;
+      margin-top: 4px;
     }
 
-    .ui-card {
-      border-radius: 9px;
-      background: #020617;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 6px;
-    }
-
-    .ui-card-bar {
-      height: 6px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #f97316, #facc15);
-      margin-bottom: 4px;
-    }
-
-    .ui-card-bar.muted {
-      background: linear-gradient(90deg, #4b5563, #6b7280);
-    }
-
-    .ui-card-line {
+    .stack-line {
       height: 4px;
       border-radius: 999px;
-      background: #1f2937;
+      background: #e5e7eb;
     }
 
-    .hero-image-copy-title {
+    .stack-line.accent {
+      background: linear-gradient(90deg, #a4472a, #f59e0b);
+    }
+
+    .stack-line.muted {
+      opacity: 0.7;
+    }
+
+    .hero-graphic-copy-title {
       font-size: 1.05rem;
       font-weight: 600;
       margin-bottom: 6px;
       color: var(--ink);
     }
 
-    .hero-image-copy-text {
+    .hero-graphic-copy-text {
       font-size: 0.92rem;
       color: var(--text-muted);
       margin: 0;
     }
 
-    /* EDITORIAL CARDS SECTION ------------------------------ */
+    /* EDITORIAL WHAT / HOW / WHO --------------------------- */
 
     .card-row {
-      margin-top: 56px;
+      margin-top: 60px;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 26px;
     }
 
     .edit-card {
+      position: relative;
       background: #fdfbf9;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
-      padding: 18px 18px 20px;
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
-      position: relative;
+      padding: 18px 18px 22px 24px;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.10);
       overflow: hidden;
     }
 
     .edit-card::before {
       content: "";
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(181,82,50,0.08), transparent 55%);
-      pointer-events: none;
+      left: 10px;
+      top: 16px;
+      bottom: 16px;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #a4472a, #f59e0b);
+      opacity: 0.8;
     }
 
     .edit-label {
       font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       color: #9ca3af;
       margin-bottom: 6px;
     }
 
     .edit-title {
-      font-size: 1rem;
+      font-size: 1.02rem;
       font-weight: 600;
       margin: 0 0 6px;
       color: var(--ink);
@@ -399,40 +342,51 @@
       margin: 0;
       font-size: 0.9rem;
       color: var(--text-muted);
-      position: relative;
-      z-index: 1;
     }
 
-    .edit-icon-badge {
+    .edit-ghost {
       position: absolute;
-      top: 14px;
       right: 14px;
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: #111827;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.05rem;
-      color: #f9fafb;
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.6);
-      z-index: 1;
+      bottom: 10px;
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(156, 163, 175, 0.18);
+      pointer-events: none;
     }
 
-    /* BIG COLOR BLOCK -------------------------------------- */
+    /* DARK BLOCK ------------------------------------------- */
 
     .block {
-      margin-top: 64px;
+      margin-top: 68px;
       border-radius: var(--radius-lg);
-      background: #20151a;
+      background: #1f151a;
       padding: 40px 36px;
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       gap: 32px;
       align-items: center;
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.7);
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 0.75);
       color: #f9fafb;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .block::before {
+      content: "";
+      position: absolute;
+      inset: -60px;
+      background-image:
+        radial-gradient(circle at 0 0, rgba(248,250,252,0.08) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(248,250,252,0.12) 0, transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .block-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .block-tag {
@@ -464,72 +418,73 @@
       max-width: 32rem;
     }
 
+    /* simple dark graphic (3 ledgers) */
     .block-graphic {
-      border-radius: 20px;
-      background:
-        radial-gradient(circle at top left, #f59e0b, transparent 55%),
-        radial-gradient(circle at bottom right, #38bdf8, transparent 60%),
-        #020617;
-      min-height: 220px;
       position: relative;
-      padding: 16px;
-      overflow: hidden;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      z-index: 1;
+      min-height: 210px;
     }
 
-    /* network-style graphic */
-    .nodes-grid {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(15, 23, 42, 0.8);
-      background: radial-gradient(circle at top, #020617, #020617 40%, #020617);
-      overflow: hidden;
-    }
-
-    .node-line {
+    .ledger-card {
       position: absolute;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(226,232,240,0.45), transparent);
+      inset: 0;
+      border-radius: 18px;
+      background: #020617;
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.85);
+      padding: 14px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 8px;
     }
 
-    .node-line.l1 { top: 30%; left: 15%; right: 8%; }
-    .node-line.l2 { top: 55%; left: 8%; right: 20%; }
-    .node-line.l3 { top: 72%; left: 26%; right: 15%; }
-
-    .node {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: #fef9c3;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.8);
+    .ledger-card:nth-child(1) {
+      transform: translate(-18px, 22px) rotate(-4deg);
+      opacity: 0.9;
+    }
+    .ledger-card:nth-child(2) {
+      transform: translate(6px, -10px) rotate(2deg);
+    }
+    .ledger-card:nth-child(3) {
+      transform: translate(26px, 26px) rotate(-1deg);
+      opacity: 0.85;
     }
 
-    .node.n1 { top: 26%; left: 14%; }
-    .node.n2 { top: 26%; right: 10%; }
-    .node.n3 { top: 52%; left: 8%; }
-    .node.n4 { top: 55%; right: 24%; }
-    .node.n5 { top: 70%; left: 26%; }
-    .node.n6 { top: 70%; right: 18%; }
-
-    .node-hub {
-      position: absolute;
-      inset: 36% 38%;
-      border-radius: 16px;
-      border: 1px solid rgba(248, 250, 252, 0.6);
-      background: rgba(15, 23, 42, 0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
+    .ledger-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #fefce8;
+      color: #9ca3af;
+      margin-bottom: 4px;
     }
 
-    /* FOOTER ---------------------------------------------- */
+    .ledger-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: 8px;
+    }
+
+    .ledger-lines {
+      display: grid;
+      gap: 5px;
+    }
+
+    .ledger-line {
+      height: 4px;
+      border-radius: 999px;
+      background: #111827;
+    }
+
+    .ledger-line.accent {
+      background: linear-gradient(90deg, #f97316, #facc15);
+    }
+
+    .ledger-line.muted {
+      background: #4b5563;
+    }
+
+    /* FOOTER ----------------------------------------------- */
 
     .footer {
       margin-top: 40px;
@@ -538,13 +493,13 @@
       text-align: center;
     }
 
-    /* RESPONSIVE ------------------------------------------ */
+    /* RESPONSIVE ------------------------------------------- */
 
     @media (max-width: 960px) {
       .hero {
-        padding: 40px 22px 40px;
+        padding: 40px 22px 42px;
       }
-      .hero-image-frame {
+      .hero-graphic-frame {
         grid-template-columns: minmax(0, 1fr);
       }
       .block {
@@ -553,6 +508,8 @@
       }
       .block-graphic {
         order: -1;
+        margin-bottom: 10px;
+        min-height: 190px;
       }
     }
 
@@ -568,107 +525,108 @@
         align-items: flex-start;
         gap: 10px;
       }
-      .nav-links {
-        gap: 18px;
-      }
     }
   </style>
 </head>
 <body>
   <div class="shell">
-    <!-- NAV -->
+    <!-- HEADER -->
     <header class="nav">
-      <div class="nav-left">
-        <div class="nav-mark">SN</div>
-        <div>Suzi Neves</div>
+      <div class="brand">
+        <div class="brand-mark">SN</div>
+        <div class="brand-text">
+          <div class="brand-name">Suzi Neves</div>
+          <div class="brand-tagline">Shopify · Bookkeeping · Operations</div>
+        </div>
       </div>
-      <nav class="nav-links">
-        <a href="#what">What I Do</a>
-        <a href="#how">How I Work</a>
-        <a href="#who">Who I Work With</a>
-        <a href="#contact" class="nav-cta">Reach Out</a>
-      </nav>
     </header>
 
     <!-- HERO -->
     <main>
       <section class="hero">
-        <div class="hero-eyebrow">Systems &amp; Operations Support</div>
+        <div class="hero-inner">
+          <div class="hero-eyebrow">Systems &amp; Operations Support</div>
 
-        <h1 class="hero-title">
-          Getting your business systems to work together.
-        </h1>
+          <h1 class="hero-title">
+            Getting your business systems to work together.
+          </h1>
 
-        <p class="hero-subtitle">
-          You are running a business that moves in every direction at once.
-          Sales, bookkeeping, inventory, events, payouts, and the day to day
-          decisions all connect. When one part slips, everything feels heavier.
-          <span>I bring your systems into sync so Shopify, your bookkeeping,
-          and operations work together.</span>
-        </p>
+          <p class="hero-subtitle">
+            You are running a business that moves in every direction at once.
+            Sales, bookkeeping, inventory, events, payouts, and the day to day
+            decisions all connect. When one part slips, everything feels heavier.
+            <span>I bring your systems into sync so Shopify, your bookkeeping,
+            and operations work together.</span>
+          </p>
 
-        <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
-          Reach Out
-          <span class="arrow">↗</span>
-        </a>
+          <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
+            Reach Out
+            <span class="arrow">↗</span>
+          </a>
 
-        <div class="hero-tagline">
-          Quiet, practical support for the back end of your business.
-        </div>
+          <div class="hero-tagline">
+            Quiet, practical support for the back end of your business.
+          </div>
 
-        <!-- Abstract systems graphic -->
-        <div class="hero-image-strip">
-          <div class="hero-image-frame">
-            <div class="hero-graphic-wrap">
-              <div class="ui-layout">
-                <div class="ui-sidebar">
-                  <div class="ui-pill"></div>
-                  <div class="ui-pill muted"></div>
-                  <div class="ui-pill muted"></div>
-                  <div class="ui-pill"></div>
-                </div>
-                <div class="ui-main">
-                  <div class="ui-chart">
-                    <div class="ui-dot d1"></div>
-                    <div class="ui-dot d2"></div>
-                    <div class="ui-dot d3"></div>
+          <!-- stacked abstract cards -->
+          <div class="hero-graphic-strip">
+            <div class="hero-graphic-frame">
+              <div class="stack-wrap">
+                <div class="stack-card">
+                  <div>
+                    <div class="stack-tag">Shopify</div>
+                    <div class="stack-title">Storefront &amp; sales</div>
                   </div>
-                  <div class="ui-row">
-                    <div class="ui-card">
-                      <div class="ui-card-bar"></div>
-                      <div class="ui-card-line"></div>
-                    </div>
-                    <div class="ui-card">
-                      <div class="ui-card-bar muted"></div>
-                      <div class="ui-card-line"></div>
-                    </div>
-                    <div class="ui-card">
-                      <div class="ui-card-bar"></div>
-                      <div class="ui-card-line"></div>
-                    </div>
+                  <div class="stack-lines">
+                    <div class="stack-line accent"></div>
+                    <div class="stack-line"></div>
+                    <div class="stack-line muted"></div>
+                  </div>
+                </div>
+
+                <div class="stack-card">
+                  <div>
+                    <div class="stack-tag">Books</div>
+                    <div class="stack-title">Reports that match reality</div>
+                  </div>
+                  <div class="stack-lines">
+                    <div class="stack-line accent"></div>
+                    <div class="stack-line muted"></div>
+                    <div class="stack-line"></div>
+                  </div>
+                </div>
+
+                <div class="stack-card">
+                  <div>
+                    <div class="stack-tag">Ops</div>
+                    <div class="stack-title">Daily movement &amp; money</div>
+                  </div>
+                  <div class="stack-lines">
+                    <div class="stack-line muted"></div>
+                    <div class="stack-line accent"></div>
+                    <div class="stack-line"></div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div>
-              <div class="hero-image-copy-title">
-                A calmer way to run the back end.
+              <div>
+                <div class="hero-graphic-copy-title">
+                  One view of how everything fits together.
+                </div>
+                <p class="hero-graphic-copy-text">
+                  We line up the tools you already use — Shopify, QuickBooks,
+                  and the day to day work that sits between them — so your
+                  systems support you instead of pulling in different directions.
+                </p>
               </div>
-              <p class="hero-image-copy-text">
-                Shopify, QuickBooks, payouts, inventory, and all the decisions
-                that live between them — I help you line those pieces up so
-                everything feels less noisy and a lot more grounded.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- EDITORIAL CARDS: WHAT / HOW / WHO -->
+      <!-- WHAT / HOW / WHO -->
       <section class="card-row">
         <article class="edit-card" id="what">
-          <div class="edit-icon-badge">⚙️</div>
           <div class="edit-label">What I Do</div>
           <h3 class="edit-title">Glue between your tools.</h3>
           <p class="edit-body">
@@ -676,10 +634,10 @@
             and your operations so reports match reality and money movement
             finally makes sense instead of feeling mysterious.
           </p>
+          <div class="edit-ghost">WHAT</div>
         </article>
 
         <article class="edit-card" id="how">
-          <div class="edit-icon-badge">🧭</div>
           <div class="edit-label">How I Work</div>
           <h3 class="edit-title">Small, steady passes.</h3>
           <p class="edit-body">
@@ -687,10 +645,10 @@
             and the workflows around both, then clean things up in phases so
             you can keep running the business while the systems get better.
           </p>
+          <div class="edit-ghost">HOW</div>
         </article>
 
         <article class="edit-card" id="who">
-          <div class="edit-icon-badge">💬</div>
           <div class="edit-label">Who I Work With</div>
           <h3 class="edit-title">Owners who are stretched thin.</h3>
           <p class="edit-body">
@@ -698,12 +656,13 @@
             your systems to feel grounded so you can focus on the part you are
             actually good at, instead of constantly chasing loose ends.
           </p>
+          <div class="edit-ghost">WHO</div>
         </article>
       </section>
 
       <!-- DARK BLOCK -->
       <section class="block">
-        <div>
+        <div class="block-inner">
           <div class="block-tag">Working Together</div>
           <h2 class="block-heading">
             A back end that feels grounded instead of chaotic.
@@ -723,20 +682,39 @@
         </div>
 
         <div class="block-graphic">
-          <div class="nodes-grid">
-            <div class="node-line l1"></div>
-            <div class="node-line l2"></div>
-            <div class="node-line l3"></div>
+          <div class="ledger-card">
+            <div>
+              <div class="ledger-tag">Shopify</div>
+              <div class="ledger-title">Orders &amp; payouts</div>
+            </div>
+            <div class="ledger-lines">
+              <div class="ledger-line accent"></div>
+              <div class="ledger-line"></div>
+              <div class="ledger-line muted"></div>
+            </div>
+          </div>
 
-            <div class="node n1"></div>
-            <div class="node n2"></div>
-            <div class="node n3"></div>
-            <div class="node n4"></div>
-            <div class="node n5"></div>
-            <div class="node n6"></div>
+          <div class="ledger-card">
+            <div>
+              <div class="ledger-tag">Books</div>
+              <div class="ledger-title">Accounts &amp; reports</div>
+            </div>
+            <div class="ledger-lines">
+              <div class="ledger-line muted"></div>
+              <div class="ledger-line accent"></div>
+              <div class="ledger-line"></div>
+            </div>
+          </div>
 
-            <div class="node-hub">
-              <span>ONE SYSTEM</span>
+          <div class="ledger-card">
+            <div>
+              <div class="ledger-tag">Ops</div>
+              <div class="ledger-title">Day to day decisions</div>
+            </div>
+            <div class="ledger-lines">
+              <div class="ledger-line"></div>
+              <div class="ledger-line muted"></div>
+              <div class="ledger-line accent"></div>
             </div>
           </div>
         </div>
