@@ -7,14 +7,16 @@
   <style>
     :root {
       --page-bg: #f5f5f6;
-      --hero-overlay: rgba(15, 23, 42, 0.78);
+      --hero-overlay: rgba(15, 23, 42, 0.68);
       --ink: #0f172a;
       --text-main: #111827;
       --text-muted: #6b7280;
       --border-subtle: #e5e7eb;
-      --accent: #111827;
-      --accent-hover: #020617;
+      --accent: #b2563b;        /* warm terracotta pop */
+      --accent-soft: #f3d4c5;
+      --accent-deep: #8f3c27;
       --radius-md: 12px;
+      --radius-lg: 24px;
     }
 
     * { box-sizing: border-box; }
@@ -26,7 +28,7 @@
       color: var(--text-main);
       background-color: var(--page-bg);
       background-image:
-        radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.06) 0, transparent 55%),
+        radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.04) 0, transparent 55%),
         radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.03) 0, transparent 55%);
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
@@ -78,9 +80,9 @@
     }
 
     .brand-name {
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--ink);
     }
@@ -102,52 +104,75 @@
       overflow: hidden;
     }
 
-    .hero-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-
-    /* 👉 swap this URL for your own photo when you want */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(to bottom, var(--hero-overlay), rgba(15, 23, 42, 0.92)),
+        linear-gradient(to bottom, var(--hero-overlay), rgba(15, 23, 42, 0.9)),
+        /* 👉 swap this URL for your own hero image */
         url("https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg?auto=compress&cs=tinysrgb&w=1600");
       background-size: cover;
       background-position: center;
       filter: grayscale(100%);
-      opacity: 0.95;
+      opacity: 0.98;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* editorial hero panel */
+    .hero-panel {
+      max-width: 760px;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.82);
+      border-radius: 28px;
+      border: 1px solid rgba(249, 250, 251, 0.16);
+      padding: 30px 26px 28px;
+      text-align: center;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.65);
+      position: relative;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border-top: 3px solid var(--accent);
+      opacity: 0.9;
     }
 
     .hero-eyebrow {
-      font-size: 0.86rem;
+      font-size: 0.82rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #e5e7eb;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 3.1vw, 2.9rem);
+      font-size: clamp(2.3rem, 3vw, 2.8rem);
       line-height: 1.08;
-      margin: 0 0 16px;
+      margin: 0 0 14px;
       letter-spacing: -0.03em;
     }
 
     .hero-subtitle {
       max-width: 40rem;
-      margin: 0 auto 26px;
-      font-size: 1rem;
+      margin: 0 auto 24px;
+      font-size: 0.98rem;
       color: #e5e7eb;
     }
 
     .hero-subtitle span {
-      color: #f9fafb;
+      color: #fefce8;
       font-weight: 500;
     }
 
@@ -157,19 +182,19 @@
       justify-content: center;
       padding: 11px 26px;
       border-radius: 999px;
-      border: 1px solid #f9fafb;
-      background: transparent;
-      color: #f9fafb;
+      border: none;
+      background: var(--accent);
+      color: #fdf6f0;
       font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
+      box-shadow: 0 20px 40px rgba(143, 60, 39, 0.7);
     }
 
     .hero-cta:hover {
-      background: #f9fafb;
-      color: #020617;
+      background: var(--accent-deep);
     }
 
     .hero-cta span.arrow {
@@ -179,25 +204,23 @@
     }
 
     .hero-tagline {
-      margin-top: 14px;
-      font-size: 0.9rem;
+      margin-top: 12px;
+      font-size: 0.88rem;
       color: #d1d5db;
     }
 
     /* MAIN CONTENT ----------------------------------------- */
 
     main {
-      margin-top: 40px;
+      margin-top: 42px;
     }
-
-    /* WHAT / HOW / WHO ------------------------------------- */
 
     .section-label {
       font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #9ca3af;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .section-heading {
@@ -207,6 +230,8 @@
       color: var(--ink);
     }
 
+    /* WHAT / HOW / WHO ------------------------------------- */
+
     .card-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -214,10 +239,33 @@
     }
 
     .edit-card {
+      position: relative;
       background: #ffffff;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
-      padding: 18px 18px 20px;
+      padding: 18px 18px 20px 18px;
+      overflow: hidden;
+    }
+
+    .edit-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-top: 3px solid var(--accent-soft);
+      opacity: 0.9;
+    }
+
+    .edit-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .edit-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 10px;
     }
 
     .edit-label {
@@ -225,7 +273,19 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: #9ca3af;
-      margin-bottom: 6px;
+    }
+
+    .edit-icon-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      background: #f9fafb;
+      color: #4b5563;
     }
 
     .edit-title {
@@ -236,9 +296,99 @@
     }
 
     .edit-body {
-      margin: 0;
+      margin: 0 0 10px;
       font-size: 0.9rem;
       color: var(--text-muted);
+    }
+
+    /* subtle mini graphic row */
+    .edit-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .edit-line {
+      flex: 1;
+      height: 3px;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    .edit-line.accent {
+      max-width: 40%;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+    }
+
+    .edit-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #9ca3af;
+    }
+
+    .edit-dot.accent {
+      background: var(--accent);
+    }
+
+    /* TESTIMONIAL ------------------------------------------ */
+
+    .testimonial {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 26px;
+      align-items: center;
+    }
+
+    .testimonial-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid var(--border-subtle);
+      padding: 20px 20px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: "“";
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      font-size: 5rem;
+      color: rgba(178, 86, 59, 0.08);
+      pointer-events: none;
+    }
+
+    .testimonial-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+
+    .testimonial-text {
+      margin: 0 0 14px;
+      font-size: 0.96rem;
+      color: #374151;
+    }
+
+    .testimonial-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .testimonial-role {
+      font-size: 0.84rem;
+      color: #6b7280;
+    }
+
+    .testimonial-note {
+      font-size: 0.86rem;
+      color: #6b7280;
     }
 
     /* DARK STRIP ------------------------------------------- */
@@ -246,12 +396,29 @@
     .strip {
       margin-top: 56px;
       padding: 32px 24px;
-      border-radius: var(--radius-md);
-      background: #0b1120;
+      border-radius: 18px;
+      background: #020617;
       color: #e5e7eb;
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strip::before {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      opacity: 0.9;
+    }
+
+    .strip-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .strip-tag {
@@ -308,6 +475,12 @@
         margin: 0 -12px;
         padding: 56px 16px 60px;
       }
+      .hero-panel {
+        padding: 24px 20px 24px;
+      }
+      .testimonial {
+        grid-template-columns: minmax(0, 1fr);
+      }
       .strip {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -344,27 +517,29 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
-        <div class="hero-eyebrow">Systems &amp; Operations Support</div>
+        <div class="hero-panel">
+          <div class="hero-eyebrow">Systems &amp; Operations Support</div>
 
-        <h1 class="hero-title">
-          Getting your business systems to work together.
-        </h1>
+          <h1 class="hero-title">
+            Getting your business systems to work together.
+          </h1>
 
-        <p class="hero-subtitle">
-          You are running a business that moves in every direction at once.
-          Sales, bookkeeping, inventory, events, payouts, and the day to day
-          decisions all connect. When one part slips, everything feels heavier.
-          <span>I bring your systems into sync so Shopify, your bookkeeping,
-          and operations work together.</span>
-        </p>
+          <p class="hero-subtitle">
+            You are running a business that moves in every direction at once.
+            Sales, bookkeeping, inventory, events, payouts, and the day to day
+            decisions all connect. When one part slips, everything feels heavier.
+            <span>I bring your systems into sync so Shopify, your bookkeeping,
+            and operations work together.</span>
+          </p>
 
-        <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
-          Reach Out
-          <span class="arrow">↗</span>
-        </a>
+          <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
+            Reach Out
+            <span class="arrow">↗</span>
+          </a>
 
-        <div class="hero-tagline">
-          Quiet, practical support for the back end of your business.
+          <div class="hero-tagline">
+            Quiet, practical support for the back end of your business.
+          </div>
         </div>
       </div>
     </section>
@@ -378,40 +553,94 @@
 
         <div class="card-row">
           <article class="edit-card" id="what">
-            <div class="edit-label">What I Do</div>
-            <h3 class="edit-title">Glue between your tools.</h3>
-            <p class="edit-body">
-              I handle the connective tissue between your store, your bookkeeping,
-              and your operations so reports match reality and money movement
-              finally makes sense instead of feeling mysterious.
-            </p>
+            <div class="edit-inner">
+              <div class="edit-header">
+                <div class="edit-label">What I Do</div>
+                <div class="edit-icon-badge">⚙️</div>
+              </div>
+              <h3 class="edit-title">Glue between your tools.</h3>
+              <p class="edit-body">
+                I handle the connective tissue between your store, your bookkeeping,
+                and your operations so reports match reality and money movement
+                finally makes sense instead of feeling mysterious.
+              </p>
+              <div class="edit-meta">
+                <div class="edit-dot accent"></div>
+                <div class="edit-line accent"></div>
+                <div class="edit-line"></div>
+                <div class="edit-dot"></div>
+              </div>
+            </div>
           </article>
 
           <article class="edit-card" id="how">
-            <div class="edit-label">How I Work</div>
-            <h3 class="edit-title">Small, steady passes.</h3>
-            <p class="edit-body">
-              We start with what feels heavy, walk through Shopify, your books,
-              and the workflows around both, then clean things up in phases so
-              you can keep running the business while the systems get better.
-            </p>
+            <div class="edit-inner">
+              <div class="edit-header">
+                <div class="edit-label">How I Work</div>
+                <div class="edit-icon-badge">🧭</div>
+              </div>
+              <h3 class="edit-title">Small, steady passes.</h3>
+              <p class="edit-body">
+                We start with what feels heavy, walk through Shopify, your books,
+                and the workflows around both, then clean things up in phases so
+                you can keep running the business while the systems get better.
+              </p>
+              <div class="edit-meta">
+                <div class="edit-dot"></div>
+                <div class="edit-line"></div>
+                <div class="edit-line accent"></div>
+                <div class="edit-dot accent"></div>
+              </div>
+            </div>
           </article>
 
           <article class="edit-card" id="who">
-            <div class="edit-label">Who I Work With</div>
-            <h3 class="edit-title">Owners who are stretched thin.</h3>
-            <p class="edit-body">
-              You are in it every day and the back end is fighting you. You want
-              your systems to feel grounded so you can focus on the part you are
-              actually good at, instead of constantly chasing loose ends.
-            </p>
+            <div class="edit-inner">
+              <div class="edit-header">
+                <div class="edit-label">Who I Work With</div>
+                <div class="edit-icon-badge">💬</div>
+              </div>
+              <h3 class="edit-title">Owners who are stretched thin.</h3>
+              <p class="edit-body">
+                You are in it every day and the back end is fighting you. You want
+                your systems to feel grounded so you can focus on the part you are
+                actually good at, instead of constantly chasing loose ends.
+              </p>
+              <div class="edit-meta">
+                <div class="edit-dot accent"></div>
+                <div class="edit-line"></div>
+                <div class="edit-line"></div>
+                <div class="edit-dot"></div>
+              </div>
+            </div>
           </article>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL -->
+      <section class="testimonial">
+        <div class="testimonial-card">
+          <div class="testimonial-label">Client Words</div>
+          <p class="testimonial-text">
+            “Suzi came in, quietly mapped out how everything actually worked,
+            and then untangled years of chaos without shutting us down. Our
+            Shopify, payouts, and books finally agree — and I’m not scared to
+            look at my reports anymore.”
+          </p>
+          <div class="testimonial-name">Client Name Here</div>
+          <div class="testimonial-role">Owner, Business Name</div>
+        </div>
+
+        <div class="testimonial-note">
+          Drop in a favorite client quote here — one that captures how it feels
+          to have the back end calmed down. This is where people borrow someone
+          else’s nervous system before they borrow yours.
         </div>
       </section>
 
       <!-- DARK STRIP -->
       <section class="strip">
-        <div>
+        <div class="strip-inner">
           <div class="strip-tag">Working Together</div>
           <h2 class="strip-heading">
             A back end that feels grounded instead of chaotic.
@@ -428,7 +657,7 @@
           </p>
         </div>
 
-        <div>
+        <div class="strip-inner">
           <ul class="strip-list">
             <li>Shopify &amp; QuickBooks aligned so reports match what actually happened.</li>
             <li>Clear handling of payouts, refunds, discounts, and sales channels.</li>
