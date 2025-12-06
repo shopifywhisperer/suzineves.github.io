@@ -113,40 +113,68 @@
 
     .hero-band {
       margin: 40px -20px 0;
-      position: relative;
-      background: radial-gradient(circle at 0 0, #0b1120, #020617 70%);
-      border-top: 3px solid var(--night);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.35);
-      color: #f9fafb;
-    }
-
-    .hero-band::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0.7;
     }
 
     .hero {
+      position: relative;
       max-width: 1040px;
       margin: 0 auto;
-      padding: 34px 20px 42px;
+      padding: 56px 24px 64px;
+      color: #f9fafb;
+      overflow: hidden;
+      border-radius: 26px;
+      box-shadow: 0 26px 70px rgba(15, 23, 42, 0.85);
+      isolation: isolate;
+    }
+
+    /* background photo + gradients */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        /* heavy dark wash from left so text stays clean */
+        linear-gradient(120deg,
+          rgba(15, 23, 42, 0.96) 0%,
+          rgba(15, 23, 42, 0.90) 32%,
+          rgba(15, 23, 42, 0.65) 58%,
+          rgba(15, 23, 42, 0.22) 100%),
+        /* subtle top vignette */
+        linear-gradient(0deg,
+          rgba(15, 23, 42, 0.45),
+          transparent 60%),
+        /* your photo */
+        url("hero-laptop.jpeg");
+      background-size: 180%;
+      background-position: 78% 32%;
+      filter: saturate(1.05) contrast(1.08);
+      z-index: -2;
+    }
+
+    /* warm right-side accent */
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -15%;
+      top: -20%;
+      width: 55%;
+      height: 80%;
+      background: radial-gradient(circle at 0 0,
+        rgba(248, 180, 75, 0.28),
+        transparent 60%);
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      z-index: -1;
     }
 
     .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 32px;
-      align-items: center;
+      max-width: 640px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
     }
 
     .hero-top-bar {
@@ -231,56 +259,6 @@
       background: linear-gradient(90deg, rgba(252, 211, 77, 0.9), transparent);
       margin-right: 10px;
       vertical-align: middle;
-    }
-
-    .hero-photo-wrap {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-      aspect-ratio: 4 / 3;
-      background: #020617;
-      isolation: isolate;
-    }
-
-    .hero-photo {
-      position: absolute;
-      inset: -4px;
-      background-image:
-        linear-gradient(130deg, rgba(15, 23, 42, 0.5), rgba(248, 180, 75, 0.05)),
-        url("hero-laptop.jpeg"); /* file will sit next to index.html */
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.05) contrast(1.05);
-      transform: scale(1.03);
-    }
-
-    .hero-photo-accent {
-      position: absolute;
-      top: -18%;
-      right: -12%;
-      width: 55%;
-      height: 65%;
-      background: radial-gradient(circle at 0 0,
-        rgba(248, 250, 252, 0.15),
-        rgba(248, 180, 75, 0));
-      border-radius: 42% 58% 60% 40%;
-      mix-blend-mode: screen;
-      opacity: 0.85;
-      pointer-events: none;
-    }
-
-    .hero-photo-tag {
-      position: absolute;
-      left: 16px;
-      bottom: 16px;
-      padding: 4px 11px;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      background: rgba(2, 6, 23, 0.78);
-      border-radius: 999px;
-      border: 1px solid rgba(249, 250, 251, 0.24);
-      color: #e5e7eb;
     }
 
     /* MAIN --------------------------------------------------- */
@@ -486,14 +464,12 @@
     /* RESPONSIVE --------------------------------------------- */
 
     @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 26px;
+      .hero {
+        padding: 44px 20px 52px;
       }
 
-      .hero-photo-wrap {
-        max-width: 480px;
-        margin-left: auto;
+      .hero-inner {
+        max-width: 100%;
       }
 
       .grid-3 {
@@ -527,7 +503,8 @@
       }
 
       .hero {
-        padding-inline: 16px;
+        padding-inline: 18px;
+        border-radius: 20px;
       }
 
       .strip-inner-shell {
@@ -579,12 +556,6 @@
                 Quiet, practical support for the back end of your business.
               </div>
             </div>
-          </div>
-
-          <div class="hero-photo-wrap">
-            <div class="hero-photo"></div>
-            <div class="hero-photo-tag">Calm in the chaos</div>
-            <div class="hero-photo-accent"></div>
           </div>
         </div>
       </section>
