@@ -10,6 +10,8 @@
       --bg: #e5e7eb;
       --hero-bg: #111827;
       --hero-bg-soft: #1f2937;
+      --visual-bg-1: #f4e3d7;
+      --visual-bg-2: #e4b494;
       --card-bg: #f7f5f1;
       --text-main: #111827;
       --text-muted: #4b5563;
@@ -17,8 +19,8 @@
       --accent-soft: #fbbda0;
       --radius: 10px;
       --radius-pill: 999px;
-      --shadow-soft: 0 8px 18px rgba(15, 23, 42, 0.2);
-      --max-width: 960px;
+      --shadow-soft: 0 10px 24px rgba(15, 23, 42, 0.25);
+      --max-width: 1000px;
     }
 
     * { box-sizing: border-box; }
@@ -37,43 +39,46 @@
     .page {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 20px 16px 40px;
+      padding: 22px 16px 42px;
     }
 
     @media (min-width: 768px) {
-      .page { padding: 24px 20px 48px; }
+      .page { padding: 26px 20px 50px; }
     }
 
-    /* HERO */
+    /* SPLIT HERO */
 
-    .hero {
+    .hero-wrapper {
+      box-shadow: var(--shadow-soft);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #020617;
+      margin-bottom: 14px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+    }
+
+    @media (max-width: 799px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-left {
       background:
-        radial-gradient(circle at top left, rgba(248,250,252,0.06), transparent 55%),
+        radial-gradient(circle at top left, rgba(248,250,252,0.08), transparent 55%),
         linear-gradient(135deg, var(--hero-bg), var(--hero-bg-soft));
       color: #f9fafb;
       padding: 18px 18px 20px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 14px;
-      position: relative;
-      overflow: hidden;
     }
 
     @media (min-width: 768px) {
-      .hero { padding: 20px 22px 22px; }
-    }
-
-    /* subtle accent bar in hero */
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -40px;
-      top: 0;
-      width: 160px;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(248,250,252,0.1), rgba(248,250,252,0));
-      opacity: 0.7;
-      pointer-events: none;
+      .hero-left {
+        padding: 22px 24px 22px;
+      }
     }
 
     .hero-top {
@@ -82,8 +87,6 @@
       align-items: center;
       gap: 10px;
       margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
     }
 
     .hero-name {
@@ -104,26 +107,30 @@
       white-space: nowrap;
     }
 
-    .hero h1 {
+    .hero-heading {
       font-size: 26px;
       line-height: 1.25;
       margin: 0 0 6px;
-      position: relative;
-      z-index: 1;
     }
 
     @media (min-width: 768px) {
-      .hero h1 { font-size: 30px; }
+      .hero-heading { font-size: 30px; }
     }
 
-    .hero p {
+    .hero-sub {
       margin: 0 0 14px;
       font-size: 14px;
       line-height: 1.7;
       color: #e5e7eb;
-      max-width: 46rem;
-      position: relative;
-      z-index: 1;
+      max-width: 42rem;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 4px;
     }
 
     .hero-cta {
@@ -139,16 +146,127 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      box-shadow: 0 7px 18px rgba(15,23,42,0.45);
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 7px 18px rgba(15,23,42,0.5);
     }
 
     .hero-cta:hover {
       transform: translateY(-1px);
     }
 
-    /* COMPACT INFO ROW WITH ICONS */
+    .hero-note {
+      font-size: 11px;
+      color: #d1d5db;
+    }
+
+    /* RIGHT VISUAL PANEL (PHOTO-READY) */
+
+    .hero-right {
+      position: relative;
+      background: radial-gradient(circle at top left, #f8ebe1 0, #f4e3d7 35%, #e4b494 100%);
+      padding: 18px 16px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .hero-right {
+        padding: 22px 20px;
+      }
+    }
+
+    /* “Placeholder” visual card – can later be replaced with an actual photo */
+    .hero-visual-card {
+      position: relative;
+      width: 100%;
+      max-width: 260px;
+      min-height: 180px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(17,24,39,0.9), rgba(17,24,39,0.7));
+      color: #e5e7eb;
+      padding: 14px 14px 12px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.55);
+      overflow: hidden;
+    }
+
+    /* abstract lines / shapes for visual interest */
+    .hero-visual-card::before,
+    .hero-visual-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .hero-visual-card::before {
+      width: 140%;
+      height: 90px;
+      top: -40px;
+      left: -20%;
+      transform: rotate(-6deg);
+    }
+
+    .hero-visual-card::after {
+      width: 110%;
+      height: 80px;
+      bottom: -50px;
+      right: -10%;
+      transform: rotate(8deg);
+    }
+
+    .hero-visual-tag {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .hero-visual-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-visual-text-main {
+      position: relative;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0 0 6px;
+      max-width: 18rem;
+    }
+
+    .hero-visual-text-sub {
+      position: relative;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #9ca3af;
+      max-width: 18rem;
+      margin: 0;
+    }
+
+    .hero-visual-accent {
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      width: 48px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), #faccaa);
+      opacity: 0.9;
+    }
+
+    /* INFO ROW */
 
     .info-row {
       background: var(--card-bg);
@@ -156,14 +274,15 @@
       border: 1px solid #e2ded7;
       box-shadow: var(--shadow-soft);
       padding: 12px 14px 10px;
+      margin-top: 10px;
     }
 
-    @media (min-width: 800px) {
+    @media (min-width: 860px) {
       .info-row {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-        padding: 12px 16px 10px;
+        gap: 16px;
+        padding: 12px 18px 10px;
       }
     }
 
@@ -171,7 +290,7 @@
       padding: 4px 0 8px;
     }
 
-    @media (max-width: 799px) {
+    @media (max-width: 859px) {
       .info-block + .info-block {
         border-top: 1px solid rgba(0,0,0,0.06);
         margin-top: 8px;
@@ -236,37 +355,66 @@
     }
 
     .footer a:hover { text-decoration: underline; }
+
   </style>
 </head>
 
 <body>
   <main class="page">
 
-    <!-- HERO -->
-    <header class="hero">
-      <div class="hero-top">
-        <div class="hero-name">Suzi Neves</div>
-        <div class="hero-tag">Shopify · Bookkeeping · Operations</div>
+    <!-- SPLIT HERO -->
+    <section class="hero-wrapper">
+      <div class="hero-grid">
+
+        <!-- LEFT: COPY -->
+        <div class="hero-left">
+          <div class="hero-top">
+            <div class="hero-name">Suzi Neves</div>
+            <div class="hero-tag">Shopify · Bookkeeping · Operations</div>
+          </div>
+
+          <h1 class="hero-heading">Getting your business systems to work together.</h1>
+
+          <p class="hero-sub">
+            You are running a business that moves in every direction at once. Sales, bookkeeping,
+            inventory, events, payouts, and the day to day decisions all connect. When one part slips,
+            everything feels heavier. I bring your systems into sync so Shopify, your bookkeeping,
+            and operations work together and the work gets easier.
+          </p>
+
+          <div class="hero-cta-row">
+            <a class="hero-cta" href="mailto:suzi@radpurpose.com">Reach out</a>
+            <div class="hero-note">Quiet, practical support for the back end of your business.</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: VISUAL (PHOTO-READY PANEL) -->
+        <aside class="hero-right">
+          <div class="hero-visual-card">
+            <div class="hero-visual-tag">
+              <span class="hero-visual-dot"></span>
+              <span>Calm in the chaos</span>
+            </div>
+            <p class="hero-visual-text-main">
+              Shopify, QuickBooks, and operations pulled into one working system instead of three
+              separate headaches.
+            </p>
+            <p class="hero-visual-text-sub">
+              I stay close to the details so you can make decisions from clean numbers and a lighter workload.
+            </p>
+            <div class="hero-visual-accent"></div>
+          </div>
+        </aside>
+
       </div>
+    </section>
 
-      <h1>Getting your business systems to work together.</h1>
-
-      <p>
-        You are running a business that moves in every direction at once. Sales, bookkeeping,
-        inventory, events, payouts, and the day to day decisions all connect. When one part slips,
-        everything feels heavier. I bring your systems into sync so Shopify, your bookkeeping,
-        and operations work together and the work gets easier.
-      </p>
-
-      <a class="hero-cta" href="mailto:suzi@radpurpose.com">Reach out</a>
-    </header>
-
-    <!-- COMPACT INFO ROW WITH GRAPHIC ICONS -->
+    <!-- INFO ROW -->
     <section class="info-row">
       <div class="info-block">
         <div class="info-header">
           <div class="info-icon">
-            <!-- “Person / target” icon -->
+            <!-- person / target icon -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="9" r="3.2"></circle>
               <path d="M6.5 18.5c1.4-2.3 3.1-3.4 5.5-3.4s4.1 1.1 5.5 3.4"></path>
@@ -275,15 +423,15 @@
           <div class="info-title">Who I work with</div>
         </div>
         <p class="info-body">
-          Owners who are in it every day, juggling product, events, and money,
-          and want the back end to stop fighting them so they can focus on the work they care about.
+          Owners who are in it every day, juggling product, events, and money, and want the back end
+          to stop fighting them so they can focus on the work they care about.
         </p>
       </div>
 
       <div class="info-block">
         <div class="info-header">
           <div class="info-icon">
-            <!-- “Flow / process” icon -->
+            <!-- flow / process icon -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 6h8v4H4zM12 14h8v4h-8z"></path>
               <path d="M12 8h4a2 2 0 0 1 2 2v2M8 14H6a2 2 0 0 1-2-2v-2"></path>
@@ -300,7 +448,7 @@
       <div class="info-block">
         <div class="info-header">
           <div class="info-icon">
-            <!-- “Ledger / connection” icon -->
+            <!-- ledger / connection icon -->
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="5" y="5" width="6" height="6"></rect>
               <rect x="13" y="13" width="6" height="6"></rect>
@@ -324,4 +472,3 @@
   </main>
 </body>
 </html>
-
