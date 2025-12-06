@@ -6,289 +6,206 @@
   <title>Suzi Neves – Support for Businesses in Motion</title>
   <style>
     :root {
-      --bg: #050816;
-      --bg-soft: #0b1220;
-      --card: #f4efe7;
-      --ink: #141414;
-      --ink-soft: #4f4f4f;
-      --accent: #c86f4f;    /* warm terracotta */
-      --accent-soft: #f1c3a7;
-      --chip: #1e293b;
+      --cream: #f7f4ef;
+      --card-bg: #ffffff;
+      --clay: #d8a58b;
+      --clay-dark: #c68f74;
+      --ink: #222;
+      --ink-soft: #555;
+      --accent: #b57052;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
+      padding: 40px 16px;
+      background: var(--cream);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
       color: var(--ink);
-      min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 32px 16px 64px;
     }
 
-    .shell {
-      max-width: 1040px;
+    .card {
       width: 100%;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, var(--card) 0, #f6f2ec 60%, #f8efe5 100%);
-      border-radius: 20px;
-      padding: 28px 24px 30px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
-      border: 1px solid #e2d8ca;
+      max-width: 980px;
+      background: var(--card-bg);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+      border: 1px solid #e8e2dc;
     }
 
     @media (min-width: 820px) {
-      .hero {
-        padding: 34px 32px 34px;
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr);
-        gap: 32px;
+      .card {
+        flex-direction: row;
       }
     }
 
-    .hero-left-title {
-      font-size: 2.4rem;
-      margin: 0 0 4px;
-      letter-spacing: 0.04em;
-    }
+    /* LEFT PANEL */
 
-    .hero-left-sub {
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--ink-soft);
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-chip-row {
+    .left {
+      background: var(--clay);
+      padding: 36px 26px;
+      flex: 0 0 280px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.4rem;
+      flex-direction: column;
+      justify-content: flex-start;
+      color: #1b120e;
     }
 
-    .chip {
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      background: var(--chip);
-      color: #e5e7eb;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .hero-line {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--ink);
-      max-width: 18rem;
-    }
-
-    .hero-right p {
-      margin: 0 0 0.9rem;
-      font-size: 0.98rem;
-      line-height: 1.65;
-      color: var(--ink);
-    }
-
-    .hero-cta {
-      margin-top: 1.2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      align-items: center;
-    }
-
-    .hero-cta a {
-      display: inline-block;
-      padding: 0.55rem 1.3rem;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #f9fafb;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1px solid #7c3a26;
-    }
-
-    .hero-cta a:hover {
-      filter: brightness(1.04);
-    }
-
-    .hero-cta-note {
-      font-size: 0.82rem;
-      color: var(--ink-soft);
-    }
-
-    /* Panels row */
-
-    .panels {
-      margin-top: 26px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    @media (min-width: 780px) {
-      .panels {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .panels {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-      }
-    }
-
-    .panel {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 16px;
-      padding: 20px 18px 20px;
-      border: 1px solid #1f2937;
-      color: #e5e7eb;
-    }
-
-    .panel + .panel {
-      /* nothing, gap handled by grid */
-    }
-
-    .panel h2 {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #9ca3af;
-      margin: 0 0 0.6rem;
-    }
-
-    .panel-line {
-      width: 42px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      margin-bottom: 0.9rem;
-    }
-
-    .panel p {
-      margin: 0 0 0.6rem;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #e5e7eb;
-    }
-
-    .panel ul {
+    .name {
       margin: 0;
-      padding-left: 1.1rem;
-      font-size: 0.9rem;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
-    .panel li {
-      margin-bottom: 0.4rem;
-      line-height: 1.5;
+    .tools {
+      margin-top: 6px;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #2a1a16;
     }
 
-    .panel-muted {
-      font-size: 0.82rem;
-      color: #9ca3af;
-      margin-top: 0.7rem;
+    .tagline {
+      margin-top: 28px;
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 240px;
+      font-weight: 500;
     }
 
-    @media (max-width: 480px) {
-      .hero-left-title {
-        font-size: 2rem;
-      }
+    .button {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 10px 18px;
+      background: #1f1f1f;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
+    /* RIGHT PANEL */
+
+    .right {
+      padding: 40px 32px;
+      flex: 1;
+    }
+
+    .right p {
+      margin: 0 0 18px;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    h2 {
+      margin: 36px 0 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-soft);
+    }
+
+    .line {
+      width: 42px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin: 0 0 20px;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .muted {
+      color: var(--ink-soft);
+      font-size: 14px;
+      margin-top: 16px;
     }
   </style>
 </head>
+
 <body>
-  <main class="shell">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-left">
-        <div class="hero-left-sub">Shopify · POS · QuickBooks</div>
-        <h1 class="hero-left-title">Suzi Neves</h1>
+  <div class="card">
 
-        <div class="hero-chip-row">
-          <div class="chip">Shops in motion</div>
-          <div class="chip">Deep backend work</div>
-          <div class="chip">Owner-first systems</div>
-        </div>
+    <!-- LEFT PANEL -->
+    <div class="left">
+      <h1 class="name">Suzi Neves</h1>
+      <div class="tools">Shopify · POS · QuickBooks</div>
 
-        <div class="hero-line">
-          I work with businesses in motion. You are moving fast, solving problems, keeping customers happy, and the systems around you should keep pace.
-        </div>
+      <div class="tagline">
+        I work with businesses in motion. You’re moving fast, solving problems, keeping customers happy, and the systems around you should keep pace.
       </div>
 
-      <div class="hero-right">
-        <p>
-          I work with people growing real businesses. The pace is constant, and my role is to bring clear thinking, steadiness, and support that matches that pace.
-        </p>
-        <p>
-          I spent years inside a fast moving retail and e-commerce company that lived in Shopify, ran a physical shop, traveled to events, and needed the numbers to match at the end of the day. I moved between the front and back of the business, kept up with growth, filled gaps, and built structure while everything was still in motion.
-        </p>
-        <p>
-          Now I work with a small number of owners who want that same kind of partnership. I get in sync, carry real weight, and help the work feel more manageable for the business and for the people running it.
-        </p>
+      <a class="button" href="mailto:suzineves@gmail.com">Reach out</a>
+    </div>
 
-        <div class="hero-cta">
-          <a href="mailto:suzineves@gmail.com">Email Suzi</a>
-          <div class="hero-cta-note">One straightforward conversation. No pressure.</div>
-        </div>
-      </div>
-    </section>
+    <!-- RIGHT PANEL -->
+    <div class="right">
 
-    <!-- PANELS -->
-    <section class="panels">
-      <article class="panel">
-        <h2>What I do</h2>
-        <div class="panel-line"></div>
-        <ul>
-          <li>Set up and clean up Shopify products, collections, and point of sale so your staff can use it without fighting it.</li>
-          <li>Shape inventory habits that match how you sell, including events, pop ups, and busy seasons.</li>
-          <li>Make Shopify and QuickBooks agree, including payouts, fees, refunds, discounts, gift cards, and sales tax.</li>
-          <li>Stay on as a quiet second brain if you want ongoing support rather than a one time project.</li>
-        </ul>
-      </article>
+      <p>
+        I work with people running real shops. The pace is constant, and my role is to bring steady support that matches how your business actually moves.
+      </p>
+      <p>
+        I spent years inside a fast moving retail and e-commerce company that lived in Shopify, ran a physical shop, traveled to events, and needed clean numbers at the end of each day. I worked across products, point of sale, payouts, fees, and inventory — building structure while everything was still in motion.
+      </p>
+      <p>
+        Now I partner with a small number of owners who want someone reliable in the background. I get in sync, carry real weight, and help the work feel more manageable for both the business and the humans behind it.
+      </p>
 
-      <article class="panel">
-        <h2>How I work</h2>
-        <div class="panel-line"></div>
-        <p>
-          I come in calmly and pay attention. We look at how you sell, where the friction is, and what is draining time or energy.
-        </p>
-        <p>
-          From there we fix the foundation first. That might mean restructuring products, changing how payouts hit the books, or simplifying the way you track stock. I write things down in plain language so you and your team can keep it going.
-        </p>
-        <p class="panel-muted">
-          The goal is not a perfect system on paper. The goal is something you can live with on a busy day.
-        </p>
-      </article>
-    </section>
+      <h2>What I do</h2>
+      <div class="line"></div>
+      <ul>
+        <li>Set up and clean up Shopify products, collections, and point of sale so your staff can use it without fighting it.</li>
+        <li>Shape inventory habits that match how you sell, including events, pop ups, and busy seasons.</li>
+        <li>Make Shopify and QuickBooks agree, including payouts, fees, refunds, discounts, gift cards, and sales tax.</li>
+        <li>Stay on as ongoing support if you want a second brain instead of a one time project.</li>
+      </ul>
 
-    <section class="panels" style="margin-top: 18px;">
-      <article class="panel">
-        <h2>Start a conversation</h2>
-        <div class="panel-line"></div>
-        <p>
-          If this sounds close to what you need, send a short email with three things: how you sell today, what tools you use, and what feels messy or heavy.
-        </p>
-        <p>
-          I will let you know if it sounds like a fit and what a first step could look like, including a rough range for cost and timing.
-        </p>
-        <p class="panel-muted">
-          No pitch deck, no pressure. Just a clear look at what you are carrying and whether I am the right person to help.
-        </p>
-      </article>
-    </section>
-  </main>
+      <h2>How I work</h2>
+      <div class="line"></div>
+      <p>
+        I come in calmly and pay attention. We look at how you sell, where the friction is, and what is draining time or energy.
+      </p>
+      <p>
+        From there we fix the foundation first. That might mean restructuring products, changing how payouts hit the books, or simplifying how you track stock. I write things down in plain language so you and your team can keep it going.
+      </p>
+      <p class="muted">
+        The goal isn't a perfect system on paper. The goal is something you can live with on a busy day.
+      </p>
+
+      <h2>Start a conversation</h2>
+      <div class="line"></div>
+      <p>
+        If this sounds like what you need, send a short email with three things: how you sell today, what tools you use, and what feels messy or heavy.
+      </p>
+      <p>
+        I’ll let you know if it sounds like a match and what a first step might look like, including a rough range for cost and timing.
+      </p>
+      <p class="muted">
+        No pressure. Just clarity.
+      </p>
+
+    </div>
+  </div>
 </body>
 </html>
-
-
