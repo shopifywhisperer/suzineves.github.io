@@ -7,14 +7,14 @@
   <style>
     :root {
       --page-bg: #f5f5f6;
-      --hero-overlay: rgba(15, 23, 42, 0.62);
+      --hero-overlay: rgba(15, 23, 42, 0.58);
       --ink: #0f172a;
       --text-main: #111827;
       --text-muted: #6b7280;
       --border-subtle: #e5e7eb;
-      --accent: #b2563b;        /* warm terracotta pop */
-      --accent-deep: #8f3c27;
-      --accent-soft: #f3d4c5;
+      --accent: #b7644c;        /* muted terracotta */
+      --accent-deep: #8e4734;
+      --accent-soft: #f4d7c9;
       --radius-md: 12px;
       --radius-lg: 24px;
     }
@@ -99,9 +99,11 @@
     .hero {
       position: relative;
       margin: 0 -18px;
-      padding: 70px 18px 72px;
+      padding: 72px 18px 76px;
       color: #f9fafb;
       overflow: hidden;
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
     }
 
     .hero::before {
@@ -112,10 +114,10 @@
         linear-gradient(
           to bottom,
           var(--hero-overlay),
-          rgba(15, 23, 42, 0.88)
+          rgba(15, 23, 42, 0.9)
         ),
-        /* 👉 swap this URL for your own hero image */
-        url("https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg?auto=compress&cs=tinysrgb&w=1600");
+        /* 👉 swap this URL for your own image */
+        url("https://images.pexels.com/photos/6476587/pexels-photo-6476587.jpeg?auto=compress&cs=tinysrgb&w=1600");
       background-size: cover;
       background-position: center;
       filter: grayscale(100%);
@@ -176,7 +178,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 18px 36px rgba(143, 60, 39, 0.7);
+      box-shadow: 0 18px 36px rgba(143, 71, 52, 0.7);
     }
 
     .hero-cta:hover {
@@ -198,7 +200,7 @@
     /* MAIN CONTENT ----------------------------------------- */
 
     main {
-      margin-top: 42px;
+      margin-top: 46px;
     }
 
     .section-label {
@@ -229,15 +231,19 @@
       background: #ffffff;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
-      padding: 18px 18px 20px 18px;
+      padding: 18px 18px 20px 20px;
       overflow: hidden;
     }
 
+    /* top accent bar for pop of color */
     .edit-card::before {
       content: "";
       position: absolute;
-      inset: 0;
-      border-top: 3px solid var(--accent-soft);
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
       opacity: 0.9;
     }
 
@@ -262,14 +268,14 @@
     }
 
     .edit-icon-badge {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
       border: 1px solid rgba(148, 163, 184, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 0.95rem;
       background: #f9fafb;
       color: #4b5563;
     }
@@ -282,46 +288,40 @@
     }
 
     .edit-body {
-      margin: 0 0 10px;
+      margin: 0;
       font-size: 0.9rem;
       color: var(--text-muted);
     }
 
-    /* subtle mini graphic row */
-    .edit-meta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .edit-line {
-      flex: 1;
+    /* subtle underline graphic under title */
+    .edit-underline {
+      margin-top: 8px;
+      width: 52px;
       height: 3px;
       border-radius: 999px;
-      background: #e5e7eb;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.9;
     }
 
-    .edit-line.accent {
-      max-width: 40%;
-      background: linear-gradient(90deg, var(--accent), #fbbf24);
+    /* TESTIMONIAL STRIP ------------------------------------ */
+
+    .testimonial-section {
+      margin-top: 54px;
+      padding: 26px 24px 28px;
+      border-radius: 18px;
+      background: #fdf7f3;
+      border: 1px solid #f3e5dc;
     }
 
-    .edit-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #9ca3af;
+    .testimonial-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+      margin-bottom: 10px;
     }
 
-    .edit-dot.accent {
-      background: var(--accent);
-    }
-
-    /* TESTIMONIAL ------------------------------------------ */
-
-    .testimonial {
-      margin-top: 52px;
+    .testimonial-content {
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
       gap: 26px;
@@ -330,9 +330,9 @@
 
     .testimonial-card {
       background: #ffffff;
-      border-radius: 18px;
+      border-radius: 16px;
       border: 1px solid var(--border-subtle);
-      padding: 20px 20px 22px;
+      padding: 18px 18px 20px;
       position: relative;
       overflow: hidden;
     }
@@ -340,23 +340,15 @@
     .testimonial-card::before {
       content: "“";
       position: absolute;
-      top: -10px;
-      left: 16px;
+      top: -16px;
+      left: 12px;
       font-size: 5rem;
-      color: rgba(178, 86, 59, 0.08);
+      color: rgba(183, 100, 76, 0.08);
       pointer-events: none;
     }
 
-    .testimonial-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #9ca3af;
-      margin-bottom: 8px;
-    }
-
     .testimonial-text {
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       font-size: 0.96rem;
       color: #374151;
     }
@@ -386,7 +378,7 @@
       background: #020617;
       color: #e5e7eb;
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       gap: 28px;
       position: relative;
       overflow: hidden;
@@ -428,12 +420,6 @@
       color: #e5e7eb;
     }
 
-    .strip-note {
-      font-size: 0.86rem;
-      color: #9ca3af;
-      margin-top: 10px;
-    }
-
     .strip-list {
       margin: 0;
       padding-left: 18px;
@@ -443,6 +429,12 @@
 
     .strip-list li + li {
       margin-top: 4px;
+    }
+
+    .strip-note {
+      margin-top: 10px;
+      font-size: 0.86rem;
+      color: #9ca3af;
     }
 
     /* FOOTER ----------------------------------------------- */
@@ -464,7 +456,7 @@
       .hero-content {
         max-width: 100%;
       }
-      .testimonial {
+      .testimonial-content {
         grid-template-columns: minmax(0, 1fr);
       }
       .strip {
@@ -545,17 +537,12 @@
                 <div class="edit-icon-badge">⚙️</div>
               </div>
               <h3 class="edit-title">Glue between your tools.</h3>
+              <div class="edit-underline"></div>
               <p class="edit-body">
                 I handle the connective tissue between your store, your bookkeeping,
                 and your operations so reports match reality and money movement
                 finally makes sense instead of feeling mysterious.
               </p>
-              <div class="edit-meta">
-                <div class="edit-dot accent"></div>
-                <div class="edit-line accent"></div>
-                <div class="edit-line"></div>
-                <div class="edit-dot"></div>
-              </div>
             </div>
           </article>
 
@@ -566,17 +553,12 @@
                 <div class="edit-icon-badge">🧭</div>
               </div>
               <h3 class="edit-title">Small, steady passes.</h3>
+              <div class="edit-underline"></div>
               <p class="edit-body">
                 We start with what feels heavy, walk through Shopify, your books,
                 and the workflows around both, then clean things up in phases so
                 you can keep running the business while the systems get better.
               </p>
-              <div class="edit-meta">
-                <div class="edit-dot"></div>
-                <div class="edit-line"></div>
-                <div class="edit-line accent"></div>
-                <div class="edit-dot accent"></div>
-              </div>
             </div>
           </article>
 
@@ -587,40 +569,37 @@
                 <div class="edit-icon-badge">💬</div>
               </div>
               <h3 class="edit-title">Owners who are stretched thin.</h3>
+              <div class="edit-underline"></div>
               <p class="edit-body">
                 You are in it every day and the back end is fighting you. You want
                 your systems to feel grounded so you can focus on the part you are
                 actually good at, instead of constantly chasing loose ends.
               </p>
-              <div class="edit-meta">
-                <div class="edit-dot accent"></div>
-                <div class="edit-line"></div>
-                <div class="edit-line"></div>
-                <div class="edit-dot"></div>
-              </div>
             </div>
           </article>
         </div>
       </section>
 
-      <!-- TESTIMONIAL -->
-      <section class="testimonial">
-        <div class="testimonial-card">
-          <div class="testimonial-label">Client Words</div>
-          <p class="testimonial-text">
-            “Suzi came in, quietly mapped out how everything actually worked,
-            and then untangled years of chaos without shutting us down. Our
-            Shopify, payouts, and books finally agree — and I’m not scared to
-            look at my reports anymore.”
-          </p>
-          <div class="testimonial-name">Client Name Here</div>
-          <div class="testimonial-role">Owner, Business Name</div>
-        </div>
+      <!-- TESTIMONIAL STRIP -->
+      <section class="testimonial-section">
+        <div class="testimonial-label">Client Words</div>
+        <div class="testimonial-content">
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              “Suzi came in, quietly mapped out how everything actually worked,
+              and then untangled years of chaos without shutting us down. Our
+              Shopify, payouts, and books finally agree — and I’m not scared to
+              look at my reports anymore.”
+            </p>
+            <div class="testimonial-name">Client Name Here</div>
+            <div class="testimonial-role">Owner, Business Name</div>
+          </div>
 
-        <div class="testimonial-note">
-          Drop in a favorite client quote here — one that captures how it feels
-          to have the back end calmed down. This is where people borrow someone
-          else’s nervous system before they borrow yours.
+          <div class="testimonial-note">
+            Swap this placeholder with a favorite client quote that captures how it
+            feels once the back end is calm: relief, clarity, and not having to carry
+            the whole system in their head anymore.
+          </div>
         </div>
       </section>
 
@@ -637,9 +616,9 @@
             walkthrough of what feels heavy: Shopify, your books, the workflows
             around both, and the places money gets weird. From there, we clean
             things up in small passes — untangling payouts and refunds, fixing
-            products and variants, and getting Shopify and QuickBooks speaking
-            the same language — so your day to day work gets lighter without
-            stopping the business to rebuild everything from scratch.
+            products and variants, and getting Shopify and QuickBooks speaking the
+            same language — so your day to day work gets lighter without stopping
+            the business to rebuild everything from scratch.
           </p>
         </div>
 
@@ -649,10 +628,10 @@
             <li>Clear handling of payouts, refunds, discounts, and sales channels.</li>
             <li>Back-end workflows that make sense for how you already work.</li>
           </ul>
-          <p class="strip-note">
+          <div class="strip-note">
             I stay in the background, making sure the systems hold together while you
             focus on the front end of the business.
-          </p>
+          </div>
         </div>
       </section>
     </main>
