@@ -13,7 +13,7 @@
   <style>
     :root {
       --page-bg: #f5f5f7;
-      --ink: #0b1120;
+      --ink: #020617;
       --ink-soft: #4b5563;
       --muted: #6b7280;
       --border-subtle: #e5e7eb;
@@ -111,80 +111,96 @@
 
     /* HERO --------------------------------------------------- */
 
+    /* full-width band behind the shell */
     .hero-band {
       margin-top: 40px;
+      margin-bottom: 40px;
       padding: 0 0 40px;
-      background: radial-gradient(circle at 0 0, #0b1120, #020617 70%);
+      background: radial-gradient(circle at 0 0, #020617, #020617 60%);
+      position: relative;
+      overflow: hidden;
     }
 
     .hero {
       position: relative;
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 56px 24px 64px;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 72px min(7vw, 56px) 84px;
       color: #f9fafb;
-      overflow: hidden;
-      border-radius: 0;
-      box-shadow: none;
       isolation: isolate;
     }
 
-    /* background photo + gradients */
+    /* background image + gradients for full width hero */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background-image:
-        /* heavy dark wash from left so text stays clean */
         linear-gradient(120deg,
-          rgba(15, 23, 42, 0.96) 0%,
-          rgba(15, 23, 42, 0.90) 32%,
-          rgba(15, 23, 42, 0.65) 58%,
-          rgba(15, 23, 42, 0.22) 100%),
-        /* subtle top vignette */
+          rgba(2, 6, 23, 0.96) 0%,
+          rgba(2, 6, 23, 0.90) 32%,
+          rgba(2, 6, 23, 0.68) 58%,
+          rgba(2, 6, 23, 0.18) 100%),
         linear-gradient(0deg,
-          rgba(15, 23, 42, 0.45),
+          rgba(15, 23, 42, 0.5),
           transparent 60%),
-        /* your photo */
-        url("hero-laptop.jpeg");
-      background-size: 200%;
-      background-position: 74% 42%;
-      filter: saturate(1.05) contrast(1.08);
+        url("IMG_6692.jpeg");
+      background-size: cover;
+      background-position: 60% 40%;
+      filter: saturate(1.02) contrast(1.06);
       z-index: -2;
     }
 
-    /* warm right-side accent */
+    /* subtle warm flare on the right */
     .hero::after {
       content: "";
       position: absolute;
-      right: -15%;
+      right: -10%;
       top: -20%;
       width: 55%;
       height: 80%;
       background: radial-gradient(circle at 0 0,
-        rgba(248, 180, 75, 0.28),
-        transparent 60%);
+        rgba(248, 180, 75, 0.32),
+        transparent 62%);
       mix-blend-mode: screen;
       opacity: 0.9;
       z-index: -1;
     }
 
     .hero-inner {
-      max-width: 640px;
-      position: relative;
-      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+      gap: 40px;
+      align-items: flex-end;
     }
 
     .hero-content {
-      position: relative;
+      max-width: 560px;
     }
 
-    .hero-top-bar {
-      width: 150px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--gold));
+    .hero-tag-block {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .hero-tag-pill {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      padding: 4px 10px;
       border-radius: 999px;
-      margin-bottom: 14px;
+      border: 1px solid rgba(248, 250, 252, 0.35);
+      background: rgba(15, 23, 42, 0.35);
+    }
+
+    .hero-tag-line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(248, 250, 252, 0.8), transparent);
     }
 
     .hero-eyebrow {
@@ -197,13 +213,13 @@
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 3.2vw, 3rem);
+      font-size: clamp(2.6rem, 3.4vw, 3.2rem);
       line-height: 1.05;
       margin: 0 0 14px;
     }
 
     .hero-subtitle {
-      margin: 0 0 22px;
+      margin: 0 0 26px;
       font-size: 0.98rem;
       color: #e5e7eb;
     }
@@ -263,10 +279,58 @@
       vertical-align: middle;
     }
 
+    .hero-meta {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      color: rgba(229, 231, 235, 0.8);
+      margin-top: 26px;
+      opacity: 0.9;
+    }
+
+    .hero-meta span {
+      opacity: 0.75;
+    }
+
+    /* right-side strip in hero with “file” style text */
+    .hero-side {
+      align-self: stretch;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-side-inner {
+      align-self: flex-end;
+      max-width: 260px;
+      border-left: 1px solid rgba(248, 250, 252, 0.32);
+      padding-left: 18px;
+      padding-bottom: 6px;
+      font-size: 0.78rem;
+      color: rgba(229, 231, 235, 0.9);
+    }
+
+    .hero-side-label {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.7rem;
+      color: rgba(209, 213, 219, 0.9);
+      margin-bottom: 6px;
+    }
+
+    .hero-side-main {
+      font-size: 0.86rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-side-note {
+      font-size: 0.78rem;
+      color: rgba(209, 213, 219, 0.9);
+    }
+
     /* MAIN --------------------------------------------------- */
 
     main {
-      margin-top: 52px;
+      margin-top: 24px;
     }
 
     .section-label {
@@ -285,7 +349,8 @@
     /* OVERVIEW ---------------------------------------------- */
 
     .overview-band {
-      padding: 0 0 36px;
+      padding: 0 0 42px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
     }
 
     .overview-inner {
@@ -293,28 +358,32 @@
       margin: 0 auto;
     }
 
-    .overview-kicker {
-      max-width: 620px;
-      margin-bottom: 26px;
-      font-size: 0.96rem;
-      color: var(--ink-soft);
+    .overview-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 40px;
+      align-items: flex-start;
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 32px;
+    .overview-kicker {
+      font-size: 0.96rem;
+      color: var(--ink-soft);
+      max-width: 520px;
+      margin: 0;
+    }
+
+    .overview-kicker strong {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .overview-columns {
+      border-left: 1px solid rgba(148, 163, 184, 0.5);
+      padding-left: 22px;
     }
 
     .col-block {
-      padding-right: 18px;
-      border-left: 1px solid rgba(148, 163, 184, 0.25);
-      padding-left: 16px;
-    }
-
-    .col-block:first-child {
-      border-left: none;
-      padding-left: 0;
+      margin-bottom: 22px;
     }
 
     .col-label {
@@ -322,7 +391,7 @@
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: #9ca3af;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .col-title {
@@ -334,7 +403,7 @@
       width: 44px;
       height: 2px;
       background: linear-gradient(90deg, var(--accent), transparent);
-      margin: 8px 0 10px;
+      margin: 6px 0 10px;
     }
 
     .col-body {
@@ -346,9 +415,8 @@
     /* TESTIMONIAL ------------------------------------------- */
 
     .testimonial-band {
-      padding: 40px 0 34px;
-      border-top: 1px solid rgba(15, 23, 42, 0.06);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      padding: 34px 0 36px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
     }
 
     .testimonial-inner {
@@ -356,9 +424,24 @@
       margin: 0 auto;
     }
 
+    .testimonial-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .testimonial-index {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: #d1d5db;
+    }
+
     .testimonial-wrap {
       padding-top: 18px;
       border-top: 1px solid rgba(148, 163, 184, 0.6);
+      margin-top: 10px;
     }
 
     .testimonial-quote-mark {
@@ -371,8 +454,8 @@
     .testimonial-text {
       margin: 0 0 10px;
       font-size: 1rem;
-      color: #374151;
-      max-width: 680px;
+      color: #111827;
+      max-width: 700px;
     }
 
     .testimonial-meta {
@@ -389,16 +472,27 @@
 
     .strip-band {
       margin-top: 40px;
-      padding: 40px 0 48px;
-      background: radial-gradient(circle at 0 0, #1f2937, #020617 70%);
+      padding: 40px 0 52px;
+      background: #020617;
       color: #e5e7eb;
     }
 
     .strip-inner-shell {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 20px;
       position: relative;
+    }
+
+    .strip-inner-shell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20px;
+      right: 20px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(148, 163, 184, 0.7), transparent);
+      opacity: 0.9;
     }
 
     .strip-top-rule {
@@ -465,22 +559,31 @@
     /* RESPONSIVE --------------------------------------------- */
 
     @media (max-width: 960px) {
-      .hero {
-        padding: 44px 20px 52px;
-      }
-
       .hero-inner {
-        max-width: 100%;
-      }
-
-      .grid-3 {
         grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
       }
 
-      .col-block {
+      .hero-side {
+        justify-content: flex-start;
+      }
+
+      .hero-side-inner {
+        max-width: 100%;
+        border-left: none;
+        border-top: 1px solid rgba(248, 250, 252, 0.3);
+        padding-left: 0;
+        padding-top: 10px;
+      }
+
+      .overview-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      .overview-columns {
         border-left: none;
         padding-left: 0;
-        padding-right: 0;
       }
 
       .strip {
@@ -499,17 +602,12 @@
         gap: 10px;
       }
 
-      .hero-band {
-        margin-top: 28px;
-        padding-bottom: 32px;
-      }
-
       .hero {
-        padding-inline: 18px;
+        padding: 56px 16px 64px;
       }
 
       .strip-inner-shell {
-        padding-inline: 18px;
+        padding-inline: 16px;
       }
     }
   </style>
@@ -526,42 +624,63 @@
         </div>
       </div>
     </header>
+  </div>
 
-    <!-- HERO BAND -->
-    <div class="hero-band">
-      <section class="hero">
-        <div class="hero-inner">
-          <div class="hero-content">
-            <div class="hero-top-bar"></div>
+  <!-- HERO (full-width) -->
+  <section class="hero-band">
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-tag-block">
+            <div class="hero-tag-pill">Shopify Whisperer</div>
+            <div class="hero-tag-line"></div>
+          </div>
 
-            <div class="hero-eyebrow">Systems &amp; Operations Support</div>
+          <div class="hero-eyebrow">Systems &amp; Operations Support</div>
 
-            <h1 class="hero-title">
-              Getting your business systems to work together.
-            </h1>
+          <h1 class="hero-title">
+            Getting your business systems to work together.
+          </h1>
 
-            <p class="hero-subtitle">
-              You are running a business that moves in every direction at once.
-              Sales, bookkeeping, inventory, events, payouts, and the day-to-day
-              decisions all connect. When one part slips, everything feels heavier.
-              <span>I bring your systems into sync so Shopify, your bookkeeping,
-              and operations work together.</span>
-            </p>
+          <p class="hero-subtitle">
+            You are running a business that moves in every direction at once.
+            Sales, bookkeeping, inventory, events, payouts, and the day-to-day
+            decisions all connect. When one part slips, everything feels heavier.
+            <span>I bring your systems into sync so Shopify, your bookkeeping,
+            and operations work together.</span>
+          </p>
 
-            <div class="hero-cta-row">
-              <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
-                Reach Out
-                <span class="arrow">↗</span>
-              </a>
-              <div class="hero-tagline">
-                Quiet, practical support for the back end of your business.
-              </div>
+          <div class="hero-cta-row">
+            <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
+              Reach Out
+              <span class="arrow">↗</span>
+            </a>
+            <div class="hero-tagline">
+              Quiet, practical support for the back end of your business.
             </div>
           </div>
-        </div>
-      </section>
-    </div>
 
+          <div class="hero-meta">
+            CASE FILE &middot; <span>Small businesses navigating fast growth</span>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="hero-side-inner">
+            <div class="hero-side-label">Working Style</div>
+            <div class="hero-side-main">
+              Calm in the chaos, small steady passes, and no drama in your numbers.
+            </div>
+            <div class="hero-side-note">
+              Shopify, bookkeeping, and operations treated as one system instead of three problems.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell">
     <!-- MAIN CONTENT -->
     <main>
       <!-- OVERVIEW -->
@@ -570,42 +689,46 @@
           <div class="section-label">Overview</div>
           <h2 class="section-heading">Where I fit inside your business.</h2>
 
-          <p class="overview-kicker">
-            For small businesses in motion: grounded support that keeps up with all of it.
-          </p>
+          <div class="overview-layout">
+            <p class="overview-kicker">
+              For small businesses in motion: <strong>grounded support that keeps up with all of it.</strong>
+              Not a noisy overhaul — just the right amount of structure so Shopify, your books, and your
+              day-to-day decisions stop working against each other.
+            </p>
 
-          <div class="grid-3">
-            <div class="col-block" id="what">
-              <div class="col-label">What I Do</div>
-              <h3 class="col-title">Glue between your tools.</h3>
-              <div class="col-rule"></div>
-              <p class="col-body">
-                I handle the connective tissue between your store, your bookkeeping,
-                and your operations so reports match reality and money movement
-                finally makes sense instead of feeling mysterious.
-              </p>
-            </div>
+            <div class="overview-columns">
+              <div class="col-block" id="what">
+                <div class="col-label">What I Do</div>
+                <h3 class="col-title">Glue between your tools.</h3>
+                <div class="col-rule"></div>
+                <p class="col-body">
+                  I handle the connective tissue between your store, your bookkeeping,
+                  and your operations so reports match reality and money movement
+                  finally makes sense instead of feeling mysterious.
+                </p>
+              </div>
 
-            <div class="col-block" id="how">
-              <div class="col-label">How I Work</div>
-              <h3 class="col-title">Small, steady passes.</h3>
-              <div class="col-rule"></div>
-              <p class="col-body">
-                We start with what feels heavy, walk through Shopify, your books,
-                and the workflows around both, then clean things up in phases so
-                you can keep running the business while the systems get better.
-              </p>
-            </div>
+              <div class="col-block" id="how">
+                <div class="col-label">How I Work</div>
+                <h3 class="col-title">Small, steady passes.</h3>
+                <div class="col-rule"></div>
+                <p class="col-body">
+                  We start with what feels heavy, walk through Shopify, your books,
+                  and the workflows around both, then clean things up in phases so
+                  you can keep running the business while the systems get better.
+                </p>
+              </div>
 
-            <div class="col-block" id="who">
-              <div class="col-label">Who I Work With</div>
-              <h3 class="col-title">Owners who are stretched thin.</h3>
-              <div class="col-rule"></div>
-              <p class="col-body">
-                You are in it every day and the back end is fighting you. You want
-                your systems to feel grounded so you can focus on the part you are
-                actually good at, instead of constantly chasing loose ends.
-              </p>
+              <div class="col-block" id="who">
+                <div class="col-label">Who I Work With</div>
+                <h3 class="col-title">Owners who are stretched thin.</h3>
+                <div class="col-rule"></div>
+                <p class="col-body">
+                  You are in it every day and the back end is fighting you. You want
+                  your systems to feel grounded so you can focus on the part you are
+                  actually good at, instead of constantly chasing loose ends.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -614,7 +737,11 @@
       <!-- CLIENT WORDS -->
       <section class="testimonial-band">
         <div class="testimonial-inner">
-          <div class="section-label">Client Words</div>
+          <div class="testimonial-label-row">
+            <div class="section-label">Client Words</div>
+            <div class="testimonial-index">Excerpt · 01</div>
+          </div>
+
           <div class="testimonial-wrap">
             <div class="testimonial-quote-mark">“</div>
             <p class="testimonial-text">
