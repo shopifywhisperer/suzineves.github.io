@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suzi Neves – Grounded Support for Shops That Move</title>
+  <title>Suzi Neves – Support for Businesses in Motion</title>
   <style>
     :root {
-      --bg: #0f172a;
-      --card: #f5f1eb;
-      --ink: #151515;
-      --ink-soft: #555;
-      --accent: #c26844;
-      --accent-soft: #e5b39a;
+      --bg: #050816;
+      --bg-soft: #0b1220;
+      --card: #f4efe7;
+      --ink: #141414;
+      --ink-soft: #4f4f4f;
+      --accent: #c86f4f;    /* warm terracotta */
+      --accent-soft: #f1c3a7;
+      --chip: #1e293b;
     }
 
     * {
@@ -20,203 +22,273 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 50%, #000 100%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
       color: var(--ink);
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 32px 16px;
+      padding: 32px 16px 64px;
     }
 
-    .card {
-      max-width: 980px;
+    .shell {
+      max-width: 1040px;
       width: 100%;
-      background: var(--card);
-      border-radius: 18px;
-      border: 1px solid #e0dacf;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
     }
 
-    @media (min-width: 800px) {
-      .card {
-        flex-direction: row;
+    .hero {
+      background: linear-gradient(135deg, var(--card) 0, #f6f2ec 60%, #f8efe5 100%);
+      border-radius: 20px;
+      padding: 28px 24px 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      border: 1px solid #e2d8ca;
+    }
+
+    @media (min-width: 820px) {
+      .hero {
+        padding: 34px 32px 34px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr);
+        gap: 32px;
       }
     }
 
-    .side {
-      background: linear-gradient(160deg, var(--accent) 0, var(--accent-soft) 40%, #f5f1eb 40%);
-      padding: 32px 26px 32px 28px;
-      flex: 0 0 280px;
+    .hero-left-title {
+      font-size: 2.4rem;
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-left-sub {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-soft);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-chip-row {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.4rem;
     }
 
-    .side-top h1 {
-      margin: 0 0 6px 0;
-      font-size: 32px;
-      letter-spacing: 0.03em;
-    }
-
-    .tagline {
-      font-size: 16px;
-      font-weight: 500;
-      max-width: 230px;
-    }
-
-    .side-bottom {
-      margin-top: 32px;
-      font-size: 14px;
-      color: #2a1a16;
-    }
-
-    .email {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 14px;
-      background: #1f2933;
-      color: #f9f9f9;
-      text-decoration: none;
+    .chip {
+      padding: 0.35rem 0.8rem;
       border-radius: 999px;
-      font-size: 13px;
-      font-weight: 600;
+      background: var(--chip);
+      color: #e5e7eb;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .email:hover {
-      filter: brightness(1.05);
+    .hero-line {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      max-width: 18rem;
     }
 
-    .main {
-      padding: 32px 28px 40px;
-      flex: 1;
-    }
-
-    .intro p {
-      font-size: 17px;
-      line-height: 1.6;
-      margin: 0 0 16px;
+    .hero-right p {
+      margin: 0 0 0.9rem;
+      font-size: 0.98rem;
+      line-height: 1.65;
       color: var(--ink);
     }
 
-    .section {
-      margin-top: 32px;
+    .hero-cta {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
     }
 
-    .section h2 {
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--ink-soft);
-      margin: 0 0 10px;
-    }
-
-    .section-title-underline {
-      width: 42px;
-      height: 3px;
+    .hero-cta a {
+      display: inline-block;
+      padding: 0.55rem 1.3rem;
       border-radius: 999px;
       background: var(--accent);
-      margin-bottom: 14px;
+      color: #f9fafb;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid #7c3a26;
     }
 
-    .section p {
-      font-size: 16px;
+    .hero-cta a:hover {
+      filter: brightness(1.04);
+    }
+
+    .hero-cta-note {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+
+    /* Panels row */
+
+    .panels {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 780px) {
+      .panels {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .panels {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+      }
+    }
+
+    .panel {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 16px;
+      padding: 20px 18px 20px;
+      border: 1px solid #1f2937;
+      color: #e5e7eb;
+    }
+
+    .panel + .panel {
+      /* nothing, gap handled by grid */
+    }
+
+    .panel h2 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+      margin: 0 0 0.6rem;
+    }
+
+    .panel-line {
+      width: 42px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      margin-bottom: 0.9rem;
+    }
+
+    .panel p {
+      margin: 0 0 0.6rem;
+      font-size: 0.9rem;
       line-height: 1.6;
-      margin: 0 0 12px;
+      color: #e5e7eb;
     }
 
-    ul {
+    .panel ul {
       margin: 0;
-      padding-left: 18px;
-      font-size: 16px;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
     }
 
-    li {
-      margin-bottom: 8px;
+    .panel li {
+      margin-bottom: 0.4rem;
       line-height: 1.5;
     }
 
-    .muted {
-      color: var(--ink-soft);
-      font-size: 14px;
-      margin-top: 18px;
+    .panel-muted {
+      font-size: 0.82rem;
+      color: #9ca3af;
+      margin-top: 0.7rem;
     }
 
-    @media (max-width: 799px) {
-      .side {
-        background: linear-gradient(160deg, var(--accent) 0, var(--accent-soft) 55%, #f5f1eb 55%);
+    @media (max-width: 480px) {
+      .hero-left-title {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="card">
-    <!-- LEFT SIDE -->
-    <div class="side">
-      <div class="side-top">
-        <h1>Suzi Neves</h1>
-        <div class="tagline">
-          For small shops that sell online and in person, I keep the back end steady so you can keep moving.
+  <main class="shell">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-left-sub">Shopify · POS · QuickBooks</div>
+        <h1 class="hero-left-title">Suzi Neves</h1>
+
+        <div class="hero-chip-row">
+          <div class="chip">Shops in motion</div>
+          <div class="chip">Deep backend work</div>
+          <div class="chip">Owner-first systems</div>
+        </div>
+
+        <div class="hero-line">
+          I work with businesses in motion. You are moving fast, solving problems, keeping customers happy, and the systems around you should keep pace.
         </div>
       </div>
-      <div class="side-bottom">
-        <div>Limited ongoing clients. Deep work, not surface fixes.</div>
-        <a class="email" href="mailto:suzineves@gmail.com">Email Suzi</a>
-      </div>
-    </div>
 
-    <!-- RIGHT SIDE -->
-    <div class="main">
-      <div class="intro">
+      <div class="hero-right">
         <p>
-          I work with people running real shops, not hypotheticals. Your days are full, the pace is fast, and you do not have time to babysit systems. My job is to see the whole picture and quietly get things working the way they should.
+          I work with people growing real businesses. The pace is constant, and my role is to bring clear thinking, steadiness, and support that matches that pace.
         </p>
         <p>
-          I spent years embedded in a fast moving retail and e-commerce business that lived in Shopify, ran a physical shop, traveled to events, and needed the numbers to match at the end of the day. I handled products, point of sale, inventory, payouts, fees, and the little decisions that decide whether a system feels smooth or exhausting.
+          I spent years inside a fast moving retail and e-commerce company that lived in Shopify, ran a physical shop, traveled to events, and needed the numbers to match at the end of the day. I moved between the front and back of the business, kept up with growth, filled gaps, and built structure while everything was still in motion.
         </p>
         <p>
-          Now I partner with a small number of owners who want someone steady in the background. I learn how your business really runs, untangle the mess, and build simple routines that you and your team can keep up with.
+          Now I work with a small number of owners who want that same kind of partnership. I get in sync, carry real weight, and help the work feel more manageable for the business and for the people running it.
         </p>
-      </div>
 
-      <div class="section">
+        <div class="hero-cta">
+          <a href="mailto:suzineves@gmail.com">Email Suzi</a>
+          <div class="hero-cta-note">One straightforward conversation. No pressure.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANELS -->
+    <section class="panels">
+      <article class="panel">
         <h2>What I do</h2>
-        <div class="section-title-underline"></div>
+        <div class="panel-line"></div>
         <ul>
-          <li>Set up and clean up Shopify, products, collections, and point of sale so your staff can use it without thinking about it.</li>
-          <li>Design inventory habits that match how your shop moves, including events and trackside or pop up selling.</li>
+          <li>Set up and clean up Shopify products, collections, and point of sale so your staff can use it without fighting it.</li>
+          <li>Shape inventory habits that match how you sell, including events, pop ups, and busy seasons.</li>
           <li>Make Shopify and QuickBooks agree, including payouts, fees, refunds, discounts, gift cards, and sales tax.</li>
-          <li>Stay on as a quiet second brain if you want ongoing support instead of one big project and a goodbye.</li>
+          <li>Stay on as a quiet second brain if you want ongoing support rather than a one time project.</li>
         </ul>
-      </div>
+      </article>
 
-      <div class="section">
+      <article class="panel">
         <h2>How I work</h2>
-        <div class="section-title-underline"></div>
+        <div class="panel-line"></div>
         <p>
-          I come in calmly and pay attention. We look at how you sell, where the friction is, and what keeps you up at night. I review your current tools and numbers, then map out where things are breaking or double handling work.
+          I come in calmly and pay attention. We look at how you sell, where the friction is, and what is draining time or energy.
         </p>
         <p>
-          We fix the foundation first. That might mean restructuring products, changing how payouts hit the books, or simplifying the way you track stock. I write things down in plain language so you and your team know what is happening and why.
+          From there we fix the foundation first. That might mean restructuring products, changing how payouts hit the books, or simplifying the way you track stock. I write things down in plain language so you and your team can keep it going.
         </p>
-      </div>
+        <p class="panel-muted">
+          The goal is not a perfect system on paper. The goal is something you can live with on a busy day.
+        </p>
+      </article>
+    </section>
 
-      <div class="section">
+    <section class="panels" style="margin-top: 18px;">
+      <article class="panel">
         <h2>Start a conversation</h2>
-        <div class="section-title-underline"></div>
+        <div class="panel-line"></div>
         <p>
-          Send a short email with three things: how you sell today, what tools you are using, and what feels messy or heavy. If it sounds like a match, I will suggest a next step and a rough range for cost and timing.
+          If this sounds close to what you need, send a short email with three things: how you sell today, what tools you use, and what feels messy or heavy.
         </p>
-        <p class="muted">
-          No pressure and no pitch deck. Just a clear look at what you are carrying and whether I am the right person to help.
+        <p>
+          I will let you know if it sounds like a fit and what a first step could look like, including a rough range for cost and timing.
         </p>
-      </div>
-    </div>
-  </div>
+        <p class="panel-muted">
+          No pitch deck, no pressure. Just a clear look at what you are carrying and whether I am the right person to help.
+        </p>
+      </article>
+    </section>
+  </main>
 </body>
 </html>
+
 
