@@ -7,18 +7,18 @@
 
   <style>
     :root {
-      --bg: #f3f4f6;
+      --bg: #e5e7eb;
       --hero-bg: #111827;
       --hero-bg-soft: #1f2937;
-      --panel-bg: #faf7f3;     /* Soft warm background */
-      --text-main: #1f2937;
+      --card-bg: #f7f5f1;
+      --text-main: #111827;
       --text-muted: #4b5563;
       --accent: #c8643f;
       --accent-soft: #fbbda0;
-      --radius-lg: 18px;
+      --radius: 10px;
       --radius-pill: 999px;
-      --shadow-soft: 0 14px 28px rgba(0,0,0,0.18);
-      --max-width: 760px;
+      --shadow-soft: 0 8px 18px rgba(15, 23, 42, 0.2);
+      --max-width: 960px;
     }
 
     * { box-sizing: border-box; }
@@ -26,37 +26,68 @@
     body {
       margin: 0;
       padding: 0;
-      background: var(--bg);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 55%),
+        var(--bg);
       color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
     }
 
     .page {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 28px 16px 64px;
+      padding: 20px 16px 40px;
+    }
+
+    @media (min-width: 768px) {
+      .page { padding: 24px 20px 48px; }
     }
 
     /* HERO */
+
     .hero {
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 60%),
+        radial-gradient(circle at top left, rgba(248,250,252,0.06), transparent 55%),
         linear-gradient(135deg, var(--hero-bg), var(--hero-bg-soft));
-      padding: 28px 24px 34px;
       color: #f9fafb;
-      border-radius: var(--radius-lg);
+      padding: 18px 18px 20px;
+      border-radius: var(--radius);
       box-shadow: var(--shadow-soft);
-      margin-bottom: 40px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .hero { padding: 20px 22px 22px; }
+    }
+
+    /* subtle accent bar in hero */
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: 0;
+      width: 160px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(248,250,252,0.1), rgba(248,250,252,0));
+      opacity: 0.7;
+      pointer-events: none;
     }
 
     .hero-top {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 16px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-name {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -65,84 +96,146 @@
 
     .hero-tag {
       font-size: 11px;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(249,250,251,0.3);
+      background: rgba(15,23,42,0.6);
       color: #e5e7eb;
+      white-space: nowrap;
     }
 
     .hero h1 {
-      font-size: 30px;
+      font-size: 26px;
       line-height: 1.25;
-      margin: 0 0 10px;
+      margin: 0 0 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 30px; }
     }
 
     .hero p {
-      font-size: 15px;
+      margin: 0 0 14px;
+      font-size: 14px;
       line-height: 1.7;
-      margin: 0 0 22px;
       color: #e5e7eb;
+      max-width: 46rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .cta {
-      display: inline-block;
-      padding: 10px 24px;
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
       background: linear-gradient(135deg, var(--accent), #e98a52);
       color: #111827;
+      font-size: 13px;
       font-weight: 600;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      border-radius: var(--radius-pill);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
-      letter-spacing: 0.06em;
+      box-shadow: 0 7px 18px rgba(15,23,42,0.45);
+      position: relative;
+      z-index: 1;
     }
 
-    /* SOFT EDITORIAL SECTION */
-    .section {
-      background: var(--panel-bg);
-      padding: 26px 24px;
-      border-radius: var(--radius-lg);
+    .hero-cta:hover {
+      transform: translateY(-1px);
+    }
+
+    /* COMPACT INFO ROW WITH ICONS */
+
+    .info-row {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid #e2ded7;
       box-shadow: var(--shadow-soft);
-      margin-bottom: 28px;
+      padding: 12px 14px 10px;
     }
 
-    .section h2 {
-      font-size: 14px;
+    @media (min-width: 800px) {
+      .info-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        padding: 12px 16px 10px;
+      }
+    }
+
+    .info-block {
+      padding: 4px 0 8px;
+    }
+
+    @media (max-width: 799px) {
+      .info-block + .info-block {
+        border-top: 1px solid rgba(0,0,0,0.06);
+        margin-top: 8px;
+        padding-top: 10px;
+      }
+    }
+
+    .info-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .info-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(200,100,63,0.13);
+      border: 1px solid rgba(200,100,63,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: #7b3b23;
+      stroke-width: 1.7;
+      fill: none;
+    }
+
+    .info-title {
+      font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      margin: 0 0 12px;
       color: #374151;
     }
 
-    .section p {
-      font-size: 16px;
-      line-height: 1.75;
+    .info-body {
+      font-size: 13px;
+      line-height: 1.6;
       color: var(--text-muted);
-      margin: 0 0 14px;
-    }
-
-    .divider {
-      height: 1px;
-      background: rgba(0,0,0,0.12);
-      margin: 26px 0;
+      margin: 0;
     }
 
     /* FOOTER */
+
     .footer {
-      text-align: center;
-      font-size: 14px;
-      color: #374151;
+      margin-top: 16px;
+      font-size: 12px;
+      color: #4b5563;
+      text-align: right;
     }
 
     .footer a {
       color: var(--accent);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .footer a:hover { text-decoration: underline; }
-
   </style>
 </head>
 
@@ -165,54 +258,67 @@
         and operations work together and the work gets easier.
       </p>
 
-      <a class="cta" href="mailto:suzi@radpurpose.com">Reach out</a>
+      <a class="hero-cta" href="mailto:suzi@radpurpose.com">Reach out</a>
     </header>
 
+    <!-- COMPACT INFO ROW WITH GRAPHIC ICONS -->
+    <section class="info-row">
+      <div class="info-block">
+        <div class="info-header">
+          <div class="info-icon">
+            <!-- “Person / target” icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="9" r="3.2"></circle>
+              <path d="M6.5 18.5c1.4-2.3 3.1-3.4 5.5-3.4s4.1 1.1 5.5 3.4"></path>
+            </svg>
+          </div>
+          <div class="info-title">Who I work with</div>
+        </div>
+        <p class="info-body">
+          Owners who are in it every day, juggling product, events, and money,
+          and want the back end to stop fighting them so they can focus on the work they care about.
+        </p>
+      </div>
 
-    <!-- SECTION 1 -->
-    <section class="section">
-      <h2>Who I work with</h2>
-      <p>
-        I’m best for owners who are stretched thin and want the back end of the business to stop
-        fighting them. You’re in it every day, juggling product, events, money movement, and all the
-        decisions in between. You want your systems to feel grounded so you can finally focus on the
-        part you’re actually good at.
-      </p>
+      <div class="info-block">
+        <div class="info-header">
+          <div class="info-icon">
+            <!-- “Flow / process” icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h8v4H4zM12 14h8v4h-8z"></path>
+              <path d="M12 8h4a2 2 0 0 1 2 2v2M8 14H6a2 2 0 0 1-2-2v-2"></path>
+            </svg>
+          </div>
+          <div class="info-title">How I work</div>
+        </div>
+        <p class="info-body">
+          We walk through what feels messy or heavy. I review Shopify, your books, and key workflows,
+          then clean things up in steady phases so the business keeps running while the systems get better.
+        </p>
+      </div>
+
+      <div class="info-block">
+        <div class="info-header">
+          <div class="info-icon">
+            <!-- “Ledger / connection” icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="5" width="6" height="6"></rect>
+              <rect x="13" y="13" width="6" height="6"></rect>
+              <path d="M11 8h2.5A2.5 2.5 0 0 1 16 10.5V13"></path>
+            </svg>
+          </div>
+          <div class="info-title">What I do</div>
+        </div>
+        <p class="info-body">
+          Ongoing bookkeeping support. Getting Shopify and QuickBooks in sync. Untangling payouts,
+          refunds, and daily money movement. Cleaning up products and light structure around
+          inventory, events, and tasks.
+        </p>
+      </div>
     </section>
 
-    <!-- SECTION 2 -->
-    <section class="section">
-      <h2>How I work</h2>
-      <p>
-        We start with a walkthrough of what feels messy or heavy. I review Shopify, your books, and
-        the workflows around both to map out what’s really going on.
-      </p>
-      <p>
-        From there, we clean things up in small, steady phases so you can keep running the business
-        while the systems get better. Once everything is stable, you choose whether you want me to
-        stay on monthly or hand it back with simple habits and clear notes.
-      </p>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section class="section">
-      <h2>What I do</h2>
-      <p>
-        I handle the pieces that connect your store, your bookkeeping, and your operations. That
-        includes monthly bookkeeping support, syncing Shopify and QuickBooks so reports match
-        reality, and untangling payouts, refunds, discounts, and daily money movement.
-      </p>
-      <p>
-        I also clean up products, variants, and collections so your store matches how you actually
-        sell, and put light structure around events, inventory, and daily tasks. The goal is simple:
-        a business that feels lighter to run, with numbers you can trust.
-      </p>
-    </section>
-
-    <!-- FOOTER -->
     <footer class="footer">
-      Quiet, practical support for the back end of your business.<br>
-      Reach out when you're ready: <a href="mailto:suzi@radpurpose.com">suzi@radpurpose.com</a>
+      When you are ready: <a href="mailto:suzi@radpurpose.com">suzi@radpurpose.com</a>
     </footer>
 
   </main>
