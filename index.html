@@ -13,13 +13,12 @@
   <style>
     :root {
       --page-bg: #f4f4f6;
-      --surface: #ffffff;
       --ink: #111827;
       --ink-soft: #4b5563;
       --muted: #6b7280;
       --border-subtle: #e5e7eb;
 
-      --accent: #c4684e;        /* terracotta */
+      --accent: #c4684e;
       --accent-deep: #9a4a35;
       --accent-soft: #f4d0c1;
     }
@@ -105,29 +104,31 @@
       font-size: 0.8rem;
       letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: #4b5563;
       font-weight: 600;
     }
 
     /* HERO --------------------------------------------------- */
 
+    .hero-band {
+      margin: 28px -20px 0;
+    }
+
     .hero {
       position: relative;
-      margin: 28px -20px 0;
-      padding: 52px 20px 64px; /* shorter, tighter */
+      padding: 52px 20px 64px;
       color: #f9fafb;
       overflow: hidden;
-      border-radius: 0 0 32px 32px;
       box-shadow: 0 22px 60px rgba(15, 23, 42, 0.45);
     }
 
-    /* Architectural light & shadow photo, no people */
+    /* photo + overlay */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(120deg, rgba(15, 23, 42, 0.80), rgba(15, 23, 42, 0.45)),
+        linear-gradient(120deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.40)),
         url("https://images.unsplash.com/photo-1526481280695-3c687fd543c0?auto=format&fit=crop&w=1600&q=80");
       background-size: cover;
       background-position: center;
@@ -135,7 +136,7 @@
       opacity: 1;
     }
 
-    /* top editorial accent bar */
+    /* top accent bar */
     .hero::after {
       content: "";
       position: absolute;
@@ -219,7 +220,7 @@
       color: #d1d5db;
     }
 
-    /* SECTION HEADERS --------------------------------------- */
+    /* MAIN WRAPPER ------------------------------------------ */
 
     main {
       margin-top: 52px;
@@ -238,22 +239,35 @@
       margin: 0 0 24px;
     }
 
-    /* THREE-COLUMN EDITORIAL ROW (WHAT / HOW / WHO) --------- */
+    /* OVERVIEW BAND (WHAT / HOW / WHO) ---------------------- */
+
+    .overview-band {
+      margin: 0 -20px;
+      padding: 40px 20px 46px;
+      background: #fdfdfd;
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .overview-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
+      gap: 32px;
       position: relative;
     }
 
-    /* subtle vertical separators between columns */
+    /* subtle vertical rules between columns */
     .grid-3::before,
     .grid-3::after {
       content: "";
       position: absolute;
-      top: 6px;
-      bottom: 6px;
+      top: 4px;
+      bottom: 4px;
       width: 1px;
       background: rgba(209, 213, 219, 0.9);
       pointer-events: none;
@@ -268,11 +282,11 @@
     }
 
     .col-block {
-      padding-right: 18px;
+      padding-right: 20px;
     }
     .col-block:last-child {
       padding-right: 0;
-      padding-left: 18px;
+      padding-left: 20px;
     }
 
     .col-label {
@@ -302,10 +316,18 @@
       color: var(--muted);
     }
 
-    /* TESTIMONIAL STRIP (NO BOX) ---------------------------- */
+    /* CLIENT WORDS BAND -------------------------------------- */
 
-    .testimonial-section {
-      margin-top: 56px;
+    .testimonial-band {
+      margin: 0 -20px;
+      padding: 40px 20px 44px;
+      background: #f7f5f3;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .testimonial-inner {
+      max-width: 1040px;
+      margin: 0 auto;
     }
 
     .testimonial-wrap {
@@ -348,34 +370,31 @@
       color: var(--ink);
     }
 
-    /* DARK STRIP (EDITORIAL BAND) --------------------------- */
+    /* DARK WORKING-TOGETHER BAND ---------------------------- */
 
-    .strip {
-      margin-top: 60px;
-      padding: 28px 26px 30px;
-      border-radius: 22px;
+    .strip-band {
+      margin: 0 -20px;
+      padding: 40px 20px 44px;
       background: #050816;
       color: #e5e7eb;
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 28px;
-      position: relative;
-      overflow: hidden;
     }
 
-    .strip::before {
-      content: "";
-      position: absolute;
-      inset-inline: 0;
-      top: 0;
+    .strip-inner-shell {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .strip-top-rule {
       height: 3px;
       background: linear-gradient(90deg, var(--accent), #fbbf24);
       opacity: 0.98;
+      margin-bottom: 22px;
     }
 
-    .strip-inner {
-      position: relative;
-      z-index: 1;
+    .strip {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 28px;
     }
 
     .strip-tag {
@@ -429,9 +448,19 @@
     /* RESPONSIVE --------------------------------------------- */
 
     @media (max-width: 960px) {
-      .hero {
+      .hero-band {
         margin: 24px -16px 0;
+      }
+
+      .hero {
         padding: 46px 18px 56px;
+      }
+
+      .overview-band,
+      .testimonial-band,
+      .strip-band {
+        margin: 0 -16px;
+        padding-inline: 16px;
       }
 
       .grid-3 {
@@ -477,124 +506,135 @@
       </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="hero-eyebrow">Systems &amp; Operations Support</div>
+    <!-- HERO BAND -->
+    <div class="hero-band">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-content">
+            <div class="hero-eyebrow">Systems &amp; Operations Support</div>
 
-          <h1 class="hero-title">
-            Getting your business systems to work together.
-          </h1>
+            <h1 class="hero-title">
+              Getting your business systems to work together.
+            </h1>
 
-          <p class="hero-subtitle">
-            You are running a business that moves in every direction at once.
-            Sales, bookkeeping, inventory, events, payouts, and the day-to-day
-            decisions all connect. When one part slips, everything feels heavier.
-            <span>I bring your systems into sync so Shopify, your bookkeeping,
-            and operations work together.</span>
-          </p>
+            <p class="hero-subtitle">
+              You are running a business that moves in every direction at once.
+              Sales, bookkeeping, inventory, events, payouts, and the day-to-day
+              decisions all connect. When one part slips, everything feels heavier.
+              <span>I bring your systems into sync so Shopify, your bookkeeping,
+              and operations work together.</span>
+            </p>
 
-          <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
-            Reach Out
-            <span class="arrow">↗</span>
-          </a>
+            <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
+              Reach Out
+              <span class="arrow">↗</span>
+            </a>
 
-          <div class="hero-tagline">
-            Quiet, practical support for the back end of your business.
+            <div class="hero-tagline">
+              Quiet, practical support for the back end of your business.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- MAIN CONTENT -->
     <main>
-      <!-- WHAT / HOW / WHO -->
-      <section>
-        <div class="section-label">Overview</div>
-        <h2 class="section-heading">Where I fit inside your business.</h2>
+      <!-- OVERVIEW BAND -->
+      <section class="overview-band">
+        <div class="overview-inner">
+          <div class="section-label">Overview</div>
+          <h2 class="section-heading">Where I fit inside your business.</h2>
 
-        <div class="grid-3">
-          <div class="col-block" id="what">
-            <div class="col-label">What I Do</div>
-            <h3 class="col-title">Glue between your tools.</h3>
-            <div class="col-rule"></div>
-            <p class="col-body">
-              I handle the connective tissue between your store, your bookkeeping,
-              and your operations so reports match reality and money movement
-              finally makes sense instead of feeling mysterious.
-            </p>
-          </div>
+          <div class="grid-3">
+            <div class="col-block" id="what">
+              <div class="col-label">What I Do</div>
+              <h3 class="col-title">Glue between your tools.</h3>
+              <div class="col-rule"></div>
+              <p class="col-body">
+                I handle the connective tissue between your store, your bookkeeping,
+                and your operations so reports match reality and money movement
+                finally makes sense instead of feeling mysterious.
+              </p>
+            </div>
 
-          <div class="col-block" id="how">
-            <div class="col-label">How I Work</div>
-            <h3 class="col-title">Small, steady passes.</h3>
-            <div class="col-rule"></div>
-            <p class="col-body">
-              We start with what feels heavy, walk through Shopify, your books,
-              and the workflows around both, then clean things up in phases so
-              you can keep running the business while the systems get better.
-            </p>
-          </div>
+            <div class="col-block" id="how">
+              <div class="col-label">How I Work</div>
+              <h3 class="col-title">Small, steady passes.</h3>
+              <div class="col-rule"></div>
+              <p class="col-body">
+                We start with what feels heavy, walk through Shopify, your books,
+                and the workflows around both, then clean things up in phases so
+                you can keep running the business while the systems get better.
+              </p>
+            </div>
 
-          <div class="col-block" id="who">
-            <div class="col-label">Who I Work With</div>
-            <h3 class="col-title">Owners who are stretched thin.</h3>
-            <div class="col-rule"></div>
-            <p class="col-body">
-              You are in it every day and the back end is fighting you. You want
-              your systems to feel grounded so you can focus on the part you are
-              actually good at, instead of constantly chasing loose ends.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- TESTIMONIAL STRIP -->
-      <section class="testimonial-section">
-        <div class="section-label">Client Words</div>
-        <div class="testimonial-wrap">
-          <div class="testimonial-quote-mark">“</div>
-          <p class="testimonial-text">
-            Suzi sees the whole picture. Our store, our books, and our day to day
-            finally feel like they are on the same team instead of pulling in
-            different directions.
-          </p>
-          <div class="testimonial-meta">
-            <span class="testimonial-name">Client Name Here</span>,
-            <span class="testimonial-role">Owner, Business Name</span>
+            <div class="col-block" id="who">
+              <div class="col-label">Who I Work With</div>
+              <h3 class="col-title">Owners who are stretched thin.</h3>
+              <div class="col-rule"></div>
+              <p class="col-body">
+                You are in it every day and the back end is fighting you. You want
+                your systems to feel grounded so you can focus on the part you are
+                actually good at, instead of constantly chasing loose ends.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- DARK STRIP -->
-      <section class="strip">
-        <div class="strip-inner">
-          <div class="strip-tag">Working Together</div>
-          <h2 class="strip-heading">
-            A back end that feels grounded instead of chaotic.
-          </h2>
-          <p class="strip-body">
-            Most of my clients don’t need a flashy overhaul. They need the systems
-            they already have to finally talk to each other. We start with a
-            walkthrough of what feels heavy: Shopify, your books, the workflows
-            around both, and the places money gets weird. From there, we clean
-            things up in small passes — untangling payouts and refunds, fixing
-            products and variants, and getting Shopify and QuickBooks speaking the
-            same language — so your day to day work gets lighter without stopping
-            the business to rebuild everything from scratch.
-          </p>
+      <!-- CLIENT WORDS BAND -->
+      <section class="testimonial-band">
+        <div class="testimonial-inner">
+          <div class="section-label">Client Words</div>
+          <div class="testimonial-wrap">
+            <div class="testimonial-quote-mark">“</div>
+            <p class="testimonial-text">
+              Suzi sees the whole picture. Our store, our books, and our day to day
+              finally feel like they are on the same team instead of pulling in
+              different directions.
+            </p>
+            <div class="testimonial-meta">
+              <span class="testimonial-name">Client Name Here</span>,
+              <span class="testimonial-role">Owner, Business Name</span>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="strip-inner">
-          <ul class="strip-list">
-            <li>Shopify &amp; QuickBooks aligned so reports match what actually happened.</li>
-            <li>Clear handling of payouts, refunds, discounts, and sales channels.</li>
-            <li>Back-end workflows that make sense for how you already work.</li>
-          </ul>
-          <div class="strip-note">
-            I stay in the background, making sure the systems hold together while you
-            focus on the front end of the business.
+      <!-- DARK WORKING TOGETHER BAND -->
+      <section class="strip-band">
+        <div class="strip-inner-shell">
+          <div class="strip-top-rule"></div>
+          <div class="strip">
+            <div class="strip-inner">
+              <div class="strip-tag">Working Together</div>
+              <h2 class="strip-heading">
+                A back end that feels grounded instead of chaotic.
+              </h2>
+              <p class="strip-body">
+                Most of my clients don’t need a flashy overhaul. They need the systems
+                they already have to finally talk to each other. We start with a
+                walkthrough of what feels heavy: Shopify, your books, the workflows
+                around both, and the places money gets weird. From there, we clean
+                things up in small passes — untangling payouts and refunds, fixing
+                products and variants, and getting Shopify and QuickBooks speaking the
+                same language — so your day to day work gets lighter without stopping
+                the business to rebuild everything from scratch.
+              </p>
+            </div>
+
+            <div class="strip-inner">
+              <ul class="strip-list">
+                <li>Shopify &amp; QuickBooks aligned so reports match what actually happened.</li>
+                <li>Clear handling of payouts, refunds, discounts, and sales channels.</li>
+                <li>Back-end workflows that make sense for how you already work.</li>
+              </ul>
+              <div class="strip-note">
+                I stay in the background, making sure the systems hold together while you
+                focus on the front end of the business.
+              </div>
+            </div>
           </div>
         </div>
       </section>
