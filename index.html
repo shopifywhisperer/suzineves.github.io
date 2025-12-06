@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Systems and operations support</title>
+  <title>Systems & Operations Support — Suzi Neves</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     :root {
-      --bg: #e5e7eb;          /* page background – light grey */
-      --hero-bg: #111827;     /* dark slate hero */
+      --bg: #f3f4f6;
+      --hero-bg: #111827;
       --hero-bg-soft: #1f2937;
-      --card: #ffffff;
-      --accent: #c8643f;      /* warm terracotta */
+      --panel-bg: #faf7f3;     /* Soft warm background */
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+      --accent: #c8643f;
       --accent-soft: #fbbda0;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --border-subtle: #e5e7eb;
-      --shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.18);
-      --max-width: 960px;
       --radius-lg: 18px;
       --radius-pill: 999px;
+      --shadow-soft: 0 14px 28px rgba(0,0,0,0.18);
+      --max-width: 760px;
     }
 
     * { box-sizing: border-box; }
@@ -26,270 +26,196 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       background: var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-main);
-      -webkit-font-smoothing: antialiased;
     }
 
     .page {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 24px 16px 56px;
+      padding: 28px 16px 64px;
     }
 
-    @media (min-width: 768px) {
-      .page { padding: 28px 20px 64px; }
-    }
-
-    /* HERO STRIP */
-
-    .hero-banner {
+    /* HERO */
+    .hero {
       background:
-        radial-gradient(circle at top left, rgba(248, 250, 252, 0.06), transparent 55%),
+        radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 60%),
         linear-gradient(135deg, var(--hero-bg), var(--hero-bg-soft));
-      border-radius: 18px 18px 0 0;
-      padding: 18px 18px 20px;
+      padding: 28px 24px 34px;
       color: #f9fafb;
+      border-radius: var(--radius-lg);
       box-shadow: var(--shadow-soft);
+      margin-bottom: 40px;
     }
 
-    @media (min-width: 768px) {
-      .hero-banner {
-        padding: 20px 26px 22px;
-      }
-    }
-
-    .hero-top-row {
+    .hero-top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
 
-    .hero-logo-text {
-      font-size: 13px;
-      letter-spacing: 0.14em;
+    .hero-name {
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #e5e7eb;
+      color: #f3f4f6;
     }
 
     .hero-tag {
       font-size: 11px;
       padding: 4px 10px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(249, 250, 251, 0.24);
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.10);
       color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.5);
     }
 
-    .hero-heading {
-      font-size: 26px;
+    .hero h1 {
+      font-size: 30px;
       line-height: 1.25;
-      margin: 0 0 6px;
+      margin: 0 0 10px;
     }
 
-    @media (min-width: 768px) {
-      .hero-heading { font-size: 30px; }
-    }
-
-    .hero-sub {
-      margin: 0 0 14px;
-      font-size: 14px;
+    .hero p {
+      font-size: 15px;
       line-height: 1.7;
+      margin: 0 0 22px;
       color: #e5e7eb;
-      max-width: 42rem;
     }
 
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px 16px;
-      margin-top: 4px;
-    }
-
-    .cta-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 20px;
-      border-radius: var(--radius-pill);
-      border: none;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+    .cta {
+      display: inline-block;
+      padding: 10px 24px;
       background: linear-gradient(135deg, var(--accent), #e98a52);
       color: #111827;
-      box-shadow: 0 9px 24px rgba(15, 23, 42, 0.4);
-      cursor: pointer;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+      letter-spacing: 0.06em;
     }
 
-    .cta-primary:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.45);
-    }
-
-    /* MAIN CARD UNDER HERO */
-
-    .content-card {
-      background: var(--card);
-      border-radius: 0 0 18px 18px;
-      border: 1px solid var(--border-subtle);
-      border-top: none;
-      padding: 18px 18px 20px;
+    /* SOFT EDITORIAL SECTION */
+    .section {
+      background: var(--panel-bg);
+      padding: 26px 24px;
+      border-radius: var(--radius-lg);
       box-shadow: var(--shadow-soft);
+      margin-bottom: 28px;
     }
 
-    @media (min-width: 768px) {
-      .content-card { padding: 20px 24px 22px; }
-    }
-
-    .content-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    @media (min-width: 880px) {
-      .content-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-        gap: 22px;
-      }
-    }
-
-    .section-block + .section-block {
-      margin-top: 18px;
-    }
-
-    .section-heading {
+    .section h2 {
       font-size: 14px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
+      margin: 0 0 12px;
       color: #374151;
-      margin: 0 0 6px;
     }
 
-    .section-body {
-      font-size: 14px;
-      line-height: 1.7;
+    .section p {
+      font-size: 16px;
+      line-height: 1.75;
       color: var(--text-muted);
-      margin: 0;
+      margin: 0 0 14px;
     }
 
-    .section-body + .section-body {
-      margin-top: 8px;
+    .divider {
+      height: 1px;
+      background: rgba(0,0,0,0.12);
+      margin: 26px 0;
     }
 
-    /* BOTTOM CTA STRIP */
-
-    .bottom-strip {
-      margin-top: 18px;
-      border-radius: 14px;
-      background: #111827;
-      color: #f9fafb;
-      padding: 10px 16px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: 13px;
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #374151;
     }
 
-    .bottom-strip a {
-      color: var(--accent-soft);
+    .footer a {
+      color: var(--accent);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    .bottom-strip a:hover {
-      text-decoration: underline;
-    }
+    .footer a:hover { text-decoration: underline; }
+
   </style>
 </head>
 
 <body>
   <main class="page">
 
-    <!-- HERO STRIP -->
-    <header class="hero-banner">
-      <div class="hero-top-row">
-        <div class="hero-logo-text">Suzi Neves</div>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-top">
+        <div class="hero-name">Suzi Neves</div>
         <div class="hero-tag">Shopify · Bookkeeping · Operations</div>
       </div>
 
-      <h1 class="hero-heading">Getting your business systems to work together.</h1>
+      <h1>Getting your business systems to work together.</h1>
 
-      <p class="hero-sub">
+      <p>
         You are running a business that moves in every direction at once. Sales, bookkeeping,
         inventory, events, payouts, and the day to day decisions all connect. When one part slips,
         everything feels heavier. I bring your systems into sync so Shopify, your bookkeeping,
         and operations work together and the work gets easier.
       </p>
 
-      <div class="hero-cta-row">
-        <a class="cta-primary" href="mailto:suzi@radpurpose.com">Reach out</a>
-      </div>
+      <a class="cta" href="mailto:suzi@radpurpose.com">Reach out</a>
     </header>
 
-    <!-- MAIN CONTENT CARD -->
-    <section class="content-card">
-      <div class="content-grid">
-        <!-- LEFT COLUMN -->
-        <div>
-          <div class="section-block">
-            <h2 class="section-heading">Who I work with</h2>
-            <p class="section-body">
-              I am best for owners who are stretched thin and want the back end of the business to stop fighting them.
-              You are showing up every day, juggling product, events, money movement, and all the decisions in between.
-              You want your systems to feel grounded so you can focus on the part you are actually good at.
-            </p>
-          </div>
 
-          <div class="section-block">
-            <h2 class="section-heading">How I work</h2>
-            <p class="section-body">
-              We start with a walkthrough of what feels messy or heavy. I look at Shopify, your books, and the workflows
-              around both, and map out what is really going on.
-            </p>
-            <p class="section-body">
-              From there, we clean things up in small, steady phases so you can keep running the business while the
-              systems get better. Once everything is stable, you choose whether you want me to stay on monthly or hand
-              it back with clear notes and simple habits.
-            </p>
-          </div>
-        </div>
-
-        <!-- RIGHT COLUMN -->
-        <div>
-          <div class="section-block">
-            <h2 class="section-heading">What I do</h2>
-            <p class="section-body">
-              I handle the pieces that connect your store, your bookkeeping, and your operations. That includes monthly
-              bookkeeping support, syncing Shopify and QuickBooks so reports match reality, and untangling payouts,
-              refunds, discounts, and daily money movement.
-            </p>
-            <p class="section-body">
-              I also clean up products, variants, and collections so your store matches how you actually sell, and put
-              light structure around events, inventory, and daily tasks. The goal is simple: a business that feels
-              lighter to run, with numbers you can trust.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- BOTTOM STRIP -->
-      <div class="bottom-strip">
-        <div>Quiet, practical support for the back end of your business.</div>
-        <div>When you are ready: <a href="mailto:suzi@radpurpose.com">suzi@radpurpose.com</a></div>
-      </div>
+    <!-- SECTION 1 -->
+    <section class="section">
+      <h2>Who I work with</h2>
+      <p>
+        I’m best for owners who are stretched thin and want the back end of the business to stop
+        fighting them. You’re in it every day, juggling product, events, money movement, and all the
+        decisions in between. You want your systems to feel grounded so you can finally focus on the
+        part you’re actually good at.
+      </p>
     </section>
+
+    <!-- SECTION 2 -->
+    <section class="section">
+      <h2>How I work</h2>
+      <p>
+        We start with a walkthrough of what feels messy or heavy. I review Shopify, your books, and
+        the workflows around both to map out what’s really going on.
+      </p>
+      <p>
+        From there, we clean things up in small, steady phases so you can keep running the business
+        while the systems get better. Once everything is stable, you choose whether you want me to
+        stay on monthly or hand it back with simple habits and clear notes.
+      </p>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="section">
+      <h2>What I do</h2>
+      <p>
+        I handle the pieces that connect your store, your bookkeeping, and your operations. That
+        includes monthly bookkeeping support, syncing Shopify and QuickBooks so reports match
+        reality, and untangling payouts, refunds, discounts, and daily money movement.
+      </p>
+      <p>
+        I also clean up products, variants, and collections so your store matches how you actually
+        sell, and put light structure around events, inventory, and daily tasks. The goal is simple:
+        a business that feels lighter to run, with numbers you can trust.
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      Quiet, practical support for the back end of your business.<br>
+      Reach out when you're ready: <a href="mailto:suzi@radpurpose.com">suzi@radpurpose.com</a>
+    </footer>
 
   </main>
 </body>
 </html>
+
