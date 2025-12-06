@@ -1,478 +1,654 @@
-:root {
-  --page-bg: #f4f4f6;
-  --surface: #ffffff;
-  --surface-soft: #f8f7f5;
-  --ink: #111827;
-  --ink-soft: #4b5563;
-  --muted: #6b7280;
-  --border-subtle: #e5e7eb;
-  --border-strong: #d1d5db;
-
-  --accent: #c4684e;        /* terracotta */
-  --accent-deep: #9a4a35;
-  --accent-soft: #f4d0c1;
-}
-
-/* GLOBAL ------------------------------------------------- */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-    "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  color: var(--ink);
-  background-color: var(--page-bg);
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.7;
-}
-
-h1, h2, h3 {
-  font-family: "DM Sans", system-ui, -apple-system, sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.shell {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 32px 20px 80px;
-}
-
-/* HEADER / BRAND ---------------------------------------- */
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  border: 1px solid rgba(17, 24, 39, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: var(--ink);
-  background: #f9fafb;
-}
-
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.brand-name {
-  font-size: 1.02rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.brand-tagline {
-  font-size: 0.8rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  font-weight: 600;
-}
-
-/* HERO --------------------------------------------------- */
-
-.hero {
-  position: relative;
-  margin: 32px -20px 0;
-  padding: 80px 20px 96px;
-  color: #f9fafb;
-  overflow: hidden;
-  border-radius: 0 0 40px 40px;
-  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.45);
-}
-
-/* abstract texture, no people */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(135deg, rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.96)),
-    url("https://images.unsplash.com/photo-1526481280695-3c687fd543c0?auto=format&fit=crop&w=1600&q=80");
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(70%);
-  opacity: 0.95;
-}
-
-/* top editorial accent bar */
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #fbbf24);
-  opacity: 0.98;
-}
-
-.hero-inner {
-  max-width: 1040px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.hero-content {
-  max-width: 560px;
-}
-
-.hero-eyebrow {
-  font-size: 0.8rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #e5e7eb;
-  font-weight: 600;
-  margin-bottom: 14px;
-}
-
-.hero-title {
-  font-size: clamp(2.6rem, 3.2vw, 3rem);
-  line-height: 1.04;
-  margin: 0 0 18px;
-}
-
-.hero-subtitle {
-  margin: 0 0 26px;
-  font-size: 1rem;
-  color: #e5e7eb;
-}
-
-.hero-subtitle span {
-  color: #fefce8;
-  font-weight: 500;
-}
-
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 26px;
-  border-radius: 999px;
-  border: none;
-  background: var(--accent);
-  color: #fdf6f0;
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 18px 36px rgba(138, 60, 38, 0.6);
-}
-
-.hero-cta:hover {
-  background: var(--accent-deep);
-}
-
-.hero-cta .arrow {
-  margin-left: 8px;
-  font-size: 1rem;
-  transform: translateY(1px);
-}
-
-.hero-tagline {
-  margin-top: 18px;
-  font-size: 0.88rem;
-  color: #d1d5db;
-}
-
-/* SECTION HEADERS --------------------------------------- */
-
-main {
-  margin-top: 56px;
-}
-
-.section-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 8px;
-}
-
-.section-heading {
-  font-size: 1.6rem;
-  margin: 0 0 28px;
-}
-
-/* WHAT / HOW / WHO -------------------------------------- */
-
-.card-row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
-}
-
-.edit-card {
-  position: relative;
-  background: var(--surface);
-  border-radius: 18px;
-  border: 1px solid var(--border-subtle);
-  padding: 20px 20px 22px;
-  overflow: hidden;
-}
-
-/* editorial top rule */
-.edit-card::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #fbbf24);
-  opacity: 0.95;
-}
-
-.edit-inner {
-  position: relative;
-  z-index: 1;
-}
-
-.edit-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  gap: 12px;
-}
-
-.edit-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #9ca3af;
-}
-
-.edit-icon-badge {
-  width: 26px;
-  height: 26px;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.95rem;
-  background: #f9fafb;
-  color: #4b5563;
-}
-
-.edit-title {
-  font-size: 1.06rem;
-  margin: 0 0 6px;
-}
-
-.edit-body {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.edit-underline {
-  margin-top: 10px;
-  width: 56px;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), transparent);
-}
-
-/* TESTIMONIAL ------------------------------------------- */
-
-.testimonial-section {
-  margin-top: 64px;
-}
-
-.testimonial-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 12px;
-}
-
-.testimonial-card {
-  max-width: 720px;
-  background: var(--surface);
-  border-radius: 22px;
-  border: 1px solid var(--border-subtle);
-  padding: 26px 26px 28px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* thin accent rule at top to match hero/cards */
-.testimonial-card::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #fbbf24);
-  opacity: 0.98;
-}
-
-.testimonial-inner {
-  position: relative;
-  z-index: 1;
-}
-
-.testimonial-quote-mark {
-  font-size: 2rem;
-  color: rgba(196, 104, 78, 0.6);
-  margin-bottom: 6px;
-}
-
-.testimonial-text {
-  margin: 0 0 16px;
-  font-size: 0.96rem;
-  color: #374151;
-}
-
-.testimonial-name {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.testimonial-role {
-  font-size: 0.84rem;
-  color: var(--muted);
-}
-
-/* DARK STRIP -------------------------------------------- */
-
-.strip {
-  margin-top: 68px;
-  padding: 34px 26px;
-  border-radius: 22px;
-  background: #050816;
-  color: #e5e7eb;
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 32px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* same accent bar at top */
-.strip::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #fbbf24);
-  opacity: 0.98;
-}
-
-.strip-inner {
-  position: relative;
-  z-index: 1;
-}
-
-.strip-tag {
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 10px;
-}
-
-.strip-heading {
-  font-size: 1.4rem;
-  margin: 0 0 14px;
-}
-
-.strip-body {
-  margin: 0;
-  font-size: 0.94rem;
-  color: #e5e7eb;
-}
-
-.strip-list {
-  margin: 0 0 12px;
-  padding-left: 22px;
-  font-size: 0.9rem;
-  color: #d1d5db;
-}
-
-.strip-list li + li {
-  margin-top: 6px;
-}
-
-.strip-list li::marker {
-  color: var(--accent-soft);
-}
-
-.strip-note {
-  font-size: 0.86rem;
-  color: #9ca3af;
-}
-
-/* FOOTER ------------------------------------------------- */
-
-.footer {
-  margin-top: 44px;
-  font-size: 0.8rem;
-  color: #9ca3af;
-  text-align: center;
-}
-
-/* RESPONSIVE --------------------------------------------- */
-
-@media (max-width: 960px) {
-  .hero {
-    margin: 24px -16px 0;
-    padding: 64px 18px 80px;
-  }
-
-  .strip {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-@media (max-width: 720px) {
-  .shell {
-    padding: 24px 16px 64px;
-  }
-
-  .nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .card-row {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Suzi Neves – Shopify Whisperer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --page-bg: #f4f4f6;
+      --surface: #ffffff;
+      --surface-soft: #f8f7f5;
+      --ink: #111827;
+      --ink-soft: #4b5563;
+      --muted: #6b7280;
+      --border-subtle: #e5e7eb;
+
+      --accent: #c4684e;        /* terracotta */
+      --accent-deep: #9a4a35;
+      --accent-soft: #f4d0c1;
+    }
+
+    /* GLOBAL ------------------------------------------------- */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background-color: var(--page-bg);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    /* HEADER / BRAND ---------------------------------------- */
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(17, 24, 39, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: #f9fafb;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 1.02rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+
+    /* HERO --------------------------------------------------- */
+
+    .hero {
+      position: relative;
+      margin: 32px -20px 0;
+      padding: 80px 20px 96px;
+      color: #f9fafb;
+      overflow: hidden;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 26px 70px rgba(15, 23, 42, 0.45);
+    }
+
+    /* abstract texture, no people */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.96)),
+        url("https://images.unsplash.com/photo-1526481280695-3c687fd543c0?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(70%);
+      opacity: 0.95;
+    }
+
+    /* top editorial accent bar */
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      opacity: 0.98;
+    }
+
+    .hero-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .hero-content {
+      max-width: 560px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 3.2vw, 3rem);
+      line-height: 1.04;
+      margin: 0 0 18px;
+    }
+
+    .hero-subtitle {
+      margin: 0 0 26px;
+      font-size: 1rem;
+      color: #e5e7eb;
+    }
+
+    .hero-subtitle span {
+      color: #fefce8;
+      font-weight: 500;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 26px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #fdf6f0;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 18px 36px rgba(138, 60, 38, 0.6);
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-deep);
+    }
+
+    .hero-cta .arrow {
+      margin-left: 8px;
+      font-size: 1rem;
+      transform: translateY(1px);
+    }
+
+    .hero-tagline {
+      margin-top: 18px;
+      font-size: 0.88rem;
+      color: #d1d5db;
+    }
+
+    /* SECTION HEADERS --------------------------------------- */
+
+    main {
+      margin-top: 56px;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+
+    .section-heading {
+      font-size: 1.6rem;
+      margin: 0 0 28px;
+    }
+
+    /* WHAT / HOW / WHO -------------------------------------- */
+
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .edit-card {
+      position: relative;
+      background: var(--surface);
+      border-radius: 18px;
+      border: 1px solid var(--border-subtle);
+      padding: 20px 20px 22px;
+      overflow: hidden;
+    }
+
+    /* editorial top rule */
+    .edit-card::before {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      opacity: 0.95;
+    }
+
+    .edit-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .edit-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .edit-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #9ca3af;
+    }
+
+    .edit-icon-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      background: #f9fafb;
+      color: #4b5563;
+    }
+
+    .edit-title {
+      font-size: 1.06rem;
+      margin: 0 0 6px;
+    }
+
+    .edit-body {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .edit-underline {
+      margin-top: 10px;
+      width: 56px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    /* TESTIMONIAL ------------------------------------------- */
+
+    .testimonial-section {
+      margin-top: 64px;
+    }
+
+    .testimonial-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-card {
+      max-width: 720px;
+      background: var(--surface);
+      border-radius: 22px;
+      border: 1px solid var(--border-subtle);
+      padding: 26px 26px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* thin accent rule at top to match hero/cards */
+    .testimonial-card::before {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      opacity: 0.98;
+    }
+
+    .testimonial-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-quote-mark {
+      font-size: 2rem;
+      color: rgba(196, 104, 78, 0.6);
+      margin-bottom: 6px;
+    }
+
+    .testimonial-text {
+      margin: 0 0 16px;
+      font-size: 0.96rem;
+      color: #374151;
+    }
+
+    .testimonial-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .testimonial-role {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    /* DARK STRIP -------------------------------------------- */
+
+    .strip {
+      margin-top: 68px;
+      padding: 34px 26px;
+      border-radius: 22px;
+      background: #050816;
+      color: #e5e7eb;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* same accent bar at top */
+    .strip::before {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      opacity: 0.98;
+    }
+
+    .strip-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .strip-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .strip-heading {
+      font-size: 1.4rem;
+      margin: 0 0 14px;
+    }
+
+    .strip-body {
+      margin: 0;
+      font-size: 0.94rem;
+      color: #e5e7eb;
+    }
+
+    .strip-list {
+      margin: 0 0 12px;
+      padding-left: 22px;
+      font-size: 0.9rem;
+      color: #d1d5db;
+    }
+
+    .strip-list li + li {
+      margin-top: 6px;
+    }
+
+    .strip-list li::marker {
+      color: var(--accent-soft);
+    }
+
+    .strip-note {
+      font-size: 0.86rem;
+      color: #9ca3af;
+    }
+
+    /* FOOTER ------------------------------------------------- */
+
+    .footer {
+      margin-top: 44px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    /* RESPONSIVE --------------------------------------------- */
+
+    @media (max-width: 960px) {
+      .hero {
+        margin: 24px -16px 0;
+        padding: 64px 18px 80px;
+      }
+
+      .strip {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        padding: 24px 16px 64px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .card-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <!-- HEADER -->
+    <header class="nav">
+      <div class="brand">
+        <div class="brand-mark">SN</div>
+        <div class="brand-text">
+          <div class="brand-name">Suzi Neves</div>
+          <div class="brand-tagline">Shopify · Bookkeeping · Operations</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-eyebrow">Systems &amp; Operations Support</div>
+
+          <h1 class="hero-title">
+            Getting your business systems to work together.
+          </h1>
+
+          <p class="hero-subtitle">
+            You are running a business that moves in every direction at once.
+            Sales, bookkeeping, inventory, events, payouts, and the day-to-day
+            decisions all connect. When one part slips, everything feels heavier.
+            <span>I bring your systems into sync so Shopify, your bookkeeping,
+            and operations work together.</span>
+          </p>
+
+          <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
+            Reach Out
+            <span class="arrow">↗</span>
+          </a>
+
+          <div class="hero-tagline">
+            Quiet, practical support for the back end of your business.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- WHAT / HOW / WHO -->
+      <section>
+        <div class="section-label">Overview</div>
+        <h2 class="section-heading">Where I fit inside your business.</h2>
+
+        <div class="card-row">
+          <article class="edit-card" id="what">
+            <div class="edit-inner">
+              <div class="edit-header">
+                <div class="edit-label">What I Do</div>
+                <div class="edit-icon-badge">⚙️</div>
+              </div>
+              <h3 class="edit-title">Glue between your tools.</h3>
+              <div class="edit-underline"></div>
+              <p class="edit-body">
+                I handle the connective tissue between your store, your bookkeeping,
+                and your operations so reports match reality and money movement
+                finally makes sense instead of feeling mysterious.
+              </p>
+            </div>
+          </article>
+
+          <article class="edit-card" id="how">
+            <div class="edit-inner">
+              <div class="edit-header">
+                <div class="edit-label">How I Work</div>
+                <div class="edit-icon-badge">🧭</div>
+              </div>
+              <h3 class="edit-title">Small, steady passes.</h3>
+              <div class="edit-underline"></div>
+              <p class="edit-body">
+                We start with what feels heavy, walk through Shopify, your books,
+                and the workflows around both, then clean things up in phases so
+                you can keep running the business while the systems get better.
+              </p>
+            </div>
+          </article>
+
+          <article class="edit-card" id="who">
+            <div class="edit-inner">
+              <div class="edit-header">
+                <div class="edit-label">Who I Work With</div>
+                <div class="edit-icon-badge">💬</div>
+              </div>
+              <h3 class="edit-title">Owners who are stretched thin.</h3>
+              <div class="edit-underline"></div>
+              <p class="edit-body">
+                You are in it every day and the back end is fighting you. You want
+                your systems to feel grounded so you can focus on the part you are
+                actually good at, instead of constantly chasing loose ends.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL -->
+      <section class="testimonial-section">
+        <div class="testimonial-label">Client Words</div>
+        <div class="testimonial-card">
+          <div class="testimonial-inner">
+            <div class="testimonial-quote-mark">“</div>
+            <p class="testimonial-text">
+              Suzi sees the whole picture. Our store, our books, and our day to day
+              finally feel like they are on the same team instead of pulling in
+              different directions.
+            </p>
+            <div class="testimonial-name">Client Name Here</div>
+            <div class="testimonial-role">Owner, Business Name</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DARK STRIP -->
+      <section class="strip">
+        <div class="strip-inner">
+          <div class="strip-tag">Working Together</div>
+          <h2 class="strip-heading">
+            A back end that feels grounded instead of chaotic.
+          </h2>
+          <p class="strip-body">
+            Most of my clients don’t need a flashy overhaul. They need the systems
+            they already have to finally talk to each other. We start with a
+            walkthrough of what feels heavy: Shopify, your books, the workflows
+            around both, and the places money gets weird. From there, we clean
+            things up in small passes — untangling payouts and refunds, fixing
+            products and variants, and getting Shopify and QuickBooks speaking the
+            same language — so your day to day work gets lighter without stopping
+            the business to rebuild everything from scratch.
+          </p>
+        </div>
+
+        <div class="strip-inner">
+          <ul class="strip-list">
+            <li>Shopify &amp; QuickBooks aligned so reports match what actually happened.</li>
+            <li>Clear handling of payouts, refunds, discounts, and sales channels.</li>
+            <li>Back-end workflows that make sense for how you already work.</li>
+          </ul>
+          <div class="strip-note">
+            I stay in the background, making sure the systems hold together while you
+            focus on the front end of the business.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      © <span id="year"></span> Suzi Neves · Shopify Whisperer
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
