@@ -6,18 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --page-bg: #f5eee8;        /* soft neutral background */
-      --hero-bg: #f5eee8;
+      --page-bg: #f1e5dc;        /* warm neutral */
+      --hero-bg: #f7eee7;
       --card-bg: #ffffff;
-      --accent: #d5714f;         /* muted terracotta */
-      --accent-hover: #bf5f41;
-      --accent-soft: #f3c6a8;
-      --text-main: #1f2933;
+      --accent: #b55232;         /* deeper terracotta */
+      --accent-hover: #9c4223;
+      --accent-soft: #f2c1a1;
+      --ink: #1f2933;
+      --text-main: #111827;
       --text-muted: #6b7280;
       --radius-lg: 28px;
       --radius-md: 18px;
-      --shadow-soft: 0 20px 50px rgba(15, 23, 42, 0.12);
-      --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --radius-sm: 12px;
+      --shadow-soft: 0 20px 50px rgba(15, 23, 42, 0.16);
+      --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.12);
+      --border-subtle: rgba(209, 213, 219, 0.9);
     }
 
     * {
@@ -28,7 +31,8 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, -apple-system,
         "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-      background: radial-gradient(circle at top left, #fdf7f2 0, #f5eee8 55%, #efe3d5 100%);
+      background:
+        radial-gradient(circle at top left, #fdf7f2 0, #f1e5dc 52%, #e3d3c4 100%);
       -webkit-font-smoothing: antialiased;
       color: var(--text-main);
       line-height: 1.6;
@@ -70,20 +74,21 @@
       width: 28px;
       height: 28px;
       border-radius: 999px;
-      border: 2px solid rgba(148, 85, 61, 0.45);
+      border: 2px solid rgba(103, 65, 49, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.9rem;
-      color: #8b4a32;
-      background: radial-gradient(circle at top left, #f9e3d3, #f5c8aa);
+      color: #f9f5f2;
+      background: radial-gradient(circle at top left, #c87a54, #7c422a);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.4);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
       gap: 22px;
-      color: #6b7280;
+      color: #4b5563;
     }
 
     .nav-links a {
@@ -110,12 +115,13 @@
     .nav-cta {
       padding: 8px 16px;
       border-radius: 999px;
-      background: #1f2933;
+      background: #111827;
       color: #f9fafb;
       font-size: 0.84rem;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.45);
     }
 
     /* HERO -------------------------------------------------- */
@@ -125,6 +131,7 @@
       border-radius: var(--radius-lg);
       background: var(--hero-bg);
       text-align: center;
+      box-shadow: var(--shadow-soft);
     }
 
     .hero-eyebrow {
@@ -140,7 +147,7 @@
       line-height: 1.1;
       margin: 0 0 16px;
       letter-spacing: -0.02em;
-      color: #111827;
+      color: var(--ink);
     }
 
     .hero-subtitle {
@@ -151,7 +158,7 @@
     }
 
     .hero-subtitle span {
-      color: #8b4a32;
+      color: #7c422a;
       font-weight: 500;
     }
 
@@ -163,13 +170,13 @@
       border-radius: 999px;
       border: none;
       background: var(--accent);
-      color: #fff7ed;
+      color: #fef4ec;
       font-size: 0.94rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 16px 32px rgba(148, 85, 61, 0.45);
+      box-shadow: 0 18px 36px rgba(116, 54, 32, 0.6);
     }
 
     .hero-cta:hover {
@@ -185,10 +192,10 @@
     .hero-tagline {
       margin-top: 14px;
       font-size: 0.9rem;
-      color: #6b7280;
+      color: #4b5563;
     }
 
-    /* HERO IMAGE STRIP ------------------------------------- */
+    /* HERO GRAPHIC STRIP ----------------------------------- */
 
     .hero-image-strip {
       margin-top: 40px;
@@ -201,7 +208,7 @@
       width: 100%;
       border-radius: 24px;
       background: #fdfbf9;
-      border: 1px solid rgba(209, 213, 219, 0.7);
+      border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
       padding: 18px 22px;
       display: grid;
@@ -210,32 +217,133 @@
       align-items: center;
     }
 
-    .hero-image-desk {
+    .hero-graphic-wrap {
       border-radius: 18px;
-      background:
-        linear-gradient(135deg, #fdf2e9, #f3d6ba);
-      min-height: 160px;
+      background: radial-gradient(circle at top left, #fef5ee, #e9d5c6);
+      min-height: 170px;
+      position: relative;
+      overflow: hidden;
+      padding: 14px 14px 12px;
+    }
+
+    /* abstract system UI graphic */
+    .ui-layout {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      background: #111827;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.75);
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 0.75fr 1.4fr;
+      gap: 10px;
+    }
+
+    .ui-sidebar {
+      border-radius: 10px;
+      background: #0b1220;
+      padding: 8px 6px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .ui-pill {
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #fbbf24, #f97316);
+    }
+
+    .ui-pill.muted {
+      background: linear-gradient(90deg, #4b5563, #6b7280);
+    }
+
+    .ui-main {
+      border-radius: 10px;
+      background: #020617;
+      padding: 8px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 8px;
+    }
+
+    .ui-chart {
+      border-radius: 10px;
+      background: radial-gradient(circle at top left, #0f766e, #1f2937);
       position: relative;
       overflow: hidden;
     }
 
-    .hero-image-desk::before {
-      content: "Desk scene / systems photo here";
+    .ui-chart::before,
+    .ui-chart::after {
+      content: "";
       position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.86rem;
-      color: #9ca3af;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+      border-radius: 999px;
+      border: 1px solid rgba(226, 232, 240, 0.45);
+    }
+
+    .ui-chart::before {
+      width: 140%;
+      height: 140%;
+      top: 40%;
+      left: -30%;
+    }
+
+    .ui-chart::after {
+      width: 110%;
+      height: 110%;
+      top: 50%;
+      left: -18%;
+    }
+
+    .ui-dot {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #fef3c7;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    }
+
+    .ui-dot.d1 { top: 10%; left: 30%; }
+    .ui-dot.d2 { top: 35%; left: 65%; }
+    .ui-dot.d3 { bottom: 15%; left: 42%; }
+
+    .ui-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .ui-card {
+      border-radius: 9px;
+      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 6px;
+    }
+
+    .ui-card-bar {
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f97316, #facc15);
+      margin-bottom: 4px;
+    }
+
+    .ui-card-bar.muted {
+      background: linear-gradient(90deg, #4b5563, #6b7280);
+    }
+
+    .ui-card-line {
+      height: 4px;
+      border-radius: 999px;
+      background: #1f2937;
     }
 
     .hero-image-copy-title {
       font-size: 1.05rem;
       font-weight: 600;
       margin-bottom: 6px;
+      color: var(--ink);
     }
 
     .hero-image-copy-text {
@@ -244,112 +352,181 @@
       margin: 0;
     }
 
-    /* THREE ICONS SECTION ---------------------------------- */
+    /* EDITORIAL CARDS SECTION ------------------------------ */
 
-    .pill-row {
-      margin-top: 52px;
+    .card-row {
+      margin-top: 56px;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 26px;
     }
 
-    .pill {
+    .edit-card {
       background: #fdfbf9;
-      border-radius: 999px;
-      border: 1px solid rgba(209, 213, 219, 0.8);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.04);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      padding: 18px 18px 20px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      position: relative;
+      overflow: hidden;
     }
 
-    .pill-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: #1f2933;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.16rem;
-      color: #f9fafb;
+    .edit-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(181,82,50,0.08), transparent 55%);
+      pointer-events: none;
     }
 
-    .pill-text-title {
-      font-size: 0.98rem;
+    .edit-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    .edit-title {
+      font-size: 1rem;
       font-weight: 600;
-      margin: 0 0 2px;
+      margin: 0 0 6px;
+      color: var(--ink);
     }
 
-    .pill-text-body {
+    .edit-body {
       margin: 0;
       font-size: 0.9rem;
       color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .edit-icon-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      color: #f9fafb;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.6);
+      z-index: 1;
     }
 
     /* BIG COLOR BLOCK -------------------------------------- */
 
     .block {
-      margin-top: 60px;
+      margin-top: 64px;
       border-radius: var(--radius-lg);
-      background: #e7d1c1;
+      background: #20151a;
       padding: 40px 36px;
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       gap: 32px;
       align-items: center;
-      box-shadow: var(--shadow-card);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.7);
+      color: #f9fafb;
+    }
+
+    .block-tag {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #fbbf93;
+      margin-bottom: 10px;
     }
 
     .block-heading {
       font-size: 1.6rem;
       margin: 0 0 12px;
       letter-spacing: -0.01em;
-      color: #3f2d24;
+      color: #fef9f5;
     }
 
     .block-sub {
       margin: 0 0 18px;
       font-size: 0.95rem;
-      color: #5f4a3f;
+      color: #f3e2d7;
       max-width: 28rem;
     }
 
     .block-body {
       margin: 0;
       font-size: 0.95rem;
-      color: #4b3b33;
+      color: #e5d3c8;
       max-width: 32rem;
     }
 
-    .block-tag {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #7c4f37;
-      margin-bottom: 10px;
+    .block-graphic {
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at top left, #f59e0b, transparent 55%),
+        radial-gradient(circle at bottom right, #38bdf8, transparent 60%),
+        #020617;
+      min-height: 220px;
+      position: relative;
+      padding: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
     }
 
-    .block-photo {
-      border-radius: 20px;
-      background: radial-gradient(circle at top left, #fef6ef, #e4c7b4);
-      min-height: 210px;
+    /* network-style graphic */
+    .nodes-grid {
       position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.8);
+      background: radial-gradient(circle at top, #020617, #020617 40%, #020617);
       overflow: hidden;
     }
 
-    .block-photo::before {
-      content: "Owner / client photo here";
+    .node-line {
       position: absolute;
-      inset: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(226,232,240,0.45), transparent);
+    }
+
+    .node-line.l1 { top: 30%; left: 15%; right: 8%; }
+    .node-line.l2 { top: 55%; left: 8%; right: 20%; }
+    .node-line.l3 { top: 72%; left: 26%; right: 15%; }
+
+    .node {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #fef9c3;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.8);
+    }
+
+    .node.n1 { top: 26%; left: 14%; }
+    .node.n2 { top: 26%; right: 10%; }
+    .node.n3 { top: 52%; left: 8%; }
+    .node.n4 { top: 55%; right: 24%; }
+    .node.n5 { top: 70%; left: 26%; }
+    .node.n6 { top: 70%; right: 18%; }
+
+    .node-hub {
+      position: absolute;
+      inset: 36% 38%;
+      border-radius: 16px;
+      border: 1px solid rgba(248, 250, 252, 0.6);
+      background: rgba(15, 23, 42, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.86rem;
-      color: #8b5a3c;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      color: #fefce8;
     }
 
     /* FOOTER ---------------------------------------------- */
@@ -374,13 +551,16 @@
         padding: 32px 24px;
         grid-template-columns: minmax(0, 1fr);
       }
+      .block-graphic {
+        order: -1;
+      }
     }
 
     @media (max-width: 720px) {
       .shell {
         padding: 18px 14px 60px;
       }
-      .pill-row {
+      .card-row {
         grid-template-columns: minmax(0, 1fr);
       }
       .nav {
@@ -436,61 +616,92 @@
           Quiet, practical support for the back end of your business.
         </div>
 
-        <!-- Desk / systems image -->
+        <!-- Abstract systems graphic -->
         <div class="hero-image-strip">
           <div class="hero-image-frame">
-            <div class="hero-image-desk"></div>
+            <div class="hero-graphic-wrap">
+              <div class="ui-layout">
+                <div class="ui-sidebar">
+                  <div class="ui-pill"></div>
+                  <div class="ui-pill muted"></div>
+                  <div class="ui-pill muted"></div>
+                  <div class="ui-pill"></div>
+                </div>
+                <div class="ui-main">
+                  <div class="ui-chart">
+                    <div class="ui-dot d1"></div>
+                    <div class="ui-dot d2"></div>
+                    <div class="ui-dot d3"></div>
+                  </div>
+                  <div class="ui-row">
+                    <div class="ui-card">
+                      <div class="ui-card-bar"></div>
+                      <div class="ui-card-line"></div>
+                    </div>
+                    <div class="ui-card">
+                      <div class="ui-card-bar muted"></div>
+                      <div class="ui-card-line"></div>
+                    </div>
+                    <div class="ui-card">
+                      <div class="ui-card-bar"></div>
+                      <div class="ui-card-line"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div>
               <div class="hero-image-copy-title">
-                A calm point in the middle of all the systems.
+                A calmer way to run the back end.
               </div>
               <p class="hero-image-copy-text">
-                Shopify, QuickBooks, payouts, inventory, and all the daily decisions
-                that live between them — I help you line those pieces up so everything
-                feels a little less noisy and a lot more grounded.
+                Shopify, QuickBooks, payouts, inventory, and all the decisions
+                that live between them — I help you line those pieces up so
+                everything feels less noisy and a lot more grounded.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- THREE ICON PILLS -->
-      <section class="pill-row">
-        <article class="pill" id="what">
-          <div class="pill-icon">⚙️</div>
-          <div>
-            <h3 class="pill-text-title">What I Do</h3>
-            <p class="pill-text-body">
-              The connective tissue between your store, your bookkeeping, and your
-              operations so reports match reality and money movement makes sense.
-            </p>
-          </div>
+      <!-- EDITORIAL CARDS: WHAT / HOW / WHO -->
+      <section class="card-row">
+        <article class="edit-card" id="what">
+          <div class="edit-icon-badge">⚙️</div>
+          <div class="edit-label">What I Do</div>
+          <h3 class="edit-title">Glue between your tools.</h3>
+          <p class="edit-body">
+            I handle the connective tissue between your store, your bookkeeping,
+            and your operations so reports match reality and money movement
+            finally makes sense instead of feeling mysterious.
+          </p>
         </article>
 
-        <article class="pill" id="how">
-          <div class="pill-icon">🧭</div>
-          <div>
-            <h3 class="pill-text-title">How I Work</h3>
-            <p class="pill-text-body">
-              We start with what feels messy, then clean things up in small, steady
-              phases so you can keep the business running while the systems get better.
-            </p>
-          </div>
+        <article class="edit-card" id="how">
+          <div class="edit-icon-badge">🧭</div>
+          <div class="edit-label">How I Work</div>
+          <h3 class="edit-title">Small, steady passes.</h3>
+          <p class="edit-body">
+            We start with what feels heavy, walk through Shopify, your books,
+            and the workflows around both, then clean things up in phases so
+            you can keep running the business while the systems get better.
+          </p>
         </article>
 
-        <article class="pill" id="who">
-          <div class="pill-icon">💬</div>
-          <div>
-            <h3 class="pill-text-title">Who I Work With</h3>
-            <p class="pill-text-body">
-              Owners who are stretched thin and want the back end to stop fighting them
-              so they can focus on the part they are actually good at.
-            </p>
-          </div>
+        <article class="edit-card" id="who">
+          <div class="edit-icon-badge">💬</div>
+          <div class="edit-label">Who I Work With</div>
+          <h3 class="edit-title">Owners who are stretched thin.</h3>
+          <p class="edit-body">
+            You are in it every day and the back end is fighting you. You want
+            your systems to feel grounded so you can focus on the part you are
+            actually good at, instead of constantly chasing loose ends.
+          </p>
         </article>
       </section>
 
-      <!-- BIG COLOR BLOCK -->
+      <!-- DARK BLOCK -->
       <section class="block">
         <div>
           <div class="block-tag">Working Together</div>
@@ -498,7 +709,7 @@
             A back end that feels grounded instead of chaotic.
           </h2>
           <p class="block-sub">
-            Most of my clients don’t need a flashy overhaul. They need the pieces
+            Most of my clients don’t need a flashy overhaul. They need the systems
             they already have to finally talk to each other.
           </p>
           <p class="block-body">
@@ -511,7 +722,24 @@
           </p>
         </div>
 
-        <div class="block-photo"></div>
+        <div class="block-graphic">
+          <div class="nodes-grid">
+            <div class="node-line l1"></div>
+            <div class="node-line l2"></div>
+            <div class="node-line l3"></div>
+
+            <div class="node n1"></div>
+            <div class="node n2"></div>
+            <div class="node n3"></div>
+            <div class="node n4"></div>
+            <div class="node n5"></div>
+            <div class="node n6"></div>
+
+            <div class="node-hub">
+              <span>ONE SYSTEM</span>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
