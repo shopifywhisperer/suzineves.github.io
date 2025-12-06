@@ -6,21 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --page-bg: #e5e7eb;
-      --hero-grad-start: #151724;   /* deep ink */
-      --hero-grad-mid: #3c2842;     /* moody plum */
-      --hero-grad-end: #b37458;     /* warm clay */
-      --hero-text: #f9fafb;
-      --primary-btn: #f2a267;       /* muted warm button */
-      --primary-btn-hover: #e38b4b;
+      --page-bg: #f5eee8;        /* soft neutral background */
+      --hero-bg: #f5eee8;
       --card-bg: #ffffff;
-      --accent-soft: #f5d0b5;
-      --text-main: #111827;
+      --accent: #d5714f;         /* muted terracotta */
+      --accent-hover: #bf5f41;
+      --accent-soft: #f3c6a8;
+      --text-main: #1f2933;
       --text-muted: #6b7280;
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --shadow-hero: 0 30px 70px rgba(15, 23, 42, 0.55);
-      --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.16);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --shadow-soft: 0 20px 50px rgba(15, 23, 42, 0.12);
+      --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.08);
     }
 
     * {
@@ -29,14 +26,12 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Helvetica Neue", Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, #dbeafe 0, transparent 55%),
-        radial-gradient(circle at bottom right, #fef3c7 0, transparent 55%),
-        var(--page-bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, -apple-system,
+        "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(circle at top left, #fdf7f2 0, #f5eee8 55%, #efe3d5 100%);
       -webkit-font-smoothing: antialiased;
       color: var(--text-main);
+      line-height: 1.6;
     }
 
     a {
@@ -45,9 +40,9 @@
     }
 
     .shell {
-      max-width: 1160px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 26px 18px 80px;
+      padding: 24px 18px 80px;
     }
 
     /* NAV -------------------------------------------------- */
@@ -56,37 +51,39 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
-      color: var(--hero-text);
-      position: relative;
-      z-index: 3;
+      padding: 8px 0 18px;
+      font-size: 0.92rem;
     }
 
-    .nav-logo {
+    .nav-left {
       display: flex;
       align-items: center;
       gap: 10px;
       font-weight: 600;
-      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4b5563;
+      font-size: 0.78rem;
     }
 
     .nav-mark {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 999px;
-      border: 2px solid rgba(249, 250, 251, 0.7);
+      border: 2px solid rgba(148, 85, 61, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
+      color: #8b4a32;
+      background: radial-gradient(circle at top left, #f9e3d3, #f5c8aa);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 26px;
-      font-size: 0.9rem;
-      opacity: 0.95;
+      gap: 22px;
+      color: #6b7280;
     }
 
     .nav-links a {
@@ -102,7 +99,7 @@
       width: 0;
       height: 2px;
       border-radius: 999px;
-      background: rgba(249, 250, 251, 0.95);
+      background: var(--accent);
       transition: width 0.18s ease;
     }
 
@@ -111,322 +108,254 @@
     }
 
     .nav-cta {
-      padding: 8px 18px;
+      padding: 8px 16px;
       border-radius: 999px;
-      background: rgba(249, 250, 251, 0.96);
-      color: #111827;
-      font-size: 0.85rem;
-      font-weight: 600;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
+      background: #1f2933;
+      color: #f9fafb;
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    /* HERO WRAPPER ---------------------------------------- */
+    /* HERO -------------------------------------------------- */
 
-    .hero-wrap {
-      position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-hero);
-      background: radial-gradient(circle at top left, #c58e6b 0, var(--hero-grad-mid) 37%, var(--hero-grad-start) 80%);
-      color: var(--hero-text);
+    .hero {
+      padding: 52px 32px 46px;
+      border-radius: var(--radius-lg);
+      background: var(--hero-bg);
+      text-align: center;
     }
 
-    .hero-top {
-      padding: 24px 34px 70px;
-      position: relative;
-      z-index: 2;
+    .hero-eyebrow {
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.3fr);
-      gap: 42px;
-      align-items: center;
-    }
-
-    .hero-heading {
-      font-size: clamp(2.3rem, 3.4vw, 2.9rem);
-      line-height: 1.12;
-      margin: 10px 0 12px;
+    .hero-title {
+      font-size: clamp(2.4rem, 3.2vw, 2.9rem);
+      line-height: 1.1;
+      margin: 0 0 16px;
       letter-spacing: -0.02em;
+      color: #111827;
     }
 
-    .hero-lede {
-      font-size: 0.98rem;
-      max-width: 32rem;
-      opacity: 0.95;
+    .hero-subtitle {
+      max-width: 40rem;
+      margin: 0 auto 26px;
+      font-size: 1rem;
+      color: var(--text-muted);
     }
 
-    .hero-lede span {
-      font-weight: 600;
-      color: #fef3c7;
+    .hero-subtitle span {
+      color: #8b4a32;
+      font-weight: 500;
     }
 
-    .hero-buttons {
-      margin-top: 22px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .btn-primary {
+    .hero-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 11px 24px;
+      padding: 12px 26px;
       border-radius: 999px;
       border: none;
-      background: var(--primary-btn);
-      color: #111827;
-      font-size: 0.9rem;
+      background: var(--accent);
+      color: #fff7ed;
+      font-size: 0.94rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.55);
+      box-shadow: 0 16px 32px rgba(148, 85, 61, 0.45);
     }
 
-    .btn-primary:hover {
-      background: var(--primary-btn-hover);
+    .hero-cta:hover {
+      background: var(--accent-hover);
     }
 
-    .btn-primary span.arrow {
+    .hero-cta span.arrow {
       margin-left: 8px;
       font-size: 1rem;
       transform: translateY(1px);
     }
 
-    .hero-subtext {
-      font-size: 0.85rem;
-      opacity: 0.9;
+    .hero-tagline {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: #6b7280;
     }
 
-    /* HERO RIGHT GRAPHIC ---------------------------------- */
+    /* HERO IMAGE STRIP ------------------------------------- */
 
-    .hero-graphic {
-      position: relative;
-      width: 100%;
-      max-width: 320px;
-      justify-self: flex-end;
-      aspect-ratio: 1 / 1;
-      border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(248, 250, 252, 0.18), transparent 60%),
-        radial-gradient(circle at 70% 80%, rgba(248, 250, 252, 0.1), transparent 70%);
-      border: 1px solid rgba(248, 250, 252, 0.35);
+    .hero-image-strip {
+      margin-top: 40px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
+    }
+
+    .hero-image-frame {
+      max-width: 760px;
+      width: 100%;
+      border-radius: 24px;
+      background: #fdfbf9;
+      border: 1px solid rgba(209, 213, 219, 0.7);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+    }
+
+    .hero-image-desk {
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, #fdf2e9, #f3d6ba);
+      min-height: 160px;
+      position: relative;
       overflow: hidden;
     }
 
-    .hero-orbit {
-      position: relative;
-      width: 76%;
-      height: 76%;
-      border-radius: 999px;
-    }
-
-    .orbit-ring {
+    .hero-image-desk::before {
+      content: "Desk scene / systems photo here";
       position: absolute;
       inset: 0;
-      border-radius: inherit;
-      border: 1px solid rgba(248, 250, 252, 0.18);
-    }
-
-    .orbit-ring.ring-2 {
-      inset: 12%;
-      border-color: rgba(248, 250, 252, 0.24);
-    }
-
-    .orbit-ring.ring-3 {
-      inset: 24%;
-      border-color: rgba(248, 250, 252, 0.3);
-    }
-
-    .orbit-dot {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(248, 250, 252, 0.95);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.7);
-    }
-
-    .orbit-dot.dot-1 { top: 2%;  left: 46%; }
-    .orbit-dot.dot-2 { top: 40%; right: -2%; }
-    .orbit-dot.dot-3 { bottom: 8%; left: 8%; }
-    .orbit-dot.dot-4 { bottom: 24%; right: 18%; }
-
-    .hero-monogram {
-      position: absolute;
-      inset: 26%;
-      border-radius: 999px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(248, 250, 252, 0.96);
-      font-size: 2.6rem;
-      font-weight: 500;
-      letter-spacing: 0.32em;
-      text-indent: 0.32em;
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.2), transparent 70%);
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.8);
+      font-size: 0.86rem;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
 
-    .hero-monogram span {
-      display: block;
-      line-height: 1;
+    .hero-image-copy-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
 
-    /* HERO WAVE ------------------------------------------- */
-
-    .hero-wave {
-      position: relative;
-      width: 100%;
-      height: 80px;
-      margin-top: -40px;
-      overflow: hidden;
+    .hero-image-copy-text {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0;
     }
 
-    .hero-wave svg {
-      width: 110%;
-      height: 100%;
-      display: block;
-      transform: translateX(-3%);
+    /* THREE ICONS SECTION ---------------------------------- */
+
+    .pill-row {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
     }
 
-    /* CONTENT SECTIONS ------------------------------------ */
+    .pill {
+      background: #fdfbf9;
+      border-radius: 999px;
+      border: 1px solid rgba(209, 213, 219, 0.8);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.04);
+    }
 
-    .content {
-      background: var(--card-bg);
-      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-      margin-top: -2px;
-      padding: 36px 34px 40px;
+    .pill-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: #1f2933;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.16rem;
+      color: #f9fafb;
+    }
+
+    .pill-text-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin: 0 0 2px;
+    }
+
+    .pill-text-body {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* BIG COLOR BLOCK -------------------------------------- */
+
+    .block {
+      margin-top: 60px;
+      border-radius: var(--radius-lg);
+      background: #e7d1c1;
+      padding: 40px 36px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
       box-shadow: var(--shadow-card);
     }
 
-    .feature-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 32px;
-      margin-bottom: 40px;
+    .block-heading {
+      font-size: 1.6rem;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+      color: #3f2d24;
     }
 
-    .feature-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+    .block-sub {
+      margin: 0 0 18px;
       font-size: 0.95rem;
+      color: #5f4a3f;
+      max-width: 28rem;
     }
 
-    .feature-icon {
-      flex-shrink: 0;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      background: #111827;
-      color: #f9fafb;
-      opacity: 0.86;
-    }
-
-    .feature-title {
-      margin: 0 0 4px;
-      font-weight: 600;
-      font-size: 1.02rem;
-    }
-
-    .feature-text {
+    .block-body {
       margin: 0;
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      color: #4b3b33;
+      max-width: 32rem;
     }
 
-    /* TOOLS SECTION --------------------------------------- */
-
-    .tools {
-      text-align: center;
-      margin-top: 6px;
+    .block-tag {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #7c4f37;
+      margin-bottom: 10px;
     }
 
-    .tools-heading {
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .tools-sub {
-      margin: 0 0 24px;
-      color: var(--text-muted);
-      font-size: 0.92rem;
-    }
-
-    .tool-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px 16px;
-      margin-bottom: 22px;
-      font-size: 0.85rem;
-    }
-
-    .tool-tag {
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: #f3f4ff;
-      color: #4b5563;
-    }
-
-    .tool-showcase {
-      max-width: 560px;
-      margin: 0 auto;
+    .block-photo {
       border-radius: 20px;
-      border: 1px solid #e5e7eb;
-      background: linear-gradient(145deg, #f9fafb, #eef2ff);
-      padding: 16px;
-      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16);
-      text-align: left;
-      display: grid;
-      grid-template-columns: 130px 1fr;
-      gap: 12px;
-      align-items: center;
+      background: radial-gradient(circle at top left, #fef6ef, #e4c7b4);
+      min-height: 210px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .tool-logo {
-      width: 100%;
-      height: 80px;
-      border-radius: 14px;
-      background: radial-gradient(circle at top, #064e3b, #065f46);
+    .block-photo::before {
+      content: "Owner / client photo here";
+      position: absolute;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #ecfdf5;
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-
-    .tool-copy-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .tool-copy-text {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin: 0;
+      font-size: 0.86rem;
+      color: #8b5a3c;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
     }
 
     /* FOOTER ---------------------------------------------- */
 
     .footer {
-      margin-top: 26px;
+      margin-top: 40px;
       font-size: 0.8rem;
       color: #9ca3af;
       text-align: center;
@@ -435,17 +364,15 @@
     /* RESPONSIVE ------------------------------------------ */
 
     @media (max-width: 960px) {
-      .hero-top {
-        padding: 20px 22px 70px;
+      .hero {
+        padding: 40px 22px 40px;
       }
-      .content {
-        padding: 26px 22px 34px;
-      }
-      .hero-grid {
+      .hero-image-frame {
         grid-template-columns: minmax(0, 1fr);
       }
-      .hero-graphic {
-        margin: 20px auto 0;
+      .block {
+        padding: 32px 24px;
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -453,11 +380,8 @@
       .shell {
         padding: 18px 14px 60px;
       }
-      .feature-row {
+      .pill-row {
         grid-template-columns: minmax(0, 1fr);
-      }
-      .tool-showcase {
-        grid-template-columns: 1fr;
       }
       .nav {
         flex-direction: column;
@@ -465,159 +389,135 @@
         gap: 10px;
       }
       .nav-links {
-        gap: 16px;
+        gap: 18px;
       }
     }
   </style>
 </head>
 <body>
   <div class="shell">
-    <!-- HERO WRAPPER -->
-    <div class="hero-wrap">
-      <div class="hero-top">
-        <!-- NAV -->
-        <header class="nav">
-          <div class="nav-logo">
-            <div class="nav-mark">S</div>
-            <div>Suzi Neves</div>
-          </div>
-          <nav class="nav-links">
-            <a href="#what">What I Do</a>
-            <a href="#how">How I Work</a>
-            <a href="#who">Who I Work With</a>
-            <a href="#contact" class="nav-cta">Contact</a>
-          </nav>
-        </header>
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="nav-mark">SN</div>
+        <div>Suzi Neves</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#what">What I Do</a>
+        <a href="#how">How I Work</a>
+        <a href="#who">Who I Work With</a>
+        <a href="#contact" class="nav-cta">Reach Out</a>
+      </nav>
+    </header>
 
-        <!-- HERO CONTENT -->
-        <div class="hero-grid">
+    <!-- HERO -->
+    <main>
+      <section class="hero">
+        <div class="hero-eyebrow">Systems &amp; Operations Support</div>
+
+        <h1 class="hero-title">
+          Getting your business systems to work together.
+        </h1>
+
+        <p class="hero-subtitle">
+          You are running a business that moves in every direction at once.
+          Sales, bookkeeping, inventory, events, payouts, and the day to day
+          decisions all connect. When one part slips, everything feels heavier.
+          <span>I bring your systems into sync so Shopify, your bookkeeping,
+          and operations work together.</span>
+        </p>
+
+        <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
+          Reach Out
+          <span class="arrow">↗</span>
+        </a>
+
+        <div class="hero-tagline">
+          Quiet, practical support for the back end of your business.
+        </div>
+
+        <!-- Desk / systems image -->
+        <div class="hero-image-strip">
+          <div class="hero-image-frame">
+            <div class="hero-image-desk"></div>
+            <div>
+              <div class="hero-image-copy-title">
+                A calm point in the middle of all the systems.
+              </div>
+              <p class="hero-image-copy-text">
+                Shopify, QuickBooks, payouts, inventory, and all the daily decisions
+                that live between them — I help you line those pieces up so everything
+                feels a little less noisy and a lot more grounded.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THREE ICON PILLS -->
+      <section class="pill-row">
+        <article class="pill" id="what">
+          <div class="pill-icon">⚙️</div>
           <div>
-            <p style="margin:0;font-size:0.9rem;letter-spacing:0.16em;text-transform:uppercase;opacity:.85;">
-              Shopify · Bookkeeping · Operations
+            <h3 class="pill-text-title">What I Do</h3>
+            <p class="pill-text-body">
+              The connective tissue between your store, your bookkeeping, and your
+              operations so reports match reality and money movement makes sense.
             </p>
+          </div>
+        </article>
 
-            <h1 class="hero-heading">
-              Getting your business systems to work together.
-            </h1>
-
-            <p class="hero-lede">
-              You are running a business that moves in every direction at once.
-              Sales, bookkeeping, inventory, events, payouts, and the day to day
-              decisions all connect. When one part slips, everything feels heavier.
-              <span>I bring your systems into sync so Shopify, your bookkeeping,
-              and operations work together.</span>
+        <article class="pill" id="how">
+          <div class="pill-icon">🧭</div>
+          <div>
+            <h3 class="pill-text-title">How I Work</h3>
+            <p class="pill-text-body">
+              We start with what feels messy, then clean things up in small, steady
+              phases so you can keep the business running while the systems get better.
             </p>
-
-            <div class="hero-buttons" id="contact">
-              <a href="mailto:suzi@example.com" class="btn-primary">
-                Reach Out
-                <span class="arrow">↗</span>
-              </a>
-              <div class="hero-subtext">
-                Quiet, practical support for the back end of your business.
-              </div>
-            </div>
           </div>
+        </article>
 
-          <div class="hero-graphic" aria-hidden="true">
-            <div class="hero-orbit">
-              <div class="orbit-ring ring-1"></div>
-              <div class="orbit-ring ring-2"></div>
-              <div class="orbit-ring ring-3"></div>
-
-              <div class="orbit-dot dot-1"></div>
-              <div class="orbit-dot dot-2"></div>
-              <div class="orbit-dot dot-3"></div>
-              <div class="orbit-dot dot-4"></div>
-
-              <div class="hero-monogram">
-                <span>SN</span>
-              </div>
-            </div>
+        <article class="pill" id="who">
+          <div class="pill-icon">💬</div>
+          <div>
+            <h3 class="pill-text-title">Who I Work With</h3>
+            <p class="pill-text-body">
+              Owners who are stretched thin and want the back end to stop fighting them
+              so they can focus on the part they are actually good at.
+            </p>
           </div>
-        </div>
-      </div>
+        </article>
+      </section>
 
-      <!-- WAVE DIVIDER -->
-      <div class="hero-wave">
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
-          <path fill="#ffffff" fill-opacity="1"
-            d="M0,224L48,213.3C96,203,192,181,288,165.3C384,149,480,139,576,138.7C672,139,768,149,864,149.3C960,149,1056,139,1152,149.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-          </path>
-        </svg>
-      </div>
-
-      <!-- WHITE CONTENT AREA -->
-      <div class="content">
-        <!-- THREE FEATURES -->
-        <div class="feature-row">
-          <div class="feature-item" id="what">
-            <div class="feature-icon">⚙️</div>
-            <div>
-              <h3 class="feature-title">What I Do</h3>
-              <p class="feature-text">
-                I handle the pieces that connect your store, your bookkeeping, and
-                your operations so reports match reality and money movement makes sense.
-              </p>
-            </div>
-          </div>
-
-          <div class="feature-item" id="how">
-            <div class="feature-icon">🧭</div>
-            <div>
-              <h3 class="feature-title">How I Work</h3>
-              <p class="feature-text">
-                We start with a walkthrough of what feels messy, then clean things
-                up in small, steady phases so you can keep the business running
-                while the systems get better.
-              </p>
-            </div>
-          </div>
-
-          <div class="feature-item" id="who">
-            <div class="feature-icon">💬</div>
-            <div>
-              <h3 class="feature-title">Who I Work With</h3>
-              <p class="feature-text">
-                Owners who are stretched thin and want the back end to stop
-                fighting them so they can focus on the part they are actually good at.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- TOOLS / STACK -->
-        <section class="tools">
-          <h2 class="tools-heading">The tools I work with.</h2>
-          <p class="tools-sub">
-            I use a mix of platforms and workflows so we can choose what fits your business
-            instead of forcing everything into one tool.
+      <!-- BIG COLOR BLOCK -->
+      <section class="block">
+        <div>
+          <div class="block-tag">Working Together</div>
+          <h2 class="block-heading">
+            A back end that feels grounded instead of chaotic.
+          </h2>
+          <p class="block-sub">
+            Most of my clients don’t need a flashy overhaul. They need the pieces
+            they already have to finally talk to each other.
           </p>
+          <p class="block-body">
+            We start with a walkthrough of what feels heavy: Shopify, your books,
+            the workflows around both, and the places money gets weird. From there,
+            we clean things up in small passes — untangling payouts and refunds,
+            fixing products and variants, and getting Shopify and QuickBooks
+            speaking the same language — so your day to day work gets lighter
+            without stopping the business to rebuild everything from scratch.
+          </p>
+        </div>
 
-          <div class="tool-tags">
-            <span class="tool-tag">Shopify</span>
-            <span class="tool-tag">QuickBooks Online</span>
-            <span class="tool-tag">Shopify &rarr; QBO Sync</span>
-            <span class="tool-tag">Inventory &amp; payouts</span>
-            <span class="tool-tag">Reporting setup</span>
-          </div>
+        <div class="block-photo"></div>
+      </section>
+    </main>
 
-          <div class="tool-showcase">
-            <div class="tool-logo">S⇄Q</div>
-            <div>
-              <div class="tool-copy-title">Shopify and QuickBooks in sync.</div>
-              <p class="tool-copy-text">
-                Cleaning up products, payouts, and accounts so the store,
-                the books, and your day to day work are telling the same story.
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-
+    <!-- FOOTER -->
     <footer class="footer">
-      © <span id="year"></span> Suzi Neves · Systems &amp; Operations Support
+      © <span id="year"></span> Suzi Neves · Shopify Whisperer
     </footer>
   </div>
 
