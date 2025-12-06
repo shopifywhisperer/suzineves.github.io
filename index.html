@@ -6,18 +6,16 @@
   <title>Suzi Neves – Support for Businesses in Motion</title>
   <style>
     :root {
-      --page-bg: #e5d8cc;      /* warmer, bolder background */
-      --hero-bg: #fdf9f4;      /* lighter hero card */
-      --panel-bg: #fbf6ef;     /* panels a touch lighter than before */
-      --border: #d8c6b4;
-      --accent: #b45535;       /* deeper terracotta */
-      --ink: #1f1f1f;
-      --ink-soft: #565656;
+      --page-bg: #d8b59c;      /* warm clay */
+      --hero-bg: #fffaf4;      /* soft ivory */
+      --panel-bg: #fffdf9;     /* crisp but warm */
+      --border: #c9a48a;
+      --accent: #b2472e;       /* clay-rust */
+      --ink: #1a1a1a;
+      --ink-soft: #5a524d;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -29,27 +27,23 @@
       padding: 40px 16px 72px;
     }
 
-    .shell {
-      max-width: 1040px;
-      width: 100%;
-    }
+    .shell { max-width: 1040px; width: 100%; }
 
     /* HERO */
-
     .hero {
       background: var(--hero-bg);
       border-radius: 20px;
       border: 1px solid var(--border);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-      padding: 30px 24px 32px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+      padding: 32px 24px;
       display: grid;
       gap: 28px;
     }
 
     @media (min-width: 820px) {
       .hero {
-        padding: 34px 32px 36px;
-        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr);
+        padding: 36px 32px;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0,1.5fr);
       }
     }
 
@@ -58,6 +52,7 @@
       margin: 0 0 4px;
       letter-spacing: 0.03em;
       font-weight: 650;
+      color: var(--ink);
     }
 
     .hero-left-tools {
@@ -72,8 +67,9 @@
       font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 1.6rem;
-      max-width: 18rem;
+      max-width: 20rem;
       font-weight: 500;
+      color: var(--ink);
     }
 
     .hero-button {
@@ -81,16 +77,14 @@
       padding: 0.6rem 1.3rem;
       border-radius: 999px;
       background: var(--accent);
-      color: #fdfaf8;
+      color: #fff9f7;
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
-      border: 1px solid #823623;
+      border: none;
     }
 
-    .hero-button:hover {
-      filter: brightness(1.05);
-    }
+    .hero-button:hover { filter: brightness(1.05); }
 
     .hero-right p {
       margin: 0 0 0.9rem;
@@ -106,7 +100,6 @@
     }
 
     /* PANELS */
-
     .panels {
       margin-top: 22px;
       display: grid;
@@ -116,7 +109,7 @@
 
     @media (min-width: 800px) {
       .panels.two {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
       }
     }
 
@@ -124,7 +117,7 @@
       background: var(--panel-bg);
       border-radius: 16px;
       border: 1px solid var(--border);
-      padding: 20px 18px 20px;
+      padding: 20px 18px;
     }
 
     .panel h2 {
@@ -168,9 +161,7 @@
     }
 
     @media (max-width: 480px) {
-      .hero-left-name {
-        font-size: 2.1rem;
-      }
+      .hero-left-name { font-size: 2.1rem; }
     }
   </style>
 </head>
@@ -184,7 +175,7 @@
         <div class="hero-left-tools">Shopify · POS · QuickBooks</div>
 
         <div class="hero-left-tagline">
-          I work with businesses in motion. You’re moving fast, solving problems, keeping customers happy, and the systems around you should keep pace.
+          I work with businesses in motion. You’re juggling customers, inventory, events, and a dozen moving parts — and the systems around you should keep up.
         </div>
 
         <a class="hero-button" href="mailto:suzineves@gmail.com">Reach out</a>
@@ -192,17 +183,15 @@
 
       <div class="hero-right">
         <p>
-          I work with people growing real businesses. The pace is constant, and my role is to bring clear thinking, steady support, and a shared drive to make it work.
+          I work with people who are growing and adapting as they go. The pace is constant, and my role is to bring clarity, steadiness, and follow-through where it matters most.
         </p>
         <p>
-          Over the past few years, I worked inside a fast moving retail and e-commerce company that lived in Shopify, ran a physical shop, traveled to events, and needed clean numbers at the end of the day. I moved between the front and back of the business, kept pace with growth, filled gaps, and built structure while the wheels were still turning.
+          I spent the last few years inside a fast-moving retail and e-commerce company: Shopify, in-person sales, events, inventory, and the bookkeeping that ties it all together. I moved between the front and back of the business, kept pace with growth, filled gaps, and built structure while everything was in motion.
         </p>
         <p>
-          Now I bring that same approach to a small number of owners. I get in sync with how your business really runs, carry real weight in the background, and help things feel more possible for both the business and the humans behind it.
+          Now I bring that same approach to a small number of owners. I get in sync with how your business runs, carry real weight in the background, and help make things feel lighter and more possible.
         </p>
-        <div class="hero-right-note">
-          One straightforward conversation to start. No pressure.
-        </div>
+        <div class="hero-right-note">One conversation. No pressure.</div>
       </div>
     </section>
 
@@ -212,10 +201,10 @@
         <h2>What I do</h2>
         <div class="panel-line"></div>
         <ul>
-          <li>Set up and clean up Shopify so products, variants, collections, discounts, and point of sale line up with how you actually sell.</li>
-          <li>Create inventory habits that fit real life, including events, pop ups, and busy seasons.</li>
-          <li>Make Shopify and QuickBooks agree, including payouts, fees, refunds, discounts, gift cards, and sales tax.</li>
-          <li>Stay on as ongoing support if you want a second brain instead of a one time project and a handoff.</li>
+          <li>Set up and clean up Shopify so products, variants, collections, discounts, and POS match how you sell.</li>
+          <li>Create inventory habits that work during busy seasons, travel, and events.</li>
+          <li>Make Shopify and QuickBooks agree — payouts, fees, refunds, discounts, gift cards, and sales tax.</li>
+          <li>Offer ongoing support if you want a second brain instead of a one-time project.</li>
         </ul>
       </article>
 
@@ -223,13 +212,13 @@
         <h2>How I work</h2>
         <div class="panel-line"></div>
         <p>
-          We start by walking through a normal week. How you sell, who touches what, and where things feel heavier than they should.
+          We start by walking through how your week actually goes — where time disappears, what slows you down, and what needs to work better.
         </p>
         <p>
-          From there, we tackle the pieces that will make the biggest difference with the least chaos. That might mean restructuring products, changing how payouts land in the books, or simplifying how you track stock.
+          Then we fix the pieces that move the most weight with the least disruption. Often that means restructuring products, improving your POS flow, or simplifying how payouts land in the books.
         </p>
         <p class="panel-muted">
-          The goal is not a perfect diagram. The goal is something you can live with on a busy day.
+          The goal is not theoretical perfection. The goal is something you can use on a busy day.
         </p>
       </article>
     </section>
@@ -240,13 +229,13 @@
         <h2>Start a conversation</h2>
         <div class="panel-line"></div>
         <p>
-          If this sounds close to what you need, send a short email with three things: how you sell today, what tools you use, and what feels messy or heavy.
+          If this feels close to what you need, send a short email with three things: how you sell today, what tools you use, and what feels heavy or messy.
         </p>
         <p>
-          I will let you know if it sounds like a good fit and what a first step could look like, including a rough range for cost and timing.
+          I’ll let you know if it’s a good fit and what a first step could look like — including a rough range for cost and timing.
         </p>
         <p class="panel-muted">
-          No pitch, no pressure. Just a clear look at what you are carrying and whether I am the right person to help.
+          No pitch. No pressure. Just clarity.
         </p>
       </article>
     </section>
@@ -254,3 +243,4 @@
   </main>
 </body>
 </html>
+
