@@ -112,7 +112,9 @@
     /* HERO --------------------------------------------------- */
 
     .hero-band {
-      margin: 40px -20px 0;
+      margin-top: 40px;
+      padding: 0 0 40px;
+      background: radial-gradient(circle at 0 0, #0b1120, #020617 70%);
     }
 
     .hero {
@@ -122,8 +124,8 @@
       padding: 56px 24px 64px;
       color: #f9fafb;
       overflow: hidden;
-      border-radius: 26px;
-      box-shadow: 0 26px 70px rgba(15, 23, 42, 0.85);
+      border-radius: 0;
+      box-shadow: none;
       isolation: isolate;
     }
 
@@ -145,8 +147,8 @@
           transparent 60%),
         /* your photo */
         url("hero-laptop.jpeg");
-      background-size: 180%;
-      background-position: 78% 32%;
+      background-size: 200%;
+      background-position: 74% 42%;
       filter: saturate(1.05) contrast(1.08);
       z-index: -2;
     }
@@ -284,7 +286,6 @@
 
     .overview-band {
       padding: 0 0 36px;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
     }
 
     .overview-inner {
@@ -346,7 +347,8 @@
 
     .testimonial-band {
       padding: 40px 0 34px;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      border-top: 1px solid rgba(15, 23, 42, 0.06);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
     }
 
     .testimonial-inner {
@@ -386,18 +388,17 @@
     /* DARK STRIP -------------------------------------------- */
 
     .strip-band {
-      margin-top: 32px;
+      margin-top: 40px;
+      padding: 40px 0 48px;
+      background: radial-gradient(circle at 0 0, #1f2937, #020617 70%);
+      color: #e5e7eb;
     }
 
     .strip-inner-shell {
       max-width: 1040px;
       margin: 0 auto;
-      background: radial-gradient(circle at 0 0, #1f2937, #020617 70%);
-      color: #e5e7eb;
-      border-radius: 12px;
-      padding: 24px 24px 28px;
+      padding: 0 24px;
       position: relative;
-      overflow: hidden;
     }
 
     .strip-top-rule {
@@ -410,7 +411,7 @@
     .strip {
       display: grid;
       grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 26px;
+      gap: 32px;
     }
 
     .strip-tag {
@@ -499,16 +500,16 @@
       }
 
       .hero-band {
-        margin: 28px -16px 0;
+        margin-top: 28px;
+        padding-bottom: 32px;
       }
 
       .hero {
         padding-inline: 18px;
-        border-radius: 20px;
       }
 
       .strip-inner-shell {
-        padding: 22px 18px 26px;
+        padding-inline: 18px;
       }
     }
   </style>
