@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shopify Whisperer</title>
+  <title>Systems and operations support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
@@ -15,10 +15,10 @@
       --text-main: #f9fafb;    /* near white */
       --text-muted: #9ca3af;   /* muted gray */
       --border-subtle: #1f2933;
-      --max-width: 900px;
-      --radius-lg: 18px;
+      --max-width: 1050px;
+      --radius-lg: 20px;
       --radius-pill: 999px;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.45);
+      --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.45);
     }
 
     * {
@@ -38,12 +38,12 @@
     .page {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 32px 16px 64px;
+      padding: 40px 18px 84px;
     }
 
     @media (min-width: 768px) {
       .page {
-        padding: 40px 24px 80px;
+        padding: 52px 28px 96px;
       }
     }
 
@@ -51,9 +51,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: var(--radius-pill);
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(249, 250, 251, 0.16);
       font-size: 12px;
       color: var(--text-muted);
@@ -69,11 +69,12 @@
 
     .hero {
       display: grid;
-      gap: 24px;
-      padding: 32px 24px 28px;
-      border-radius: 24px;
-      background: radial-gradient(circle at top right, rgba(228, 116, 79, 0.2), transparent 55%),
-        radial-gradient(circle at bottom left, rgba(34, 197, 165, 0.15), transparent 55%),
+      gap: 28px;
+      padding: 40px 28px 34px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at top right, rgba(228, 116, 79, 0.18), transparent 55%),
+        radial-gradient(circle at bottom left, rgba(34, 197, 165, 0.14), transparent 55%),
         linear-gradient(145deg, #020617, #050816 50%, #020617 100%);
       box-shadow: var(--shadow-soft);
       border: 1px solid rgba(148, 163, 184, 0.25);
@@ -81,52 +82,46 @@
 
     @media (min-width: 880px) {
       .hero {
-        grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.5fr);
         align-items: stretch;
       }
     }
 
     .hero-main h1 {
-      font-size: 32px;
-      line-height: 1.1;
-      margin: 16px 0 10px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-size: 30px;
+      line-height: 1.2;
+      margin: 18px 0 14px;
+      letter-spacing: 0.02em;
+      text-transform: none;
     }
 
     @media (min-width: 768px) {
       .hero-main h1 {
-        font-size: 40px;
+        font-size: 34px;
       }
     }
 
-    .tagline {
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--accent-soft);
-      margin-bottom: 16px;
-    }
-
     .hero-main p {
-      margin: 0 0 20px;
+      margin: 0 0 22px;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.75;
       color: var(--text-muted);
-      max-width: 36rem;
+      max-width: 40rem;
     }
 
     .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 12px 16px;
+      gap: 12px 18px;
+      margin-top: 4px;
     }
 
     .cta-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 20px;
+      padding: 11px 22px;
       border-radius: var(--radius-pill);
       border: none;
       text-decoration: none;
@@ -136,7 +131,7 @@
       text-transform: uppercase;
       background: linear-gradient(135deg, var(--accent), #f97316);
       color: #0b1120;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.6);
       cursor: pointer;
       transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
     }
@@ -144,7 +139,7 @@
     .cta-primary:hover {
       transform: translateY(-1px);
       filter: brightness(1.03);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.75);
     }
 
     .cta-secondary {
@@ -157,14 +152,15 @@
     }
 
     .hero-side {
-      border-radius: 18px;
-      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.15), transparent 55%),
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at top left, rgba(148, 163, 184, 0.16), transparent 55%),
         linear-gradient(145deg, #020617, #020617 50%, #020617 100%);
       border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 18px 18px 16px;
+      padding: 20px 20px 18px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .hero-side-title {
@@ -172,6 +168,7 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--text-muted);
+      margin-bottom: 6px;
     }
 
     .pill-list {
@@ -181,24 +178,24 @@
     }
 
     .pill {
-      padding: 4px 10px;
+      padding: 5px 11px;
       border-radius: var(--radius-pill);
       font-size: 12px;
       border: 1px solid rgba(148, 163, 184, 0.4);
       color: var(--text-muted);
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.92);
     }
 
     .pill.accent {
       border-color: rgba(228, 116, 79, 0.9);
       color: var(--accent-soft);
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.96);
     }
 
     .hero-note {
       font-size: 12px;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .hero-note strong {
@@ -207,21 +204,21 @@
     }
 
     .sections {
-      margin-top: 32px;
+      margin-top: 40px;
       display: grid;
-      gap: 24px;
+      gap: 26px;
     }
 
     .section {
       border-radius: var(--radius-lg);
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border-subtle);
-      padding: 20px 18px 18px;
+      padding: 24px 20px 20px;
     }
 
     @media (min-width: 768px) {
       .section {
-        padding: 22px 22px 20px;
+        padding: 26px 26px 22px;
       }
     }
 
@@ -229,8 +226,8 @@
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+      gap: 14px;
+      margin-bottom: 12px;
     }
 
     .section h2 {
@@ -247,9 +244,10 @@
 
     .section p {
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.8;
       color: var(--text-muted);
-      margin: 0 0 10px;
+      margin: 0 0 12px;
+      max-width: 60rem;
     }
 
     .section ul {
@@ -257,7 +255,8 @@
       padding-left: 18px;
       font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.8;
+      max-width: 60rem;
     }
 
     .section li + li {
@@ -266,10 +265,10 @@
 
     .three-col {
       display: grid;
-      gap: 18px;
+      gap: 20px;
     }
 
-    @media (min-width: 840px) {
+    @media (min-width: 880px) {
       .three-col {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -284,8 +283,8 @@
     }
 
     .footer {
-      margin-top: 32px;
-      padding-top: 18px;
+      margin-top: 40px;
+      padding-top: 20px;
       border-top: 1px solid rgba(31, 41, 55, 0.9);
       font-size: 12px;
       color: var(--text-muted);
@@ -311,49 +310,45 @@
       <section class="hero-main">
         <div class="badge">
           <span class="badge-dot"></span>
-          <span>Shopify Whisperer · Systems, not templates</span>
+          <span>Systems and operations support · behind the scenes</span>
         </div>
 
-        <h1>Shopify Whisperer</h1>
-
-        <div class="tagline">
-          Shopify should not feel like a second job. Hand it to someone built for pressure.
-        </div>
+        <h1>Getting your business systems to work together.</h1>
 
         <p>
-          You are running a business that moves in every direction at once. Sales, bookkeeping,
+          You’re running a business that moves in every direction at once. Sales, bookkeeping,
           inventory, events, payouts, and the day to day decisions all connect. When one piece
           lags, everything feels heavier. I bring your systems into sync so Shopify, QuickBooks,
           and operations work together and the whole business runs more smoothly.
         </p>
 
         <div class="hero-cta-row">
-          <a class="cta-primary" href="mailto:suzi+shopifywhisperer@example.com">
+          <a class="cta-primary" href="mailto:suzi@example.com">
             Reach out
           </a>
           <div class="cta-secondary">
-            Done trying to duct tape it yourself?
-            <span>Let me take the back end.</span>
+            Done trying to duct tape it together?
+            <span>Tell me what feels heavy.</span>
           </div>
         </div>
       </section>
 
       <aside class="hero-side">
         <div>
-          <div class="hero-side-title">What I actually do</div>
+          <div class="hero-side-title">What I help with</div>
           <div class="pill-list">
             <span class="pill accent">Shopify and QuickBooks in sync</span>
             <span class="pill">Product and variant structure</span>
             <span class="pill">Payouts and reporting sanity</span>
             <span class="pill">POS and online alignment</span>
-            <span class="pill">Event and launch support</span>
+            <span class="pill">Event and launch patterns</span>
           </div>
         </div>
 
         <div class="hero-note">
-          <strong>This is not a course or a template.</strong>
-          I step into your world, map what is already working, clean up what is not, and leave
-          you with systems that fit how you actually run your business.
+          <strong>This is hands on work, not a course.</strong>
+          I step into your world, see how things really run, and bring order to the parts that
+          are wearing you down. The goal is less noise and more clarity.
         </div>
       </aside>
     </div>
@@ -363,7 +358,7 @@
         <div class="section-header">
           <h2>What we fix first</h2>
           <div class="section-subtitle">
-            The invisible stuff that makes everything feel heavy.
+            The invisible parts that make everything feel heavy.
           </div>
         </div>
         <div class="three-col">
@@ -373,7 +368,7 @@
               <li>Clean product and variant setup</li>
               <li>Collections that match how you sell</li>
               <li>Navigation that does not confuse your customers</li>
-              <li>Basic theme tweaks to support the structure</li>
+              <li>Basic theme tweaks that support the structure</li>
             </ul>
           </div>
           <div>
@@ -405,14 +400,14 @@
           </div>
         </div>
         <p>
-          I work best with owners who are in it. You know your people, you care about your product,
-          and you are tired of feeling behind on the back end. You do not need another platform.
-          You need someone who can step into the mess and quietly sort the whole thing out.
+          I work best with owners who are in it. You know your people, you care about your
+          product, and you are tired of feeling behind on the back end. You do not need another
+          platform. You need someone who can step into the mess and quietly sort the whole thing out.
         </p>
         <ul>
           <li>You already use Shopify and want it set up with intention</li>
           <li>You either use QuickBooks now or know you need to move there</li>
-          <li>You are done hiring people who only understand one piece of the puzzle</li>
+          <li>You are done hiring people who only understand one part of the puzzle</li>
           <li>You want calm, clear systems that you and your team can maintain</li>
         </ul>
       </section>
@@ -425,7 +420,7 @@
           </div>
         </div>
         <ul>
-          <li><strong>Step one:</strong> You tell me how your world actually works right now and what feels heavy.</li>
+          <li><strong>Step one:</strong> You tell me how your world works right now and what feels heavy.</li>
           <li><strong>Step two:</strong> I audit your Shopify, QuickBooks, and key workflows and map the gaps.</li>
           <li><strong>Step three:</strong> We agree on a focused cleanup plan, then I work through it in clear phases.</li>
           <li><strong>Step four:</strong> You get simple documentation and habits so the system stays solid.</li>
@@ -434,12 +429,13 @@
     </div>
 
     <footer class="footer">
-      <div>Shopify Whisperer · systems for owners under pressure</div>
+      <div>Systems and operations support for owners under pressure.</div>
       <div>
         Ready to talk?
-        <a href="mailto:suzi+shopifywhisperer@example.com">Reach out by email</a>.
+        <a href="mailto:suzi@example.com">Send an email</a>.
       </div>
     </footer>
   </main>
 </body>
 </html>
+
