@@ -7,14 +7,14 @@
   <style>
     :root {
       --page-bg: #f5f5f6;
-      --hero-overlay: rgba(15, 23, 42, 0.68);
+      --hero-overlay: rgba(15, 23, 42, 0.62);
       --ink: #0f172a;
       --text-main: #111827;
       --text-muted: #6b7280;
       --border-subtle: #e5e7eb;
       --accent: #b2563b;        /* warm terracotta pop */
-      --accent-soft: #f3d4c5;
       --accent-deep: #8f3c27;
+      --accent-soft: #f3d4c5;
       --radius-md: 12px;
       --radius-lg: 24px;
     }
@@ -23,7 +23,7 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, -apple-system,
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
         "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       color: var(--text-main);
       background-color: var(--page-bg);
@@ -99,7 +99,7 @@
     .hero {
       position: relative;
       margin: 0 -18px;
-      padding: 68px 18px 72px;
+      padding: 70px 18px 72px;
       color: #f9fafb;
       overflow: hidden;
     }
@@ -109,7 +109,11 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(to bottom, var(--hero-overlay), rgba(15, 23, 42, 0.9)),
+        linear-gradient(
+          to bottom,
+          var(--hero-overlay),
+          rgba(15, 23, 42, 0.88)
+        ),
         /* 👉 swap this URL for your own hero image */
         url("https://images.pexels.com/photos/6476584/pexels-photo-6476584.jpeg?auto=compress&cs=tinysrgb&w=1600");
       background-size: cover;
@@ -124,29 +128,12 @@
       position: relative;
       z-index: 1;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
-    /* editorial hero panel */
-    .hero-panel {
-      max-width: 760px;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.82);
-      border-radius: 28px;
-      border: 1px solid rgba(249, 250, 251, 0.16);
-      padding: 30px 26px 28px;
-      text-align: center;
-      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.65);
-      position: relative;
-    }
-
-    .hero-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      border-top: 3px solid var(--accent);
-      opacity: 0.9;
+    .hero-content {
+      max-width: 560px;
+      text-align: left;
     }
 
     .hero-eyebrow {
@@ -165,8 +152,7 @@
     }
 
     .hero-subtitle {
-      max-width: 40rem;
-      margin: 0 auto 24px;
+      margin: 0 0 22px;
       font-size: 0.98rem;
       color: #e5e7eb;
     }
@@ -190,7 +176,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 20px 40px rgba(143, 60, 39, 0.7);
+      box-shadow: 0 18px 36px rgba(143, 60, 39, 0.7);
     }
 
     .hero-cta:hover {
@@ -204,7 +190,7 @@
     }
 
     .hero-tagline {
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 0.88rem;
       color: #d1d5db;
     }
@@ -475,8 +461,8 @@
         margin: 0 -12px;
         padding: 56px 16px 60px;
       }
-      .hero-panel {
-        padding: 24px 20px 24px;
+      .hero-content {
+        max-width: 100%;
       }
       .testimonial {
         grid-template-columns: minmax(0, 1fr);
@@ -517,7 +503,7 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
-        <div class="hero-panel">
+        <div class="hero-content">
           <div class="hero-eyebrow">Systems &amp; Operations Support</div>
 
           <h1 class="hero-title">
