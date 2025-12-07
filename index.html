@@ -7,23 +7,19 @@
 
   <style>
     :root {
-      /* Page palette – moody but not goth, no beige oatmeal */
-      --bg-deep: #0f1116;
-      --bg-soft: #171921;
-      --ink-soft: #f4f3f0;
+      --bg-main: #08090d;
+      --bg-soft: #10121a;
+      --ink-main: #f7f4f0;
+      --ink-soft: #d5d0c8;
+      --ink-muted: #8f8680;
 
       --accent-warm: #f28f5e;
-      --accent-warm-soft: #f5b89a;
-      --accent-cool: #4ea3af;
-
-      --text-main: #f7f5f2;
-      --text-soft: #d7d2cb;
-      --text-muted: #9a9290;
+      --accent-soft: #f5b89a;
 
       --button-bg: #f7f4f0;
-      --button-text: #181820;
-      --button-bg-hover: #e8e4de;
-      --button-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --button-text: #16151a;
+      --button-bg-hover: #ebe7e2;
+      --button-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
     }
 
     * {
@@ -34,112 +30,102 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Helvetica Neue", Arial, sans-serif;
-      color: var(--text-main);
-      background:
-        radial-gradient(circle at top left, rgba(242, 143, 94, 0.2), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(78, 163, 175, 0.16), transparent 60%),
-        linear-gradient(145deg, var(--bg-deep), var(--bg-soft));
+      background: radial-gradient(circle at top left, #151826 0, #08090d 50%);
+      color: var(--ink-main);
     }
 
     a {
       color: inherit;
+      text-decoration: none;
     }
-
-    /* ========== HERO (EDGY, INTEGRATED, NO PHOTO) ========== */
 
     .page {
       min-height: 100vh;
+      padding: 3.2rem min(8vw, 5.5rem) 4rem;
     }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* ========== HEADER (TINY, JUST ENOUGH) ========== */
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .brand-mark {
+      font-size: 0.85rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .top-tagline {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      opacity: 0.9;
+    }
+
+    /* ========== HERO ========== */
 
     .hero {
       position: relative;
-      padding: 4.5rem min(8vw, 6rem) 3.5rem;
-      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.2fr);
+      gap: 3.2rem;
+      align-items: flex-start;
     }
 
-    /* vertical label on the far left – gives editorial energy */
+    /* little vertical label on the left – subtle, not screaming */
     .hero-label {
       position: absolute;
-      left: 1.1rem;
+      left: -1.2rem;
       top: 50%;
       transform: translateY(-50%) rotate(-90deg);
       transform-origin: left top;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(235, 230, 223, 0.5);
+      color: rgba(228, 220, 210, 0.45);
       white-space: nowrap;
       pointer-events: none;
     }
 
-    /* big diagonal color architecture – not a box, more like a painted wall */
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -6rem;
-      right: -14rem;
-      width: 40rem;
-      height: 22rem;
-      background:
-        linear-gradient(135deg, rgba(242, 143, 94, 0.45), rgba(242, 143, 94, 0.0)),
-        linear-gradient(180deg, rgba(11, 12, 19, 0.0), rgba(11, 12, 19, 0.85));
-      transform: skewX(-20deg);
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero-inner {
-      position: relative;
-      max-width: 1120px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
-      gap: 3.2rem;
-      align-items: flex-start;
-      z-index: 1;
-    }
-
-    .hero-copy {
+    .hero-main {
       max-width: 640px;
-      animation: heroFadeUp 0.6s ease-out 90ms both;
-    }
-
-    @keyframes heroFadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .hero-kicker {
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin: 0 0 1.1rem;
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      margin: 0 0 1rem;
     }
 
     .hero-title {
+      margin: 0 0 1.4rem;
       font-size: clamp(2.4rem, 3vw + 1.5rem, 3.6rem);
       line-height: 1.04;
-      margin: 0 0 1.4rem;
-      color: var(--ink-soft);
+      color: var(--ink-main);
     }
 
     .hero-title span {
-      color: var(--accent-warm-soft);
+      color: var(--accent-soft);
     }
 
     .hero-body {
-      margin: 0 0 2.2rem;
+      margin: 0 0 2.1rem;
       font-size: 1rem;
       line-height: 1.7;
-      color: var(--text-soft);
+      color: var(--ink-soft);
       max-width: 520px;
     }
 
@@ -147,23 +133,22 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 1.4rem 2.2rem;
+      gap: 1.4rem 2rem;
     }
 
     .hero-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.86rem 1.9rem;
+      padding: 0.82rem 1.9rem;
       border-radius: 999px;
       font-size: 0.9rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      text-decoration: none;
       background: var(--button-bg);
       color: var(--button-text);
-      box-shadow: var(--button-shadow);
       border: 1px solid rgba(0, 0, 0, 0.35);
+      box-shadow: var(--button-shadow);
       transition:
         background 140ms ease-out,
         transform 140ms ease-out,
@@ -179,78 +164,82 @@
     .hero-button:hover {
       background: var(--button-bg-hover);
       transform: translateY(-1px);
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 22px 52px rgba(0, 0, 0, 0.7);
     }
 
     .hero-subcopy {
       margin: 0;
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: var(--ink-muted);
       max-width: 260px;
     }
 
     .hero-subcopy span {
-      color: var(--accent-warm-soft);
+      color: var(--accent-soft);
     }
 
-    /* right column – feels like a designer's margin scribble, not a template sidebar */
+    /* right side – feels like a designer margin note, not a sidebar */
+
     .hero-aside {
-      display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
+      padding-top: 0.3rem;
       font-size: 0.9rem;
-      color: var(--text-muted);
-      padding-top: 0.4rem;
+      color: var(--ink-soft);
+      max-width: 320px;
     }
 
-    .hero-aside-tag {
+    .aside-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(235, 229, 222, 0.75);
+      margin-bottom: 0.9rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 0.72rem;
-      color: rgba(245, 241, 236, 0.7);
+      gap: 0.5rem;
     }
 
-    .hero-aside-tag::before {
+    .aside-tag::before {
       content: "";
       width: 2.4rem;
       height: 1px;
-      background: linear-gradient(90deg, var(--accent-cool), transparent);
+      background: linear-gradient(90deg, var(--accent-warm), transparent);
+      opacity: 0.9;
     }
 
-    .hero-aside-note {
+    .aside-body {
+      margin: 0 0 1.5rem;
       line-height: 1.6;
+      color: var(--ink-soft);
     }
 
-    .hero-aside-note strong {
-      color: var(--accent-warm-soft);
+    .aside-body strong {
+      color: var(--accent-soft);
       font-weight: 500;
     }
 
-    .hero-aside-foot {
+    .aside-foot {
       font-size: 0.78rem;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(216, 210, 201, 0.7);
+      color: rgba(201, 192, 184, 0.9);
     }
 
-    /* subtle noise so the background feels like a print spread */
-    .page-noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.08;
-      mix-blend-mode: soft-light;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
-      z-index: -1;
+    /* little underline band under hero, not a full-width “section divider” */
+
+    .hero-underline {
+      margin-top: 3.2rem;
+      height: 1px;
+      width: 100%;
+      background:
+        linear-gradient(90deg, rgba(242, 143, 94, 0.9), transparent 45%),
+        linear-gradient(90deg, rgba(78, 163, 175, 0.6), transparent 70%);
+      opacity: 0.9;
     }
 
-    /* ========== SECTION BELOW – SAME WORLD, NO HARSH DIVIDE ========== */
+    /* ========== NEXT SECTION (JUST ENOUGH TO SEE FLOW) ========== */
 
     .section {
-      padding: 3.2rem min(8vw, 6rem) 4rem;
+      padding-top: 3.4rem;
     }
 
     .section-inner {
@@ -260,114 +249,115 @@
 
     .section-eyebrow {
       font-size: 0.75rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--ink-muted);
       margin-bottom: 0.9rem;
     }
 
     .section h2 {
-      margin: 0 0 1.3rem;
+      margin: 0 0 1.2rem;
       font-size: 1.4rem;
-      color: var(--ink-soft);
+      color: var(--ink-main);
     }
 
     .section p {
-      margin: 0 0 1.2rem;
+      margin: 0 0 1.1rem;
       line-height: 1.7;
-      font-size: 0.98rem;
-      color: var(--text-soft);
+      font-size: 0.97rem;
+      color: var(--ink-soft);
     }
 
-    .section-list {
+    .section-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 1.6rem 2.4rem;
-      margin-top: 1.3rem;
+      margin-top: 1.4rem;
     }
 
-    .section-pill {
-      font-size: 0.88rem;
+    .pill {
+      font-size: 0.9rem;
       line-height: 1.6;
-      color: var(--text-soft);
+      color: var(--ink-soft);
     }
 
-    .section-pill-title {
+    .pill-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(240, 234, 227, 0.9);
+      margin-bottom: 0.4rem;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(245, 241, 236, 0.85);
-      margin-bottom: 0.4rem;
     }
 
-    .section-pill-title::before {
+    .pill-label::before {
       content: "";
-      width: 1.6rem;
+      width: 1.4rem;
       height: 1px;
-      background: linear-gradient(90deg, var(--accent-warm-soft), transparent);
+      background: linear-gradient(90deg, var(--accent-soft), transparent);
     }
 
     /* ========== RESPONSIVE ========== */
 
-    @media (max-width: 980px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 2.4rem;
-      }
-
-      .hero-aside {
-        max-width: 480px;
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
       }
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 780px) {
+      .page {
+        padding: 2.8rem 1.6rem 3.4rem;
+      }
+
+      .top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
       .hero {
-        padding: 3.8rem 1.5rem 3rem;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.6rem;
       }
 
       .hero-label {
         display: none;
       }
 
-      .hero::before {
-        top: -4rem;
-        right: -12rem;
-        width: 30rem;
-        height: 16rem;
-      }
-
-      .section {
-        padding: 3rem 1.5rem 3.6rem;
+      .hero-aside {
+        max-width: 100%;
       }
     }
 
-    @media (max-width: 480px) {
-      .hero {
-        padding: 3.4rem 1.3rem 2.8rem;
+    @media (max-width: 500px) {
+      .page {
+        padding: 2.6rem 1.3rem 3rem;
       }
 
       .hero-title {
-        font-size: 2.1rem;
+        font-size: 2.2rem;
       }
     }
   </style>
 </head>
-
 <body>
   <div class="page">
-    <div class="page-noise" aria-hidden="true"></div>
+    <div class="shell">
 
-    <!-- ========== HERO ========== -->
-    <section class="hero">
-      <div class="hero-label">
-        CASEFILE · SUZI NEVES
-      </div>
+      <!-- top line: just enough to feel intentional -->
+      <header class="top-row">
+        <div class="brand-mark">SUZI NEVES</div>
+        <div class="top-tagline">Systems, money, and operations in the same brain.</div>
+      </header>
 
-      <div class="hero-inner">
-        <div class="hero-copy">
+      <!-- ========== HERO ========== -->
+      <section class="hero">
+        <div class="hero-label">Casefile · Small businesses in motion</div>
+
+        <div class="hero-main">
           <p class="hero-kicker">SHOPIFY · BOOKKEEPING · OPERATIONS</p>
 
           <h1 class="hero-title">
@@ -390,48 +380,55 @@
         </div>
 
         <aside class="hero-aside">
-          <div class="hero-aside-tag">Small businesses in motion</div>
-          <p class="hero-aside-note">
-            I’m built for the part of the business that never stops moving — launches, inventory, payouts, weird edge cases. The stuff that’s
-            <strong>too messy for templates</strong> and too important to wing.
+          <div class="aside-tag">Not a template person</div>
+          <p class="aside-body">
+            I’m built for the part of your business that never sits still — launches, inventory, payouts, edge cases.
+            The stuff that’s <strong>too messy for plug-and-play solutions</strong> and too important to ignore.
           </p>
-          <div class="hero-aside-foot">
-            Systems, money, and operations — same page, same brain.
+          <div class="aside-foot">
+            Calm in the chaos. Built for pressure.
           </div>
         </aside>
-      </div>
-    </section>
+      </section>
 
-    <!-- ========== NEXT SECTION (EXAMPLE) ========== -->
-    <section class="section" id="why">
-      <div class="section-inner">
-        <div class="section-eyebrow">What I actually do</div>
-        <h2>Grounded support that keeps up — with all of it.</h2>
-        <p>
-          I work inside your business, not around it. That means Shopify isn’t off in one corner while bookkeeping and operations fend for themselves.
-          Everything talks to everything else, and you get to stop babysitting your own systems.
-        </p>
+      <div class="hero-underline" aria-hidden="true"></div>
 
-        <div class="section-list">
-          <div class="section-pill">
-            <div class="section-pill-title">Shopify & sales flow</div>
-            Product setup, variants, collections, sales channels, POS, payouts. Clean data so your reports, taxes, and margins actually mean something.
-          </div>
+      <!-- ========== NEXT SECTION (EXAMPLE) ========== -->
+      <section class="section" id="why">
+        <div class="section-inner">
+          <div class="section-eyebrow">What this actually looks like</div>
+          <h2>Grounded support that keeps up with your business.</h2>
+          <p>
+            I work inside your systems, not around them. Shopify isn’t off in one corner while bookkeeping and operations
+            fend for themselves. Everything talks to everything else, so you’re not stuck translating between tools.
+          </p>
 
-          <div class="section-pill">
-            <div class="section-pill-title">Money & mapping</div>
-            Connect the dots between orders, deposits, fees, inventory, and books. I keep Stripe, Shopify, PayPal, and QuickBooks from gaslighting you.
-          </div>
+          <div class="section-grid">
+            <div class="pill">
+              <div class="pill-label">Shopify & sales flow</div>
+              Product setup, variants, collections, channels, POS, payouts. Clean structure so your reports and margins
+              actually mean something.
+            </div>
 
-          <div class="section-pill">
-            <div class="section-pill-title">Ongoing support</div>
-            When things change — new product line, new sales channel, new “what the hell is this” issue — you already have someone who knows the system.
+            <div class="pill">
+              <div class="pill-label">Money & mapping</div>
+              Connect orders, deposits, fees, inventory, and books. I keep Shopify, Stripe, PayPal, and QuickBooks from
+              gaslighting you.
+            </div>
+
+            <div class="pill">
+              <div class="pill-label">Ongoing partnership</div>
+              New product line, new channel, new “why is this broken?” moment — you already have someone who knows the
+              whole system.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- add your contact section with id="contact" below when ready -->
+      <!-- TODO: add your #contact section down here when you’re ready -->
+
+    </div>
   </div>
 </body>
 </html>
+
