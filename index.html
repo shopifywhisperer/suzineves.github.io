@@ -4,26 +4,25 @@
   <meta charset="UTF-8" />
   <title>Suzi Neves – Systems, Shopify, Operations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Calm, grounded support for small businesses growing fast – Shopify, bookkeeping, and operations handled without the corporate bullshit." />
+  <meta name="description" content="Calm, sharp support for small businesses in fast, messy growth. Shopify, bookkeeping, and operations handled quietly and precisely in the background." />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0f1012;
-      --bg-soft: #15171b;
-      --bg-alt: #f7f3ee;
-      --text-main: #f8f8f8;
-      --text-soft: #c0c3c9;
-      --text-muted: #8c9098;
-      --accent: #f3a13b; /* saffron */
-      --accent-soft: rgba(243, 161, 59, 0.12);
-      --border-subtle: rgba(255, 255, 255, 0.06);
-      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.5);
-      --radius-lg: 26px;
+      --bg: #fbf7f2;
+      --bg-soft: #f5efe7;
+      --text-main: #15131a;
+      --text-soft: #4c4a55;
+      --text-muted: #9a96a4;
+      --accent: #f1a334; /* saffron */
+      --accent-soft: rgba(241,163,52,0.15);
+      --border-subtle: rgba(10, 6, 0, 0.08);
+      --radius-lg: 32px;
       --radius-pill: 999px;
-      --max-width: 1120px;
+      --max-width: 1080px;
+      --shadow-soft: 0 26px 70px rgba(15, 11, 5, 0.18);
     }
 
     * {
@@ -38,7 +37,8 @@
 
     body {
       font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #1a1c22 0, #050608 55%, #020203 100%);
+      background:
+        radial-gradient(circle at top left, #fdf8f3 0, #f5efe7 44%, #f2ebe2 100%);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
     }
@@ -53,7 +53,7 @@
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 20px 20px 72px;
+      padding: 18px 18px 70px;
     }
 
     /* Header */
@@ -61,13 +61,17 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 6px 0 10px;
-      border-bottom: 1px solid var(--border-subtle);
-      backdrop-filter: blur(8px);
+      padding: 6px 0 8px;
       position: sticky;
       top: 0;
-      z-index: 50;
-      background: linear-gradient(to bottom, rgba(2,2,4,0.95), rgba(2,2,4,0.7), transparent);
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom,
+        rgba(251,247,242,0.96),
+        rgba(251,247,242,0.9),
+        transparent
+      );
+      border-bottom: 1px solid rgba(200,186,165,0.4);
     }
 
     .brand {
@@ -79,9 +83,16 @@
     .brand-mark {
       width: 26px;
       height: 26px;
-      border-radius: 8px;
-      background: conic-gradient(from 210deg, #f3a13b, #f9d28d, #f3a13b, #d96a2e, #f3a13b);
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
+      border-radius: 999px;
+      background:
+        conic-gradient(from 200deg,
+          #f1a334,
+          #f8d29b,
+          #f1a334,
+          #d47432,
+          #f1a334
+        );
+      box-shadow: 0 0 0 1px rgba(110,92,70,0.45);
       position: relative;
       overflow: hidden;
     }
@@ -89,17 +100,18 @@
     .brand-mark::after {
       content: "";
       position: absolute;
-      inset: 22%;
+      inset: 23%;
       border-radius: 999px;
-      border: 1px solid rgba(0,0,0,0.55);
-      border-top-color: transparent;
+      border: 1px solid rgba(255,255,255,0.75);
       border-left-color: transparent;
-      transform: rotate(-14deg);
+      border-bottom-color: transparent;
+      transform: rotate(-26deg);
+      opacity: 0.65;
     }
 
     .brand-text-main {
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       font-size: 11px;
       text-transform: uppercase;
     }
@@ -113,13 +125,13 @@
       display: flex;
       align-items: center;
       gap: 18px;
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
     }
 
     .nav a {
-      color: var(--text-soft);
+      color: var(--text-muted);
       text-decoration: none;
       position: relative;
       padding-bottom: 2px;
@@ -134,7 +146,7 @@
       width: 0;
       height: 1px;
       background: var(--accent);
-      transition: width 0.18s ease;
+      transition: width 0.2s ease;
     }
 
     .nav a:hover {
@@ -147,155 +159,173 @@
 
     /* Hero */
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
-      gap: 40px;
-      padding-top: 18px; /* tighter so there's not a huge gap */
-      padding-bottom: 40px;
       position: relative;
+      margin-top: 18px;
+      padding-top: 40px;
+      padding-bottom: 64px;
+      overflow: visible;
     }
 
-    .hero::before {
-      content: "";
+    .hero-bg {
       position: absolute;
-      inset: -40px -80px auto;
-      height: 64%;
+      inset: -40px -120px auto;
+      height: 72%;
       background:
-        linear-gradient(120deg, rgba(243,161,59,0.28), transparent 44%),
-        radial-gradient(circle at top right, rgba(243,161,59,0.14), transparent 60%);
-      opacity: 0.9;
+        radial-gradient(circle at top center, #ffffff 0, #fbf7f1 50%, transparent 80%),
+        radial-gradient(circle at left 80%, rgba(241,163,52,0.09), transparent 60%);
       pointer-events: none;
       z-index: -2;
     }
 
-    .hero-left {
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 36px;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-petals {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .petal {
+      position: absolute;
+      width: 46px;
+      height: 28px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(241,163,52,0.35));
+      filter: blur(1px);
+      opacity: 0.55;
+      animation: floatSoft 18s ease-in-out infinite alternate;
+    }
+
+    .petal.p1 { top: 6%; left: 8%; animation-delay: -4s; transform: rotate(-18deg); }
+    .petal.p2 { top: 18%; right: 10%; animation-delay: -9s; transform: rotate(12deg); }
+    .petal.p3 { bottom: 18%; left: 18%; animation-delay: -13s; transform: rotate(24deg); }
+    .petal.p4 { bottom: 6%; right: 22%; animation-delay: -2s; transform: rotate(-10deg); }
+
+    @keyframes floatSoft {
+      0%   { transform: translate3d(0,0,0) scale(1); opacity: 0.55; }
+      100% { transform: translate3d(12px,-14px,0) scale(1.05); opacity: 0.9; }
+    }
+
+    .hero-text-block {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      justify-content: center;
+      gap: 18px;
     }
 
-    .kicker-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .kicker {
       font-size: 11px;
-      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-soft);
-    }
-
-    .kicker-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(243,161,59,0.5);
-      background: radial-gradient(circle at top left, rgba(243,161,59,0.22), rgba(10, 8, 3, 0.9));
-      box-shadow: 0 12px 25px rgba(0,0,0,0.5);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .kicker-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #f9d28d;
-      box-shadow: 0 0 0 3px rgba(243,161,59,0.3);
+      letter-spacing: 0.22em;
+      color: var(--text-muted);
+      text-align: center;
     }
 
     .hero-title {
       font-family: "Playfair Display", "Times New Roman", serif;
       font-weight: 600;
-      font-size: clamp(32px, 4vw, 40px);
-      line-height: 1.06;
-      max-width: 520px;
+      font-size: clamp(28px, 3.3vw, 36px);
+      line-height: 1.18;
+      text-align: center;
     }
 
-    .hero-highlight {
+    .hero-title span:nth-child(2) {
       color: var(--accent);
+    }
+
+    .hero-subwrap {
+      margin-top: 8px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .hero-sub {
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--text-soft);
-      max-width: 460px;
+      text-align: left;
     }
 
-    .hero-sub span {
+    .hero-sub strong {
+      font-weight: 600;
       color: var(--text-main);
-      font-weight: 500;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: auto auto;
-      gap: 18px 26px;
-      margin-top: 8px;
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 16px;
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       color: var(--text-muted);
+      justify-content: center;
     }
 
-    .hero-grid strong {
+    .hero-meta-block {
+      min-width: 180px;
+    }
+
+    .hero-meta-label {
       color: var(--text-soft);
-      font-weight: 500;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .hero-meta-text {
+      letter-spacing: 0.08em;
     }
 
     .hero-cta-row {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 18px;
-      margin-top: 12px;
+      justify-content: center;
+      margin-top: 18px;
     }
 
     .hero-cta {
-      border: none;
-      background: transparent;
-      color: var(--accent);
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      padding: 8px 0;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      position: relative;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(140,110,70,0.3);
+      background: #fffaf3;
+      color: #3d2b12;
+      text-decoration: none;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      box-shadow: 0 14px 30px rgba(132,97,52,0.18);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
     }
 
-    .hero-cta::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, var(--accent), transparent 65%);
-      opacity: 0.9;
-      transform-origin: left;
-      transform: scaleX(1);
-      transition: transform 0.16s ease;
-    }
-
-    .hero-cta:hover::after {
-      transform: scaleX(1.03);
+    .hero-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(132,97,52,0.26);
+      background: #fff7eb;
     }
 
     .hero-cta svg {
-      width: 16px;
-      height: 16px;
-      stroke-width: 1.6;
+      width: 15px;
+      height: 15px;
+      stroke-width: 1.7;
     }
 
     .hero-note {
       font-size: 11px;
       color: var(--text-muted);
+      max-width: 220px;
     }
 
     .hero-note span {
@@ -303,112 +333,87 @@
       font-weight: 500;
     }
 
-    .hero-right {
+    /* Hero photo */
+    .hero-photo-wrap {
       position: relative;
-      align-self: center;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
 
-    .photo-shell {
+    .hero-photo-shell {
       position: relative;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: radial-gradient(circle at top left, rgba(243,161,59,0.15), rgba(0,0,0,0.95));
-      padding: 12px;
-      box-shadow: var(--shadow-soft);
-      transform-origin: center;
-      animation: heroFloat 18s ease-in-out infinite alternate;
-    }
-
-    .photo-shell::before {
-      content: "";
-      position: absolute;
-      inset: 10px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-top-color: rgba(243,161,59,0.45);
-      border-right-color: rgba(243,161,59,0.23);
-      pointer-events: none;
-    }
-
-    .photo-stripe {
-      position: absolute;
-      left: -24px;
-      top: 10%;
-      bottom: 14%;
-      width: 18px;
-      border-radius: 999px;
-      background: linear-gradient(to bottom, #f9d28d, #f3a13b, #d96a2e);
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.4), 0 14px 40px rgba(243,161,59,0.55);
-    }
-
-    .photo-inner {
-      position: relative;
-      overflow: hidden;
-      border-radius: 18px;
-      isolation: isolate;
-    }
-
-    .photo-inner img {
-      display: block;
       width: 100%;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: 10px;
+      filter: drop-shadow(var(--shadow-soft));
+    }
+
+    .hero-photo-bg {
+      position: absolute;
+      inset: 10% -14% -4% 4%;
+      background:
+        radial-gradient(circle at top, rgba(241,163,52,0.24), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(0,0,0,0.06), transparent 70%);
+      opacity: 0.9;
+      filter: blur(10px);
+      z-index: -1;
+    }
+
+    .hero-photo-inner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 52% 48% 56% 44% / 64% 40% 60% 36%;
+      background: linear-gradient(145deg, #ffffff, #f7efe4);
+      clip-path: ellipse(78% 86% at 58% 50%);
+    }
+
+    .hero-photo-inner img {
+      display: block;
+      width: 110%;
       height: auto;
       object-fit: cover;
-      transform: scale(1.03) translateY(2px); /* a bit more zoomed out */
-      filter: contrast(1.04) saturate(1.05);
-      transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease;
-      opacity: 0.96;
+      transform: translate(-6%, 4%);
+      filter: contrast(1.03) saturate(1.03);
     }
 
-    .photo-inner::after {
+    .hero-photo-inner::after {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top, rgba(2,2,4,0.55), transparent 40%),
-        radial-gradient(circle at top left, rgba(243,161,59,0.32), transparent 55%);
+        linear-gradient(to top, rgba(250,245,237,0.8), transparent 45%),
+        radial-gradient(circle at bottom left, rgba(241,163,52,0.16), transparent 60%);
       mix-blend-mode: soft-light;
-      pointer-events: none;
+      opacity: 0.9;
     }
 
-    .photo-shell:hover img {
-      transform: scale(1.06) translateY(0);
-      filter: contrast(1.08) saturate(1.08);
-      opacity: 1;
-    }
-
-    .photo-tag {
+    .hero-photo-tag {
       position: absolute;
-      right: 16px;
-      bottom: 16px;
-      padding: 6px 11px;
-      border-radius: 999px;
-      background: rgba(3,3,6,0.82);
-      border: 1px solid rgba(243,161,59,0.55);
-      backdrop-filter: blur(10px);
+      right: 8%;
+      bottom: 6%;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,252,247,0.96);
+      border: 1px solid rgba(167,132,86,0.35);
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--text-soft);
+      color: #6a5742;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      box-shadow: 0 10px 24px rgba(155,122,80,0.18);
     }
 
-    .photo-tag-dot {
+    .hero-photo-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
       background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(243,161,59,0.4);
-    }
-
-    @keyframes heroFloat {
-      0% {
-        transform: translateY(0px) translateX(0px);
-      }
-      100% {
-        transform: translateY(-8px) translateX(4px);
-      }
+      box-shadow: 0 0 0 3px rgba(241,163,52,0.36);
     }
 
     /* Sections */
@@ -418,49 +423,54 @@
 
     .section-label {
       font-size: 11px;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      text-align: left;
     }
 
-    .section-shell {
-      border-radius: var(--radius-lg);
-      padding: 22px 22px 20px;
-      background:
-        linear-gradient(to bottom right, rgba(243,161,59,0.08), rgba(12,13,18,0.85));
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.65);
+    .panel {
       position: relative;
+      border-radius: var(--radius-lg);
+      padding: 26px 26px 24px;
+      background: #fffdf9;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(214,198,176,0.45);
       overflow: hidden;
     }
 
-    .section-shell::before {
+    .panel::before {
       content: "";
       position: absolute;
       inset: -40%;
-      background: radial-gradient(circle at top left, rgba(243,161,59,0.16), transparent 60%);
+      background:
+        radial-gradient(circle at top left, rgba(241,163,52,0.12), transparent 60%);
       opacity: 0.9;
       pointer-events: none;
     }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 26px;
+    .panel-inner {
       position: relative;
       z-index: 1;
     }
 
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,0.9fr);
+      gap: 26px;
+    }
+
     .section-title {
       font-family: "Playfair Display", serif;
-      font-size: 24px;
+      font-size: 22px;
       margin-bottom: 10px;
     }
 
     .section-body {
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.8;
       color: var(--text-soft);
       max-width: 540px;
     }
@@ -474,54 +484,36 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 14px;
+      margin-top: 8px;
     }
 
     .chip {
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      padding: 5px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(243,161,59,0.45);
-      background: rgba(3,3,6,0.7);
-      color: var(--text-soft);
+      letter-spacing: 0.16em;
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(170,140,96,0.35);
+      background: rgba(252,248,242,0.96);
+      color: #7b6850;
     }
 
     .section-note {
       font-size: 12px;
       color: var(--text-muted);
-      margin-top: 10px;
+      margin-top: 12px;
       max-width: 320px;
     }
 
     /* Services */
-    .services-strip {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      background: linear-gradient(to right, rgba(8,9,13,0.98), rgba(17,18,24,0.98));
-      padding: 20px 22px 18px;
-      margin-top: 18px;
-      position: relative;
-      overflow: hidden;
+    .services-panel {
+      background: linear-gradient(to bottom right, #fefcf9, #f7efe4);
     }
 
-    .services-strip::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at right center, rgba(243,161,59,0.18), transparent 55%);
-      opacity: 0.75;
-      pointer-events: none;
-    }
-
-    .services-layout {
+    .services-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-      gap: 30px;
-      position: relative;
-      z-index: 1;
-      align-items: center;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
+      gap: 26px;
     }
 
     .services-title {
@@ -533,12 +525,12 @@
     .services-body {
       font-size: 13px;
       color: var(--text-soft);
-      max-width: 340px;
+      max-width: 360px;
     }
 
-    .services-columns {
+    .services-cols {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 18px;
       font-size: 12px;
     }
@@ -557,73 +549,43 @@
     }
 
     /* CTA */
-    .cta {
-      margin-top: 26px;
+    .cta-panel {
+      background: radial-gradient(circle at left, rgba(241,163,52,0.22), #fffdf8 55%);
     }
 
     .cta-inner {
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(243,161,59,0.7);
-      background:
-        radial-gradient(circle at left center, rgba(243,161,59,0.22), rgba(8,9,13,0.95));
-      padding: 18px 22px 18px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      box-shadow: 0 22px 55px rgba(0,0,0,0.8);
+    }
+
+    .cta-main {
+      max-width: 420px;
     }
 
     .cta-text-main {
       font-size: 15px;
       font-weight: 500;
+      margin-bottom: 6px;
     }
 
     .cta-text-sub {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-soft);
-      margin-top: 4px;
     }
 
     .cta-actions {
       display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .cta-primary {
-      display: inline-flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       gap: 10px;
-      padding: 8px 18px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(16,10,4,0.5);
-      background: #0c0804;
-      color: #f9d28d;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.8);
-      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
-    }
-
-    .cta-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(0,0,0,0.9);
-      background: #120a03;
-    }
-
-    .cta-primary svg {
-      width: 16px;
-      height: 16px;
-      stroke-width: 1.6;
     }
 
     .cta-secondary {
       font-size: 12px;
-      color: var(--text-soft);
+      color: var(--text-muted);
     }
 
     .cta-secondary span {
@@ -632,9 +594,9 @@
 
     /* Footer */
     .site-footer {
-      margin-top: 28px;
+      margin-top: 32px;
       padding-top: 16px;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid rgba(204,186,164,0.7);
       font-size: 11px;
       color: var(--text-muted);
       display: flex;
@@ -646,83 +608,50 @@
     .foot-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .foot-tag {
       padding: 3px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(6,7,10,0.9);
-    }
-
-    /* Animations – gentle reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(12px);
-      animation: revealIn 0.8s ease forwards;
-    }
-
-    .reveal.delay-1 { animation-delay: 0.1s; }
-    .reveal.delay-2 { animation-delay: 0.2s; }
-    .reveal.delay-3 { animation-delay: 0.3s; }
-    .reveal.delay-4 { animation-delay: 0.4s; }
-
-    @keyframes revealIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(199,180,157,0.8);
+      background: rgba(253,248,241,0.9);
+      color: #7a6a55;
     }
 
     /* Responsive */
     @media (max-width: 880px) {
       .shell {
-        padding: 16px 16px 60px;
-      }
-
-      .site-header {
-        padding-top: 4px;
-        padding-bottom: 6px;
+        padding: 14px 14px 60px;
       }
 
       .nav {
         display: none;
       }
 
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 22px;
-        padding-top: 20px;
+      .hero-inner {
+        grid-template-columns: minmax(0,1fr);
+        gap: 30px;
       }
 
-      .hero-left {
-        order: 2;
+      .hero-photo-wrap {
+        justify-content: center;
       }
 
-      .hero-right {
-        order: 1;
-        max-width: 420px;
-        margin: 0 auto;
-      }
-
-      .photo-stripe {
-        left: 8px;
-        width: 14px;
+      .hero-photo-shell {
+        margin-right: 0;
       }
 
       .about-grid {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: minmax(0,1fr);
       }
 
-      .services-layout {
+      .services-grid {
         grid-template-columns: minmax(0,1fr);
-        gap: 22px;
       }
 
-      .services-columns {
+      .services-cols {
         grid-template-columns: minmax(0,1fr);
-        gap: 10px;
       }
 
       .cta-inner {
@@ -731,22 +660,24 @@
     }
 
     @media (max-width: 540px) {
-      .hero-title {
-        font-size: 28px;
+      .panel {
+        padding: 20px 16px 18px;
       }
 
-      .section-shell,
-      .services-strip,
-      .cta-inner {
-        padding: 18px 16px 16px;
+      .hero-subwrap {
+        max-width: 100%;
       }
 
-      .hero-grid {
-        grid-template-columns: minmax(0,1fr);
+      .hero-photo-shell {
+        max-width: 300px;
       }
 
-      .photo-shell {
-        padding: 10px;
+      .hero-cta-row {
+        align-items: flex-start;
+      }
+
+      .hero-note {
+        max-width: 100%;
       }
     }
   </style>
@@ -772,84 +703,91 @@
       </header>
 
       <!-- Hero -->
-      <section class="hero">
-        <div class="hero-left reveal delay-1">
-          <div class="kicker-row">
-            <div class="kicker-pill">
-              <span class="kicker-dot"></span>
-              <span>Systems · Shopify · Ops</span>
-            </div>
-          </div>
-
-          <h1 class="hero-title">
-            I keep your<br>
-            <span class="hero-highlight">behind-the-scenes</span><br>
-            from burning down.
-          </h1>
-
-          <p class="hero-sub">
-            You hold the vision and the people. I quietly untangle the tech,
-            numbers, and moving pieces so your business can grow without
-            eating you alive. This is <span>grounded support</span>, not corporate theater.
-          </p>
-
-          <div class="hero-grid">
-            <div>
-              <div><strong>For</strong></div>
-              <div>Small shops, scrappy brands, fast growth phases.</div>
-            </div>
-            <div>
-              <div><strong>What I do</strong></div>
-              <div>Shopify, bookkeeping, operations, weird edge-cases.</div>
-            </div>
-          </div>
-
-          <div class="hero-cta-row">
-            <button class="hero-cta" onclick="window.location.href='mailto:suzi@radpurpose.com?subject=Let%27s%20talk%20systems';">
-              <span>Reach out</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M6 18L18 6M9 6h9v9"/>
-              </svg>
-            </button>
-            <div class="hero-note">
-              <span>Built for pressure.</span> No drama, no hand-holding, just clarity.
-            </div>
-          </div>
+      <section class="hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="hero-petals">
+          <div class="petal p1"></div>
+          <div class="petal p2"></div>
+          <div class="petal p3"></div>
+          <div class="petal p4"></div>
         </div>
 
-        <div class="hero-right reveal delay-2">
-          <div class="photo-shell">
-            <div class="photo-stripe"></div>
-            <div class="photo-inner">
-              <!-- Your photo -->
-              <img src="IMG_6692.jpeg" alt="Suzi working in a warm, focused workspace">
+        <div class="hero-inner">
+          <div class="hero-text-block">
+            <div class="kicker">Systems · Shopify · Operations</div>
+
+            <h1 class="hero-title">
+              <span>Calm in the chaos.</span><br />
+              <span>Feral about the details.</span>
+            </h1>
+
+            <div class="hero-subwrap">
+              <p class="hero-sub">
+                You hold the vision and the people. I quietly untangle
+                <strong>Shopify, books, and operations</strong> so growth stops feeling
+                like an emergency and starts feeling sustainable again.
+              </p>
             </div>
-            <div class="photo-tag">
-              <span class="photo-tag-dot"></span>
-              <span>Active case · Quietly in the background</span>
+
+            <div class="hero-meta-row">
+              <div class="hero-meta-block">
+                <span class="hero-meta-label">For</span>
+                <span class="hero-meta-text">Scrappy shops & fast-growth brands led by actual humans.</span>
+              </div>
+              <div class="hero-meta-block">
+                <span class="hero-meta-label">In the mix</span>
+                <span class="hero-meta-text">Shopify, QuickBooks, weird edge cases, back-room reality.</span>
+              </div>
+            </div>
+
+            <div class="hero-cta-row">
+              <a class="hero-cta" href="mailto:suzi@radpurpose.com?subject=Let%27s%20talk%20systems">
+                <span>Reach out</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M6 18L18 6M9 6h9v9"/>
+                </svg>
+              </a>
+              <div class="hero-note">
+                <span>Built for pressure.</span> No slides, no jargon — just what’s true.
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-photo-wrap">
+            <div class="hero-photo-shell">
+              <div class="hero-photo-bg"></div>
+              <div class="hero-photo-inner">
+                <!-- Your image file: place IMG_6692.jpeg next to this HTML -->
+                <img src="IMG_6692.jpeg" alt="Suzi working in a focused, warm workspace">
+              </div>
+              <div class="hero-photo-tag">
+                <span class="hero-photo-dot"></span>
+                <span>Quietly in the background</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- About / Why -->
+      <!-- About -->
       <section id="about">
         <div class="section-label">Why this works</div>
-        <div class="section-shell reveal delay-1">
-          <div class="about-grid">
+        <div class="panel">
+          <div class="panel-inner about-grid">
             <div>
-              <h2 class="section-title">You don’t need another dashboard. You need a grown-up in the back room.</h2>
+              <h2 class="section-title">
+                You don’t need another tool. You need a grown-up in the back room.
+              </h2>
               <p class="section-body">
-                Growth feels wild because everything is talking at once:
-                Shopify, inventory, payouts, invoices, taxes, people asking
-                you for “just one more thing.” You are not failing — the system
-                is. My job is to build a quiet, reliable spine behind your
-                business so decisions get easier and fires get rarer.
+                Growth gets loud because everything is talking at once:
+                Shopify orders, inventory, payouts, invoices, taxes, team asks,
+                and your own brain begging for a minute of silence.
+                You are not the problem. The system is.
               </p>
               <p class="section-body" style="margin-top: 10px;">
-                I translate messy, real-world operations into <strong>clean, repeatable flows</strong>:
-                money in, money out, orders, stock, and humans all pointed in
-                the same direction.
+                My work is building a quiet, reliable spine behind your business.
+                <strong>Money in, money out, orders, stock, and humans all aligned</strong>
+                so decisions get easier and fires get rarer.
               </p>
             </div>
 
@@ -862,39 +800,38 @@
               </div>
               <div class="section-note">
                 I notice patterns fast, ask sharp questions, and then quietly
-                build the boring things that keep everything from collapsing
-                later.
+                build the boring structures that keep everything from collapsing later.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Services / What I handle -->
+      <!-- Services -->
       <section id="work">
-        <div class="section-label">What I actually do</div>
-        <div class="services-strip reveal delay-2">
-          <div class="services-layout">
+        <div class="section-label">What I actually handle</div>
+        <div class="panel services-panel">
+          <div class="panel-inner services-grid">
             <div>
               <h3 class="services-title">The work lives in the details.</h3>
               <p class="services-body">
-                Every engagement is a little different, but it usually starts
-                with me looking under the hood and mapping what is really
-                happening — not what the last person said they set up.
+                Every engagement is a little different, but it usually starts with
+                me looking under the hood and mapping what is
+                <strong>really</strong> happening — not what the last person said they set up.
               </p>
             </div>
 
-            <div class="services-columns">
+            <div class="services-cols">
               <div>
                 <div class="svc-label">Shopify & sales</div>
-                <div class="svc-line">Product data that makes sense.</div>
+                <div class="svc-line">Product data that isn’t a disaster.</div>
                 <div class="svc-line">Sales channels that talk to each other.</div>
                 <div class="svc-line">Payouts that land clean in your books.</div>
               </div>
               <div>
                 <div class="svc-label">Money & books</div>
                 <div class="svc-line">Untangling past chaos without shame.</div>
-                <div class="svc-line">Clear categories, clean reports.</div>
+                <div class="svc-line">Clear categories, real-world reporting.</div>
                 <div class="svc-line">You finally know what you can afford.</div>
               </div>
               <div>
@@ -909,24 +846,30 @@
       </section>
 
       <!-- CTA -->
-      <section id="cta" class="cta">
-        <div class="cta-inner reveal delay-3">
-          <div>
-            <div class="cta-text-main">If your business feels louder than it should, we should talk.</div>
-            <div class="cta-text-sub">
-              Send me a quick snapshot of where you’re stuck — Shopify, books, ops, or all of the above.
-              I’ll tell you what I see and what I’d do first.
+      <section id="cta">
+        <div class="section-label">Next step</div>
+        <div class="panel cta-panel">
+          <div class="panel-inner cta-inner">
+            <div class="cta-main">
+              <div class="cta-text-main">
+                If your business feels louder than it should, we should talk.
+              </div>
+              <div class="cta-text-sub">
+                Send me a quick snapshot of where you’re stuck — Shopify, books,
+                ops, or all of the above. I’ll tell you what I see and what I’d
+                do first. No pressure, no performance.
+              </div>
             </div>
-          </div>
-          <div class="cta-actions">
-            <a class="cta-primary" href="mailto:suzi@radpurpose.com?subject=Let%27s%20untangle%20this">
-              <span>Email me</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M6 18L18 6M9 6h9v9"/>
-              </svg>
-            </a>
-            <div class="cta-secondary">
-              Prefer a list first? <span>Send what you have.</span>
+            <div class="cta-actions">
+              <a class="hero-cta" href="mailto:suzi@radpurpose.com?subject=Let%27s%20untangle%20this">
+                <span>Email me</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M6 18L18 6M9 6h9v9"/>
+                </svg>
+              </a>
+              <div class="cta-secondary">
+                Brain full? <span>Send the messy version.</span> I read between the lines.
+              </div>
             </div>
           </div>
         </div>
@@ -945,7 +888,6 @@
   </div>
 
   <script>
-    // Set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
