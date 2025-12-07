@@ -1,725 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Suzi Neves – Shopify · Bookkeeping · Operations</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Sharp, grounded systems and operations support for small business owners. Shopify, bookkeeping, and operations handled with clean, feral focus." />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-main: #f5f2ec;
-      --text-main: #151318;
-      --text-soft: #302934;
-      --text-muted: #7f7485;
-      --accent: #f1a334;      /* saffron */
-      --accent-deep: #c3692a; /* deeper saffron */
-      --max-width: 1120px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-
-    body {
-      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left,#fffef9 0,#f5f2ec 45%,#ebe2d8 100%);
-      color: var(--text-main);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .shell {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 18px 18px 72px;
-    }
-
-    /* Header */
-    .site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 0 10px;
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(
-        to bottom,
-        rgba(245,242,236,0.96),
-        rgba(245,242,236,0.9),
-        transparent
-      );
-      border-bottom: 1px solid rgba(129,102,74,0.35);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-mark {
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
-      background: linear-gradient(140deg,#f8d29b,#f1a334,#c66b2e);
-      box-shadow:
-        0 0 0 1px rgba(70,47,26,0.5),
-        0 10px 20px rgba(70,47,26,0.45);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 38% -40% auto 6%;
-      height: 1px;
-      background: rgba(255,255,255,0.9);
-      transform: rotate(-15deg);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .brand-name {
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-    }
-
-    .nav a {
-      color: var(--text-muted);
-      text-decoration: none;
-      position: relative;
-      padding-bottom: 2px;
-      transition: color 0.18s ease;
-    }
-
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(to right,var(--accent),var(--accent-deep));
-      transition: width 0.2s ease;
-    }
-
-    .nav a:hover {
-      color: var(--text-main);
-    }
-
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    /* HERO WRAP */
-    .hero-wrap {
-      position: relative;
-      margin-top: 24px;
-      padding-top: 30px;
-      padding-bottom: 70px;
-      overflow: hidden;
-    }
-
-    .hero-bg-top {
-      position: absolute;
-      inset: -40px -200px auto;
-      height: 72%;
-      background:
-        radial-gradient(circle at top,#ffffff 0,#faf5ee 55%,transparent 80%),
-        linear-gradient(135deg,rgba(241,163,52,0.16),transparent 55%);
-      pointer-events: none;
-      z-index: -3;
-    }
-
-    /* subtle specks for movement */
-    .hero-specks {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .speck {
-      position: absolute;
-      width: 26px;
-      height: 12px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%,#fff7e8,rgba(241,163,52,0.9));
-      filter: blur(0.6px);
-      opacity: 0.9;
-      animation: speckFloat 19s ease-in-out infinite alternate;
-    }
-
-    .speck.s1 { top: 9%; left: 12%; animation-delay: -2s; }
-    .speck.s2 { top: 22%; right: 18%; animation-delay: -7s; }
-    .speck.s3 { bottom: 18%; left: 20%; animation-delay: -12s; }
-    .speck.s4 { bottom: 10%; right: 14%; animation-delay: -4s; }
-
-    @keyframes speckFloat {
-      0% { transform: translate3d(0,0,0); opacity: 0.8; }
-      100% { transform: translate3d(10px,-10px,0); opacity: 1; }
-    }
-
-    /* HERO LAYOUT */
-    .hero {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0,1.15fr) minmax(0,0.95fr);
-      gap: 34px;
-      align-items: stretch;
-      min-height: 320px;
-    }
-
-    .hero-text {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 18px;
-      max-width: 520px;
-      z-index: 2;
-    }
-
-    .kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      color: var(--text-muted);
-    }
-
-    .hero-title {
-      font-family: "Playfair Display","Times New Roman",serif;
-      font-weight: 600;
-      font-size: clamp(28px,3.4vw,36px);
-      line-height: 1.16;
-    }
-
-    .hero-title span + span {
-      display: block;
-      margin-top: 4px;
-    }
-
-    .hero-subwrap {
-      max-width: 500px;
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--text-soft);
-    }
-
-    .hero-sub strong {
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 18px;
-      margin-top: 14px;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 22px;
-      border-radius: 6px;
-      border: 1px solid rgba(45,26,10,0.55);
-      background: linear-gradient(130deg,#25140a,#5b311d);
-      color: #fdf4e6;
-      text-decoration: none;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      box-shadow: 0 18px 40px rgba(40,16,4,0.9);
-      transition:
-        transform 0.16s ease,
-        box-shadow 0.16s ease,
-        background 0.16s ease;
-    }
-
-    .hero-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 22px 52px rgba(33,10,0,0.95);
-      background: linear-gradient(130deg,#2f190c,#6b3a21);
-    }
-
-    .hero-cta svg {
-      width: 15px;
-      height: 15px;
-      stroke-width: 1.7;
-    }
-
-    .hero-note {
-      font-size: 11px;
-      color: var(--text-muted);
-      max-width: 260px;
-    }
-
-    .hero-note span {
-      color: var(--accent-deep);
-      font-weight: 500;
-    }
-
-    /* HERO PHOTO PANEL – full height, blurred, saffron, fade to white */
-    .hero-photo-panel {
-      position: relative;
-      border-radius: 0;
-      overflow: hidden;
-      min-height: 280px;
-    }
-
-    .hero-photo-bg {
-      position: absolute;
-      inset: 0;
-      background: url('IMG_6692.jpeg') center center / cover no-repeat;
-      filter: blur(4px) saturate(1.08) brightness(0.85);
-      transform: scale(1.04);
-    }
-
-    .hero-photo-wash {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(140deg,rgba(241,163,52,0.45),transparent 60%),
-        radial-gradient(circle at bottom left,rgba(0,0,0,0.5),transparent 70%);
-      mix-blend-mode: soft-light;
-      opacity: 0.9;
-    }
-
-    .hero-photo-fade {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          to left,
-          rgba(245,242,236,1) 0%,
-          rgba(245,242,236,0.96) 18%,
-          rgba(245,242,236,0.8) 28%,
-          transparent 65%
-        );
-    }
-
-    /* SECTIONS */
-    section {
-      margin-top: 42px;
-    }
-
-    .section-inner {
-      max-width: 780px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .section-divider {
-      width: 74px;
-      height: 2px;
-      background: linear-gradient(to right,var(--accent),var(--accent-deep));
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      font-family: "Playfair Display",serif;
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .section-body {
-      font-size: 14px;
-      line-height: 1.9;
-      color: var(--text-soft);
-      margin-bottom: 10px;
-    }
-
-    .section-body strong {
-      color: var(--text-main);
-      font-weight: 600;
-    }
-
-    .chip-list {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-soft);
-    }
-
-    .chip-list span {
-      padding-bottom: 3px;
-      border-bottom: 1px solid rgba(163,132,92,0.6);
-    }
-
-    .section-note {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 12px;
-      max-width: 400px;
-    }
-
-    /* SERVICES GRID */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3,minmax(0,1fr));
-      gap: 22px;
-      margin-top: 18px;
-    }
-
-    .svc-label {
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 11px;
-      color: var(--accent-deep);
-      margin-bottom: 6px;
-    }
-
-    .svc-line {
-      font-size: 13px;
-      color: var(--text-soft);
-      line-height: 1.6;
-    }
-
-    /* CTA SECTION */
-    .cta-block {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-top: 18px;
-      padding: 18px 0;
-      border-top: 1px solid rgba(126,102,74,0.4);
-    }
-
-    .cta-main {
-      max-width: 440px;
-    }
-
-    .cta-text-main {
-      font-size: 15px;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .cta-text-sub {
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    .cta-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .cta-secondary {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .cta-secondary span {
-      color: var(--accent-deep);
-    }
-
-    /* FOOTER */
-    .site-footer {
-      margin-top: 40px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(126,102,74,0.5);
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .foot-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .foot-tag {
-      padding: 3px 9px;
-      border-radius: 4px;
-      border: 1px solid rgba(199,180,157,0.9);
-      background: rgba(253,248,241,0.95);
-      color: #7a6a55;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 880px) {
-      .shell {
-        padding: 14px 14px 64px;
-      }
-
-      .nav {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: minmax(0,1fr);
-        gap: 26px;
-      }
-
-      .hero-text {
-        max-width: 100%;
-      }
-
-      .hero-photo-panel {
-        min-height: 230px;
-      }
-
-      .hero-photo-fade {
-        background:
-          linear-gradient(
-            to left,
-            rgba(245,242,236,1) 0%,
-            rgba(245,242,236,0.96) 25%,
-            transparent 70%
-          );
-      }
-
-      .section-inner {
-        max-width: 100%;
-      }
-
-      .services-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Suzi Neves</title>
+
+<style>
+
+/* GLOBAL ------------------------------------------------------- */
+
+body {
+  font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left,#fffef9 0,#f5f2ec 45%,#ebe2d8 100%);
+  color: #2b2420;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  overflow-x: hidden; /* keeps left edge from cutting off */
+}
+
+h1 {
+  font-family: "DM Serif Display", serif;
+}
+
+
+/* HERO SECTION ------------------------------------------------------- */
+
+.hero-wrap {
+  padding: 6rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+/* LEFT SIDE TEXT -------------------------------------------- */
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.kicker {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2.8rem;
+  line-height: 1.13;
+  margin: 0 0 1.5rem;
+}
+
+.subhead {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  margin-bottom: 2rem;
+  max-width: 32rem;
+}
+
+.cta {
+  display: inline-block;
+  padding: 0.85rem 1.4rem;
+  background: #4e3628;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.hero-note {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  max-width: 24rem;
+}
+.hero-note span {
+  font-weight: 600;
+}
+
+/* RIGHT SIDE PHOTO ---------------------------------------------- */
+
+.hero-photo {
+  position: relative;
+  height: 100%;
+  min-height: 450px;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.hero-photo-bg {
+  position: absolute;
+  inset: 0;
+  background: url('IMG_6594.jpeg') center center / cover no-repeat;
+  filter: blur(2.5px) brightness(0.92) contrast(1.08);
+  transform: scale(1.04);
+}
+
+/* saffron tone overlay */
+.hero-photo-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(241,163,52,0.22), transparent 60%);
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+}
+
+/* feather fade into white */
+.hero-photo-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    rgba(255,255,255,0.9) 55%,
+    #ffffff 90%
+  );
+}
+
+</style>
 </head>
+
 <body>
-  <div class="page">
-    <div class="shell">
 
-      <!-- HEADER -->
-      <header class="site-header">
-        <div class="brand">
-          <div class="brand-mark"></div>
-          <div class="brand-text">
-            <div class="brand-name">SUZI NEVES</div>
-          </div>
-        </div>
-        <nav class="nav">
-          <a href="#about">About</a>
-          <a href="#work">What I handle</a>
-          <a href="#cta">Next step</a>
-        </nav>
-      </header>
+<!-- HERO SECTION ------------------------------------------------------- -->
 
-      <!-- HERO -->
-      <div class="hero-wrap">
-        <div class="hero-bg-top"></div>
-        <div class="hero-specks">
-          <div class="speck s1"></div>
-          <div class="speck s2"></div>
-          <div class="speck s3"></div>
-          <div class="speck s4"></div>
-        </div>
+<section class="hero-wrap">
+  <div class="hero-content">
 
-        <section class="hero" id="top">
-          <!-- Left: Text -->
-          <div class="hero-text">
-            <div class="kicker">SHOPIFY · BOOKKEEPING · OPERATIONS</div>
+    <div class="hero-text">
 
-            <h1 class="hero-title">
-              <span>Businesses run better when systems work together.</span>
-              <span>I make sure they do.</span>
-            </h1>
+      <div class="kicker">SHOPIFY · BOOKKEEPING · OPERATIONS</div>
 
-            <div class="hero-subwrap">
-              <p class="hero-sub">
-                I sort out the behind-the-scenes chaos, see the full system, and fix what’s
-                slowing you down — so the business runs cleaner and easier.
-              </p>
-            </div>
+      <h1>
+        Businesses run better when<br>
+        systems work together.<br>
+        I make sure they do.
+      </h1>
 
-            <div class="hero-cta-row">
-              <a class="hero-cta" href="mailto:suzi@radpurpose.com?subject=Let%27s%20talk%20systems">
-                <span>Reach out</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M6 18L18 6M9 6h9v9"/>
-                </svg>
-              </a>
-              <div class="hero-note">
-                <span>No polish required.</span> Send the half-rant and the ugly screenshots — I’ll make sense of it.
-              </div>
-            </div>
-          </div>
+      <p class="subhead">
+        I sort out the behind-the-scenes chaos, see the full system,
+        and fix what’s slowing you down — so the business runs cleaner and easier.
+      </p>
 
-          <!-- Right: Photo panel -->
-          <div class="hero-photo-panel">
-            <div class="hero-photo-bg"></div>
-            <div class="hero-photo-wash"></div>
-            <div class="hero-photo-fade"></div>
-          </div>
-        </section>
-      </div>
+      <a href="mailto:suzi@radpurpose.com" class="cta">Reach out →</a>
 
-      <!-- ABOUT -->
-      <section id="about">
-        <div class="section-inner">
-          <div class="section-label">Why this exists</div>
-          <div class="section-divider"></div>
-
-          <h2 class="section-title">
-            Your business isn’t “too messy.” Your systems are half-finished.
-          </h2>
-
-          <p class="section-body">
-            Fast growth stacks Band-Aids on top of “we’ll fix it later.” Shopify says one thing,
-            your bank says another, your books say nothing useful, and you’re supposed to make
-            smart decisions in the middle of that?
-          </p>
-
-          <p class="section-body">
-            My work is quiet heavy-lift support. I trace every line —
-            <strong>money in, money out, orders, stock, humans, taxes, tools</strong> — and then
-            design a way for it all to move together without you having to babysit it.
-          </p>
-
-          <div class="chip-list">
-            <span>Systems that hold under pressure</span>
-            <span>Real numbers, not vibes</span>
-            <span>Shopify + QuickBooks sanity</span>
-            <span>Operational reality checks</span>
-          </div>
-
-          <p class="section-note">
-            I notice patterns fast, ask sharp questions, and build the boring structures that keep
-            everything from collapsing later.
-          </p>
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <section id="work">
-        <div class="section-inner">
-          <div class="section-label">What I actually handle</div>
-          <div class="section-divider"></div>
-
-          <h3 class="section-title">I live in the places most people avoid.</h3>
-
-          <p class="section-body">
-            Every engagement is custom, but it usually starts with me crawling through what
-            you’ve already built, naming what’s working, and calling out what’s quietly wrecking
-            your time, cash flow, or sanity.
-          </p>
-
-          <div class="services-grid">
-            <div>
-              <div class="svc-label">Shopify & sales</div>
-              <div class="svc-line">Product data that isn’t a disaster.</div>
-              <div class="svc-line">Sales channels that actually talk to each other.</div>
-              <div class="svc-line">Payouts that land clean in your books.</div>
-            </div>
-            <div>
-              <div class="svc-label">Money & books</div>
-              <div class="svc-line">Untangling past chaos without shame.</div>
-              <div class="svc-line">Clear categories, real-world reporting.</div>
-              <div class="svc-line">You finally know what you can afford.</div>
-            </div>
-            <div>
-              <div class="svc-label">Ops & reality</div>
-              <div class="svc-line">Simple, repeatable workflows people will actually use.</div>
-              <div class="svc-line">Fewer emergencies, fewer “oh shit” moments.</div>
-              <div class="svc-line">Room in your brain to think instead of react.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section id="cta">
-        <div class="section-inner">
-          <div class="section-label">Next step</div>
-          <div class="section-divider"></div>
-
-          <div class="cta-block">
-            <div class="cta-main">
-              <div class="cta-text-main">
-                If your business feels louder than it should, that’s a systems problem.
-              </div>
-              <div class="cta-text-sub">
-                Email me a snapshot of what’s breaking — screenshots, bullet points, half-rant,
-                whatever you’ve got. I’ll tell you what I see, what I’d do first, and whether
-                I’m the right one to help.
-              </div>
-            </div>
-
-            <div class="cta-actions">
-              <a class="hero-cta" href="mailto:suzi@radpurpose.com?subject=Let%27s%20untangle%20this">
-                <span>Reach out</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M6 18L18 6M9 6h9v9"/>
-                </svg>
-              </a>
-              <div class="cta-secondary">
-                No funnels, no calendar maze. <span>Just a real reply.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FOOTER -->
-      <footer class="site-footer">
-        <div>© <span id="year"></span> Suzi Neves</div>
-        <div class="foot-tags">
-          <div class="foot-tag">Controlled wildfire</div>
-          <div class="foot-tag">Built for pressure</div>
-        </div>
-      </footer>
+      <p class="hero-note">
+        <span>Tell me what's getting in the way.</span> I’ll take it from there.
+      </p>
 
     </div>
-  </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    <div class="hero-photo">
+      <div class="hero-photo-bg"></div>
+      <div class="hero-photo-wash"></div>
+      <div class="hero-photo-fade"></div>
+    </div>
+
+  </div>
+</section>
+
 </body>
 </html>
