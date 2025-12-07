@@ -10,22 +10,19 @@
 
   <style>
     :root {
-      --page-bg: #f6f2ec;
-      --page-bg-alt: #fbf7f0;
-      --ink-main: #251c15;
-      --ink-muted: #6f675f;
-      --ink-soft: #a0978e;
-      --ink-strong: #151015;
-      --accent-warm: #f49a5b;
-      --accent-rose: #f16a80;
-      --accent-deep: #2b232c;
-      --line-soft: #ded2c3;
-      --radius-xl: 32px;
-      --radius-lg: 22px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 30px 90px rgba(14, 9, 3, 0.35);
-      --shadow-light: 0 16px 40px rgba(40, 26, 14, 0.18);
-      --max-width: 1080px;
+      --bg-page: #05040a;
+      --bg-panel: #f6f2eb;
+      --bg-section: #100f16;
+
+      --ink-main: #171117;
+      --ink-muted: #6b645f;
+      --ink-soft: #9b938c;
+      --ink-light: #f6f2eb;
+
+      --accent-warm: #f5925a;
+      --accent-rose: #f05b75;
+
+      --max-width: 1120px;
     }
 
     * {
@@ -41,7 +38,7 @@
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background:
-        radial-gradient(circle at top left, #fef8f0 0, #f5ece1 35%, #efe4d8 65%, #e5dbd0 100%);
+        radial-gradient(circle at top left, #1a1220 0, #05040a 55%, #020207 100%);
       color: var(--ink-main);
       -webkit-font-smoothing: antialiased;
     }
@@ -58,16 +55,16 @@
 
     main {
       max-width: var(--max-width);
-      margin: 28px auto 80px;
-      padding: 0 20px 64px;
+      margin: 30px auto 96px;
+      padding: 0 24px;
       position: relative;
     }
 
-    /* FLOATING BACKGROUND BLOBS */
+    /* floating glow */
 
     .bg-orbit {
       position: fixed;
-      inset: 0;
+      inset: -30vh -30vw auto auto;
       pointer-events: none;
       z-index: -1;
       opacity: 0.9;
@@ -77,35 +74,32 @@
       position: absolute;
       border-radius: 999px;
       filter: blur(40px);
+      mix-blend-mode: screen;
       opacity: 0.35;
       animation: float 18s ease-in-out infinite alternate;
-      mix-blend-mode: multiply;
     }
 
-    .bg-orbit .blob-1 {
-      width: 340px; height: 340px;
-      background: radial-gradient(circle at 20% 0, #ffd7a7, #f49a5b 50%, #e15f75 100%);
-      top: -80px; left: -40px;
+    .bg-orbit .glow-1 {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle at 0 0, #ffccaa, #f5925a 55%, #f05b75 100%);
+      top: 0;
+      right: 0;
       animation-delay: 0s;
     }
 
-    .bg-orbit .blob-2 {
-      width: 260px; height: 260px;
-      background: radial-gradient(circle at 0 0, #f3bfbf, #f16a80 55%, #b34b73 100%);
-      top: 40%; right: -80px;
-      animation-delay: 2s;
-    }
-
-    .bg-orbit .blob-3 {
-      width: 280px; height: 280px;
-      background: radial-gradient(circle at 50% 0, #f9eacb, #f2c98b 55%, #f49a5b 100%);
-      bottom: -80px; left: 10%;
+    .bg-orbit .glow-2 {
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle at 30% 0, #ffeed1, #f4c27e 45%, #c06a3b 100%);
+      top: 45%;
+      right: -120px;
       animation-delay: 4s;
     }
 
     @keyframes float {
       0%   { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(12px, -18px, 0); }
+      100% { transform: translate3d(-14px, 10px, 0); }
     }
 
     /* TOP BAR */
@@ -116,149 +110,170 @@
       justify-content: space-between;
       gap: 18px;
       margin-bottom: 18px;
+      color: var(--ink-light);
     }
 
-    .brand-mark {
+    .brand-pill {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: var(--shadow-light);
+      border: 1px solid rgba(246, 242, 235, 0.4);
+      background: rgba(7, 7, 12, 0.7);
+      backdrop-filter: blur(12px);
     }
 
-    .brand-mark .initials {
+    .brand-pill .initials {
       width: 26px;
       height: 26px;
       border-radius: 999px;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
       font-size: 11px;
-      letter-spacing: 0.12em;
+      font-weight: 600;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      background: radial-gradient(circle at 20% 0, #fff6e7, #f2c58a 45%, #c0713f 100%);
-      color: #2c1507;
-      border: 1px solid rgba(0, 0, 0, 0.18);
+      background: radial-gradient(circle at 15% 0, #ffe7c8, #f4a365 50%, #b75c33 100%);
+      color: #1a0e06;
+      border: 1px solid rgba(0, 0, 0, 0.5);
     }
 
-    .brand-mark .meta {
+    .brand-pill .meta {
       display: flex;
       flex-direction: column;
       gap: 2px;
     }
 
-    .brand-mark .name {
+    .brand-pill .name {
       font-size: 13px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      font-weight: 600;
     }
 
-    .brand-mark .tags {
-      font-size: 11px;
-      letter-spacing: 0.2em;
+    .brand-pill .tags {
+      font-size: 10px;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--ink-soft);
-      white-space: nowrap;
+      opacity: 0.8;
     }
 
     .top-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      opacity: 0.85;
     }
 
     .top-nav a {
-      padding: 6px 8px;
-      border-radius: 999px;
-      border: 1px solid transparent;
+      position: relative;
+      padding: 4px 2px;
     }
 
-    .top-nav a:hover {
-      border-color: rgba(0, 0, 0, 0.18);
-      background: rgba(255, 255, 255, 0.9);
+    .top-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-warm), var(--accent-rose));
+      transition: width 220ms ease;
+    }
+
+    .top-nav a:hover::after {
+      width: 100%;
     }
 
     /* HERO */
 
     .hero-shell {
       position: relative;
-      margin-bottom: 56px;
+      margin-bottom: 72px;
     }
 
-    .hero {
+    .hero-panel {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.4fr);
-      gap: 32px;
-      padding: 32px 32px 30px;
-      border-radius: var(--radius-xl);
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(254, 249, 242, 0.98)),
-        radial-gradient(circle at top left, rgba(244, 154, 91, 0.18), transparent 52%);
-      box-shadow: var(--shadow-soft);
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.2fr);
+      gap: 34px;
+      background: var(--bg-panel);
+      color: var(--ink-main);
+      padding: 38px 36px 34px;
+      border-radius: 30px;
       overflow: hidden;
+      box-shadow: 0 34px 110px rgba(0, 0, 0, 0.85);
     }
 
-    .hero::before {
-      content: "";
+    /* blurred image texture layer */
+
+    .hero-bg-photo {
       position: absolute;
-      inset: -80px 40% -120px -80px;
-      background:
-        linear-gradient(150deg, rgba(21, 14, 17, 0.94), rgba(21, 14, 24, 0.9)),
-        url("IMG_6692.jpeg");
+      inset: -40px -80px -80px -80px;
+      background-image: url("IMG_6692.jpeg");
       background-size: cover;
       background-position: center;
-      mix-blend-mode: multiply;
-      opacity: 0.18;
+      filter: blur(10px) grayscale(80%);
+      opacity: 0.22;
+      transform: scale(1.1);
       pointer-events: none;
+      z-index: 0;
     }
 
-    .hero-left,
-    .hero-right {
-      position: relative;
+    .hero-bg-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 0 0, rgba(245, 146, 90, 0.40), transparent 48%),
+        linear-gradient(145deg, rgba(246, 242, 235, 0.96), rgba(246, 242, 235, 0.96));
+      mix-blend-mode: soft-light;
+      pointer-events: none;
       z-index: 1;
     }
 
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: contents;
+    }
+
     .hero-left {
+      padding-right: 8px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 22px;
     }
 
     .hero-kicker {
       font-size: 11px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
       color: var(--ink-soft);
     }
 
     .hero-title {
       font-family: "Playfair Display", serif;
-      font-size: clamp(30px, 4.2vw, 44px);
-      line-height: 1.08;
-      letter-spacing: 0.02em;
-      margin: 4px 0 8px;
-      color: var(--ink-strong);
+      font-size: clamp(32px, 4.4vw, 46px);
+      line-height: 1.04;
+      letter-spacing: 0.015em;
+      margin: 4px 0 6px;
+      color: var(--ink-main);
     }
 
-    .hero-subline {
+    .hero-sub {
       font-size: 14px;
       color: var(--ink-muted);
       max-width: 520px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    .hero-subline strong {
-      color: var(--ink-strong);
+    .hero-sub b {
       font-weight: 500;
+      color: var(--ink-main);
     }
 
     .hero-cta-row {
@@ -266,31 +281,30 @@
       flex-wrap: wrap;
       gap: 14px;
       margin-top: 6px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
       padding: 10px 20px 11px;
-      border-radius: var(--radius-pill);
+      border-radius: 999px;
       border: none;
-      font-size: 12px;
-      letter-spacing: 0.18em;
+      font-size: 11px;
+      letter-spacing: 0.21em;
       text-transform: uppercase;
       font-weight: 500;
-      background: radial-gradient(circle at 0 0, #ffe4bf 0, #f49a5b 35%, #f16a80 100%);
-      color: #2a1307;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.46);
+      background: linear-gradient(120deg, var(--accent-warm), var(--accent-rose));
+      color: #160b06;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
       cursor: pointer;
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
       filter: brightness(1.04);
-      box-shadow: 0 22px 46px rgba(0, 0, 0, 0.64);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
     }
 
     .btn-secondary {
@@ -298,18 +312,18 @@
       align-items: center;
       justify-content: center;
       padding: 9px 16px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(0, 0, 0, 0.18);
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.26);
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.85);
-      color: var(--ink-soft);
+      color: var(--ink-muted);
+      background: rgba(246, 242, 235, 0.86);
       cursor: pointer;
     }
 
     .btn-secondary:hover {
-      background: #fffdf9;
+      background: #ffffff;
       color: var(--ink-main);
     }
 
@@ -325,137 +339,90 @@
     }
 
     .hero-right {
-      display: grid;
-      grid-template-rows: auto 1fr;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       gap: 14px;
-      align-items: start;
     }
 
     .hero-tag {
       align-self: flex-start;
+      padding: 6px 10px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      background: rgba(249, 245, 238, 0.9);
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 10px 7px;
-      border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
     }
 
-    .hero-tag span.dot {
+    .hero-tag .dot {
       width: 5px;
       height: 5px;
       border-radius: 999px;
       background: var(--accent-warm);
     }
 
-    .hero-photo-block {
-      position: relative;
-      border-radius: 40px;
-      overflow: hidden;
-      background: #151015;
-      box-shadow: 0 26px 70px rgba(20, 8, 4, 0.65);
-      transform-origin: center;
-      transition: transform 260ms ease;
+    .hero-note {
+      margin-top: auto;
+      font-size: 12px;
+      color: var(--ink-muted);
+      max-width: 260px;
+      line-height: 1.7;
+      text-align: right;
     }
 
-    .hero-photo-block::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background:
-        linear-gradient(150deg, rgba(0, 0, 0, 0.35), transparent 36%),
-        radial-gradient(circle at 0 0, rgba(244, 154, 91, 0.4), transparent 50%);
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-      z-index: 1;
+    .hero-note b {
+      font-weight: 500;
+      color: var(--ink-main);
     }
 
-    .hero-photo {
-      width: 100%;
-      padding-top: 128%;
-      background-image: url("IMG_6692.jpeg");
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.05) contrast(1.05);
-      transform: scale(1.04) translateY(1px);
-    }
+    /* SECTION BASE */
 
-    .hero-photo-block:hover {
-      transform: translateY(-4px) rotate(-0.4deg);
-    }
-
-    .hero-strip {
-      position: absolute;
-      inset: auto auto -20px -40px;
-      width: 74%;
-      padding: 7px 14px 9px;
-      border-radius: 999px;
-      background: rgba(15, 10, 8, 0.88);
-      color: #f9f4eb;
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .hero-strip span.left {
-      opacity: 0.85;
-    }
-
-    .hero-strip span.right {
-      opacity: 0.6;
-    }
-
-    /* SECTION SHELL / RAIL */
-
-    .section-shell {
-      margin-bottom: 56px;
-      position: relative;
-    }
-
-    .rail {
-      position: absolute;
-      left: 14px;
-      top: 0;
-      bottom: 8px;
-      width: 1px;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-      opacity: 0.7;
-      pointer-events: none;
+    .section {
+      margin-bottom: 60px;
+      color: var(--ink-light);
     }
 
     .section-inner {
+      position: relative;
       padding-left: 40px;
+    }
+
+    .section-inner::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 4px;
+      bottom: 6px;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(246, 242, 235, 0.55), transparent);
+      opacity: 0.7;
     }
 
     .section-label {
       font-size: 11px;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: rgba(246, 242, 235, 0.7);
       margin-bottom: 4px;
     }
 
     .section-title {
       font-size: 22px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       font-weight: 500;
-      margin: 0 0 6px;
-      color: var(--ink-strong);
+      margin: 0 0 8px;
     }
 
     .section-intro {
       font-size: 14px;
-      color: var(--ink-muted);
-      max-width: 620px;
+      color: rgba(246, 242, 235, 0.78);
+      max-width: 640px;
       line-height: 1.8;
       margin: 0 0 20px;
     }
@@ -469,48 +436,46 @@
       margin-bottom: 22px;
     }
 
-    .overview-tile {
+    .overview-item {
       position: relative;
       padding-top: 14px;
     }
 
-    .overview-tile::before {
+    .overview-item::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 36px;
       height: 1px;
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.55), transparent);
+      background: linear-gradient(to right, rgba(246, 242, 235, 0.8), transparent);
     }
 
     .overview-kicker {
       font-size: 11px;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: rgba(246, 242, 235, 0.65);
       margin-bottom: 4px;
     }
 
     .overview-heading {
       font-size: 16px;
       margin-bottom: 4px;
-      color: var(--ink-strong);
     }
 
     .overview-body {
       font-size: 13px;
-      color: var(--ink-muted);
-      line-height: 1.8;
+      color: rgba(246, 242, 235, 0.78);
+      line-height: 1.9;
     }
 
     .quote-band {
       margin-top: 10px;
-      padding: 16px 18px 14px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, #261a22, #1a1520);
-      color: #f9f3e9;
-      box-shadow: var(--shadow-light);
+      padding: 14px 18px 12px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 0 0, rgba(245, 146, 90, 0.38), transparent 60%),
+                  rgba(7, 7, 12, 0.94);
       font-size: 13px;
       line-height: 1.9;
       position: relative;
@@ -520,8 +485,8 @@
     .quote-band::before {
       content: "“";
       position: absolute;
-      top: -24px;
-      right: 18px;
+      right: 22px;
+      top: -18px;
       font-family: "Playfair Display", serif;
       font-size: 64px;
       color: rgba(255, 255, 255, 0.12);
@@ -530,10 +495,30 @@
     .quote-meta {
       margin-top: 6px;
       font-size: 11px;
-      color: #d2c4d5;
+      color: rgba(246, 242, 235, 0.7);
     }
 
-    /* WORKING TOGETHER / PROCESS */
+    /* WORKING TOGETHER */
+
+    .section-dark {
+      margin-bottom: 64px;
+    }
+
+    .section-dark .section-inner {
+      background: linear-gradient(135deg, #181521, #0f0f18);
+      border-radius: 26px;
+      padding: 24px 26px 24px 40px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
+    }
+
+    .section-dark .section-inner::before {
+      left: 18px;
+      background: linear-gradient(to bottom, rgba(245, 146, 90, 0.85), transparent);
+    }
+
+    .section-dark .section-intro {
+      color: rgba(246, 242, 235, 0.85);
+    }
 
     .process-layout {
       display: grid;
@@ -544,13 +529,12 @@
 
     .process-text {
       font-size: 13px;
-      color: var(--ink-muted);
+      color: rgba(246, 242, 235, 0.85);
       line-height: 1.9;
     }
 
     .process-text p {
-      margin-top: 0;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
     }
 
     .process-text ul {
@@ -563,11 +547,10 @@
     }
 
     .steps-stack {
-      border-radius: var(--radius-lg);
-      background: #17131c;
+      border-radius: 20px;
+      background: rgba(7, 7, 13, 0.96);
       padding: 14px 16px 12px;
-      box-shadow: 0 22px 60px rgba(18, 10, 24, 0.7);
-      color: #f6f2fd;
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.9);
     }
 
     .step-row {
@@ -575,7 +558,7 @@
       grid-template-columns: 40px minmax(0, 1fr);
       gap: 12px;
       padding: 7px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(246, 242, 235, 0.12);
     }
 
     .step-row:last-child {
@@ -590,23 +573,23 @@
       align-items: center;
       justify-content: center;
       font-size: 12px;
-      background: radial-gradient(circle at 0 0, #ffe4bf, #f49a5b 45%, #f16a80 100%);
-      color: #2a1307;
+      background: radial-gradient(circle at 0 0, #ffe4bf, #f5925a 45%, #f05b75 100%);
+      color: #1b0e07;
       font-weight: 600;
     }
 
     .step-heading {
       font-size: 12px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.19em;
       text-transform: uppercase;
-      color: #cabde3;
+      color: rgba(246, 242, 235, 0.9);
       margin-bottom: 3px;
     }
 
     .step-body {
       font-size: 12px;
+      color: rgba(246, 242, 235, 0.8);
       line-height: 1.8;
-      color: #e7e0f3;
     }
 
     /* SYSTEMS & TOOLS */
@@ -619,18 +602,18 @@
     }
 
     .systems-card {
-      border-radius: var(--radius-lg);
+      border-radius: 18px;
       padding: 16px 18px 18px;
-      background: linear-gradient(135deg, #ffffff, #f7f2ea);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      box-shadow: var(--shadow-light);
+      background: radial-gradient(circle at 0 0, rgba(245, 146, 90, 0.22), transparent 60%),
+                  rgba(11, 9, 15, 0.94);
+      box-shadow: 0 20px 70px rgba(3, 0, 9, 0.9);
     }
 
     .systems-label {
       font-size: 11px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: rgba(246, 242, 235, 0.74);
       margin-bottom: 6px;
     }
 
@@ -638,7 +621,7 @@
       margin: 4px 0 0;
       padding-left: 18px;
       font-size: 13px;
-      color: var(--ink-muted);
+      color: rgba(246, 242, 235, 0.86);
       line-height: 1.9;
     }
 
@@ -647,29 +630,29 @@
     .footer-cta {
       margin-top: 26px;
       padding-top: 18px;
-      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      border-top: 1px solid rgba(246, 242, 235, 0.18);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
       font-size: 13px;
-      color: var(--ink-muted);
+      color: rgba(246, 242, 235, 0.82);
     }
 
     .footer-cta .label {
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 4px;
       display: block;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(246, 242, 235, 0.7);
+      margin-bottom: 4px;
     }
 
     .footer-note {
-      margin-top: 6px;
+      margin-top: 8px;
       font-size: 11px;
-      color: var(--ink-soft);
+      color: rgba(246, 242, 235, 0.65);
     }
 
     .footer-note span.dot {
@@ -677,7 +660,7 @@
       width: 3px;
       height: 3px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(246, 242, 235, 0.5);
       margin: 0 6px;
       transform: translateY(-1px);
     }
@@ -694,27 +677,25 @@
         align-items: flex-start;
       }
 
-      .hero {
+      .hero-panel {
         grid-template-columns: minmax(0, 1fr);
-        padding: 24px 22px 24px;
-      }
-
-      .hero::before {
-        inset: -60px -40px 50%;
-        opacity: 0.2;
+        padding: 28px 22px 26px;
       }
 
       .hero-right {
-        order: -1;
+        align-items: flex-start;
       }
 
-      .hero-photo-block {
-        max-width: 280px;
+      .hero-note {
+        text-align: left;
       }
 
-      .hero-strip {
-        inset: auto auto -18px -24px;
-        width: 90%;
+      .section-inner {
+        padding-left: 30px;
+      }
+
+      .section-inner::before {
+        left: 12px;
       }
 
       .overview-grid {
@@ -728,47 +709,34 @@
       .systems-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-
-      .section-inner {
-        padding-left: 28px;
-      }
-
-      .rail {
-        left: 10px;
-      }
     }
 
     @media (max-width: 600px) {
-      main {
-        padding-bottom: 40px;
-      }
-
       .hero-title {
         font-size: 30px;
       }
 
-      .hero-subline {
+      .hero-sub {
         font-size: 13px;
       }
 
-      .section-shell {
-        margin-bottom: 44px;
+      .section {
+        margin-bottom: 46px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Floating blobs -->
+  <!-- floating glow -->
   <div class="bg-orbit">
-    <span class="blob-1"></span>
-    <span class="blob-2"></span>
-    <span class="blob-3"></span>
+    <span class="glow-1"></span>
+    <span class="glow-2"></span>
   </div>
 
   <main>
-    <!-- TOP -->
-    <div class="top-row">
-      <div class="brand-mark">
+    <!-- top -->
+    <header class="top-row">
+      <div class="brand-pill">
         <span class="initials">SN</span>
         <div class="meta">
           <span class="name">Suzi Neves</span>
@@ -781,58 +749,58 @@
         <a href="#working-together">Working Together</a>
         <a href="#systems">Systems &amp; Tools</a>
       </nav>
-    </div>
+    </header>
 
-    <!-- HERO -->
+    <!-- hero -->
     <section class="hero-shell" aria-label="Intro">
-      <div class="hero">
-        <div class="hero-left">
-          <div>
-            <div class="hero-kicker">Systems &amp; operations support</div>
-            <h1 class="hero-title">Getting your business systems to work together.</h1>
-            <p class="hero-subline">
-              For small businesses in motion, where
-              <strong>sales, inventory, payouts, events, and bookkeeping all overlap</strong>.
-              I step into the chaos, connect the dots, and keep the back end moving with you instead of against you.
-            </p>
-          </div>
+      <div class="hero-panel">
+        <div class="hero-bg-photo" aria-hidden="true"></div>
+        <div class="hero-bg-gradient" aria-hidden="true"></div>
 
-          <div>
-            <div class="hero-cta-row">
-              <a href="mailto:suzi@radpurpose.com" class="btn-primary">
-                Reach out
-              </a>
-              <a href="#overview" class="btn-secondary">
-                See how this works
-              </a>
+        <div class="hero-inner">
+          <div class="hero-left">
+            <div>
+              <div class="hero-kicker">Systems &amp; operations support</div>
+              <h1 class="hero-title">
+                Getting your business systems to work together.
+              </h1>
+              <p class="hero-sub">
+                For small businesses in motion, where <b>sales, inventory, payouts, events, and bookkeeping all overlap</b>.
+                I step into the chaos, connect the dots, and keep the back end moving with you instead of against you.
+              </p>
             </div>
-            <p class="hero-footnote">
-              Built for owners who are stretched thin and still showing up.
-              <span>You don’t need a makeover.</span> You need your tools to stop fighting each other.
-            </p>
-          </div>
-        </div>
 
-        <div class="hero-right">
-          <div class="hero-tag">
-            <span class="dot"></span>
-            <span>Small businesses in motion</span>
-          </div>
-
-          <div class="hero-photo-block">
-            <div class="hero-photo"></div>
-            <div class="hero-strip">
-              <span class="left">Shopify · Bookkeeping · Operations</span>
-              <span class="right">Calm in the chaos</span>
+            <div>
+              <div class="hero-cta-row">
+                <a class="btn-primary" href="mailto:suzi@radpurpose.com">
+                  Reach out
+                </a>
+                <a class="btn-secondary" href="#overview">
+                  See how this works
+                </a>
+              </div>
+              <p class="hero-footnote">
+                Built for owners who are stretched thin and still showing up.
+                <span>You don’t need a makeover.</span> You need your tools to stop fighting each other.
+              </p>
             </div>
           </div>
+
+          <aside class="hero-right">
+            <div class="hero-tag">
+              <span class="dot"></span>
+              <span>Small businesses in motion</span>
+            </div>
+            <p class="hero-note">
+              <b>I’m not a coach.</b> I’m the calm brain in the back room keeping Shopify, your books, and your operations on the same page while you run the front.
+            </p>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- OVERVIEW -->
-    <section id="overview" class="section-shell">
-      <div class="rail"></div>
+    <!-- overview -->
+    <section id="overview" class="section">
       <div class="section-inner">
         <div class="section-label">Overview</div>
         <h2 class="section-title">Where I sit inside your business.</h2>
@@ -842,54 +810,51 @@
         </p>
 
         <div class="overview-grid">
-          <div class="overview-tile">
+          <article class="overview-item">
             <div class="overview-kicker">What I do</div>
             <div class="overview-heading">Glue between your tools.</div>
             <div class="overview-body">
               I handle the connective tissue between Shopify, QuickBooks, and how you actually run the business,
-              so reports finally match reality and money movement stops feeling mysterious.
+              so reports finally match reality and money stops feeling mysterious.
             </div>
-          </div>
+          </article>
 
-          <div class="overview-tile">
+          <article class="overview-item">
             <div class="overview-kicker">How it feels</div>
             <div class="overview-heading">Small passes, big relief.</div>
             <div class="overview-body">
               We start with what feels heavy, clean up the weirdness in layers, and keep you moving forward the whole time.
-              No giant “someday” project, just steady pressure in the right spots.
+              No giant “someday” overhaul — just steady pressure in the right spots.
             </div>
-          </div>
+          </article>
 
-          <div class="overview-tile">
+          <article class="overview-item">
             <div class="overview-kicker">Who I’m for</div>
             <div class="overview-heading">Owners in the deep end.</div>
             <div class="overview-body">
               You’re in it every day and the back end is fighting you.
-              You want numbers you can trust and systems that don’t unravel every time you get busy.
+              You want numbers you can trust and systems that don’t unravel every time things get busy.
             </div>
-          </div>
+          </article>
         </div>
 
         <div class="quote-band">
           <p>
-            “Suzi sees the whole picture. Our store, our books, and our day-to-day finally feel like they’re
-            on the same team instead of arguing with each other.”
+            “Suzi sees the whole picture. Our store, our books, and our day-to-day finally feel like they’re on the same
+            team instead of arguing with each other.”
           </p>
-          <div class="quote-meta">
-            Client Name Here · Owner
-          </div>
+          <div class="quote-meta">Client Name Here · Owner</div>
         </div>
       </div>
     </section>
 
-    <!-- WORKING TOGETHER -->
-    <section id="working-together" class="section-shell">
-      <div class="rail"></div>
+    <!-- working together -->
+    <section id="working-together" class="section section-dark">
       <div class="section-inner">
         <div class="section-label">Working together</div>
         <h2 class="section-title">A back end that feels grounded instead of chaotic.</h2>
         <p class="section-intro">
-          Most of my clients don’t need a full rebuild — they need the systems they already use to stop arguing
+          Most of my clients don’t need a rebuild — they need the systems they already use to stop arguing
           and start telling the same story.
         </p>
 
@@ -906,7 +871,7 @@
             <ul>
               <li>Shopify and QuickBooks aligned so reports match what actually happened.</li>
               <li>Clear handling of payouts, refunds, discounts, and sales channels.</li>
-              <li>Workflows that match how you really work, not how software thinks you should.</li>
+              <li>Workflows that fit how you really work, not how software thinks you should.</li>
             </ul>
           </div>
 
@@ -917,7 +882,7 @@
                 <div class="step-heading">Walkthrough</div>
                 <div class="step-body">
                   We map what’s happening now — Shopify, your books, and where it feels heavy.
-                  No judgment, just a clear picture of the mess you’re carrying.
+                  No judgment, just a clear picture of the load you’re carrying.
                 </div>
               </div>
             </div>
@@ -948,14 +913,13 @@
       </div>
     </section>
 
-    <!-- SYSTEMS & TOOLS -->
-    <section id="systems" class="section-shell">
-      <div class="rail"></div>
+    <!-- systems & tools -->
+    <section id="systems" class="section">
       <div class="section-inner">
         <div class="section-label">Systems &amp; tools</div>
         <h2 class="section-title">Where we spend our time together.</h2>
         <p class="section-intro">
-          Every business is a little different, but most of the work lives in two main arenas —
+          Every business is a little different, but most of the work lives in two arenas —
           the store itself and the numbers behind it.
         </p>
 
