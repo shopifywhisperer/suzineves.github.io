@@ -22,10 +22,11 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Helvetica Neue", Arial, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       background: linear-gradient(165deg, var(--bg-ink), var(--bg-ink-soft));
       color: var(--text-main);
+      line-height: 1.6;
     }
 
     .page {
@@ -137,7 +138,7 @@
       color: var(--text-muted);
     }
 
-    /* ASIDE – breaks up the background without a box */
+    /* HERO ASIDE */
 
     .hero-aside {
       max-width: 320px;
@@ -175,18 +176,172 @@
       color: var(--text-muted);
     }
 
-    /* subtle underline band to break the big solid */
+    /* underline break */
 
     .hero-underline {
       margin-top: 3rem;
       height: 1px;
       width: 100%;
-      background:
-        linear-gradient(90deg, var(--accent-clay-soft), transparent 55%);
+      background: linear-gradient(90deg, var(--accent-clay-soft), transparent 55%);
       opacity: 0.9;
     }
 
-    /* RESPONSIVE */
+    /* COMMON SECTION STYLES */
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin: 0 0 0.9rem;
+      color: var(--text-main);
+    }
+
+    .section-intro {
+      margin: 0 0 2.1rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+      max-width: 620px;
+    }
+
+    /* WHAT I HELP WITH */
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .section-item h3 {
+      font-size: 1rem;
+      margin: 0 0 0.7rem;
+      color: var(--text-main);
+    }
+
+    .section-item p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+
+    /* HOW IT FEELS TO WORK TOGETHER */
+
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      padding-top: 0.2rem;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      top: -0.2rem;
+      left: 0;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-clay-soft);
+    }
+
+    .steps h3 {
+      font-size: 1rem;
+      margin: 0 0 0.6rem;
+      color: var(--text-main);
+    }
+
+    .steps p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+
+    /* FIT / NOT FIT */
+
+    .section-fit-inner {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem;
+    }
+
+    .fit-list {
+      list-style: disc;
+      padding-left: 1.1rem;
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+    }
+
+    .fit-list li + li {
+      margin-top: 0.4rem;
+    }
+
+    /* CONTACT */
+
+    .section-contact {
+      padding-bottom: 4.5rem;
+      border-top: 1px solid rgba(186, 130, 118, 0.25);
+      margin-top: 1rem;
+    }
+
+    .contact-block {
+      max-width: 620px;
+    }
+
+    .contact-text {
+      margin: 0 0 0.6rem;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .contact-text a {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .contact-help {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+
+    /* RESPONSIVE OPTIMIZATIONS */
+
+    @media (max-width: 900px) {
+      .section-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-fit-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
 
     @media (max-width: 860px) {
       .hero-inner {
@@ -203,7 +358,7 @@
       }
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 640px) {
       .page {
         padding: 2.6rem 1.6rem 3.2rem;
       }
@@ -217,68 +372,207 @@
       .hero-title {
         font-size: 1.8rem;
       }
+
+      .section {
+        padding: 2.8rem 0;
+      }
+
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <div class="shell">
-      <header class="site-header">
-        <div class="site-name">SUZI NEVES</div>
-        <div class="site-tagline">
-          Shopify, bookkeeping, and daily operations in the same brain.
-        </div>
-      </header>
+<div class="page">
+  <div class="shell">
 
-      <section class="hero">
-        <div class="hero-inner">
-          <div class="hero-main">
-            <p class="hero-kicker">SHOPIFY · BOOKKEEPING · DAY-TO-DAY FLOW</p>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="site-name">SUZI NEVES</div>
+      <div class="site-tagline">
+        Shopify, bookkeeping, and daily operations in the same brain.
+      </div>
+    </header>
 
-            <h1 class="hero-title">
-              You know your business.<br>
-              I work in the parts that keep it moving.
-            </h1>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
 
-            <p class="hero-sub">
-              Shopify, payouts, bookkeeping, inventory, the
-              <span>“why doesn’t this match?”</span> stuff — the quiet, essential
-              pieces that still run everything. I keep those talking to each other
-              so your business runs smoother and feels less heavy to manage.
+        <div class="hero-main">
+          <p class="hero-kicker">SHOPIFY · BOOKKEEPING · DAY-TO-DAY FLOW</p>
+
+          <h1 class="hero-title">
+            You know your business.<br>
+            I work in the parts that keep it moving.
+          </h1>
+
+          <p class="hero-sub">
+            Shopify, payouts, bookkeeping, inventory, the
+            <span>“why doesn’t this match?”</span> stuff — the quiet, essential
+            pieces that still run everything. I keep those talking to each other
+            so your business runs smoother and feels less heavy to manage.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="#contact" class="hero-cta">
+              <span>Tell me what’s going on</span> →
+            </a>
+            <p class="hero-micro">
+              Plain language is welcome. You don’t have to have it all figured out.
             </p>
+          </div>
+        </div>
 
-            <div class="hero-cta-row">
-              <a href="#contact" class="hero-cta">
-                <span>Tell me what’s going on</span> →
-              </a>
-              <p class="hero-micro">
-                Plain language is welcome. You don’t have to have it all figured out.
-              </p>
-            </div>
+        <aside class="hero-aside">
+          <div class="hero-aside-tag">What I’m usually helping with</div>
+          <p class="hero-aside-text">
+            Not a full rebuild. Not a rescue mission. Just the parts that are
+            nagging at you and eating time you don’t have.
+          </p>
+          <ul class="hero-aside-list">
+            <li>Shopify basics set up cleanly and kept current</li>
+            <li>Bookkeeping that actually matches payouts and sales</li>
+            <li>Day-to-day “this keeps breaking” operational weirdness</li>
+          </ul>
+          <div class="hero-aside-foot">Support, not judgment.</div>
+        </aside>
+
+      </div>
+
+      <div class="hero-underline" aria-hidden="true"></div>
+    </section>
+
+    <!-- WHAT I HELP WITH -->
+    <section class="section section-what">
+      <div class="section-inner">
+        <h2 class="section-title">What I actually help with</h2>
+        <p class="section-intro">
+          I don’t rebuild everything from scratch. I work with what you already have
+          and make the parts underneath easier to live with.
+        </p>
+
+        <div class="section-grid">
+          <div class="section-item">
+            <h3>Shopify in real life</h3>
+            <p>
+              Keeping products, collections, basic settings, and channels current so
+              your store reflects what’s actually happening in your business.
+            </p>
           </div>
 
-          <aside class="hero-aside">
-            <div class="hero-aside-tag">What I’m usually helping with</div>
-            <p class="hero-aside-text">
-              Not a full rebuild. Not a rescue mission. Just the parts that are
-              nagging at you and eating time you don’t have.
+          <div class="section-item">
+            <h3>Bookkeeping that matches Shopify</h3>
+            <p>
+              Making sure payouts, refunds, discounts, fees, and sales reports line up
+              so your books stop fighting your store data.
             </p>
-            <ul class="hero-aside-list">
-              <li>Shopify basics set up cleanly and kept current</li>
-              <li>Bookkeeping that actually matches payouts and sales</li>
-              <li>Day-to-day “this keeps breaking” operational weirdness</li>
-            </ul>
-            <div class="hero-aside-foot">
-              Support, not judgment.
-            </div>
-          </aside>
+          </div>
+
+          <div class="section-item">
+            <h3>Operational weirdness</h3>
+            <p>
+              The recurring “why is this doing that?” stuff — mismatched numbers,
+              duplicate behavior, small issues that quietly drain time and energy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT FEELS -->
+    <section class="section section-how">
+      <div class="section-inner">
+        <h2 class="section-title">How working together feels</h2>
+        <p class="section-intro">
+          No big pitch. No complicated intake. Just a steady brain alongside yours,
+          focused on making things smoother.
+        </p>
+
+        <ol class="steps">
+          <li>
+            <h3>You tell me what’s bugging you</h3>
+            <p>
+              In plain language. A few sentences is enough — “this keeps breaking,”
+              “these numbers never match,” “I’m avoiding this part.”
+            </p>
+          </li>
+
+          <li>
+            <h3>I look at what already exists</h3>
+            <p>
+              Shopify, basic reports, bookkeeping setup, and any routines you’re
+              already using. I’m looking for patterns, not perfection.
+            </p>
+          </li>
+
+          <li>
+            <h3>We make a realistic plan</h3>
+            <p>
+              Small, doable changes first. Then ongoing support if that feels helpful,
+              so things stay aligned instead of sliding back.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FIT / NOT FIT -->
+    <section class="section section-fit">
+      <div class="section-inner section-fit-inner">
+        <div>
+          <h2 class="section-title">This is usually a fit if…</h2>
+          <ul class="fit-list">
+            <li>Your business is working, but the details feel heavier than they should.</li>
+            <li>You’re on Shopify (or moving to it) and want it to play nicely with bookkeeping.</li>
+            <li>You’d rather collaborate with someone than hand everything off and hope.</li>
+            <li>You don’t need a full rebrand — you need the way it runs to feel calmer.</li>
+          </ul>
         </div>
 
-        <div class="hero-underline" aria-hidden="true"></div>
-      </section>
+        <div>
+          <h2 class="section-title">It’s probably not a fit if…</h2>
+          <ul class="fit-list">
+            <li>You need someone to design or build a custom Shopify theme from scratch.</li>
+            <li>The business is in crisis and needs saving, not steady support.</li>
+            <li>You want a big agency or a team — this is one human, working with you.</li>
+            <li>You’re looking for quick hacks instead of honest, sustainable fixes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-      <!-- other sections go here -->
-    </div>
+    <!-- CONTACT -->
+    <section id="contact" class="section section-contact">
+      <div class="section-inner">
+        <h2 class="section-title">Tell me what’s going on</h2>
+        <p class="section-intro">
+          There’s no perfect way to explain it. A rough sketch of what’s bothering you
+          is enough to start.
+        </p>
+
+        <div class="contact-block">
+          <p class="contact-text">
+            <strong>Email:</strong>
+            <a href="mailto:suzi@radpurpose.com?subject=Shopify%20%2B%20operations">
+              suzi@radpurpose.com
+            </a>
+          </p>
+          <p class="contact-help">
+            A few lines about where things feel off, what you’re avoiding, or what
+            you’d love to feel easier is plenty.
+          </p>
+        </div>
+      </div>
+    </section>
+
   </div>
+</div>
+
 </body>
 </html>
