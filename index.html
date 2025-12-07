@@ -12,8 +12,8 @@
 
   <style>
     :root {
-      --page-bg: #f5f5f7;
-      --ink: #020617;
+      --page-bg: #f4f4f6;
+      --ink: #111827;
       --ink-soft: #4b5563;
       --muted: #6b7280;
       --border-subtle: #e5e7eb;
@@ -21,9 +21,10 @@
       --accent: #c4684e;
       --accent-deep: #9a4a35;
       --accent-soft: #f4d0c1;
-      --gold: #fbbf24;
       --night: #020617;
     }
+
+    /* GLOBAL ------------------------------------------------- */
 
     *,
     *::before,
@@ -53,22 +54,20 @@
     }
 
     .shell {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 0 20px 60px; /* no top padding */
-}
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 8px 20px 72px;
+    }
 
-
-    /* HEADER ------------------------------------------------- */
+    /* HEADER / BRAND ---------------------------------------- */
 
     .nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 0 4px;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
 
     .brand {
       display: flex;
@@ -86,8 +85,7 @@
       justify-content: center;
       font-size: 0.9rem;
       color: var(--ink);
-      background: radial-gradient(circle at 30% 0, #f9fafb, #f97316);
-      font-weight: 600;
+      background: #fef3e7;
     }
 
     .brand-text {
@@ -114,92 +112,108 @@
     /* HERO --------------------------------------------------- */
 
     .hero-band {
-      margin-top: 0;          /* kill the gap */
-      margin-bottom: 32px;
-      background: #020617;
+      margin-top: 10px;
+      position: relative;
+      background: var(--night);
+      color: #f9fafb;
+    }
+
+    /* subtle rule between header + hero */
+    .hero-band::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -1px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(148, 163, 184, 0.6), transparent);
+      opacity: 0.9;
+      pointer-events: none;
     }
 
     .hero {
       position: relative;
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
-      padding: 46px min(7vw, 56px) 54px;
-      color: #f9fafb;
+      padding: 40px min(7vw, 56px) 52px;
+      color: inherit;
       isolation: isolate;
       overflow: hidden;
-      min-height: 300px;      /* a bit shorter */
+      min-height: 260px;
     }
 
-    /* blurred photo background */
-  .hero::before {
-  content: "";
-  position: absolute;
-  inset: -8%;
-  background-image: url("IMG_6692.jpeg");
-  background-size: 130%;     /* zoom OUT */
-  background-position: center;
-  filter: blur(2px) saturate(1.05) contrast(1.05) brightness(0.85);
-  opacity: 0.88;
-  z-index: -2;
-}
+    /* background image – zoomed out + softened */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -25%;
+      background-image: url("IMG_6692.jpeg");
+      background-size: cover;
+      background-position: 30% 70%;
+      filter: blur(1.5px) saturate(1.05) contrast(1.06) brightness(0.83);
+      opacity: 0.86;
+      z-index: -2;
+    }
 
-
-    /* removed ::after overlay – no more two-tone band */
+    /* soft dark overlay to keep text readable */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 15% 40%, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.88));
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
 
     .hero-inner {
       max-width: 1040px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 32px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
-    .hero-content {
-      max-width: 560px;
-    }
-
-    .hero-tag-block {
+    .hero-pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .hero-tag-pill {
-      font-size: 0.68rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      letter-spacing: 0.26em;
-      padding: 4px 10px;
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.35);
-      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(249, 250, 251, 0.4);
+      background: rgba(15, 23, 42, 0.35);
+      margin-bottom: 6px;
     }
 
-    .hero-tag-line {
-      width: 80px;
+    .hero-pill span.line {
+      flex: 1;
       height: 1px;
       background: linear-gradient(90deg, rgba(248, 250, 252, 0.8), transparent);
+      border-radius: 999px;
     }
 
     .hero-eyebrow {
-      font-size: 0.78rem;
-      letter-spacing: 0.26em;
+      font-size: 0.82rem;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: #e5e7eb;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 3.1vw, 3rem);
-      line-height: 1.05;
-      margin: 0 0 12px;
+      font-size: clamp(2.3rem, 3vw, 2.8rem);
+      line-height: 1.04;
+      margin: 0 0 14px;
+      max-width: 22ch;
     }
 
     .hero-subtitle {
       margin: 0 0 22px;
       font-size: 0.98rem;
+      max-width: 40rem;
       color: #e5e7eb;
     }
 
@@ -208,18 +222,11 @@
       font-weight: 500;
     }
 
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px 18px;
-    }
-
     .hero-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 24px;
+      padding: 11px 26px;
       border-radius: 999px;
       border: none;
       background: var(--accent);
@@ -229,8 +236,8 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 16px 32px rgba(138, 60, 38, 0.7);
-      white-space: nowrap;
+      box-shadow: 0 18px 38px rgba(138, 60, 38, 0.7);
+      margin-bottom: 8px;
     }
 
     .hero-cta:hover {
@@ -244,75 +251,23 @@
     }
 
     .hero-tagline {
-      font-size: 0.84rem;
-      color: #d1d5db;
+      font-size: 0.86rem;
+      color: #e5e7eb;
     }
 
-    .hero-tagline::before {
-      content: "";
-      display: inline-block;
-      width: 52px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(252, 211, 77, 0.9), transparent);
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-
-    .hero-meta {
-      font-size: 0.78rem;
+    .hero-casefile {
+      margin-top: 20px;
+      font-size: 0.76rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      letter-spacing: 0.26em;
-      color: rgba(229, 231, 235, 0.8);
-      margin-top: 22px;
+      color: #e5e7eb;
       opacity: 0.9;
     }
 
-    .hero-photo-wrap {
-      position: relative;
-      max-width: 320px;
-      justify-self: flex-end;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(248, 250, 252, 0.4);
-      box-shadow:
-        0 18px 50px rgba(15, 23, 42, 0.75),
-        0 0 0 1px rgba(15, 23, 42, 0.7);
-      background: #020617;
-      aspect-ratio: 4 / 5;
-    }
-
-    .hero-photo {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(180deg,
-          rgba(15, 23, 42, 0.05),
-          rgba(15, 23, 42, 0.55)),
-        url("IMG_6692.jpeg");
-      background-size: cover;
-      background-position: 58% 45%;
-      filter: saturate(1.05) contrast(1.08);
-    }
-
-    .hero-photo-label {
-      position: absolute;
-      left: 12px;
-      bottom: 10px;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: rgba(249, 250, 251, 0.88);
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.72);
-      border: 1px solid rgba(249, 250, 251, 0.38);
-      white-space: nowrap;
-    }
-
-    /* MAIN --------------------------------------------------- */
+    /* MAIN WRAPPER ------------------------------------------ */
 
     main {
-      margin-top: 12px;
+      margin-top: 56px;
     }
 
     .section-label {
@@ -325,47 +280,64 @@
 
     .section-heading {
       font-size: 1.6rem;
-      margin: 0 0 18px;
+      margin: 0 0 10px;
     }
 
-    /* OVERVIEW ---------------------------------------------- */
+    .section-intro {
+      margin: 0 0 26px;
+      font-size: 0.96rem;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+
+    /* OVERVIEW BAND (WHAT / HOW / WHO) ---------------------- */
 
     .overview-band {
-      padding: 0 0 42px;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      padding: 0 0 40px;
+      border-top: 1px solid #e5e7eb;
     }
 
     .overview-inner {
       max-width: 1040px;
       margin: 0 auto;
+      padding-top: 32px;
     }
 
-    .overview-layout {
+    .grid-3 {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
-      gap: 40px;
-      align-items: flex-start;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+      position: relative;
     }
 
-    .overview-kicker {
-      font-size: 0.96rem;
-      color: var(--ink-soft);
-      max-width: 520px;
-      margin: 0;
+    .grid-3::before,
+    .grid-3::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      width: 1px;
+      background: rgba(209, 213, 219, 0.9);
+      pointer-events: none;
     }
 
-    .overview-kicker strong {
-      font-weight: 600;
-      color: #111827;
+    .grid-3::before {
+      left: 33.33%;
+      transform: translateX(-0.5px);
     }
 
-    .overview-columns {
-      border-left: 1px solid rgba(148, 163, 184, 0.5);
-      padding-left: 22px;
+    .grid-3::after {
+      left: 66.66%;
+      transform: translateX(-0.5px);
     }
 
     .col-block {
-      margin-bottom: 22px;
+      padding-right: 24px;
+    }
+
+    .col-block:last-child {
+      padding-right: 0;
+      padding-left: 24px;
     }
 
     .col-label {
@@ -373,7 +345,7 @@
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: #9ca3af;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .col-title {
@@ -382,62 +354,63 @@
     }
 
     .col-rule {
-      width: 44px;
-      height: 2px;
+      width: 56px;
+      height: 3px;
+      border-radius: 999px;
       background: linear-gradient(90deg, var(--accent), transparent);
-      margin: 6px 0 10px;
+      margin: 8px 0 10px;
     }
 
     .col-body {
       margin: 0;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--muted);
     }
 
-    /* TESTIMONIAL ------------------------------------------- */
+    /* CLIENT WORDS BAND -------------------------------------- */
 
     .testimonial-band {
-      padding: 34px 0 36px;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      margin-top: 44px;
+      padding: 32px 0 36px;
+      background: #f9f5f3;
+      border-radius: 18px;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
     }
 
     .testimonial-inner {
-      max-width: 840px;
+      max-width: 1040px;
       margin: 0 auto;
-    }
-
-    .testimonial-label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-    }
-
-    .testimonial-index {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      color: #d1d5db;
+      padding-inline: 20px;
     }
 
     .testimonial-wrap {
+      position: relative;
       padding-top: 18px;
-      border-top: 1px solid rgba(148, 163, 184, 0.6);
-      margin-top: 10px;
+    }
+
+    .testimonial-wrap::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 40%;
+      top: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      opacity: 0.9;
     }
 
     .testimonial-quote-mark {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: rgba(196, 104, 78, 0.7);
       line-height: 1;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .testimonial-text {
-      margin: 0 0 10px;
-      font-size: 1rem;
-      color: #111827;
-      max-width: 700px;
+      margin: 0 0 12px;
+      font-size: 0.98rem;
+      color: #374151;
+      max-width: 640px;
     }
 
     .testimonial-meta {
@@ -450,45 +423,39 @@
       color: var(--ink);
     }
 
-    /* DARK STRIP -------------------------------------------- */
+    /* DARK WORKING-TOGETHER BAND ---------------------------- */
 
     .strip-band {
-      margin-top: 40px;
-      padding: 40px 0 52px;
-      background: #020617;
+      margin-top: 52px;
+    }
+
+    .strip {
+      position: relative;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 32px min(7vw, 56px) 40px;
+      background: radial-gradient(circle at 0 0, #111827, #020617 70%);
       color: #e5e7eb;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.85);
+      border-radius: 22px 22px 0 0;
     }
 
     .strip-inner-shell {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
-    }
-
-    .strip-inner-shell::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 20px;
-      right: 20px;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(148, 163, 184, 0.7), transparent);
-      opacity: 0.9;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 28px;
     }
 
     .strip-top-rule {
-      height: 2px;
-      width: 160px;
-      background: linear-gradient(90deg, var(--accent), var(--gold));
-      margin-bottom: 18px;
-      margin-top: 10px;
-    }
-
-    .strip {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 32px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #fbbf24);
+      opacity: 0.96;
+      margin: -32px min(7vw, 56px) 24px;
+      margin-left: calc(50% - 50vw + min(7vw, 56px));
+      margin-right: calc(50% - 50vw + min(7vw, 56px));
+      border-radius: 999px;
     }
 
     .strip-tag {
@@ -514,7 +481,7 @@
       margin: 0 0 10px;
       padding-left: 22px;
       font-size: 0.9rem;
-      color: #e5e7eb;
+      color: #d1d5db;
     }
 
     .strip-list li + li {
@@ -527,7 +494,7 @@
 
     .strip-note {
       font-size: 0.86rem;
-      color: #cbd5f5;
+      color: #9ca3af;
     }
 
     /* FOOTER ------------------------------------------------- */
@@ -542,48 +509,57 @@
     /* RESPONSIVE --------------------------------------------- */
 
     @media (max-width: 960px) {
-      .hero-inner {
+      main {
+        margin-top: 42px;
+      }
+
+      .grid-3 {
         grid-template-columns: minmax(0, 1fr);
-        gap: 24px;
+      }
+      .grid-3::before,
+      .grid-3::after {
+        display: none;
+      }
+      .col-block,
+      .col-block:last-child {
+        padding: 0 0 18px;
       }
 
-      .hero-photo-wrap {
-        justify-self: flex-start;
-        max-width: 280px;
-      }
-
-      .overview-layout {
+      .strip-inner-shell {
         grid-template-columns: minmax(0, 1fr);
-        gap: 24px;
-      }
-
-      .overview-columns {
-        border-left: none;
-        padding-left: 0;
       }
 
       .strip {
-        grid-template-columns: minmax(0, 1fr);
+        border-radius: 18px;
+      }
+
+      .strip-top-rule {
+        margin-top: -22px;
       }
     }
 
     @media (max-width: 720px) {
       .shell {
-        padding: 2px 16px 60px;
+        padding: 8px 16px 56px;
       }
 
       .nav {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
       }
 
       .hero {
-        padding: 40px 16px 48px;
+        padding: 32px 18px 40px;
+        min-height: 220px;
       }
 
-      .strip-inner-shell {
-        padding-inline: 16px;
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.94rem;
       }
     }
   </style>
@@ -600,16 +576,14 @@
         </div>
       </div>
     </header>
-  </div>
 
-  <!-- HERO -->
-  <section class="hero-band">
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="hero-content">
-          <div class="hero-tag-block">
-            <div class="hero-tag-pill">Shopify Whisperer</div>
-            <div class="hero-tag-line"></div>
+    <!-- HERO BAND -->
+    <div class="hero-band">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-pill">
+            Shopify Whisperer
+            <span class="line"></span>
           </div>
 
           <div class="hero-eyebrow">Systems &amp; Operations Support</div>
@@ -619,98 +593,83 @@
           </h1>
 
           <p class="hero-subtitle">
-            You are running a business that moves in every direction at once.
-            Sales, bookkeeping, inventory, events, payouts, and the day-to-day
-            decisions all connect. When one part slips, everything feels heavier.
+            You are running a business that moves in every direction at once. Sales,
+            bookkeeping, inventory, events, payouts, and the day-to-day decisions all
+            connect. When one part slips, everything feels heavier.
             <span>I bring your systems into sync so Shopify, your bookkeeping,
             and operations work together.</span>
           </p>
 
-          <div class="hero-cta-row">
-            <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
-              Reach Out
-              <span class="arrow">↗</span>
-            </a>
-            <div class="hero-tagline">
-              Quiet, practical support for the back end of your business.
-            </div>
+          <a id="contact" href="mailto:suzi@example.com" class="hero-cta">
+            Reach Out
+            <span class="arrow">↗</span>
+          </a>
+
+          <div class="hero-tagline">
+            Quiet, practical support for the back end of your business.
           </div>
 
-          <div class="hero-meta">
-            CASE FILE · <span>Small businesses navigating fast growth</span>
+          <div class="hero-casefile">
+            Case file · Small businesses navigating fast growth
           </div>
         </div>
-
-        <div class="hero-photo-wrap">
-          <div class="hero-photo"></div>
-          <div class="hero-photo-label">Live ops, not a stock photo.</div>
-        </div>
-      </div>
+      </section>
     </div>
-  </section>
 
-  <div class="shell">
     <!-- MAIN CONTENT -->
     <main>
-      <!-- OVERVIEW -->
+      <!-- OVERVIEW BAND -->
       <section class="overview-band">
         <div class="overview-inner">
           <div class="section-label">Overview</div>
           <h2 class="section-heading">Where I fit inside your business.</h2>
+          <p class="section-intro">
+            For small businesses in motion: grounded support that keeps up with
+            the way everything overlaps — sales, inventory, payouts, events,
+            bookkeeping, and the day-to-day decisions in between.
+          </p>
 
-          <div class="overview-layout">
-            <p class="overview-kicker">
-              For small businesses in motion: <strong>grounded support that keeps up with all of it.</strong>
-              Not a noisy overhaul — just the right amount of structure so Shopify, your books, and your
-              day-to-day decisions stop working against each other.
-            </p>
+          <div class="grid-3">
+            <div class="col-block" id="what">
+              <div class="col-label">What I Do</div>
+              <h3 class="col-title">Glue between your tools.</h3>
+              <div class="col-rule"></div>
+              <p class="col-body">
+                I handle the connective tissue between your store, your bookkeeping,
+                and your operations so reports match reality and money movement
+                finally makes sense instead of feeling mysterious.
+              </p>
+            </div>
 
-            <div class="overview-columns">
-              <div class="col-block" id="what">
-                <div class="col-label">What I Do</div>
-                <h3 class="col-title">Glue between your tools.</h3>
-                <div class="col-rule"></div>
-                <p class="col-body">
-                  I handle the connective tissue between your store, your bookkeeping,
-                  and your operations so reports match reality and money movement
-                  finally makes sense instead of feeling mysterious.
-                </p>
-              </div>
+            <div class="col-block" id="how">
+              <div class="col-label">How I Work</div>
+              <h3 class="col-title">Small, steady passes.</h3>
+              <div class="col-rule"></div>
+              <p class="col-body">
+                We start with what feels heavy, walk through Shopify, your books,
+                and the workflows around both, then clean things up in phases so
+                you can keep running the business while the systems get better.
+              </p>
+            </div>
 
-              <div class="col-block" id="how">
-                <div class="col-label">How I Work</div>
-                <h3 class="col-title">Small, steady passes.</h3>
-                <div class="col-rule"></div>
-                <p class="col-body">
-                  We start with what feels heavy, walk through Shopify, your books,
-                  and the workflows around both, then clean things up in phases so
-                  you can keep running the business while the systems get better.
-                </p>
-              </div>
-
-              <div class="col-block" id="who">
-                <div class="col-label">Who I Work With</div>
-                <h3 class="col-title">Owners who are stretched thin.</h3>
-                <div class="col-rule"></div>
-                <p class="col-body">
-                  You are in it every day and the back end is fighting you. You want
-                  your systems to feel grounded so you can focus on the part you are
-                  actually good at, instead of constantly chasing loose ends.
-                </p>
-              </div>
+            <div class="col-block" id="who">
+              <div class="col-label">Who I Work With</div>
+              <h3 class="col-title">Owners who are stretched thin.</h3>
+              <div class="col-rule"></div>
+              <p class="col-body">
+                You are in it every day and the back end is fighting you. You want
+                your systems to feel grounded so you can focus on the part you are
+                actually good at, instead of constantly chasing loose ends.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CLIENT WORDS -->
+      <!-- CLIENT WORDS BAND -->
       <section class="testimonial-band">
         <div class="testimonial-inner">
-          <div class="testimonial-label-row">
-            <div class="section-label">Client Words</div>
-            <div class="testimonial-index">Excerpt · 01</div>
-          </div>
-
+          <div class="section-label">Client Words</div>
           <div class="testimonial-wrap">
             <div class="testimonial-quote-mark">“</div>
             <p class="testimonial-text">
@@ -726,12 +685,12 @@
         </div>
       </section>
 
-      <!-- DARK WORKING TOGETHER STRIP -->
+      <!-- DARK WORKING TOGETHER BAND -->
       <section class="strip-band">
-        <div class="strip-inner-shell">
-          <div class="strip-top-rule"></div>
-          <div class="strip">
-            <div class="strip-inner">
+        <div class="strip-top-rule"></div>
+        <div class="strip">
+          <div class="strip-inner-shell">
+            <div>
               <div class="strip-tag">Working Together</div>
               <h2 class="strip-heading">
                 A back end that feels grounded instead of chaotic.
@@ -748,7 +707,7 @@
               </p>
             </div>
 
-            <div class="strip-inner">
+            <div>
               <ul class="strip-list">
                 <li>Shopify &amp; QuickBooks aligned so reports match what actually happened.</li>
                 <li>Clear handling of payouts, refunds, discounts, and sales channels.</li>
