@@ -9,11 +9,11 @@
 
   <style>
     :root {
-      --bg: #050508;
-      --bg-soft: #100f16;
+      --bg: #101018;
+      --bg-soft: #181821;
       --ink-main: #f5f3ee;
-      --ink-soft: #c4beb6;
-      --ink-muted: #8d8680;
+      --ink-soft: #ccc5bc;
+      --ink-muted: #9a928a;
       --accent: #ff855f;
       --accent-soft: #ffd27e;
       --max-width: 1120px;
@@ -32,7 +32,7 @@
     body {
       font-family: "Inter", system-ui, sans-serif;
       background:
-        radial-gradient(circle at top left, #1a1422 0, #050508 55%, #020206 100%);
+        radial-gradient(circle at top left, #2a2434 0, #101018 50%, #080812 100%);
       color: var(--ink-main);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -52,18 +52,18 @@
 
     @keyframes driftGlow {
       0% { transform: translate3d(0,0,0); }
-      100% { transform: translate3d(30px,-30px,0); }
+      100% { transform: translate3d(24px,-22px,0); }
     }
 
     .glow {
       position: fixed;
-      inset: -25vh -25vw auto auto;
-      width: 60vw;
-      height: 60vh;
+      inset: -18vh -18vw auto auto;
+      width: 48vw;
+      height: 48vh;
       background:
-        radial-gradient(circle at 10% 40%, rgba(255,133,95,0.5), transparent 60%);
+        radial-gradient(circle at 12% 40%, rgba(255,133,95,0.42), transparent 65%);
       mix-blend-mode: screen;
-      opacity: 0.9;
+      opacity: 0.75;
       pointer-events: none;
       animation: driftGlow 22s ease-in-out infinite alternate;
       z-index: -1;
@@ -71,7 +71,7 @@
 
     .frame {
       max-width: var(--max-width);
-      margin: 32px auto 80px;
+      margin: 16px auto 80px;
       padding: 0 24px 0;
       position: relative;
     }
@@ -83,7 +83,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -94,6 +94,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .dot {
@@ -130,8 +131,8 @@
       display: grid;
       grid-template-columns: minmax(0, 3.4fr) minmax(0, 1.2fr);
       gap: 40px;
-      padding: 60px 0 80px;
-      border-bottom: 1px solid rgba(245,243,238,0.14);
+      padding: 36px 0 64px;
+      border-bottom: 1px solid rgba(245,243,238,0.12);
     }
 
     .brand-line {
@@ -139,15 +140,15 @@
       letter-spacing: 0.32em;
       text-transform: uppercase;
       color: var(--ink-muted);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .hero-title {
       font-family: "Playfair Display", serif;
-      font-size: clamp(30px, 4.4vw, 44px);
+      font-size: clamp(30px, 4.2vw, 40px);
       line-height: 1.06;
       max-width: 420px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .hero-sub {
@@ -155,7 +156,7 @@
       max-width: 520px;
       color: var(--ink-soft);
       line-height: 1.9;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
 
     .hero-sub b {
@@ -171,7 +172,7 @@
     }
 
     .btn-primary {
-      padding: 11px 24px 12px;
+      padding: 10px 22px 11px;
       border-radius: 999px;
       border: none;
       font-size: 11px;
@@ -180,25 +181,25 @@
       font-weight: 600;
       background: linear-gradient(110deg, var(--accent), var(--accent-soft));
       color: #1a0f07;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.65);
       cursor: pointer;
       transition: transform 150ms ease, box-shadow 150ms ease;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 52px rgba(0,0,0,0.9);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.85);
     }
 
     .btn-ghost {
-      padding: 10px 18px 11px;
+      padding: 9px 18px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(245,243,238,0.45);
+      border: 1px solid rgba(245,243,238,0.4);
       font-size: 10px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--ink-soft);
-      background: transparent;
+      background: rgba(16,16,24,0.6);
       cursor: pointer;
     }
 
@@ -211,6 +212,7 @@
       font-size: 11px;
       color: var(--ink-muted);
       max-width: 380px;
+      margin-top: 4px;
     }
 
     .hero-note span {
@@ -225,7 +227,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 34px;
+      gap: 28px;
     }
 
     .rail-label {
@@ -240,9 +242,9 @@
     .rail-lines {
       position: relative;
       width: 1px;
-      height: 220px;
+      height: 190px;
       background: linear-gradient(to bottom, rgba(245,243,238,0.5), transparent);
-      opacity: 0.8;
+      opacity: 0.9;
       overflow: visible;
     }
 
@@ -250,15 +252,15 @@
     .rail-lines::after {
       content: "";
       position: absolute;
-      left: -90px;
-      right: -90px;
+      left: -80px;
+      right: -80px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
       animation: floatLine 4.6s ease-in-out infinite alternate;
     }
 
-    .rail-lines::before { top: 40px; animation-delay: .5s; }
-    .rail-lines::after  { top: 120px; animation-delay: 1.4s; }
+    .rail-lines::before { top: 34px; animation-delay: .45s; }
+    .rail-lines::after  { top: 110px; animation-delay: 1.3s; }
 
     .rail-note {
       font-size: 11px;
@@ -275,8 +277,13 @@
     /* SECTION BASE */
 
     .section {
-      padding: 72px 0 80px;
+      padding: 56px 0 70px;
       border-bottom: 1px solid rgba(245,243,238,0.12);
+      background: linear-gradient(to bottom, rgba(24,24,33,0.9), rgba(16,16,24,0.96));
+    }
+
+    .section:nth-of-type(odd) {
+      background: linear-gradient(to bottom, rgba(18,18,27,0.95), rgba(14,14,22,0.98));
     }
 
     .section-inner {
@@ -287,7 +294,7 @@
 
     .section-label {
       font-size: 11px;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--ink-muted);
       margin-bottom: 6px;
@@ -295,15 +302,15 @@
 
     .section h2 {
       font-family: "Playfair Display", serif;
-      font-size: clamp(24px, 3.2vw, 34px);
-      margin-bottom: 12px;
+      font-size: clamp(24px, 3.1vw, 34px);
+      margin-bottom: 10px;
     }
 
     .section p {
       font-size: 14px;
       color: var(--ink-soft);
       line-height: 1.9;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       max-width: 620px;
     }
 
@@ -316,11 +323,11 @@
 
     .statement {
       font-family: "Playfair Display", serif;
-      font-size: clamp(20px, 2.4vw, 28px);
+      font-size: clamp(20px, 2.3vw, 28px);
       line-height: 1.25;
       color: var(--accent);
       max-width: 520px;
-      margin: 32px 0;
+      margin: 28px 0 26px;
     }
 
     /* DETAIL COLUMNS */
@@ -332,8 +339,8 @@
     }
 
     .detail-heading {
-      font-size: 13px;
-      letter-spacing: 0.18em;
+      font-size: 11px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--ink-muted);
       margin-bottom: 4px;
@@ -358,12 +365,13 @@
     /* CTA SECTION */
 
     .cta-section {
-      padding: 72px 0 40px;
+      padding: 52px 0 40px;
+      background: #14141e;
     }
 
     .cta-copy {
       max-width: 520px;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
       font-size: 14px;
       color: var(--ink-soft);
       line-height: 1.9;
@@ -372,10 +380,11 @@
     /* FOOTER */
 
     .footer {
-      padding: 24px 0 32px;
+      padding: 20px 0 30px;
       font-size: 11px;
       color: var(--ink-muted);
       text-align: center;
+      background: #101018;
     }
 
     .footer .dot {
@@ -389,12 +398,13 @@
 
     @media (max-width: 900px) {
       .frame {
-        margin-top: 24px;
+        margin-top: 10px;
       }
 
       .hero {
         grid-template-columns: minmax(0, 1fr);
-        gap: 32px;
+        gap: 28px;
+        padding-top: 28px;
       }
 
       .hero-rail {
@@ -420,16 +430,12 @@
         padding: 0 18px;
       }
 
-      .hero {
-        padding-top: 46px;
-      }
-
       .section {
-        padding: 60px 0 64px;
+        padding: 46px 0 54px;
       }
 
       .statement {
-        margin: 26px 0 30px;
+        margin: 24px 0 22px;
       }
     }
   </style>
