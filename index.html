@@ -114,7 +114,6 @@
     .hero-band {
       margin-top: 0;
       position: relative;
-      background: var(--night);
       color: #f9fafb;
       overflow: hidden;
     }
@@ -129,57 +128,43 @@
       background: linear-gradient(90deg, rgba(148, 163, 184, 0.6), transparent);
       opacity: 0.9;
       pointer-events: none;
-    }
-
-    /* angled bottom edge */
-    .hero-band::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -48px;
-      height: 80px;
-      background: var(--page-bg);
-      transform: skewY(-3deg);
-      transform-origin: top left;
-      pointer-events: none;
-      z-index: 1;
+      z-index: 3;
     }
 
     .hero {
       position: relative;
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
-      padding: 26px min(7vw, 56px) 46px;
-      color: inherit;
+      padding: 30px min(7vw, 56px) 52px;
       isolation: isolate;
       overflow: hidden;
-      min-height: 220px;
-      z-index: 0;
+      min-height: 240px;
+      color: inherit;
     }
 
-    /* background image – less hand, more workspace */
+    /* background image – softer, more workspace, less hand */
     .hero::before {
       content: "";
       position: absolute;
-      inset: -16%;
+      inset: -18%;
       background-image: url("IMG_6692.jpeg");
-      background-size: 110%;
+      background-size: 115%;
       background-repeat: no-repeat;
-      background-position: 50% 60%;
-      filter: saturate(1.03) contrast(1.04) brightness(0.96);
-      opacity: 0.92;
+      background-position: 48% 58%;
+      filter: saturate(1.05) contrast(1.03) brightness(1);
+      opacity: 0.9;
       z-index: -2;
     }
 
-    /* overlay */
+    /* overlay with more character */
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to bottom, rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.88)),
-        linear-gradient(115deg, rgba(196, 104, 78, 0.22), transparent 55%);
+        radial-gradient(circle at 10% 20%, rgba(244, 208, 193, 0.7), transparent 55%),
+        linear-gradient(to bottom right, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.75));
+      mix-blend-mode: multiply;
       z-index: -1;
     }
 
@@ -188,9 +173,25 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
       position: relative;
       z-index: 2;
+    }
+
+    /* accent blob behind text for movement */
+    .hero-inner::before {
+      content: "";
+      position: absolute;
+      left: -80px;
+      top: -40px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196, 104, 78, 0.45), transparent 65%);
+      opacity: 0.85;
+      filter: blur(1px);
+      pointer-events: none;
+      z-index: -1;
     }
 
     .hero-eyebrow {
@@ -199,30 +200,30 @@
       text-transform: uppercase;
       color: #e5e7eb;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 2.7vw, 2.6rem);
-      line-height: 1.06;
-      margin: 0 0 4px;
-      max-width: 22ch;
+      font-size: clamp(2.2rem, 2.9vw, 2.8rem);
+      line-height: 1.04;
+      margin: 0;
+      max-width: 24ch;
       position: relative;
     }
 
     .hero-title::after {
       content: "";
       display: block;
-      width: 72px;
+      width: 80px;
       height: 2px;
       border-radius: 999px;
-      margin-top: 10px;
-      background: linear-gradient(90deg, var(--accent), transparent);
+      margin-top: 11px;
+      background: linear-gradient(90deg, #fde68a, var(--accent));
     }
 
     .hero-subtitle {
-      margin: 0 0 16px;
-      font-size: 0.96rem;
+      margin: 8px 0 18px;
+      font-size: 0.98rem;
       max-width: 40rem;
       color: #e5e7eb;
     }
@@ -236,24 +237,25 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 9px 22px;
+      padding: 8px 20px;
       border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: #fdf6f0;
-      font-size: 0.84rem;
+      border: 1px solid rgba(249, 250, 251, 0.6);
+      background: #fef3e7;
+      color: var(--accent-deep);
+      font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 12px 26px rgba(138, 60, 38, 0.6);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.4);
       margin-bottom: 6px;
       width: auto;
       max-width: 260px;
     }
 
     .hero-cta:hover {
-      background: var(--accent-deep);
+      background: #fff7ed;
+      border-color: rgba(249, 250, 251, 0.9);
     }
 
     .hero-cta .arrow {
@@ -263,16 +265,16 @@
     }
 
     .hero-tagline {
-      font-size: 0.84rem;
+      font-size: 0.86rem;
       color: #e5e7eb;
     }
 
     /* MAIN WRAPPER ------------------------------------------ */
 
     main {
-      margin-top: 28px;
+      margin-top: 40px;
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
     .section-label {
@@ -295,7 +297,7 @@
       max-width: 40rem;
     }
 
-    /* OVERVIEW BAND (still old layout for now) --------------- */
+    /* OVERVIEW BAND (still 3-column for now) ---------------- */
 
     .overview-band {
       padding: 0 0 40px;
@@ -515,7 +517,7 @@
 
     @media (max-width: 960px) {
       main {
-        margin-top: 24px;
+        margin-top: 34px;
       }
 
       .grid-3 {
@@ -555,8 +557,8 @@
       }
 
       .hero {
-        padding: 22px 18px 34px;
-        min-height: 210px;
+        padding: 24px 18px 40px;
+        min-height: 220px;
       }
 
       .hero-title {
@@ -614,7 +616,7 @@
 
     <!-- MAIN CONTENT -->
     <main>
-      <!-- OVERVIEW BAND (still original structure for now) -->
+      <!-- OVERVIEW BAND -->
       <section class="overview-band">
         <div class="overview-inner">
           <div class="section-label">Overview</div>
@@ -638,7 +640,7 @@
             </div>
 
             <div class="col-block" id="how">
-              <div class="col-label">How I Work</div>
+              <div class.col-label>How I Work</div>
               <h3 class="col-title">Small, steady passes.</h3>
               <div class="col-rule"></div>
               <p class="col-body">
