@@ -7,66 +7,151 @@
 
   <style>
     :root {
-      --bg-ink: #0d1117;
-      --bg-ink-soft: #151921;
+      --bg-ink: #0b1017;
+      --bg-ink-soft: #151a23;
+      --bg-ink-light: #252b38;
+
       --text-main: #f5f2ed;
       --text-soft: #c9c4bd;
-      --text-muted: #918984;
+      --text-muted: #948d87;
+
       --accent-clay: #ba8276;
-      --accent-clay-soft: rgba(186, 130, 118, 0.45);
+      --accent-clay-soft: rgba(186, 130, 118, 0.52);
+      --accent-ink-light-soft: rgba(37, 43, 56, 0.7);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont,
-        "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(165deg, var(--bg-ink), var(--bg-ink-soft));
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(circle at top left, #111623 0, transparent 55%),
+        linear-gradient(160deg, var(--bg-ink), var(--bg-ink-soft));
       color: var(--text-main);
       line-height: 1.6;
     }
 
+    h1,
+    h2,
+    h3 {
+      font-family: "Georgia", "Times New Roman", serif;
+      letter-spacing: 0.01em;
+    }
+
     .page {
       min-height: 100vh;
-      padding: 3.2rem min(8vw, 5.5rem) 4rem;
+      padding: 3.2rem min(8vw, 5.5rem) 4.5rem;
     }
 
     .shell {
       max-width: 1120px;
       margin: 0 auto;
+      position: relative;
     }
 
-    /* HEADER */
+    /* --- Header --- */
 
     header.site-header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       gap: 1.5rem;
-      margin-bottom: 3.8rem;
+      margin-bottom: 3.6rem;
     }
 
     .site-name {
       font-size: 0.9rem;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--text-muted);
       white-space: nowrap;
     }
 
     .site-tagline {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: var(--text-muted);
       text-align: right;
+      max-width: 320px;
     }
 
-    /* HERO */
+    /* --- Soft arcs / motif base --- */
+
+    .section-with-arc {
+      position: relative;
+    }
+
+    .section-with-arc::before {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      border-radius: 999px;
+      opacity: 0.9;
+      filter: blur(2px);
+      background: radial-gradient(circle at 0% 50%,
+          var(--accent-clay-soft) 0,
+          transparent 60%),
+        radial-gradient(circle at 100% 50%,
+          var(--accent-ink-light-soft) 0,
+          transparent 70%);
+    }
+
+    /* hero arc (left / upper) */
+    .hero.section-with-arc::before {
+      width: 420px;
+      height: 420px;
+      top: -80px;
+      left: -160px;
+    }
+
+    /* "what I help with" arc (right / mid) */
+    .section-what.section-with-arc::before {
+      width: 420px;
+      height: 420px;
+      top: -40px;
+      right: -180px;
+      background: radial-gradient(circle at 100% 40%,
+          var(--accent-clay-soft) 0,
+          transparent 60%),
+        radial-gradient(circle at 0% 60%,
+          var(--accent-ink-light-soft) 0,
+          transparent 70%);
+    }
+
+    /* "how it feels" arc (left / lower) */
+    .section-how.section-with-arc::before {
+      width: 420px;
+      height: 420px;
+      bottom: -140px;
+      left: -160px;
+    }
+
+    /* contact arc (soft upward arc near bottom) */
+    .section-contact.section-with-arc::before {
+      width: 540px;
+      height: 420px;
+      bottom: -220px;
+      right: -120px;
+      background: radial-gradient(circle at 50% 100%,
+          var(--accent-clay-soft) 0,
+          transparent 68%),
+        radial-gradient(circle at 20% 80%,
+          var(--accent-ink-light-soft) 0,
+          transparent 72%);
+    }
+
+    /* --- Hero --- */
 
     .hero {
-      padding: 1.5rem 0 3.4rem;
+      padding: 1.4rem 0 3.4rem;
     }
 
     .hero-inner {
@@ -90,7 +175,7 @@
 
     .hero-title {
       margin: 0 0 1.8rem;
-      font-size: 2.1rem;
+      font-size: 2.15rem;
       line-height: 1.35;
       font-weight: 500;
       color: var(--text-main);
@@ -99,7 +184,7 @@
     .hero-sub {
       margin: 0 0 2.2rem;
       font-size: 1.05rem;
-      line-height: 1.75;
+      line-height: 1.8;
       color: var(--text-soft);
     }
 
@@ -128,7 +213,7 @@
     }
 
     .hero-cta:hover {
-      opacity: 0.75;
+      opacity: 0.78;
       transform: translateY(-1px);
     }
 
@@ -137,8 +222,6 @@
       font-size: 0.9rem;
       color: var(--text-muted);
     }
-
-    /* HERO ASIDE */
 
     .hero-aside {
       max-width: 320px;
@@ -150,7 +233,7 @@
       font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(245, 242, 237, 0.9);
+      color: rgba(245, 242, 237, 0.93);
       margin-bottom: 0.9rem;
     }
 
@@ -176,8 +259,6 @@
       color: var(--text-muted);
     }
 
-    /* underline break */
-
     .hero-underline {
       margin-top: 3rem;
       height: 1px;
@@ -186,7 +267,7 @@
       opacity: 0.9;
     }
 
-    /* COMMON SECTION STYLES */
+    /* --- Shared section styles --- */
 
     .section {
       padding: 3.5rem 0;
@@ -195,6 +276,8 @@
     .section-inner {
       max-width: 900px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .section-title {
@@ -212,7 +295,11 @@
       max-width: 620px;
     }
 
-    /* WHAT I HELP WITH */
+    /* --- What I help with --- */
+
+    .section-what .section-inner {
+      text-align: left;
+    }
 
     .section-grid {
       display: grid;
@@ -233,7 +320,11 @@
       color: var(--text-soft);
     }
 
-    /* HOW IT FEELS TO WORK TOGETHER */
+    /* --- How working together feels --- */
+
+    .section-how .section-inner {
+      max-width: 960px;
+    }
 
     .steps {
       list-style: none;
@@ -241,23 +332,23 @@
       margin: 0;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2rem;
+      gap: 2.1rem;
       counter-reset: step;
     }
 
     .steps li {
       position: relative;
-      padding-top: 0.2rem;
+      padding-top: 0.6rem;
     }
 
     .steps li::before {
       counter-increment: step;
       content: counter(step);
       position: absolute;
-      top: -0.2rem;
+      top: 0;
       left: 0;
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent-clay-soft);
     }
@@ -265,22 +356,24 @@
     .steps h3 {
       font-size: 1rem;
       margin: 0 0 0.6rem;
+      padding-left: 1.8rem;
       color: var(--text-main);
     }
 
     .steps p {
       margin: 0;
+      padding-left: 1.8rem;
       font-size: 0.95rem;
       line-height: 1.7;
       color: var(--text-soft);
     }
 
-    /* FIT / NOT FIT */
+    /* --- Fit / Not fit --- */
 
     .section-fit-inner {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2.5rem;
+      gap: 2.8rem;
     }
 
     .fit-list {
@@ -296,12 +389,20 @@
       margin-top: 0.4rem;
     }
 
-    /* CONTACT */
+    .section-fit {
+      border-top: 1px solid rgba(186, 130, 118, 0.24);
+      border-bottom: 1px solid rgba(186, 130, 118, 0.14);
+    }
+
+    .section-fit .section-inner {
+      padding-top: 0.8rem;
+    }
+
+    /* --- Contact --- */
 
     .section-contact {
       padding-bottom: 4.5rem;
-      border-top: 1px solid rgba(186, 130, 118, 0.25);
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
 
     .contact-block {
@@ -327,7 +428,7 @@
       color: var(--text-soft);
     }
 
-    /* RESPONSIVE OPTIMIZATIONS */
+    /* --- Responsive --- */
 
     @media (max-width: 900px) {
       .section-grid {
@@ -370,7 +471,7 @@
       }
 
       .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
       }
 
       .section {
@@ -387,7 +488,6 @@
     }
   </style>
 </head>
-
 <body>
 <div class="page">
   <div class="shell">
@@ -401,7 +501,7 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero section-with-arc">
       <div class="hero-inner">
 
         <div class="hero-main">
@@ -433,7 +533,7 @@
           <div class="hero-aside-tag">What I’m usually helping with</div>
           <p class="hero-aside-text">
             Not a full rebuild. Not a rescue mission. Just the parts that are
-            nagging at you and eating time you don’t have.
+            nagging at you and quietly eating time you don’t have.
           </p>
           <ul class="hero-aside-list">
             <li>Shopify basics set up cleanly and kept current</li>
@@ -449,11 +549,11 @@
     </section>
 
     <!-- WHAT I HELP WITH -->
-    <section class="section section-what">
+    <section class="section section-what section-with-arc">
       <div class="section-inner">
         <h2 class="section-title">What I actually help with</h2>
         <p class="section-intro">
-          I don’t rebuild everything from scratch. I work with what you already have
+          I’m not here to reinvent everything. I work with what you already have
           and make the parts underneath easier to live with.
         </p>
 
@@ -486,7 +586,7 @@
     </section>
 
     <!-- HOW IT FEELS -->
-    <section class="section section-how">
+    <section class="section section-how section-with-arc">
       <div class="section-inner">
         <h2 class="section-title">How working together feels</h2>
         <p class="section-intro">
@@ -548,7 +648,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section section-contact">
+    <section id="contact" class="section section-contact section-with-arc">
       <div class="section-inner">
         <h2 class="section-title">Tell me what’s going on</h2>
         <p class="section-intro">
@@ -573,6 +673,5 @@
 
   </div>
 </div>
-
 </body>
 </html>
