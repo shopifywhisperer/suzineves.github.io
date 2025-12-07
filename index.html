@@ -2,198 +2,300 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Suzi Neves · Systems that stop fighting you</title>
+  <title>Suzi Neves – Systems, Shopify, Operations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Calm, grounded support for small businesses growing fast – Shopify, bookkeeping, and operations handled without the corporate bullshit." />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #181724;
-      --bg-soft: #201f2b;
-      --ink-main: #f5f3ee;
-      --ink-soft: #d4cdc5;
-      --ink-muted: #a29a92;
-      --accent: #ff855f;
-      --accent-soft: #ffd27e;
+      --bg: #0f1012;
+      --bg-soft: #15171b;
+      --bg-alt: #f7f3ee;
+      --text-main: #f8f8f8;
+      --text-soft: #c0c3c9;
+      --text-muted: #8c9098;
+      --accent: #f3a13b; /* saffron */
+      --accent-soft: rgba(243, 161, 59, 0.12);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.5);
+      --radius-lg: 26px;
+      --radius-pill: 999px;
       --max-width: 1120px;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html, body {
-      scroll-behavior: smooth;
+      height: 100%;
     }
 
     body {
-      font-family: "Inter", system-ui, sans-serif;
-      background:
-        linear-gradient(155deg, #111019 0%, #181724 50%, #0b0a12 100%);
-      color: var(--ink-main);
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1a1c22 0, #050608 55%, #020203 100%);
+      color: var(--text-main);
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* SUBTLE ANIMATION (NOT GIMMICKY) */
-
-    @keyframes floatLine {
-      0% { transform: translateX(-10px); opacity: .25; }
-      100% { transform: translateX(10px); opacity: .6; }
-    }
-
-    .frame {
+    .shell {
+      width: 100%;
       max-width: var(--max-width);
-      margin: 14px auto 72px;
-      padding: 0 24px 0;
-      position: relative;
+      margin: 0 auto;
+      padding: 20px 20px 72px;
     }
 
-    /* TOP LINE */
-
-    .top {
+    /* Header */
+    .site-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 6px;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
+      padding: 6px 0 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(to bottom, rgba(2,2,4,0.95), rgba(2,2,4,0.7), transparent);
     }
 
-    .top-left {
+    .brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
-    .dot {
-      width: 3px;
-      height: 3px;
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: conic-gradient(from 210deg, #f3a13b, #f9d28d, #f3a13b, #d96a2e, #f3a13b);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 22%;
       border-radius: 999px;
-      background: var(--ink-muted);
+      border: 1px solid rgba(0,0,0,0.55);
+      border-top-color: transparent;
+      border-left-color: transparent;
+      transform: rotate(-14deg);
     }
 
-    .top-right a {
-      margin-left: 12px;
+    .brand-text-main {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .nav a {
+      color: var(--text-soft);
+      text-decoration: none;
       position: relative;
       padding-bottom: 2px;
+      transition: color 0.18s ease;
     }
 
-    .top-right a::after {
+    .nav a::after {
       content: "";
       position: absolute;
       left: 0;
       bottom: 0;
       width: 0;
       height: 1px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-soft));
-      transition: width 200ms ease;
+      background: var(--accent);
+      transition: width 0.18s ease;
     }
 
-    .top-right a:hover::after {
+    .nav a:hover {
+      color: var(--text-main);
+    }
+
+    .nav a:hover::after {
       width: 100%;
     }
 
-    /* HERO */
-
+    /* Hero */
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 3.4fr) minmax(0, 1.2fr);
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
       gap: 40px;
-      padding: 22px 0 28px;
-      border-bottom: 1px solid rgba(245,243,238,0.14);
+      padding-top: 18px; /* tighter so there's not a huge gap */
+      padding-bottom: 40px;
+      position: relative;
     }
 
-    .brand-line {
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40px -80px auto;
+      height: 64%;
+      background:
+        linear-gradient(120deg, rgba(243,161,59,0.28), transparent 44%),
+        radial-gradient(circle at top right, rgba(243,161,59,0.14), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .kicker-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-size: 11px;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 10px;
+      color: var(--text-soft);
+    }
+
+    .kicker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(243,161,59,0.5);
+      background: radial-gradient(circle at top left, rgba(243,161,59,0.22), rgba(10, 8, 3, 0.9));
+      box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .kicker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #f9d28d;
+      box-shadow: 0 0 0 3px rgba(243,161,59,0.3);
     }
 
     .hero-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(30px, 4vw, 38px);
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-weight: 600;
+      font-size: clamp(32px, 4vw, 40px);
       line-height: 1.06;
-      max-width: 420px;
-      margin-bottom: 10px;
+      max-width: 520px;
+    }
+
+    .hero-highlight {
+      color: var(--accent);
     }
 
     .hero-sub {
       font-size: 14px;
-      max-width: 520px;
-      color: var(--ink-soft);
-      line-height: 1.9;
-      margin-bottom: 18px;
+      line-height: 1.6;
+      color: var(--text-soft);
+      max-width: 460px;
     }
 
-    .hero-sub b {
+    .hero-sub span {
+      color: var(--text-main);
       font-weight: 500;
-      color: var(--ink-main);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 18px 26px;
+      margin-top: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .hero-grid strong {
+      color: var(--text-soft);
+      font-weight: 500;
     }
 
     .hero-cta-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 6px;
+      align-items: center;
+      gap: 18px;
+      margin-top: 12px;
     }
 
-    .btn-primary {
-      padding: 9px 22px 10px;
-      border-radius: 999px;
+    .hero-cta {
       border: none;
-      font-size: 11px;
-      letter-spacing: 0.22em;
+      background: transparent;
+      color: var(--accent);
+      font-size: 13px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      font-weight: 600;
-      background: linear-gradient(110deg, var(--accent), var(--accent-soft));
-      color: #1a0f07;
-      box-shadow: 0 9px 24px rgba(0,0,0,0.55);
       cursor: pointer;
-      transition: transform 150ms ease, box-shadow 150ms ease;
+      padding: 8px 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 34px rgba(0,0,0,0.8);
+    .hero-cta::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), transparent 65%);
+      opacity: 0.9;
+      transform-origin: left;
+      transform: scaleX(1);
+      transition: transform 0.16s ease;
     }
 
-    .btn-ghost {
-      padding: 8px 18px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(90,86,106,0.9);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      background: rgba(24,23,35,0.9);
-      cursor: pointer;
+    .hero-cta:hover::after {
+      transform: scaleX(1.03);
     }
 
-    .btn-ghost:hover {
-      background: rgba(245,243,238,0.06);
-      color: var(--ink-main);
+    .hero-cta svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.6;
     }
 
     .hero-note {
       font-size: 11px;
-      color: var(--ink-muted);
-      max-width: 380px;
-      margin-top: 2px;
+      color: var(--text-muted);
     }
 
     .hero-note span {
@@ -201,401 +303,650 @@
       font-weight: 500;
     }
 
-    /* HERO RAIL */
-
-    .hero-rail {
-      justify-self: end;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 22px;
-    }
-
-    .rail-label {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-    }
-
-    .rail-lines {
+    .hero-right {
       position: relative;
-      width: 1px;
-      height: 155px;
-      background: linear-gradient(to bottom, rgba(245,243,238,0.6), transparent);
-      opacity: 0.9;
-      overflow: visible;
+      align-self: center;
     }
 
-    .rail-lines::before,
-    .rail-lines::after {
+    .photo-shell {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: radial-gradient(circle at top left, rgba(243,161,59,0.15), rgba(0,0,0,0.95));
+      padding: 12px;
+      box-shadow: var(--shadow-soft);
+      transform-origin: center;
+      animation: heroFloat 18s ease-in-out infinite alternate;
+    }
+
+    .photo-shell::before {
       content: "";
       position: absolute;
-      left: -80px;
-      right: -80px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      animation: floatLine 4.6s ease-in-out infinite alternate;
+      inset: 10px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-top-color: rgba(243,161,59,0.45);
+      border-right-color: rgba(243,161,59,0.23);
+      pointer-events: none;
     }
 
-    .rail-lines::before { top: 30px; animation-delay: .45s; }
-    .rail-lines::after  { top: 95px; animation-delay: 1.3s; }
-
-    .rail-note {
-      font-size: 11px;
-      max-width: 220px;
-      text-align: right;
-      color: var(--ink-soft);
+    .photo-stripe {
+      position: absolute;
+      left: -24px;
+      top: 10%;
+      bottom: 14%;
+      width: 18px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #f9d28d, #f3a13b, #d96a2e);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.4), 0 14px 40px rgba(243,161,59,0.55);
     }
 
-    .rail-note b {
-      font-weight: 500;
-      color: var(--ink-main);
+    .photo-inner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      isolation: isolate;
     }
 
-    /* SECTION BASE */
-
-    .section {
-      padding: 34px 0 50px;
-      border-bottom: 1px solid rgba(245,243,238,0.12);
-      background: linear-gradient(to bottom, #201f2b, #181724);
+    .photo-inner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transform: scale(1.03) translateY(2px); /* a bit more zoomed out */
+      filter: contrast(1.04) saturate(1.05);
+      transition: transform 0.6s ease, filter 0.6s ease, opacity 0.6s ease;
+      opacity: 0.96;
     }
 
-    .section:nth-of-type(odd) {
-      background: linear-gradient(to bottom, #232131, #191827);
+    .photo-inner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(2,2,4,0.55), transparent 40%),
+        radial-gradient(circle at top left, rgba(243,161,59,0.32), transparent 55%);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
     }
 
-    .section-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.7fr);
-      gap: 40px;
+    .photo-shell:hover img {
+      transform: scale(1.06) translateY(0);
+      filter: contrast(1.08) saturate(1.08);
+      opacity: 1;
+    }
+
+    .photo-tag {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(3,3,6,0.82);
+      border: 1px solid rgba(243,161,59,0.55);
+      backdrop-filter: blur(10px);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .photo-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(243,161,59,0.4);
+    }
+
+    @keyframes heroFloat {
+      0% {
+        transform: translateY(0px) translateX(0px);
+      }
+      100% {
+        transform: translateY(-8px) translateX(4px);
+      }
+    }
+
+    /* Sections */
+    section {
+      margin-top: 32px;
     }
 
     .section-label {
       font-size: 11px;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 6px;
-    }
-
-    .section h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(24px, 3.1vw, 32px);
+      color: var(--text-muted);
       margin-bottom: 8px;
     }
 
-    .section p {
-      font-size: 14px;
-      color: var(--ink-soft);
-      line-height: 1.9;
-      margin-bottom: 16px;
-      max-width: 620px;
+    .section-shell {
+      border-radius: var(--radius-lg);
+      padding: 22px 22px 20px;
+      background:
+        linear-gradient(to bottom right, rgba(243,161,59,0.08), rgba(12,13,18,0.85));
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.65);
+      position: relative;
+      overflow: hidden;
     }
 
-    .section p strong {
-      color: var(--ink-main);
-      font-weight: 500;
+    .section-shell::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top left, rgba(243,161,59,0.16), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
     }
 
-    .statement {
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 26px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
       font-family: "Playfair Display", serif;
-      font-size: clamp(20px, 2.3vw, 26px);
-      line-height: 1.25;
-      color: var(--accent);
-      max-width: 520px;
-      margin: 20px 0 18px;
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
-    .detail-block {
-      font-size: 13px;
-      color: var(--ink-soft);
-      line-height: 1.9;
+    .section-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-soft);
+      max-width: 540px;
     }
 
-    .detail-heading {
+    .section-body strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .chip-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .chip {
       font-size: 11px;
-      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 4px;
+      letter-spacing: 0.18em;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(243,161,59,0.45);
+      background: rgba(3,3,6,0.7);
+      color: var(--text-soft);
     }
 
-    .detail-title {
-      font-size: 15px;
+    .section-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      max-width: 320px;
+    }
+
+    /* Services */
+    .services-strip {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: linear-gradient(to right, rgba(8,9,13,0.98), rgba(17,18,24,0.98));
+      padding: 20px 22px 18px;
+      margin-top: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-strip::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at right center, rgba(243,161,59,0.18), transparent 55%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 30px;
+      position: relative;
+      z-index: 1;
+      align-items: center;
+    }
+
+    .services-title {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
       margin-bottom: 6px;
-      color: var(--ink-main);
+    }
+
+    .services-body {
+      font-size: 13px;
+      color: var(--text-soft);
+      max-width: 340px;
+    }
+
+    .services-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      font-size: 12px;
+    }
+
+    .svc-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .svc-line {
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    /* CTA */
+    .cta {
+      margin-top: 26px;
+    }
+
+    .cta-inner {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(243,161,59,0.7);
+      background:
+        radial-gradient(circle at left center, rgba(243,161,59,0.22), rgba(8,9,13,0.95));
+      padding: 18px 22px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: 0 22px 55px rgba(0,0,0,0.8);
+    }
+
+    .cta-text-main {
+      font-size: 15px;
       font-weight: 500;
     }
 
-    .detail-list {
-      font-size: 13px;
-      line-height: 1.9;
+    .cta-text-sub {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 4px;
     }
 
-    .detail-list span {
-      opacity: 0.7;
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
-    /* CTA SECTION */
-
-    .cta-section {
-      padding: 36px 0 30px;
-      background: #191826;
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(16,10,4,0.5);
+      background: #0c0804;
+      color: #f9d28d;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.8);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
     }
 
-    .cta-copy {
-      max-width: 520px;
-      margin-bottom: 22px;
-      font-size: 14px;
-      color: var(--ink-soft);
-      line-height: 1.9;
-    }
-
-    /* FOOTER */
-
-    .footer {
-      padding: 18px 0 26px;
-      font-size: 11px;
-      color: var(--ink-muted);
-      text-align: center;
-      background: #151422;
-    }
-
-    .footer .dot {
-      display: inline-block;
-      margin: 0 6px;
+    .cta-primary:hover {
       transform: translateY(-1px);
-      background: rgba(245,243,238,0.55);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.9);
+      background: #120a03;
     }
 
-    /* RESPONSIVE */
+    .cta-primary svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.6;
+    }
 
-    @media (max-width: 900px) {
-      .frame {
-        margin-top: 10px;
+    .cta-secondary {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .cta-secondary span {
+      color: var(--accent);
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .foot-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .foot-tag {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(6,7,10,0.9);
+    }
+
+    /* Animations – gentle reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: revealIn 0.8s ease forwards;
+    }
+
+    .reveal.delay-1 { animation-delay: 0.1s; }
+    .reveal.delay-2 { animation-delay: 0.2s; }
+    .reveal.delay-3 { animation-delay: 0.3s; }
+    .reveal.delay-4 { animation-delay: 0.4s; }
+
+    @keyframes revealIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .shell {
+        padding: 16px 16px 60px;
+      }
+
+      .site-header {
+        padding-top: 4px;
+        padding-bottom: 6px;
+      }
+
+      .nav {
+        display: none;
       }
 
       .hero {
         grid-template-columns: minmax(0, 1fr);
-        gap: 24px;
-        padding-top: 18px;
+        gap: 22px;
+        padding-top: 20px;
       }
 
-      .hero-rail {
-        align-items: flex-start;
+      .hero-left {
+        order: 2;
       }
 
-      .rail-label {
-        writing-mode: horizontal-tb;
-        text-orientation: initial;
+      .hero-right {
+        order: 1;
+        max-width: 420px;
+        margin: 0 auto;
       }
 
-      .rail-note {
-        text-align: left;
+      .photo-stripe {
+        left: 8px;
+        width: 14px;
       }
 
-      .section-inner {
+      .about-grid {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-layout {
+        grid-template-columns: minmax(0,1fr);
+        gap: 22px;
+      }
+
+      .services-columns {
+        grid-template-columns: minmax(0,1fr);
+        gap: 10px;
+      }
+
+      .cta-inner {
+        align-items: flex-start;
       }
     }
 
-    @media (max-width: 600px) {
-      .frame {
-        padding: 0 18px;
+    @media (max-width: 540px) {
+      .hero-title {
+        font-size: 28px;
       }
 
-      .section {
-        padding: 30px 0 40px;
+      .section-shell,
+      .services-strip,
+      .cta-inner {
+        padding: 18px 16px 16px;
       }
 
-      .statement {
-        margin: 16px 0 16px;
+      .hero-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .photo-shell {
+        padding: 10px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="page">
+    <div class="shell">
 
-<div class="frame">
-  <!-- TOP -->
-  <header class="top">
-    <div class="top-left">
-      <span>SUZI NEVES</span>
-      <span class="dot"></span>
-      <span>SHOPIFY</span>
-      <span class="dot"></span>
-      <span>BOOKKEEPING</span>
-      <span class="dot"></span>
-      <span>OPERATIONS</span>
-    </div>
-    <nav class="top-right">
-      <a href="#overview">Overview</a>
-      <a href="#working">Working Together</a>
-      <a href="#systems">Systems &amp; Tools</a>
-    </nav>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" aria-label="Intro">
-    <div>
-      <div class="brand-line">Systems &amp; operations support</div>
-      <h1 class="hero-title">Systems that stop fighting you.</h1>
-      <p class="hero-sub">
-        For owners who live in the overlap — <b>sales, inventory, payouts, events, and bookkeeping</b> all crashing into the same day.
-        I get inside your tools, trace how everything connects, and bring the back end into sync so it stops draining you.
-      </p>
-
-      <div class="hero-cta-row">
-        <a href="mailto:suzi@radpurpose.com" class="btn-primary">Reach out</a>
-        <a href="#overview" class="btn-ghost">See how this works</a>
-      </div>
-
-      <p class="hero-note">
-        Built for small businesses in motion. <span>You don’t need a rebrand.</span> You need your systems to stop leaking time, money, and energy.
-      </p>
-    </div>
-
-    <aside class="hero-rail">
-      <div class="rail-label">SMALL BUSINESSES IN MOTION · BACK-END CLEANUP</div>
-      <div class="rail-lines" aria-hidden="true"></div>
-      <div class="rail-note">
-        <b>I’m not here to “advise from above.”</b><br>
-        I sit inside the mess with you, carry real weight, and make the back end feel like it belongs to you again.
-      </div>
-    </aside>
-  </section>
-
-  <!-- OVERVIEW -->
-  <section id="overview" class="section">
-    <div class="section-inner">
-      <div>
-        <div class="section-label">Overview</div>
-        <h2>Where I actually live inside your business.</h2>
-        <p>
-          I live in the connective tissue between Shopify, your books, and the way you actually run things.
-          The place that never gets its own job title, but always gets blamed when something feels off.
-        </p>
-
-        <div class="statement">
-          “Most of my clients are brilliant at what they do. Their systems are just stuck in survival mode.”
+      <!-- Header -->
+      <header class="site-header">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div>
+            <div class="brand-text-main">Suzi Neves</div>
+            <div class="brand-text-sub">Calm in the chaos</div>
+          </div>
         </div>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#work">What I handle</a>
+          <a href="#cta">Next step</a>
+        </nav>
+      </header>
 
-        <p>
-          I untangle quiet chaos — payouts that don’t match deposits, reports that never quite agree, inventory that’s “in stock”
-          but never where it should be. We clean it up in passes so you stay in motion while the back end gets lighter.
-        </p>
-      </div>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-left reveal delay-1">
+          <div class="kicker-row">
+            <div class="kicker-pill">
+              <span class="kicker-dot"></span>
+              <span>Systems · Shopify · Ops</span>
+            </div>
+          </div>
 
-      <div class="detail-block">
-        <div class="detail-heading">What I do</div>
-        <div class="detail-title">Glue between your tools.</div>
-        <p>
-          I pull Shopify, QuickBooks, and your real-world workflows into one story: products, variants, payouts, refunds, fees,
-          sales channels, events, and all the places money likes to go weird.
-        </p>
+          <h1 class="hero-title">
+            I keep your<br>
+            <span class="hero-highlight">behind-the-scenes</span><br>
+            from burning down.
+          </h1>
 
-        <div class="detail-heading" style="margin-top:20px;">Who I’m for</div>
-        <div class="detail-title">Owners in the deep end.</div>
-        <p>
-          You’re in it every day and the back end is quietly fighting you. You don’t want a giant “someday” project —
-          you want someone to see what you see and start making it less heavy now.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORKING TOGETHER -->
-  <section id="working" class="section">
-    <div class="section-inner">
-      <div>
-        <div class="section-label">Working together</div>
-        <h2>A calmer back end, done in passes.</h2>
-        <p>
-          No templates dropped on top of your reality. We start with what feels worst, map how Shopify, your books, and operations are behaving now,
-          then clean it up in small, targeted rounds.
-        </p>
-
-        <div class="detail-block">
-          <div class="detail-heading">How it moves</div>
-          <div class="detail-title">Three passes, minimum drama.</div>
-          <p>
-            <strong>Pass 1:</strong> Walkthrough &amp; triage — we surface the worst tangles and obvious leaks.<br>
-            <strong>Pass 2:</strong> Deep cleanup — payouts, deposits, products, variants, reports, and recurring patterns.<br>
-            <strong>Pass 3:</strong> Ongoing support — watching the numbers, catching weirdness early, keeping things steady.
+          <p class="hero-sub">
+            You hold the vision and the people. I quietly untangle the tech,
+            numbers, and moving pieces so your business can grow without
+            eating you alive. This is <span>grounded support</span>, not corporate theater.
           </p>
-        </div>
-      </div>
 
-      <div class="detail-block">
-        <div class="detail-heading">What changes</div>
-        <div class="detail-title">The feeling of running the business.</div>
-        <div class="detail-list">
-          Shopify &amp; QuickBooks start saying the same thing.<br>
-          Money movement stops feeling haunted.<br>
-          Reports match your gut instead of gaslighting it.<br>
-          You stop dreading logging in to your own tools.<br>
-          <span>And when something new breaks, we already know where to look.</span>
+          <div class="hero-grid">
+            <div>
+              <div><strong>For</strong></div>
+              <div>Small shops, scrappy brands, fast growth phases.</div>
+            </div>
+            <div>
+              <div><strong>What I do</strong></div>
+              <div>Shopify, bookkeeping, operations, weird edge-cases.</div>
+            </div>
+          </div>
+
+          <div class="hero-cta-row">
+            <button class="hero-cta" onclick="window.location.href='mailto:suzi@radpurpose.com?subject=Let%27s%20talk%20systems';">
+              <span>Reach out</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M6 18L18 6M9 6h9v9"/>
+              </svg>
+            </button>
+            <div class="hero-note">
+              <span>Built for pressure.</span> No drama, no hand-holding, just clarity.
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div class="hero-right reveal delay-2">
+          <div class="photo-shell">
+            <div class="photo-stripe"></div>
+            <div class="photo-inner">
+              <!-- Your photo -->
+              <img src="IMG_6692.jpeg" alt="Suzi working in a warm, focused workspace">
+            </div>
+            <div class="photo-tag">
+              <span class="photo-tag-dot"></span>
+              <span>Active case · Quietly in the background</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About / Why -->
+      <section id="about">
+        <div class="section-label">Why this works</div>
+        <div class="section-shell reveal delay-1">
+          <div class="about-grid">
+            <div>
+              <h2 class="section-title">You don’t need another dashboard. You need a grown-up in the back room.</h2>
+              <p class="section-body">
+                Growth feels wild because everything is talking at once:
+                Shopify, inventory, payouts, invoices, taxes, people asking
+                you for “just one more thing.” You are not failing — the system
+                is. My job is to build a quiet, reliable spine behind your
+                business so decisions get easier and fires get rarer.
+              </p>
+              <p class="section-body" style="margin-top: 10px;">
+                I translate messy, real-world operations into <strong>clean, repeatable flows</strong>:
+                money in, money out, orders, stock, and humans all pointed in
+                the same direction.
+              </p>
+            </div>
+
+            <div>
+              <div class="chip-stack">
+                <div class="chip">Shopify & channels</div>
+                <div class="chip">QuickBooks & payouts</div>
+                <div class="chip">Ops & workflows</div>
+                <div class="chip">Reality checks</div>
+              </div>
+              <div class="section-note">
+                I notice patterns fast, ask sharp questions, and then quietly
+                build the boring things that keep everything from collapsing
+                later.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services / What I handle -->
+      <section id="work">
+        <div class="section-label">What I actually do</div>
+        <div class="services-strip reveal delay-2">
+          <div class="services-layout">
+            <div>
+              <h3 class="services-title">The work lives in the details.</h3>
+              <p class="services-body">
+                Every engagement is a little different, but it usually starts
+                with me looking under the hood and mapping what is really
+                happening — not what the last person said they set up.
+              </p>
+            </div>
+
+            <div class="services-columns">
+              <div>
+                <div class="svc-label">Shopify & sales</div>
+                <div class="svc-line">Product data that makes sense.</div>
+                <div class="svc-line">Sales channels that talk to each other.</div>
+                <div class="svc-line">Payouts that land clean in your books.</div>
+              </div>
+              <div>
+                <div class="svc-label">Money & books</div>
+                <div class="svc-line">Untangling past chaos without shame.</div>
+                <div class="svc-line">Clear categories, clean reports.</div>
+                <div class="svc-line">You finally know what you can afford.</div>
+              </div>
+              <div>
+                <div class="svc-label">Ops & reality</div>
+                <div class="svc-line">Simple, repeatable workflows.</div>
+                <div class="svc-line">Less drama, fewer emergencies.</div>
+                <div class="svc-line">Room in your brain to think again.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section id="cta" class="cta">
+        <div class="cta-inner reveal delay-3">
+          <div>
+            <div class="cta-text-main">If your business feels louder than it should, we should talk.</div>
+            <div class="cta-text-sub">
+              Send me a quick snapshot of where you’re stuck — Shopify, books, ops, or all of the above.
+              I’ll tell you what I see and what I’d do first.
+            </div>
+          </div>
+          <div class="cta-actions">
+            <a class="cta-primary" href="mailto:suzi@radpurpose.com?subject=Let%27s%20untangle%20this">
+              <span>Email me</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M6 18L18 6M9 6h9v9"/>
+              </svg>
+            </a>
+            <div class="cta-secondary">
+              Prefer a list first? <span>Send what you have.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div>© <span id="year"></span> Suzi Neves</div>
+        <div class="foot-tags">
+          <div class="foot-tag">Calm in the chaos</div>
+          <div class="foot-tag">Built for pressure</div>
+        </div>
+      </footer>
+
     </div>
-  </section>
+  </div>
 
-  <!-- SYSTEMS / ARENAS -->
-  <section id="systems" class="section">
-    <div class="section-inner">
-      <div>
-        <div class="section-label">Systems &amp; tools</div>
-        <h2>Where we spend our time.</h2>
-        <p>
-          Every business is specific, but the chaos usually hides in familiar corners. We go straight to the overlap between what the
-          software thinks should happen and what actually happens in your day.
-        </p>
-
-        <div class="statement">
-          Shopify · POS · Inventory · Variants · Events · Payouts · Refunds · Fees · Sales channels · QuickBooks · Reports ·
-          All the connective tissue in between.
-        </div>
-
-        <p>
-          If it lives between “customer paid you” and “you know what actually happened,” I’m probably inside it.
-        </p>
-      </div>
-
-      <div class="detail-block">
-        <div class="detail-heading">Examples of where I plug in</div>
-        <div class="detail-title">Not exhaustive. Just honest.</div>
-        <div class="detail-list">
-          • Cleaning up Shopify payout mapping so deposits match your books.<br>
-          • Fixing product / variant setups that make inventory and reports useless.<br>
-          • Making POS and online stop fighting for control.<br>
-          • Untangling discounts, fees, and sales tax so nothing feels “mystery money.”<br>
-          • Building simple, repeatable ways to keep it clean once we get it there.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="cta-section">
-    <div class="section-label">Next step</div>
-    <h2>Tell me what feels heavy.</h2>
-    <p class="cta-copy">
-      You don’t need a pitch deck or a perfect plan. Just send me a note: what you sell, how you’re set up now,
-      and where the back end feels like it’s wasting your energy. I’ll tell you what I see and whether I’m the right person to fix it.
-    </p>
-
-    <a href="mailto:suzi@radpurpose.com" class="btn-primary">Email Suzi</a>
-  </section>
-
-  <footer class="footer">
-    © 2025 Suzi Neves
-    <span class="dot"></span>
-    Shopify · Bookkeeping · Operations
-  </footer>
-</div>
-
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
