@@ -1,971 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Suzi Neves · Shopify · Bookkeeping · Operations</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-page: #05040a;
-      --bg-panel: #f6f2eb;
-      --bg-section: #100f16;
-
-      --ink-main: #171117;
-      --ink-muted: #6b645f;
-      --ink-soft: #9b938c;
-      --ink-light: #f6f2eb;
-
-      --accent-warm: #f5925a;
-      --accent-rose: #f05b75;
-
-      --max-width: 1120px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background:
-        radial-gradient(circle at top left, #1a1220 0, #05040a 55%, #020207 100%);
-      color: var(--ink-main);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    main {
-      max-width: var(--max-width);
-      margin: 30px auto 96px;
-      padding: 0 24px;
-      position: relative;
-    }
-
-    /* floating glow */
-
-    .bg-orbit {
-      position: fixed;
-      inset: -30vh -30vw auto auto;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.9;
-    }
-
-    .bg-orbit span {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(40px);
-      mix-blend-mode: screen;
-      opacity: 0.35;
-      animation: float 18s ease-in-out infinite alternate;
-    }
-
-    .bg-orbit .glow-1 {
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle at 0 0, #ffccaa, #f5925a 55%, #f05b75 100%);
-      top: 0;
-      right: 0;
-      animation-delay: 0s;
-    }
-
-    .bg-orbit .glow-2 {
-      width: 260px;
-      height: 260px;
-      background: radial-gradient(circle at 30% 0, #ffeed1, #f4c27e 45%, #c06a3b 100%);
-      top: 45%;
-      right: -120px;
-      animation-delay: 4s;
-    }
-
-    @keyframes float {
-      0%   { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-14px, 10px, 0); }
-    }
-
-    /* TOP BAR */
-
-    .top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 18px;
-      color: var(--ink-light);
-    }
-
-    .brand-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(246, 242, 235, 0.4);
-      background: rgba(7, 7, 12, 0.7);
-      backdrop-filter: blur(12px);
-    }
-
-    .brand-pill .initials {
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: radial-gradient(circle at 15% 0, #ffe7c8, #f4a365 50%, #b75c33 100%);
-      color: #1a0e06;
-      border: 1px solid rgba(0, 0, 0, 0.5);
-    }
-
-    .brand-pill .meta {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-pill .name {
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .brand-pill .tags {
-      font-size: 10px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
-
-    .top-nav {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.85;
-    }
-
-    .top-nav a {
-      position: relative;
-      padding: 4px 2px;
-    }
-
-    .top-nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0;
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent-warm), var(--accent-rose));
-      transition: width 220ms ease;
-    }
-
-    .top-nav a:hover::after {
-      width: 100%;
-    }
-
-    /* HERO */
-
-    .hero-shell {
-      position: relative;
-      margin-bottom: 72px;
-    }
-
-    .hero-panel {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.2fr);
-      gap: 34px;
-      background: var(--bg-panel);
-      color: var(--ink-main);
-      padding: 38px 36px 34px;
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: 0 34px 110px rgba(0, 0, 0, 0.85);
-    }
-
-    /* blurred image texture layer */
-
-    .hero-bg-photo {
-      position: absolute;
-      inset: -40px -80px -80px -80px;
-      background-image: url("IMG_6692.jpeg");
-      background-size: cover;
-      background-position: center;
-      filter: blur(10px) grayscale(80%);
-      opacity: 0.22;
-      transform: scale(1.1);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero-bg-gradient {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 0 0, rgba(245, 146, 90, 0.40), transparent 48%),
-        linear-gradient(145deg, rgba(246, 242, 235, 0.96), rgba(246, 242, 235, 0.96));
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      display: contents;
-    }
-
-    .hero-left {
-      padding-right: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    .hero-kicker {
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-
-    .hero-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(32px, 4.4vw, 46px);
-      line-height: 1.04;
-      letter-spacing: 0.015em;
-      margin: 4px 0 6px;
-      color: var(--ink-main);
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      color: var(--ink-muted);
-      max-width: 520px;
-      line-height: 1.8;
-    }
-
-    .hero-sub b {
-      font-weight: 500;
-      color: var(--ink-main);
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 6px;
-      margin-bottom: 4px;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 20px 11px;
-      border-radius: 999px;
-      border: none;
-      font-size: 11px;
-      letter-spacing: 0.21em;
-      text-transform: uppercase;
-      font-weight: 500;
-      background: linear-gradient(120deg, var(--accent-warm), var(--accent-rose));
-      color: #160b06;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-      cursor: pointer;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.04);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 16px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(0, 0, 0, 0.26);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      background: rgba(246, 242, 235, 0.86);
-      cursor: pointer;
-    }
-
-    .btn-secondary:hover {
-      background: #ffffff;
-      color: var(--ink-main);
-    }
-
-    .hero-footnote {
-      font-size: 11px;
-      color: var(--ink-soft);
-      max-width: 380px;
-    }
-
-    .hero-footnote span {
-      color: var(--accent-warm);
-      font-weight: 500;
-    }
-
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 14px;
-    }
-
-    .hero-tag {
-      align-self: flex-start;
-      padding: 6px 10px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      background: rgba(249, 245, 238, 0.9);
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-tag .dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 999px;
-      background: var(--accent-warm);
-    }
-
-    .hero-note {
-      margin-top: auto;
-      font-size: 12px;
-      color: var(--ink-muted);
-      max-width: 260px;
-      line-height: 1.7;
-      text-align: right;
-    }
-
-    .hero-note b {
-      font-weight: 500;
-      color: var(--ink-main);
-    }
-
-    /* SECTION BASE */
-
-    .section {
-      margin-bottom: 60px;
-      color: var(--ink-light);
-    }
-
-    .section-inner {
-      position: relative;
-      padding-left: 40px;
-    }
-
-    .section-inner::before {
-      content: "";
-      position: absolute;
-      left: 10px;
-      top: 4px;
-      bottom: 6px;
-      width: 1px;
-      background: linear-gradient(to bottom, rgba(246, 242, 235, 0.55), transparent);
-      opacity: 0.7;
-    }
-
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: rgba(246, 242, 235, 0.7);
-      margin-bottom: 4px;
-    }
-
-    .section-title {
-      font-size: 22px;
-      letter-spacing: 0.03em;
-      font-weight: 500;
-      margin: 0 0 8px;
-    }
-
-    .section-intro {
-      font-size: 14px;
-      color: rgba(246, 242, 235, 0.78);
-      max-width: 640px;
-      line-height: 1.8;
-      margin: 0 0 20px;
-    }
-
-    /* OVERVIEW GRID */
-
-    .overview-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-      margin-bottom: 22px;
-    }
-
-    .overview-item {
-      position: relative;
-      padding-top: 14px;
-    }
-
-    .overview-item::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 36px;
-      height: 1px;
-      background: linear-gradient(to right, rgba(246, 242, 235, 0.8), transparent);
-    }
-
-    .overview-kicker {
-      font-size: 11px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: rgba(246, 242, 235, 0.65);
-      margin-bottom: 4px;
-    }
-
-    .overview-heading {
-      font-size: 16px;
-      margin-bottom: 4px;
-    }
-
-    .overview-body {
-      font-size: 13px;
-      color: rgba(246, 242, 235, 0.78);
-      line-height: 1.9;
-    }
-
-    .quote-band {
-      margin-top: 10px;
-      padding: 14px 18px 12px;
-      border-radius: 18px;
-      background: radial-gradient(circle at 0 0, rgba(245, 146, 90, 0.38), transparent 60%),
-                  rgba(7, 7, 12, 0.94);
-      font-size: 13px;
-      line-height: 1.9;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .quote-band::before {
-      content: "“";
-      position: absolute;
-      right: 22px;
-      top: -18px;
-      font-family: "Playfair Display", serif;
-      font-size: 64px;
-      color: rgba(255, 255, 255, 0.12);
-    }
-
-    .quote-meta {
-      margin-top: 6px;
-      font-size: 11px;
-      color: rgba(246, 242, 235, 0.7);
-    }
-
-    /* WORKING TOGETHER */
-
-    .section-dark {
-      margin-bottom: 64px;
-    }
-
-    .section-dark .section-inner {
-      background: linear-gradient(135deg, #181521, #0f0f18);
-      border-radius: 26px;
-      padding: 24px 26px 24px 40px;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
-    }
-
-    .section-dark .section-inner::before {
-      left: 18px;
-      background: linear-gradient(to bottom, rgba(245, 146, 90, 0.85), transparent);
-    }
-
-    .section-dark .section-intro {
-      color: rgba(246, 242, 235, 0.85);
-    }
-
-    .process-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 2.3fr) minmax(0, 2fr);
-      gap: 26px;
-      margin-top: 6px;
-    }
-
-    .process-text {
-      font-size: 13px;
-      color: rgba(246, 242, 235, 0.85);
-      line-height: 1.9;
-    }
-
-    .process-text p {
-      margin: 0 0 10px;
-    }
-
-    .process-text ul {
-      margin: 8px 0 0;
-      padding-left: 18px;
-    }
-
-    .process-text li {
-      margin: 3px 0;
-    }
-
-    .steps-stack {
-      border-radius: 20px;
-      background: rgba(7, 7, 13, 0.96);
-      padding: 14px 16px 12px;
-      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.9);
-    }
-
-    .step-row {
-      display: grid;
-      grid-template-columns: 40px minmax(0, 1fr);
-      gap: 12px;
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(246, 242, 235, 0.12);
-    }
-
-    .step-row:last-child {
-      border-bottom: none;
-    }
-
-    .step-index {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      background: radial-gradient(circle at 0 0, #ffe4bf, #f5925a 45%, #f05b75 100%);
-      color: #1b0e07;
-      font-weight: 600;
-    }
-
-    .step-heading {
-      font-size: 12px;
-      letter-spacing: 0.19em;
-      text-transform: uppercase;
-      color: rgba(246, 242, 235, 0.9);
-      margin-bottom: 3px;
-    }
-
-    .step-body {
-      font-size: 12px;
-      color: rgba(246, 242, 235, 0.8);
-      line-height: 1.8;
-    }
-
-    /* SYSTEMS & TOOLS */
-
-    .systems-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 24px;
-      margin-top: 10px;
-    }
-
-    .systems-card {
-      border-radius: 18px;
-      padding: 16px 18px 18px;
-      background: radial-gradient(circle at 0 0, rgba(245, 146, 90, 0.22), transparent 60%),
-                  rgba(11, 9, 15, 0.94);
-      box-shadow: 0 20px 70px rgba(3, 0, 9, 0.9);
-    }
-
-    .systems-label {
-      font-size: 11px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: rgba(246, 242, 235, 0.74);
-      margin-bottom: 6px;
-    }
-
-    .systems-body ul {
-      margin: 4px 0 0;
-      padding-left: 18px;
-      font-size: 13px;
-      color: rgba(246, 242, 235, 0.86);
-      line-height: 1.9;
-    }
-
-    /* FOOTER CTA */
-
-    .footer-cta {
-      margin-top: 26px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(246, 242, 235, 0.18);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      font-size: 13px;
-      color: rgba(246, 242, 235, 0.82);
-    }
-
-    .footer-cta .label {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(246, 242, 235, 0.7);
-      margin-bottom: 4px;
-    }
-
-    .footer-note {
-      margin-top: 8px;
-      font-size: 11px;
-      color: rgba(246, 242, 235, 0.65);
-    }
-
-    .footer-note span.dot {
-      display: inline-block;
-      width: 3px;
-      height: 3px;
-      border-radius: 999px;
-      background: rgba(246, 242, 235, 0.5);
-      margin: 0 6px;
-      transform: translateY(-1px);
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 900px) {
-      main {
-        margin-top: 22px;
-      }
-
-      .top-row {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-panel {
-        grid-template-columns: minmax(0, 1fr);
-        padding: 28px 22px 26px;
-      }
-
-      .hero-right {
-        align-items: flex-start;
-      }
-
-      .hero-note {
-        text-align: left;
-      }
-
-      .section-inner {
-        padding-left: 30px;
-      }
-
-      .section-inner::before {
-        left: 12px;
-      }
-
-      .overview-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .process-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .systems-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero-title {
-        font-size: 30px;
-      }
-
-      .hero-sub {
-        font-size: 13px;
-      }
-
-      .section {
-        margin-bottom: 46px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suzi Neves · Systems Whisperer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #111;
+    --ink-soft: #555;
+    --cream: #f7f3ee;
+    --warm: #ff9a6a;
+    --rose: #ff5f8a;
+    --char: #0b0b0d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--char);
+    color: var(--cream);
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* GLOBAL MOTION */
+  @keyframes drift {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-40px) translateX(25px); }
+  }
+
+  @keyframes floatlines {
+    0% { opacity: .2; transform: translateX(-10px); }
+    100% { opacity: .5; transform: translateX(10px); }
+  }
+
+  /* HERO SECTION */
+  .hero {
+    position: relative;
+    height: 94vh;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(120deg, rgba(12,12,20,.9), rgba(12,12,20,.5)),
+      url("IMG_6692.jpeg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(12px) saturate(30%);
+    opacity: 0.22;
+  }
+
+  .hero-wash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 40%, rgba(255,160,120,0.45), transparent 70%);
+    mix-blend-mode: screen;
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 5;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 160px 5% 0;
+  }
+
+  .hero-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(42px, 7vw, 86px);
+    line-height: 1.05;
+    max-width: 780px;
+    text-shadow: 0 4px 14px rgba(0,0,0,.35);
+  }
+
+  .hero-tagline {
+    margin-top: 24px;
+    font-size: 18px;
+    max-width: 500px;
+    color: #e6e3de;
+    opacity: .85;
+  }
+
+  .cta {
+    margin-top: 40px;
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 999px;
+    background: linear-gradient(100deg, var(--warm), var(--rose));
+    color: var(--char);
+    font-size: 14px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    box-shadow: 0 6px 28px rgba(0,0,0,.6);
+    transition: .2s ease;
+  }
+
+  .cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(0,0,0,.8);
+  }
+
+  /* FLOATING SYSTEM LINES */
+  .lines {
+    position: absolute;
+    top: 30%;
+    right: -120px;
+    width: 340px;
+    height: 300px;
+    opacity: .2;
+  }
+
+  .line {
+    position: absolute;
+    width: 140%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--warm), transparent);
+    animation: floatlines 5s ease-in-out infinite alternate;
+  }
+
+  .line:nth-child(2) { top: 40px; animation-delay: 1s; }
+  .line:nth-child(3) { top: 80px; animation-delay: 2s; }
+  .line:nth-child(4) { top: 140px; animation-delay: 3s; }
+
+  /* ANGLED SECTION */
+  .section {
+    position: relative;
+    padding: 120px 5% 160px;
+    background: var(--char);
+    transform-origin: top left;
+  }
+
+  .section.angle {
+    transform: skewY(-3deg);
+    margin-top: -80px;
+    padding-top: 160px;
+  }
+
+  .section.angle > * {
+    transform: skewY(3deg);
+  }
+
+  .section h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(30px, 5vw, 46px);
+    margin-bottom: 16px;
+  }
+
+  .section p {
+    max-width: 640px;
+    line-height: 1.8;
+    color: #d3cec9;
+    margin-bottom: 26px;
+  }
+
+  /* EDITORIAL STATEMENT BLOCK */
+  .statement {
+    font-size: clamp(22px, 3vw, 32px);
+    max-width: 680px;
+    margin: 90px 0;
+    line-height: 1.3;
+    font-family: "Playfair Display", serif;
+    color: var(--warm);
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 80px 5% 60px;
+    text-align: center;
+    font-size: 12px;
+    opacity: .6;
+  }
+</style>
 </head>
+
 <body>
-  <!-- floating glow -->
-  <div class="bg-orbit">
-    <span class="glow-1"></span>
-    <span class="glow-2"></span>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-wash"></div>
+
+  <div class="lines">
+    <div class="line"></div><div class="line"></div>
+    <div class="line"></div><div class="line"></div>
   </div>
 
-  <main>
-    <!-- top -->
-    <header class="top-row">
-      <div class="brand-pill">
-        <span class="initials">SN</span>
-        <div class="meta">
-          <span class="name">Suzi Neves</span>
-          <span class="tags">Shopify · Bookkeeping · Operations</span>
-        </div>
-      </div>
+  <div class="hero-inner">
+    <h1 class="hero-title">
+      I make messy business systems move like they were built on purpose.
+    </h1>
 
-      <nav class="top-nav">
-        <a href="#overview">Overview</a>
-        <a href="#working-together">Working Together</a>
-        <a href="#systems">Systems &amp; Tools</a>
-      </nav>
-    </header>
+    <p class="hero-tagline">
+      Not corporate. Not cute. Just grounded, calm, behind-the-scenes firepower for businesses in motion.
+    </p>
 
-    <!-- hero -->
-    <section class="hero-shell" aria-label="Intro">
-      <div class="hero-panel">
-        <div class="hero-bg-photo" aria-hidden="true"></div>
-        <div class="hero-bg-gradient" aria-hidden="true"></div>
+    <a href="mailto:suzi@radpurpose.com" class="cta">Reach Out</a>
+  </div>
+</section>
 
-        <div class="hero-inner">
-          <div class="hero-left">
-            <div>
-              <div class="hero-kicker">Systems &amp; operations support</div>
-              <h1 class="hero-title">
-                Getting your business systems to work together.
-              </h1>
-              <p class="hero-sub">
-                For small businesses in motion, where <b>sales, inventory, payouts, events, and bookkeeping all overlap</b>.
-                I step into the chaos, connect the dots, and keep the back end moving with you instead of against you.
-              </p>
-            </div>
+<!-- OVERVIEW -->
+<section class="section angle">
+  <h2>Where I slot into your business.</h2>
+  <p>You’re juggling sales, inventory, payouts, events, bookkeeping, staff, the whole circus — and all the systems that are supposed to support you are silently arguing behind your back. I untangle that mess quietly and surgically while you keep running the show.</p>
 
-            <div>
-              <div class="hero-cta-row">
-                <a class="btn-primary" href="mailto:suzi@radpurpose.com">
-                  Reach out
-                </a>
-                <a class="btn-secondary" href="#overview">
-                  See how this works
-                </a>
-              </div>
-              <p class="hero-footnote">
-                Built for owners who are stretched thin and still showing up.
-                <span>You don’t need a makeover.</span> You need your tools to stop fighting each other.
-              </p>
-            </div>
-          </div>
+  <div class="statement">
+    “Owners call me when they’re drowning in details they’re too smart for — and too tired to keep wrangling.”
+  </div>
 
-          <aside class="hero-right">
-            <div class="hero-tag">
-              <span class="dot"></span>
-              <span>Small businesses in motion</span>
-            </div>
-            <p class="hero-note">
-              <b>I’m not a coach.</b> I’m the calm brain in the back room keeping Shopify, your books, and your operations on the same page while you run the front.
-            </p>
-          </aside>
-        </div>
-      </div>
-    </section>
+  <p>I map your ecosystem, clean it in passes, align Shopify + QuickBooks, fix the weird financial ghosts, stabilize workflows, and make everything predictable enough that you can breathe again.</p>
+</section>
 
-    <!-- overview -->
-    <section id="overview" class="section">
-      <div class="section-inner">
-        <div class="section-label">Overview</div>
-        <h2 class="section-title">Where I sit inside your business.</h2>
-        <p class="section-intro">
-          I live in the overlap between your store, your books, and your day-to-day operations —
-          the place where money movement, inventory, and decisions all collide.
-        </p>
+<!-- TOOLS -->
+<section class="section">
+  <h2>The space we work in.</h2>
+  <p>Tools don’t fix themselves. Patterns matter. Breathable systems matter. How your business *actually runs* matters more than how software thinks it should.</p>
 
-        <div class="overview-grid">
-          <article class="overview-item">
-            <div class="overview-kicker">What I do</div>
-            <div class="overview-heading">Glue between your tools.</div>
-            <div class="overview-body">
-              I handle the connective tissue between Shopify, QuickBooks, and how you actually run the business,
-              so reports finally match reality and money stops feeling mysterious.
-            </div>
-          </article>
+  <div class="statement">
+    Shopify • POS • Inventory • Variants • QuickBooks • Money movement • Refund flows • Sales channels • The connective tissue nobody else sees.
+  </div>
 
-          <article class="overview-item">
-            <div class="overview-kicker">How it feels</div>
-            <div class="overview-heading">Small passes, big relief.</div>
-            <div class="overview-body">
-              We start with what feels heavy, clean up the weirdness in layers, and keep you moving forward the whole time.
-              No giant “someday” overhaul — just steady pressure in the right spots.
-            </div>
-          </article>
+  <p>If it sits between “customer bought something” and “you know what happened,” I’m probably inside it.</p>
+</section>
 
-          <article class="overview-item">
-            <div class="overview-kicker">Who I’m for</div>
-            <div class="overview-heading">Owners in the deep end.</div>
-            <div class="overview-body">
-              You’re in it every day and the back end is fighting you.
-              You want numbers you can trust and systems that don’t unravel every time things get busy.
-            </div>
-          </article>
-        </div>
+<!-- CTA -->
+<section class="section angle">
+  <h2>When you're ready.</h2>
+  <p>If the back end is heavy, weird, or quietly sabotaging your days, send me a note. Tell me what hurts. I’ll tell you what’s possible.</p>
 
-        <div class="quote-band">
-          <p>
-            “Suzi sees the whole picture. Our store, our books, and our day-to-day finally feel like they’re on the same
-            team instead of arguing with each other.”
-          </p>
-          <div class="quote-meta">Client Name Here · Owner</div>
-        </div>
-      </div>
-    </section>
+  <a href="mailto:suzi@radpurpose.com" class="cta">Email Suzi</a>
+</section>
 
-    <!-- working together -->
-    <section id="working-together" class="section section-dark">
-      <div class="section-inner">
-        <div class="section-label">Working together</div>
-        <h2 class="section-title">A back end that feels grounded instead of chaotic.</h2>
-        <p class="section-intro">
-          Most of my clients don’t need a rebuild — they need the systems they already use to stop arguing
-          and start telling the same story.
-        </p>
+<footer class="footer">
+  © 2025 Suzi Neves — Systems Whisperer
+</footer>
 
-        <div class="process-layout">
-          <div class="process-text">
-            <p>
-              I’ve worked inside a fast-moving retail and e-commerce company while it grew — Shopify, POS, events,
-              inventory, bookkeeping, and all the last-minute decisions that never wait for perfect conditions.
-            </p>
-            <p>
-              Now I bring that same calm, pattern-spotting brain to the businesses I work with.
-              I get in sync, carry real weight, and make the back end feel less like a haunted basement and more like a solid floor.
-            </p>
-            <ul>
-              <li>Shopify and QuickBooks aligned so reports match what actually happened.</li>
-              <li>Clear handling of payouts, refunds, discounts, and sales channels.</li>
-              <li>Workflows that fit how you really work, not how software thinks you should.</li>
-            </ul>
-          </div>
-
-          <aside class="steps-stack" aria-label="How we move through the work">
-            <div class="step-row">
-              <div class="step-index">1</div>
-              <div>
-                <div class="step-heading">Walkthrough</div>
-                <div class="step-body">
-                  We map what’s happening now — Shopify, your books, and where it feels heavy.
-                  No judgment, just a clear picture of the load you’re carrying.
-                </div>
-              </div>
-            </div>
-
-            <div class="step-row">
-              <div class="step-index">2</div>
-              <div>
-                <div class="step-heading">Small passes</div>
-                <div class="step-body">
-                  We untangle issues in layers: payouts and deposits, products and variants, sales channels,
-                  and key reports — while you keep running the business.
-                </div>
-              </div>
-            </div>
-
-            <div class="step-row">
-              <div class="step-index">3</div>
-              <div>
-                <div class="step-heading">Ongoing support</div>
-                <div class="step-body">
-                  Once things are in sync, I can stay in your corner — watching the numbers, catching weirdness early,
-                  and keeping the back end as calm as the front looks.
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- systems & tools -->
-    <section id="systems" class="section">
-      <div class="section-inner">
-        <div class="section-label">Systems &amp; tools</div>
-        <h2 class="section-title">Where we spend our time together.</h2>
-        <p class="section-intro">
-          Every business is a little different, but most of the work lives in two arenas —
-          the store itself and the numbers behind it.
-        </p>
-
-        <div class="systems-grid">
-          <article class="systems-card">
-            <div class="systems-label">Shopify</div>
-            <div class="systems-body">
-              <ul>
-                <li>Product setup that respects your real inventory and variants.</li>
-                <li>Collections and navigation that match how people actually shop.</li>
-                <li>Payout, refund, and discount flows that line up with your accounting.</li>
-                <li>POS and online working together instead of fighting for control.</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="systems-card">
-            <div class="systems-label">Books &amp; operations</div>
-            <div class="systems-body">
-              <ul>
-                <li>QuickBooks aligned with Shopify so reports feel trustworthy.</li>
-                <li>Sales tax, fees, and bank statements that finally make sense.</li>
-                <li>Smoother workflows for inventory, events, and seasonality.</li>
-                <li>Steady eyes on the numbers so you’re not the only one watching.</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-
-        <div class="footer-cta">
-          <div>
-            <span class="label">If this sounds like the kind of brain you want on your side—</span>
-            <span>Send me a note with where you are right now and what feels heavy. I’ll tell you what I see and what’s possible.</span>
-          </div>
-          <div>
-            <a href="mailto:suzi@radpurpose.com" class="btn-primary">Email Suzi</a>
-          </div>
-        </div>
-
-        <div class="footer-note">
-          © 2025 Suzi Neves
-          <span class="dot"></span>
-          Shopify · Bookkeeping · Operations
-        </div>
-      </div>
-    </section>
-  </main>
 </body>
 </html>
