@@ -55,7 +55,7 @@
     .shell {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 20px 20px 80px; /* less top padding */
+      padding: 12px 20px 72px; /* less top padding */
     }
 
     /* HEADER ------------------------------------------------- */
@@ -64,8 +64,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.14);
+      padding-bottom: 8px; /* tighter */
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25); /* lighter */
     }
 
     .brand {
@@ -112,7 +112,7 @@
     /* HERO --------------------------------------------------- */
 
     .hero-band {
-      margin-top: 24px;   /* less space above hero */
+      margin-top: 8px;   /* closer to header */
       margin-bottom: 32px;
       background: #020617;
     }
@@ -121,23 +121,23 @@
       position: relative;
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
-      padding: 56px min(7vw, 56px) 64px; /* shorter hero */
+      padding: 52px min(7vw, 56px) 60px; /* slightly shorter */
       color: #f9fafb;
       isolation: isolate;
       overflow: hidden;
-      min-height: 380px; /* medium height */
+      min-height: 340px; /* shorter hero */
     }
 
     /* blurred photo background */
     .hero::before {
       content: "";
       position: absolute;
-      inset: -8%;
+      inset: -6%;
       background-image: url("IMG_6692.jpeg");
       background-size: cover;
-      background-position: 60% 55%; /* aim toward laptop + you */
-      filter: blur(12px) saturate(0.95) brightness(0.55);
-      opacity: 0.55;
+      background-position: 55% 60%; /* different crop */
+      filter: blur(6px) saturate(1.05) brightness(0.7); /* less blur, brighter */
+      opacity: 0.7; /* more visible */
       z-index: -2;
     }
 
@@ -278,7 +278,7 @@
       opacity: 0.9;
     }
 
-    .hero-meta span {
+    .hero-metaspan {
       opacity: 0.75;
     }
 
@@ -585,7 +585,7 @@
 
     @media (max-width: 720px) {
       .shell {
-        padding: 18px 16px 60px;
+        padding: 10px 16px 60px;
       }
 
       .nav {
@@ -595,7 +595,7 @@
       }
 
       .hero {
-        padding: 48px 16px 56px;
+        padding: 44px 16px 52px;
       }
 
       .strip-inner-shell {
