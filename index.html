@@ -5,253 +5,279 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Suzi Neves</title>
 
-<style>
-/* ========== HERO ========== */
+  <style>
+  /* ========== LIGHT EDITORIAL HERO ========== */
 
-:root {
-  --bg-deep: #0e1014;
-  --bg-warm: #221718;
-  --bg-soft: #f6efe8;
-  --accent: #f28f5e;
-  --accent-soft: #f5c29b;
-  --text-main: #f7f2ec;
-  --text-soft: #e2d9cf;
-  --text-muted: #b8aa9c;
-  --button-bg: #3b2317;
-  --button-bg-hover: #513021;
-  --button-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-}
+  :root {
+    --bg-light: #f4f2ef;
+    --bg-light-soft: #ebe7e2;
+    --bg-edge: #d8d0c7;
 
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: var(--bg-soft);
-  color: #111;
-}
+    --accent: #c56f5d;
+    --accent-soft: #dca18b;
 
-/* Reset-ish for hero context */
-.hero {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  padding: 5rem min(8vw, 6rem) 4.5rem;
-  color: var(--text-main);
-  background:
-    radial-gradient(circle at top left, rgba(242, 143, 94, 0.25), transparent 55%),
-    linear-gradient(135deg, var(--bg-deep), var(--bg-warm));
-}
+    --text-main: #262425;
+    --text-soft: #4a4447;
+    --text-muted: #8a8179;
 
-/* asym bottom edge */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 -5rem 0;
-  height: 8rem;
-  background: linear-gradient(to bottom, rgba(15, 10, 9, 0.95), var(--bg-soft));
-  transform: skewY(-3deg);
-  transform-origin: top left;
-  z-index: -1;
-}
-
-/* main layout */
-.hero-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-}
-
-.hero-copy {
-  max-width: 540px;
-  z-index: 2;
-}
-
-/* entrance motion */
-.hero,
-.hero-copy,
-.hero-photo-layer {
-  transform: translateY(0);
-  opacity: 1;
-  animation: heroFadeIn 600ms ease-out 80ms both;
-}
-
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
+    --button-bg: #26252a;
+    --button-bg-hover: #3b3940;
+    --button-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
   }
-  to {
-    opacity: 1;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg-light);
+    color: var(--text-main);
+  }
+
+  /* HERO SECTION */
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 4.5rem min(8vw, 6rem) 4rem;
+    background:
+      radial-gradient(circle at top left, rgba(197, 111, 93, 0.18), transparent 55%),
+      linear-gradient(135deg, var(--bg-light), var(--bg-light-soft));
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -4.5rem 0;
+    height: 7rem;
+    background: linear-gradient(to bottom, rgba(235, 231, 226, 1), var(--bg-light));
+    transform: skewY(-3deg);
+    transform-origin: top left;
+    z-index: -1;
+  }
+
+  .hero-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-copy {
+    max-width: 540px;
+    z-index: 2;
+  }
+
+  .hero,
+  .hero-copy,
+  .hero-photo-layer {
     transform: translateY(0);
+    opacity: 1;
+    animation: heroFadeIn 520ms ease-out 60ms both;
   }
-}
 
-/* text styles */
-.hero-kicker {
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  margin: 0 0 1.2rem;
-}
-
-.hero-title {
-  font-size: clamp(2.4rem, 3vw + 1.4rem, 3.4rem);
-  line-height: 1.08;
-  margin: 0 0 1.5rem;
-}
-
-.hero-body {
-  margin: 0 0 2.2rem;
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: var(--text-soft);
-}
-
-/* CTA row */
-.hero-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1.4rem 2rem;
-}
-
-.hero-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 1.9rem;
-  border-radius: 999px;
-  font-size: 0.94rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: linear-gradient(145deg, var(--button-bg), #261613);
-  color: #f9efe6;
-  box-shadow: var(--button-shadow);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: background 160ms ease-out, transform 160ms ease-out, box-shadow 160ms ease-out;
-}
-
-.hero-button span {
-  margin-left: 0.4rem;
-  font-size: 1.1rem;
-}
-
-.hero-button:hover {
-  background: linear-gradient(145deg, var(--button-bg-hover), #2a1813);
-  transform: translateY(-1px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
-}
-
-.hero-subcopy {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  max-width: 260px;
-}
-
-.hero-subcopy span {
-  color: var(--accent-soft);
-}
-
-/* photo as mood layer */
-.hero-photo-layer {
-  position: absolute;
-  top: -6rem;
-  right: -16vw;
-  width: min(52vw, 640px);
-  height: 140%;
-  background-image:
-    linear-gradient(130deg, rgba(9, 6, 5, 0.4), rgba(9, 6, 5, 0.1)),
-    url("IMG_6692.jpeg");
-  background-size: cover;
-  background-position: center;
-  filter: contrast(1.12) saturate(1.02);
-  opacity: 0.92;
-  clip-path: polygon(10% 0%, 100% 0%, 100% 70%, 88% 100%, 0% 100%, 0% 18%);
-  mix-blend-mode: screen;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hero-photo-layer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.18;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.75'/%3E%3C/svg%3E");
-  mix-blend-mode: soft-light;
-}
-
-/* responsive tweaks */
-@media (max-width: 960px) {
-  .hero {
-    padding: 4.2rem 1.8rem 3.6rem;
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+
+  .hero-kicker {
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0 0 1.1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.3rem, 3vw + 1.4rem, 3.3rem);
+    line-height: 1.08;
+    margin: 0 0 1.4rem;
+    color: var(--text-main);
+  }
+
+  .hero-body {
+    margin: 0 0 2.1rem;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text-soft);
+  }
+
+  .hero-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.4rem 2rem;
+  }
+
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.9rem;
+    border-radius: 999px;
+    font-size: 0.94rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: linear-gradient(145deg, var(--button-bg), #18171b);
+    color: #f5f3f0;
+    box-shadow: var(--button-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    transition:
+      background 160ms ease-out,
+      transform 160ms ease-out,
+      box-shadow 160ms ease-out;
+    white-space: nowrap;
+  }
+
+  .hero-button span {
+    margin-left: 0.4rem;
+    font-size: 1.1rem;
+  }
+
+  .hero-button:hover {
+    background: linear-gradient(145deg, var(--button-bg-hover), #242329);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  }
+
+  .hero-subcopy {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 260px;
+  }
+
+  .hero-subcopy span {
+    color: var(--accent-soft);
+  }
+
+  /* PHOTO LAYER UPDATED TO IMG_6954.jpeg */
 
   .hero-photo-layer {
-    top: -2rem;
-    right: -35vw;
-    width: 120vw;
-    height: 115%;
-    clip-path: polygon(0% 10%, 100% 0%, 100% 70%, 80% 100%, 0% 100%);
-    opacity: 0.85;
+    position: absolute;
+    top: -3.5rem;
+    right: -16vw;
+    width: min(50vw, 620px);
+    height: 135%;
+    background-image:
+      linear-gradient(135deg, rgba(17, 18, 24, 0.55), rgba(17, 18, 24, 0.06)),
+      url("IMG_6954.jpeg");
+    background-size: cover;
+    background-position: center;
+    filter: contrast(1.08) saturate(1.03);
+    opacity: 0.92;
+    clip-path: polygon(10% 2%, 100% 0%, 100% 72%, 82% 100%, 0% 100%, 0% 18%);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 1;
   }
-}
 
-@media (max-width: 640px) {
-  .hero {
-    padding: 4rem 1.4rem 3.2rem;
+  .hero-photo-layer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.18;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.75'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
   }
 
-  .hero-photo-layer {
-    top: -3rem;
-    right: -55vw;
-    width: 150vw;
+  @media (max-width: 960px) {
+    .hero {
+      padding: 4rem 1.8rem 3.4rem;
+    }
+
+    .hero-inner {
+      min-height: auto;
+    }
+
+    .hero-photo-layer {
+      top: -2.2rem;
+      right: -34vw;
+      width: 118vw;
+      height: 115%;
+      clip-path: polygon(
+        0% 10%,
+        100% 0%,
+        100% 70%,
+        80% 100%,
+        0% 100%
+      );
+      opacity: 0.88;
+    }
   }
-}
-</style>
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: 3.6rem 1.4rem 3rem;
+    }
+
+    .hero-photo-layer {
+      top: -2.6rem;
+      right: -55vw;
+      width: 150vw;
+    }
+
+    .hero-cta-row {
+      align-items: flex-start;
+    }
+
+    .hero-subcopy {
+      max-width: none;
+    }
+  }
+  </style>
 </head>
 
 <body>
 
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <p class="hero-kicker">SHOPIFY · BOOKKEEPING · OPERATIONS</p>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-kicker">SHOPIFY · BOOKKEEPING · OPERATIONS</p>
 
-      <h1 class="hero-title">
-        Businesses run better when systems work together.<br />
-        I make sure they do.
-      </h1>
+        <h1 class="hero-title">
+          Businesses run better when systems work together.<br />
+          I make sure they do.
+        </h1>
 
-      <p class="hero-body">
-        I sort out the behind-the-scenes chaos, see the full system, and fix what’s slowing you down — so the business runs cleaner and easier.
-      </p>
-
-      <div class="hero-cta-row">
-        <a href="#contact" class="hero-button">
-          Reach out <span aria-hidden="true">↗</span>
-        </a>
-        <p class="hero-subcopy">
-          Tell me what’s getting in the way. <span>I’ll take it from there.</span>
+        <p class="hero-body">
+          I sort out the behind-the-scenes chaos, see the full system, and fix what’s slowing you down — so the business runs cleaner and easier.
         </p>
+
+        <div class="hero-cta-row">
+          <a href="#contact" class="hero-button">
+            Reach out <span aria-hidden="true">↗</span>
+          </a>
+          <p class="hero-subcopy">
+            Tell me what’s getting in the way. <span>I’ll take it from there.</span>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="hero-photo-layer"></div>
-</section>
+    <div class="hero-photo-layer" aria-hidden="true"></div>
+  </section>
 
-
-<!-- put the rest of your site content below this -->
-<section style="padding: 4rem; max-width: 760px; margin: 0 auto;">
-  <h2>Placeholder for your next section</h2>
-  <p>You can delete or replace this. Just here so the page doesn't look empty below the hero.</p>
-</section>
+  <section style="padding: 4rem min(8vw, 6rem); max-width: 760px; margin: 0 auto;">
+    <h2>Next section goes here</h2>
+    <p>
+      Replace this with your real content.
+    </p>
+  </section>
 
 </body>
 </html>
