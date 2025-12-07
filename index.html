@@ -1,106 +1,284 @@
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <h1 class="hero-title">
-        You know your business.<br>
-        I work in the parts that keep it moving.
-      </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Suzi Neves</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <p class="hero-sub">
-        Shopify, bookkeeping, payouts, inventory, the
-        <span>“why doesn’t this match?”</span> stuff — the quiet, essential pieces
-        that hold everything together. I keep those working smoothly so the day-to-day
-        feels lighter to manage.
-      </p>
+  <style>
+    :root {
+      --bg-ink: #0d1117;
+      --bg-ink-soft: #151921;
+      --text-main: #f5f2ed;
+      --text-soft: #c9c4bd;
+      --text-muted: #918984;
+      --accent-clay: #ba8276;
+      --accent-clay-soft: rgba(186, 130, 118, 0.45);
+    }
 
-      <a href="#contact" class="hero-cta">Tell me what’s going on →</a>
-      <p class="hero-micro">Start wherever you want.</p>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(165deg, var(--bg-ink), var(--bg-ink-soft));
+      color: var(--text-main);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 3.2rem min(8vw, 5.5rem) 4rem;
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    header.site-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 3.8rem;
+    }
+
+    .site-name {
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .site-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 1.5rem 0 3.4rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.1fr);
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .hero-main {
+      max-width: 640px;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 0 0 1rem;
+    }
+
+    .hero-title {
+      margin: 0 0 1.8rem;
+      font-size: 2.1rem;
+      line-height: 1.35;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .hero-sub {
+      margin: 0 0 2.2rem;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+    }
+
+    .hero-sub span {
+      color: var(--accent-clay);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 1.02rem;
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .hero-cta:hover {
+      opacity: 0.75;
+      transform: translateY(-1px);
+    }
+
+    .hero-micro {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ASIDE – breaks up the background without a box */
+
+    .hero-aside {
+      max-width: 320px;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .hero-aside-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245, 242, 237, 0.9);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-aside-text {
+      margin: 0 0 1.4rem;
+      line-height: 1.6;
+    }
+
+    .hero-aside-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .hero-aside-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-aside-foot {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* subtle underline band to break the big solid */
+
+    .hero-underline {
+      margin-top: 3rem;
+      height: 1px;
+      width: 100%;
+      background:
+        linear-gradient(90deg, var(--accent-clay-soft), transparent 55%);
+      opacity: 0.9;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 860px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.4rem;
+      }
+
+      .hero-aside {
+        max-width: 100%;
+      }
+
+      .site-tagline {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .page {
+        padding: 2.6rem 1.6rem 3.2rem;
+      }
+
+      header.site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+      <header class="site-header">
+        <div class="site-name">SUZI NEVES</div>
+        <div class="site-tagline">
+          Shopify, bookkeeping, and daily operations in the same brain.
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-main">
+            <p class="hero-kicker">SHOPIFY · BOOKKEEPING · DAY-TO-DAY FLOW</p>
+
+            <h1 class="hero-title">
+              You know your business.<br>
+              I work in the parts that keep it moving.
+            </h1>
+
+            <p class="hero-sub">
+              Shopify, payouts, bookkeeping, inventory, the
+              <span>“why doesn’t this match?”</span> stuff — the quiet, essential
+              pieces that still run everything. I keep those talking to each other
+              so your business runs smoother and feels less heavy to manage.
+            </p>
+
+            <div class="hero-cta-row">
+              <a href="#contact" class="hero-cta">
+                <span>Tell me what’s going on</span> →
+              </a>
+              <p class="hero-micro">
+                Plain language is welcome. You don’t have to have it all figured out.
+              </p>
+            </div>
+          </div>
+
+          <aside class="hero-aside">
+            <div class="hero-aside-tag">What I’m usually helping with</div>
+            <p class="hero-aside-text">
+              Not a full rebuild. Not a rescue mission. Just the parts that are
+              nagging at you and eating time you don’t have.
+            </p>
+            <ul class="hero-aside-list">
+              <li>Shopify basics set up cleanly and kept current</li>
+              <li>Bookkeeping that actually matches payouts and sales</li>
+              <li>Day-to-day “this keeps breaking” operational weirdness</li>
+            </ul>
+            <div class="hero-aside-foot">
+              Support, not judgment.
+            </div>
+          </aside>
+        </div>
+
+        <div class="hero-underline" aria-hidden="true"></div>
+      </section>
+
+      <!-- other sections go here -->
     </div>
   </div>
-</section>
-
-<style>
-  :root {
-    --bg-ink: #0d1117;
-    --bg-ink-soft: #151921;
-    --text-main: #f5f2ed;
-    --text-soft: #c9c4bd;
-    --text-muted: #9a938d;
-    --accent-clay: #ba8276;
-    --accent-clay-soft: rgba(186, 130, 118, 0.4);
-  }
-
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-      "Helvetica Neue", Arial, sans-serif;
-    background: linear-gradient(160deg, var(--bg-ink), var(--bg-ink-soft));
-    color: var(--text-main);
-  }
-
-  .page {
-    padding: 4rem min(8vw, 6rem) 5rem;
-  }
-
-  header.site-header {
-    margin-bottom: 5rem;
-  }
-
-  .hero {
-    padding: 2rem 0 6rem;
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .hero-inner {
-    max-width: 700px;
-    padding-left: 1.8rem;
-    border-left: 2px solid var(--accent-clay-soft);
-  }
-
-  .hero-copy {
-    line-height: 1.6;
-  }
-
-  .hero-title {
-    margin: 0 0 2rem;
-    font-size: 2.2rem;
-    font-weight: 500;
-    line-height: 1.35;
-    color: var(--text-main);
-  }
-
-  .hero-sub {
-    margin: 0 0 2.4rem;
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: var(--text-soft);
-    max-width: 580px;
-  }
-
-  .hero-sub span {
-    color: var(--accent-clay);
-  }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 1.1rem;
-    color: var(--text-main);
-    text-decoration: underline;
-    text-underline-offset: 6px;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-
-  .hero-cta:hover {
-    opacity: 0.7;
-    transform: translateY(-1px);
-  }
-
-  .hero-micro {
-    margin-top: 1rem;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-  }
-</style>
+</body>
+</html>
