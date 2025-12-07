@@ -3,244 +3,545 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suzi Neves · Systems Whisperer</title>
+<title>Suzi Neves · Systems in Sync</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
   :root {
+    --char: #05050a;
     --ink: #111;
     --ink-soft: #555;
-    --cream: #f7f3ee;
+    --ink-light: #f6f2ec;
+    --cream: #f6f2ec;
     --warm: #ff9a6a;
     --rose: #ff5f8a;
-    --char: #0b0b0d;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--char);
+    background: radial-gradient(circle at top left, #171320 0, #05050a 55%, #020206 100%);
     color: var(--cream);
-    font-family: "Inter", sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  /* GLOBAL MOTION */
+  a { color: inherit; text-decoration: none; }
+
+  /* GLOBAL ANIMS */
+
   @keyframes drift {
-    0% { transform: translateY(0) translateX(0); }
-    100% { transform: translateY(-40px) translateX(25px); }
+    0% { transform: translate3d(0,0,0); }
+    100% { transform: translate3d(25px,-30px,0); }
   }
 
-  @keyframes floatlines {
-    0% { opacity: .2; transform: translateX(-10px); }
-    100% { opacity: .5; transform: translateX(10px); }
+  @keyframes floatLine {
+    0% { transform: translateX(-8px); opacity:.15; }
+    100% { transform: translateX(8px); opacity:.4; }
   }
 
-  /* HERO SECTION */
+  /* HERO */
+
   .hero {
     position: relative;
-    height: 94vh;
-    width: 100%;
-    overflow: hidden;
+    min-height: 90vh;
+    padding: 40px 5% 80px;
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 1.2fr);
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(120deg, rgba(12,12,20,.9), rgba(12,12,20,.5)),
-      url("IMG_6692.jpeg");
-    background-size: cover;
-    background-position: center;
-    filter: blur(12px) saturate(30%);
-    opacity: 0.22;
+  .hero-bg-photo {
+    position: fixed;
+    inset: -40px -80px -80px -80px;
+    background: url("IMG_6692.jpeg") center/cover no-repeat;
+    opacity: .16;
+    filter: blur(12px) grayscale(80%);
+    z-index: -2;
   }
 
   .hero-wash {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 20% 40%, rgba(255,160,120,0.45), transparent 70%);
+    position: fixed;
+    inset: -20vh -20vw auto auto;
+    width: 70vw;
+    height: 70vh;
+    background: radial-gradient(circle at 10% 40%, rgba(255,154,106,.55), transparent 70%);
     mix-blend-mode: screen;
-    animation: drift 20s ease-in-out infinite alternate;
+    pointer-events: none;
+    animation: drift 24s ease-in-out infinite alternate;
+    z-index: -1;
   }
 
-  .hero-inner {
-    position: relative;
-    z-index: 5;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 160px 5% 0;
+  .brand {
+    font-size: 11px;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    opacity: .7;
+    margin-bottom: 24px;
+  }
+
+  .brand span {
+    opacity: .5;
   }
 
   .hero-title {
     font-family: "Playfair Display", serif;
-    font-size: clamp(42px, 7vw, 86px);
-    line-height: 1.05;
-    max-width: 780px;
-    text-shadow: 0 4px 14px rgba(0,0,0,.35);
+    font-size: clamp(32px, 5.1vw, 54px);
+    line-height: 1.04;
+    max-width: 480px;
   }
 
-  .hero-tagline {
-    margin-top: 24px;
-    font-size: 18px;
-    max-width: 500px;
-    color: #e6e3de;
-    opacity: .85;
+  .hero-sub {
+    margin-top: 18px;
+    font-size: 15px;
+    max-width: 520px;
+    color: #e1ddd7;
+    line-height: 1.9;
   }
 
-  .cta {
-    margin-top: 40px;
-    display: inline-block;
-    padding: 12px 26px;
+  .hero-sub b {
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  .hero-cta-row {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .btn-primary {
+    padding: 11px 26px 12px;
     border-radius: 999px;
-    background: linear-gradient(100deg, var(--warm), var(--rose));
-    color: var(--char);
-    font-size: 14px;
-    letter-spacing: .12em;
+    border: none;
+    font-size: 12px;
+    letter-spacing: .18em;
     text-transform: uppercase;
     font-weight: 600;
-    box-shadow: 0 6px 28px rgba(0,0,0,.6);
-    transition: .2s ease;
+    background: linear-gradient(110deg, var(--warm), var(--rose));
+    color: #140b06;
+    box-shadow: 0 10px 32px rgba(0,0,0,.7);
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
   }
 
-  .cta:hover {
+  .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 40px rgba(0,0,0,.8);
+    box-shadow: 0 16px 52px rgba(0,0,0,.9);
   }
 
-  /* FLOATING SYSTEM LINES */
-  .lines {
-    position: absolute;
-    top: 30%;
-    right: -120px;
-    width: 340px;
-    height: 300px;
-    opacity: .2;
+  .btn-ghost {
+    padding: 10px 18px 11px;
+    border-radius: 999px;
+    border: 1px solid rgba(246,242,236,.45);
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    background: rgba(5,5,10,.5);
+    color: #e1ddd7;
   }
 
-  .line {
-    position: absolute;
-    width: 140%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--warm), transparent);
-    animation: floatlines 5s ease-in-out infinite alternate;
+  .btn-ghost:hover {
+    background: rgba(246,242,236,.08);
   }
 
-  .line:nth-child(2) { top: 40px; animation-delay: 1s; }
-  .line:nth-child(3) { top: 80px; animation-delay: 2s; }
-  .line:nth-child(4) { top: 140px; animation-delay: 3s; }
+  .hero-footnote {
+    margin-top: 12px;
+    font-size: 11px;
+    max-width: 380px;
+    color: #b9b1aa;
+  }
 
-  /* ANGLED SECTION */
-  .section {
+  .hero-footnote span {
+    color: var(--warm);
+    font-weight: 500;
+  }
+
+  /* RIGHT / VERTICAL RAIL */
+
+  .hero-rail {
     position: relative;
-    padding: 120px 5% 160px;
-    background: var(--char);
-    transform-origin: top left;
+    justify-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 40px;
+  }
+
+  .rail-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    opacity: .6;
+  }
+
+  .rail-label span {
+    opacity: .35;
+  }
+
+  .rail-lines {
+    position: relative;
+    width: 1px;
+    height: 220px;
+    background: linear-gradient(to bottom, rgba(246,242,236,.4), transparent);
+    overflow: visible;
+  }
+
+  .rail-lines::before,
+  .rail-lines::after {
+    content: "";
+    position: absolute;
+    left: -80px;
+    right: -80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,154,106,.8), transparent);
+    animation: floatLine 4.6s ease-in-out infinite alternate;
+  }
+
+  .rail-lines::before { top: 40px; animation-delay: .4s; }
+  .rail-lines::after  { top: 120px; animation-delay: 1.3s; }
+
+  .rail-note {
+    font-size: 11px;
+    max-width: 200px;
+    text-align: right;
+    color: #c4beb8;
+  }
+
+  .rail-note b {
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  /* SECTIONS */
+
+  .section {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 80px 5% 100px;
+    position: relative;
   }
 
   .section.angle {
+    margin-top: 0;
+    transform-origin: top left;
     transform: skewY(-3deg);
-    margin-top: -80px;
-    padding-top: 160px;
+    padding-top: 140px;
   }
 
   .section.angle > * {
     transform: skewY(3deg);
   }
 
+  .section-label {
+    font-size: 11px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    opacity: .65;
+    margin-bottom: 6px;
+  }
+
   .section h2 {
     font-family: "Playfair Display", serif;
-    font-size: clamp(30px, 5vw, 46px);
-    margin-bottom: 16px;
+    font-size: clamp(26px, 3.6vw, 38px);
+    margin-bottom: 12px;
   }
 
   .section p {
     max-width: 640px;
-    line-height: 1.8;
-    color: #d3cec9;
-    margin-bottom: 26px;
+    line-height: 1.9;
+    color: #d7d1ca;
+    margin-bottom: 24px;
+    font-size: 14px;
   }
 
   /* EDITORIAL STATEMENT BLOCK */
+
   .statement {
-    font-size: clamp(22px, 3vw, 32px);
-    max-width: 680px;
-    margin: 90px 0;
-    line-height: 1.3;
     font-family: "Playfair Display", serif;
+    font-size: clamp(22px, 3vw, 30px);
+    max-width: 700px;
+    margin: 72px 0;
+    line-height: 1.3;
     color: var(--warm);
   }
 
-  /* FOOTER */
-  .footer {
-    padding: 80px 5% 60px;
-    text-align: center;
-    font-size: 12px;
+  /* INLINE GRID DETAILS */
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .detail-label {
+    font-size: 11px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    opacity: .7;
+    margin-bottom: 6px;
+  }
+
+  .detail-title {
+    font-size: 15px;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .detail-body {
+    font-size: 13px;
+    color: #d7d1ca;
+    line-height: 1.8;
+  }
+
+  .detail-list {
+    font-size: 13px;
+    color: #d7d1ca;
+    line-height: 1.9;
+  }
+
+  .detail-list span {
     opacity: .6;
+  }
+
+  /* CTA SECTION */
+
+  .cta-section {
+    text-align: left;
+  }
+
+  .cta-section .cta-copy {
+    max-width: 480px;
+    margin-bottom: 26px;
+  }
+
+  .footer {
+    padding: 40px 5% 32px;
+    font-size: 11px;
+    text-align: center;
+    color: #a39b94;
+    opacity: .8;
+  }
+
+  .footer span.dot {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.3);
+    margin: 0 6px;
+    transform: translateY(-1px);
+  }
+
+  /* RESPONSIVE */
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 32px;
+      padding-top: 60px;
+    }
+
+    .hero-rail {
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .rail-note {
+      text-align: left;
+    }
+
+    .rail-label {
+      writing-mode: horizontal-tb;
+      text-orientation: initial;
+    }
+
+    .rail-lines {
+      width: 100%;
+      height: 120px;
+    }
+
+    .section.angle {
+      padding-top: 120px;
+    }
+
+    .detail-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding-inline: 7%;
+    }
+
+    .section {
+      padding-inline: 7%;
+    }
+
+    .statement {
+      margin: 54px 0;
+    }
   }
 </style>
 </head>
-
 <body>
+
+<div class="hero-bg-photo" aria-hidden="true"></div>
+<div class="hero-wash" aria-hidden="true"></div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-wash"></div>
+  <div>
+    <div class="brand">
+      SUZI NEVES <span>·</span> SHOPIFY <span>·</span> BOOKKEEPING <span>·</span> OPERATIONS
+    </div>
 
-  <div class="lines">
-    <div class="line"></div><div class="line"></div>
-    <div class="line"></div><div class="line"></div>
-  </div>
-
-  <div class="hero-inner">
     <h1 class="hero-title">
-      I make messy business systems move like they were built on purpose.
+      Systems that stop fighting you.
     </h1>
 
-    <p class="hero-tagline">
-      Not corporate. Not cute. Just grounded, calm, behind-the-scenes firepower for businesses in motion.
+    <p class="hero-sub">
+      For owners who live in the overlap: sales, inventory, payouts, events, and bookkeeping all crashing into
+      the same 24 hours. I step in quietly, trace how everything connects, and bring the tools into sync so the
+      back end stops arguing with you.
     </p>
 
-    <a href="mailto:suzi@radpurpose.com" class="cta">Reach Out</a>
+    <div class="hero-cta-row">
+      <a href="mailto:suzi@radpurpose.com" class="btn-primary">Reach out</a>
+      <a href="#overview" class="btn-ghost">See how this works</a>
+    </div>
+
+    <p class="hero-footnote">
+      Built for small businesses in motion. <span>You don’t need a rebrand.</span> You need your systems to stop leaking energy.
+    </p>
   </div>
+
+  <aside class="hero-rail">
+    <div class="rail-label">
+      SMALL BUSINESSES IN MOTION — SYSTEMS &amp; OPERATIONS SUPPORT
+    </div>
+    <div class="rail-lines" aria-hidden="true"></div>
+    <div class="rail-note">
+      <b>I’m not here to coach from the sidelines.</b> I get inside the tools, carry weight, and make the back end feel like it belongs to you again.
+    </div>
+  </aside>
 </section>
 
 <!-- OVERVIEW -->
-<section class="section angle">
-  <h2>Where I slot into your business.</h2>
-  <p>You’re juggling sales, inventory, payouts, events, bookkeeping, staff, the whole circus — and all the systems that are supposed to support you are silently arguing behind your back. I untangle that mess quietly and surgically while you keep running the show.</p>
+<section id="overview" class="section angle">
+  <div class="section-label">Overview</div>
+  <h2>Where I sit inside your business.</h2>
+  <p>
+    I live in the connective tissue between Shopify, your books, and the way you actually run the business.
+    The part that never gets its own job title, but always gets blamed when things feel heavy or confusing.
+  </p>
 
   <div class="statement">
-    “Owners call me when they’re drowning in details they’re too smart for — and too tired to keep wrangling.”
+    “Most of my clients are brilliant at what they do. Their systems are just stuck in survival mode.”
   </div>
 
-  <p>I map your ecosystem, clean it in passes, align Shopify + QuickBooks, fix the weird financial ghosts, stabilize workflows, and make everything predictable enough that you can breathe again.</p>
+  <p>
+    I untangle the quiet chaos: payouts that don’t match deposits, reports that never quite agree,
+    inventory that’s technically “in stock” but never where it should be. We clean it up in passes so you keep
+    running the business while the back end gets lighter.
+  </p>
+
+  <div class="detail-grid">
+    <div>
+      <div class="detail-label">What I do</div>
+      <div class="detail-title">Glue between your tools.</div>
+      <div class="detail-body">
+        I pull Shopify, QuickBooks, and your day-to-day workflows into one story: products, variants, payouts,
+        refunds, fees, sales channels, events, and all the places money likes to go weird.
+      </div>
+    </div>
+
+    <div>
+      <div class="detail-label">Who I’m for</div>
+      <div class="detail-title">Owners in the deep end.</div>
+      <div class="detail-body">
+        You’re in it every day and the back end is quietly fighting you. You don’t want a giant “someday” project.
+        You want someone to get in, see what you see, and start making it less heavy.
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- TOOLS -->
+<!-- WORKING TOGETHER -->
 <section class="section">
-  <h2>The space we work in.</h2>
-  <p>Tools don’t fix themselves. Patterns matter. Breathable systems matter. How your business *actually runs* matters more than how software thinks it should.</p>
+  <div class="section-label">Working together</div>
+  <h2>A calmer back end, done in passes.</h2>
+  <p>
+    I’m not dropping a template on top of your reality. We start with what feels worst, get a clear map of how
+    Shopify, your books, and operations are behaving now, then clean it up in small, surgical rounds.
+  </p>
 
-  <div class="statement">
-    Shopify • POS • Inventory • Variants • QuickBooks • Money movement • Refund flows • Sales channels • The connective tissue nobody else sees.
+  <div class="detail-grid">
+    <div>
+      <div class="detail-label">How it moves</div>
+      <div class="detail-title">Three passes, minimum drama.</div>
+      <div class="detail-body">
+        <b>Pass 1:</b> Walkthrough and triage — we surface the worst tangles and quick wins.<br>
+        <b>Pass 2:</b> Deep cleanup — payouts, deposits, products, variants, and key reports.<br>
+        <b>Pass 3:</b> Ongoing support — watching the numbers, catching weirdness early, keeping things steady.
+      </div>
+    </div>
+
+    <div>
+      <div class="detail-label">What changes</div>
+      <div class="detail-list">
+        Shopify &amp; QuickBooks say the same thing.<br>
+        Money movement stops feeling haunted.<br>
+        Reports match your gut instead of gaslighting it.<br>
+        You stop dreading opening your tools.
+      </div>
+    </div>
   </div>
-
-  <p>If it sits between “customer bought something” and “you know what happened,” I’m probably inside it.</p>
 </section>
 
-<!-- CTA -->
-<section class="section angle">
-  <h2>When you're ready.</h2>
-  <p>If the back end is heavy, weird, or quietly sabotaging your days, send me a note. Tell me what hurts. I’ll tell you what’s possible.</p>
+<!-- TOOLS / ARENAS -->
+<section class="section">
+  <div class="section-label">Systems &amp; tools</div>
+  <h2>Where we spend our time.</h2>
+  <p>
+    Every business is specific, but the chaos usually hides in a handful of places. We go straight there.
+  </p>
 
-  <a href="mailto:suzi@radpurpose.com" class="cta">Email Suzi</a>
+  <div class="statement">
+    Shopify · POS · Inventory · Variants · Events · Payouts · Refunds · Fees · Sales channels · QuickBooks · Reports · All the connective tissue in between.
+  </div>
+
+  <p>
+    If it lives between “customer paid you” and “you know what actually happened,” I’m probably inside it.
+  </p>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section cta-section">
+  <div class="section-label">Next step</div>
+  <h2>Tell me what feels heavy.</h2>
+  <p class="cta-copy">
+    You don’t need a pitch deck. Just send me a quick note: what you sell, how you’re set up now, and where the
+    back end feels like it’s wasting your energy. I’ll tell you what I see and whether I’m the right person to fix it.
+  </p>
+
+  <a href="mailto:suzi@radpurpose.com" class="btn-primary">Email Suzi</a>
 </section>
 
 <footer class="footer">
-  © 2025 Suzi Neves — Systems Whisperer
+  © 2025 Suzi Neves
+  <span class="dot"></span>
+  Shopify · Bookkeeping · Operations
 </footer>
 
 </body>
