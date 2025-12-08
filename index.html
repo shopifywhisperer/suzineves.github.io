@@ -5,38 +5,30 @@
   <title>Suzi Neves – Shopify · Bookkeeping · Operations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Slightly more intentional, modern type -->
+  <!-- Intentional, modern type -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Earth / sand / sea base */
-      --bg: #f3eee5;          /* soft sand */
-      --bg-soft: #e4ddcf;     /* deeper sand */
-      --bg-soft-2: #dfe6ea;   /* soft sea haze */
+      --bg: #f3eee5;
+      --bg-soft: #e4ddcf;
+      --bg-soft-2: #dfe6ea;
 
-      /* Ink */
-      --ink-main: #151819;    /* deep charcoal */
-      --ink-soft: #404648;    /* body */
-      --ink-muted: #777f80;   /* muted */
+      --ink-main: #151819;
+      --ink-soft: #404648;
+      --ink-muted: #777f80;
 
-      /* Accents: rock + ocean + crab */
-      --accent-deep: #314147;      /* slate / wet rock */
-      --accent-pop: #2d6c88;      /* ocean / sky pop (hero phrase) */
-      --accent-crab: #c86345;     /* tiny coral “crab” lines */
-      --accent-soft: rgba(49,65,71,0.16);
+      --accent-deep: #314147;
+      --accent-pop: #2d6c88;
+      --accent-crab: #c86345;
 
       --max-width: 980px;
       --font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: var(--font-sans);
@@ -46,399 +38,168 @@
         radial-gradient(circle at 6% 80%, var(--bg-soft), transparent 60%),
         var(--bg);
       color: var(--ink-main);
-      -webkit-font-smoothing: antialiased;
       line-height: 1.6;
       padding: 40px 18px 72px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .page {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      position: relative;
-    }
+    .page { max-width: var(--max-width); margin: 0 auto; position: relative; }
 
-    /* vertical spine */
+    /* SPINE */
     .spine {
-      position: absolute;
-      left: 10px;
-      top: 18px;
-      bottom: 28px;
-      width: 2px;
-      background: linear-gradient(
-        to bottom,
-        rgba(49,65,71,0.0),
+      position: absolute; left: 10px; top: 18px; bottom: 28px; width: 2px;
+      background: linear-gradient(to bottom,
+        rgba(49,65,71,0),
         rgba(49,65,71,0.35),
         rgba(49,65,71,0.08),
-        rgba(49,65,71,0.0)
+        rgba(49,65,71,0)
       );
       border-radius: 999px;
-      pointer-events: none;
     }
 
-    .spine::before,
-    .spine::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      width: 14px;
-      height: 1px;
-      background: rgba(49,65,71,0.35);
-      transform: translateX(-50%);
-      border-radius: 999px;
+    .spine::before, .spine::after {
+      content: ""; position: absolute; left: 50%; width: 14px; height: 1px;
+      background: rgba(49,65,71,0.35); transform: translateX(-50%);
     }
-
-    .spine::before {
-      top: 24%;
-    }
-
-    .spine::after {
-      top: 66%;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 28px 12px 56px;
-      }
-      .spine {
-        left: 4px;
-      }
-    }
+    .spine::before { top: 24%; }
+    .spine::after { top: 66%; }
 
     /* HEADER */
-
-    header {
-      margin-bottom: 32px;
-      position: relative;
-      padding-left: 28px;
-    }
+    header { margin-bottom: 32px; padding-left: 28px; }
 
     .top-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      text-transform: uppercase;
-      letter-spacing: 0.26em;
-      font-size: 12px;
-      color: var(--ink-muted);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      text-transform: uppercase; letter-spacing: 0.26em; font-size: 12px; color: var(--ink-muted);
     }
 
-    .brand {
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--ink-main);
-    }
-
-    .tagline {
-      font-weight: 500;
-      white-space: nowrap;
-    }
+    .brand { font-weight: 700; font-size: 13px; color: var(--ink-main); }
+    .tagline { font-weight: 500; }
 
     .header-rule {
-      margin-top: 12px;
-      height: 2px;
-      width: 100%;
-      background: linear-gradient(
-        90deg,
-        rgba(21,24,26,0.6),
-        rgba(21,24,26,0.0)
-      );
-      position: relative;
-      border-radius: 999px;
+      margin-top: 12px; height: 2px; width: 100%;
+      background: linear-gradient(90deg, rgba(21,24,26,0.6), rgba(21,24,26,0));
+      border-radius: 999px; position: relative;
     }
 
     .header-rule::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: -3px;
-      width: 120px;
-      height: 3px;
-      background: var(--accent-deep);
-      border-radius: 999px;
+      content: ""; position: absolute; left: 0; top: -3px; width: 120px; height: 3px;
+      background: var(--accent-deep); border-radius: 999px;
     }
 
-    /* HERO */
-
+    /* HERO BLOCK */
     .hero-wrap {
-      position: relative;
-      margin-top: 40px;
-      margin-bottom: 60px;
-      padding-left: 28px;
+      position: relative; margin-top: 40px; margin-bottom: 60px; padding-left: 28px;
     }
 
-    /* angled “dune” band behind hero */
     .hero-wrap::before {
-      content: "";
-      position: absolute;
-      left: -42px;
-      top: 6px;
-      width: 135%;
-      height: 230px;
-      background: linear-gradient(
-        130deg,
+      content: ""; position: absolute; left: -42px; top: 6px;
+      width: 135%; height: 230px; border-radius: 44px;
+      transform: skewY(-4deg);
+      background: linear-gradient(130deg,
         rgba(228,221,207,0.96),
         rgba(223,230,234,0.8)
       );
-      transform: skewY(-4deg);
-      border-radius: 44px;
       z-index: -2;
     }
 
-    /* circular “light / wave” texture behind hero */
     .hero-wrap::after {
-      content: "";
-      position: absolute;
-      right: -40px;
-      top: 50px;
-      width: 260px;
-      height: 260px;
+      content: ""; position: absolute; right: -40px; top: 50px;
+      width: 260px; height: 260px; opacity: 0.9; filter: blur(2px);
       background:
         radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), transparent 52%),
         radial-gradient(circle at 70% 75%, rgba(45,108,136,0.25), transparent 70%);
-      opacity: 0.9;
       z-index: -1;
-      filter: blur(2px);
     }
 
-    .hero {
-      max-width: 640px;
-      padding: 26px 26px 28px 0;
-    }
+    .hero { max-width: 680px; padding: 26px 26px 28px 0; }
 
-    .hero-title {
+    .hero-line {
       font-size: clamp(30px, 4.3vw, 46px);
-      font-weight: 650;
-      line-height: 1.16;
-      letter-spacing: -0.035em;
-      color: var(--ink-main);
+      font-weight: 650; letter-spacing: -0.035em; line-height: 1.16;
     }
 
-    .hero-title .pop {
-      color: var(--accent-pop); /* ocean/sky POP */
-      font-weight: 650;
-    }
+    .hero-line + .hero-line { margin-top: 4px; }
 
-    .hero-subtext {
-      margin-top: 18px;
-      font-size: 15px;
-      color: var(--ink-soft);
-      max-width: 32rem;
-    }
+    .pop { color: var(--accent-pop); font-weight: 650; }
 
-    .hero-subtext p + p {
-      margin-top: 4px;
-    }
+    .hero-subtext { margin-top: 18px; font-size: 15px; color: var(--ink-soft); max-width: 32rem; }
+    .hero-subtext p + p { margin-top: 4px; }
 
     .hero-cta-row {
-      margin-top: 24px;
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
+      margin-top: 24px; display: inline-flex; gap: 14px; flex-wrap: wrap; align-items: center;
     }
 
     .cta-btn {
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 9px 22px;
-      border-radius: 999px;
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 600;
-      background: var(--ink-main);
-      color: var(--bg);
-      box-shadow:
-        0 10px 24px rgba(21,24,26,0.22),
-        0 0 0 1px rgba(21,24,26,0.7);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-      white-space: nowrap;
+      padding: 9px 22px; border-radius: 999px; border: none; cursor: pointer;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+      background: var(--ink-main); color: var(--bg);
+      box-shadow: 0 10px 24px rgba(21,24,26,0.22), 0 0 0 1px rgba(21,24,26,0.7);
+      transition: 0.15s ease;
     }
 
     .cta-btn:hover {
       transform: translateY(-1px);
-      box-shadow:
-        0 14px 32px rgba(21,24,26,0.28),
-        0 0 0 1px rgba(21,24,26,0.8);
+      box-shadow: 0 14px 32px rgba(21,24,26,0.28), 0 0 0 1px rgba(21,24,26,0.8);
     }
 
-    .cta-mini {
-      font-size: 13px;
-      color: var(--ink-muted);
+    .cta-mini { font-size: 13px; color: var(--ink-muted); }
+
+    /* SECTIONS */
+    main { margin-top: 8px; padding-left: 28px; }
+
+    .block { margin-bottom: 52px; }
+
+    .block-head {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
     }
 
-    /* CONTENT */
-
-    main {
-      margin-top: 4px;
-      padding-left: 28px;
-    }
-
-    .block {
-      margin-bottom: 46px;
-      position: relative;
-      padding-right: 18px;
-    }
-
-    .block:last-of-type {
-      margin-bottom: 0;
-    }
-
-    /* “icons” / graphics per section – ring + coral tick */
-    .block::before {
-      content: "";
-      position: absolute;
-      right: -40px;
-      top: 0;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
+    .block-icon-wrap {
+      width: 42px; height: 42px; border-radius: 999px; position: relative;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(45,108,136,0.24), transparent 65%),
+        rgba(255,255,255,0.8);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.9), 0 8px 18px rgba(21,24,26,0.15);
       border: 1px solid rgba(49,65,71,0.18);
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.7);
-      background: radial-gradient(circle at 30% 30%, rgba(45,108,136,0.18), transparent 65%);
-      pointer-events: none;
     }
 
-    .block::after {
-      content: "";
-      position: absolute;
-      right: -20px;
-      top: 32px;
-      width: 26px;
-      height: 2px;
-      background: var(--accent-crab); /* crab pop line */
-      border-radius: 999px;
+    .block-icon-ring {
+      position: absolute; inset: 9px; border-radius: 999px;
+      border: 1px solid rgba(49,65,71,0.38);
     }
 
-    .block--how::before {
-      top: -10px;
-      right: auto;
-      left: -40px;
+    .block-icon-tick {
+      position: absolute; bottom: 8px; right: 4px;
+      width: 20px; height: 2px; border-radius: 999px;
+      background: var(--accent-crab);
     }
 
-    .block--how::after {
-      right: auto;
-      left: -18px;
-      top: 32px;
-    }
-
-    .block--fit::before {
-      top: -8px;
-      right: -30px;
-    }
-
-    .block--fit::after {
-      right: -10px;
-      top: 34px;
+    .block-label {
+      font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.24em; color: var(--ink-muted);
     }
 
     .block-title {
-      font-size: 14px;                 /* bigger, stronger */
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: var(--accent-deep);
-      margin-bottom: 18px;
-      position: relative;
-      padding-left: 44px;
-      font-weight: 600;
+      font-size: 18px; font-weight: 650; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent-deep);
     }
 
-    .block-title::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 32px;
-      height: 2px;
-      background: var(--accent-deep);
-      transform: translateY(-50%);
-      border-radius: 999px;
-    }
-
-    .block p {
-      font-size: 15px;
-      color: var(--ink-soft);
-      max-width: 40rem;
-      margin-bottom: 10px;
-    }
-
-    .block p:last-child {
-      margin-bottom: 0;
-    }
+    .block-body { margin-top: 8px; max-width: 44rem; }
+    .block-body p { font-size: 15px; color: var(--ink-soft); margin-bottom: 10px; }
 
     .subhead {
-      margin-top: 16px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--ink-main);
-    }
-
-    .subhead + p {
-      margin-top: 4px;
-    }
-
-    .block--how {
-      max-width: 40rem;
-      margin-left: auto;
-    }
-
-    .fit-sub {
-      margin-top: 10px;
+      margin-top: 18px; font-size: 15px; font-weight: 600; color: var(--ink-main);
     }
 
     .fit-label {
-      font-weight: 700;
-      color: var(--ink-main);
-      font-size: 14px;
-      margin-bottom: 4px;
-      position: relative;
-      display: inline-block;
-      padding-right: 28px;
+      font-weight: 700; font-size: 14px; margin-bottom: 4px; color: var(--ink-main);
+      position: relative; padding-right: 28px;
     }
-
     .fit-label::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 22px;
-      height: 1px;
-      background: var(--accent-deep);
-      transform: translateY(-50%);
-      border-radius: 999px;
+      content: ""; position: absolute; right: 0; top: 50%;
+      width: 22px; height: 1px; background: var(--accent-deep);
+      transform: translateY(-50%); border-radius: 999px;
     }
 
-    @media (max-width: 768px) {
-      header,
-      .hero-wrap,
-      main {
-        padding-left: 18px;
-      }
-
-      .hero-wrap::before {
-        left: -26px;
-        width: 120%;
-      }
-
-      .hero-wrap::after {
-        right: -28px;
-      }
-
-      .block--how {
-        margin-left: 0;
-      }
-
-      .block::before,
-      .block::after,
-      .block--how::before,
-      .block--how::after,
-      .block--fit::before,
-      .block--fit::after {
-        display: none; /* simplify mobile if it gets too busy */
-      }
-    }
   </style>
 </head>
 <body>
@@ -455,10 +216,14 @@
 
     <div class="hero-wrap">
       <section class="hero">
-        <h1 class="hero-title">
-          Making sense of how your business operates<br>
-          and <span class="pop">creating systems that support your work.</span>
-        </h1>
+
+        <!-- ⭐ YOUR EXACT HERO FIX -->
+        <div class="hero-line">
+          Making sense of how your business operates and
+        </div>
+        <div class="hero-line">
+          <span class="pop">creating systems that support your work.</span>
+        </div>
 
         <div class="hero-subtext">
           <p>The parts of the business that keep tugging at you don't have to stay heavy.</p>
@@ -466,57 +231,92 @@
         </div>
 
         <div class="hero-cta-row">
-          <button class="cta-btn" type="button">
-            Reach Out —&gt;
-          </button>
-          <div class="cta-mini">
-            If it's hard to put into words, that's okay. Start wherever.
-          </div>
+          <button class="cta-btn" type="button">Reach Out —&gt;</button>
+          <div class="cta-mini">If it's hard to put into words, that's okay. Start wherever.</div>
         </div>
+
       </section>
     </div>
 
     <main>
+
+      <!-- SECTION ONE -->
       <section class="block block--what">
-        <div class="block-title">WHAT I HELP WITH</div>
+        <div class="block-head">
+          <div class="block-icon-wrap">
+            <div class="block-icon-ring"></div>
+            <div class="block-icon-tick"></div>
+          </div>
+          <div>
+            <div class="block-label">Section One</div>
+            <div class="block-title">What I Help With</div>
+          </div>
+        </div>
 
-        <p>Most people reach out because something in the workflow isn't adding up — Shopify shows one thing, the books show another, or the day-to-day process feels heavier than it should. It's not chaos, it's just work that isn't flowing the way it needs to.</p>
+        <div class="block-body">
+          <p>Most people reach out because something in the workflow isn't adding up — Shopify shows one thing, the books show another, or the day-to-day process feels heavier than it should. It's not chaos, it's just work that isn't flowing the way it needs to.</p>
 
-        <p>Here's where I usually step in:</p>
+          <p>Here's where I usually step in:</p>
 
-        <div class="subhead">Shopify that stays current</div>
-        <p>Products, collections, settings, and daily updates aligned with what's happening right now — accurate, consistent, and easy to maintain.</p>
+          <div class="subhead">Shopify that stays current</div>
+          <p>Products, collections, settings, and daily updates aligned with what's happening right now — accurate, consistent, and easy to maintain.</p>
 
-        <div class="subhead">Numbers that reflect the same reality</div>
-        <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
+          <div class="subhead">Numbers that reflect the same reality</div>
+          <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
 
-        <div class="subhead">Operational issues that need a steady hand</div>
-        <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what's happening and get it running the way it should.</p>
+          <div class="subhead">Operational issues that need a steady hand</div>
+          <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what's happening and get it running the way it should.</p>
+        </div>
       </section>
 
+      <!-- SECTION TWO -->
       <section class="block block--how">
-        <div class="block-title">HOW WORKING TOGETHER FEELS</div>
+        <div class="block-head">
+          <div class="block-icon-wrap">
+            <div class="block-icon-ring"></div>
+            <div class="block-icon-tick"></div>
+          </div>
+          <div>
+            <div class="block-label">Section Two</div>
+            <div class="block-title">How Working Together Feels</div>
+          </div>
+        </div>
 
-        <p>You tell me what's happening — the parts that feel off, the areas you keep circling, the things that aren't matching what you expect. It can be brief. It doesn't need to be organized.</p>
+        <div class="block-body">
+          <p>You tell me what's happening — the parts that feel off, the areas you keep circling, the things that aren't matching what you expect. It can be brief. It doesn't need to be organized.</p>
 
-        <p>I review the setup you already have: your Shopify configuration, your financial flow, how updates are managed, and where the inconsistencies are showing up. The goal is to understand the system as it is, so we can see what's solid, what needs tightening, and what needs a fresh start.</p>
+          <p>I review the setup you already have: your Shopify configuration, your financial flow, how updates are managed, and where the inconsistencies are showing up. The goal is to understand the system as it is, so we can see what's solid, what needs tightening, and what needs a fresh start.</p>
 
-        <p>From there, we make practical changes that hold — cleaning up the areas that create extra work, tightening the parts that drift, and getting the workflow to operate the way it should. It's steady, detailed work that makes the day-to-day feel easier.</p>
+          <p>From there, we make practical changes that hold — cleaning up the areas that create extra work, tightening the parts that drift, and getting the workflow to operate the way it should. It's steady, detailed work that makes the day-to-day feel easier.</p>
+        </div>
       </section>
 
+      <!-- SECTION THREE -->
       <section class="block block--fit">
-        <div class="block-title">FIT / NOT FIT</div>
-
-        <div class="fit-sub">
-          <div class="fit-label">A good fit:</div>
-          <p>You have an active business and the core operations are established, but Shopify, bookkeeping, and daily workflows need to be aligned so everything reflects the same reality. You want clear, consistent operations supported by someone who understands the details without adding complexity.</p>
+        <div class="block-head">
+          <div class="block-icon-wrap">
+            <div class="block-icon-ring"></div>
+            <div class="block-icon-tick"></div>
+          </div>
+          <div>
+            <div class="block-label">Section Three</div>
+            <div class="block-title">Fit / Not Fit</div>
+          </div>
         </div>
 
-        <div class="fit-sub">
-          <div class="fit-label">Not a fit:</div>
-          <p>This isn't the right match if you need a custom Shopify theme built from the ground up, if the business requires urgent intervention, or if you're looking for a full team or agency structure. My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.</p>
+        <div class="block-body">
+          <div class="fit-sub">
+            <div class="fit-label">A good fit:</div>
+            <p>You have an active business and the core operations are established, but Shopify, bookkeeping, and daily workflows need to be aligned so everything reflects the same reality. You want clear, consistent operations supported by someone who understands the details without adding complexity.</p>
+          </div>
+
+          <div class="fit-sub">
+            <div class="fit-label">Not a fit:</div>
+            <p>This isn't the right match if you need a custom Shopify theme built from the ground up, if the business requires urgent intervention, or if you're looking for a full team or agency structure. My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.</p>
+          </div>
         </div>
       </section>
+
     </main>
   </div>
 </body>
