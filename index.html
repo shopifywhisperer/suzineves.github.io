@@ -156,22 +156,19 @@
       font-weight: 600;
       margin: 0 0 0.75rem;
       color: var(--ink-main);
+      position: relative;
+      padding-top: 0.9rem;
     }
-/* Add anchor line above each support item title */
-.support-item-title {
-  position: relative;
-  padding-top: 0.9rem;
-}
 
-.support-item-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 24px;
-  height: 2px;
-  background-color: var(--teal);
-}
+    .support-item-title::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background-color: var(--teal);
+    }
 
     .support-item-text {
       font-size: 0.95rem;
@@ -231,10 +228,6 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2.25rem;
-    }
-
-    .fit-block {
-      padding-left: 0; /* no teal border here now */
     }
 
     .fit-block-title {
@@ -315,10 +308,6 @@
         padding-bottom: 3rem;
       }
 
-      .hero-inner {
-        flex-direction: row;
-      }
-
       .hero-rule {
         min-height: 120px;
         margin-right: 1.25rem;
@@ -328,6 +317,100 @@
         font-size: 1.8rem;
       }
     }
+
+
+    /* ------------------------------------------------------ */
+    /* 🌿 WARMTH + MOVEMENT + BREATH CSS — INSERTED HERE     */
+    /* ------------------------------------------------------ */
+
+    :root {
+      --bg-top: #f5f1ea;
+      --bg-mid: #f1ebe2;
+      --bg-bottom: #e8f0f2;
+      --accent: #d28a1f; /* saffron */
+      --accent-soft: rgba(210, 138, 31, 0.16);
+      --line-soft: rgba(21, 42, 50, 0.08);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 12% 0%, rgba(117,166,189,0.35) 0, transparent 55%),
+        radial-gradient(circle at 85% 0%, rgba(210,138,31,0.35) 0, transparent 52%),
+        linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-mid) 45%, var(--bg-bottom) 100%);
+      -webkit-font-smoothing: antialiased;
+      opacity: 0;
+      transform: translateY(4px);
+      animation: pageFadeIn 260ms ease-out forwards;
+    }
+
+    @keyframes pageFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2:first-of-type {
+      position: relative;
+      padding-top: 1.5rem;
+      margin-top: 0.5rem;
+      font-size: 1.6rem;
+      line-height: 1.3;
+    }
+
+    h2:first-of-type::before {
+      content: "";
+      position: absolute;
+      inset: -2.5rem -3rem 0;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(117, 166, 189, 0.16) 0, transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(210, 138, 31, 0.22) 0, transparent 60%);
+      z-index: -1;
+      opacity: 0.9;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 46px;
+      height: 1px;
+      margin-top: 0.75rem;
+      background: linear-gradient(to right, var(--accent-soft), transparent);
+    }
+
+    p a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 0 1px rgba(24, 37, 47, 0.05);
+      text-decoration-color: rgba(210, 138, 31, 0.6);
+      transition: all 160ms ease-out;
+    }
+
+    p a:hover {
+      background: var(--accent-soft);
+      box-shadow:
+        0 6px 18px rgba(21, 42, 50, 0.18),
+        0 0 0 1px rgba(21, 42, 50, 0.05);
+      transform: translateY(-1px);
+    }
+
+    /* Fit section warm band */
+    .fit-title::before {
+      content: "";
+      position: absolute;
+      inset: -1.3rem -1.75rem -1.2rem;
+      background: linear-gradient(
+        to bottom,
+        rgba(248, 238, 224, 0.85),
+        rgba(232, 240, 242, 0)
+      );
+      z-index: -1;
+    }
+
   </style>
 </head>
 
@@ -481,5 +564,3 @@
 
 </body>
 </html>
-
-
