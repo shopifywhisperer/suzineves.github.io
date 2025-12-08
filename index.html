@@ -6,13 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #f2f0ec;          /* neutral stone */
-      --bg-soft: #e5e1d9;     /* soft panel tone */
-      --ink-main: #141618;    /* near-black */
-      --ink-soft: #3f4348;    /* body text */
-      --ink-muted: #7a7f86;   /* muted labels */
-      --accent: #2d3b40;      /* deep slate accent */
-      --accent-soft: rgba(45,59,64,0.16);
+      /* Nature-inspired neutral base */
+      --bg: #f3efe5;          /* soft sand */
+      --bg-soft: #e4ebdf;     /* pale sage */
+      --bg-soft-2: #dde7ee;   /* soft sea haze */
+
+      /* Ink */
+      --ink-main: #141a17;    /* deep charcoal-green */
+      --ink-soft: #3e4742;    /* body */
+      --ink-muted: #6c756f;   /* muted */
+
+      /* Accents – forest + leaf pop */
+      --accent-deep: #214c3c;   /* deep evergreen */
+      --accent-pop: #2c7d57;    /* brighter leaf pop (for phrase) */
+      --accent-soft: rgba(33,76,60,0.16);
+
       --max-width: 980px;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
     }
@@ -27,7 +35,8 @@
       font-family: var(--font-sans);
       background:
         radial-gradient(circle at 12% 0, #ffffff, transparent 58%),
-        radial-gradient(circle at 88% 100%, #e2ddd4, transparent 60%),
+        radial-gradient(circle at 88% 100%, var(--bg-soft-2), transparent 60%),
+        radial-gradient(circle at 10% 80%, var(--bg-soft), transparent 60%),
         var(--bg);
       color: var(--ink-main);
       -webkit-font-smoothing: antialiased;
@@ -41,43 +50,42 @@
       position: relative;
     }
 
-    /* vertical spine */
+    /* vertical spine with nature ticks */
     .spine {
       position: absolute;
-      left: 12px;
+      left: 10px;
       top: 18px;
       bottom: 28px;
       width: 2px;
       background: linear-gradient(
         to bottom,
-        rgba(45,59,64,0.0),
-        rgba(45,59,64,0.35),
-        rgba(45,59,64,0.08),
-        rgba(45,59,64,0.0)
+        rgba(33,76,60,0.0),
+        rgba(33,76,60,0.35),
+        rgba(33,76,60,0.08),
+        rgba(33,76,60,0.0)
       );
       border-radius: 999px;
       pointer-events: none;
     }
 
-    /* subtle pattern "ticks" on spine */
     .spine::before,
     .spine::after {
       content: "";
       position: absolute;
       left: 50%;
-      width: 12px;
+      width: 14px;
       height: 1px;
-      background: rgba(45,59,64,0.3);
+      background: rgba(33,76,60,0.35);
       transform: translateX(-50%);
       border-radius: 999px;
     }
 
     .spine::before {
-      top: 22%;
+      top: 24%;
     }
 
     .spine::after {
-      top: 64%;
+      top: 66%;
     }
 
     @media (max-width: 768px) {
@@ -94,7 +102,7 @@
     header {
       margin-bottom: 32px;
       position: relative;
-      padding-left: 28px;
+      padding-left: 26px;
     }
 
     .top-row {
@@ -103,13 +111,13 @@
       gap: 12px;
       flex-wrap: wrap;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.26em;
       font-size: 12px;
       color: var(--ink-muted);
     }
 
     .brand {
-      font-weight: 650;
+      font-weight: 700;
       font-size: 13px;
       color: var(--ink-main);
     }
@@ -125,7 +133,7 @@
       width: 100%;
       background: linear-gradient(
         90deg,
-        rgba(20,22,24,0.7),
+        rgba(20,22,24,0.6),
         rgba(20,22,24,0.0)
       );
       position: relative;
@@ -137,9 +145,9 @@
       position: absolute;
       left: 0;
       top: -3px;
-      width: 96px;
+      width: 110px;
       height: 3px;
-      background: var(--accent);
+      background: var(--accent-deep);
       border-radius: 999px;
     }
 
@@ -149,24 +157,28 @@
       position: relative;
       margin-top: 40px;
       margin-bottom: 60px;
-      padding-left: 28px;
+      padding-left: 26px;
     }
 
     /* angled band behind hero */
     .hero-wrap::before {
       content: "";
       position: absolute;
-      left: -40px;
-      top: 4px;
+      left: -42px;
+      top: 6px;
       width: 135%;
       height: 230px;
-      background: var(--bg-soft);
+      background: linear-gradient(
+        130deg,
+        rgba(228,235,223,0.95),
+        rgba(221,231,238,0.8)
+      );
       transform: skewY(-4deg);
-      border-radius: 40px;
+      border-radius: 44px;
       z-index: -2;
     }
 
-    /* circular texture behind hero */
+    /* organic circle / light patch behind hero */
     .hero-wrap::after {
       content: "";
       position: absolute;
@@ -175,9 +187,9 @@
       width: 260px;
       height: 260px;
       background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.7), transparent 50%),
-        radial-gradient(circle at 70% 70%, var(--accent-soft), transparent 70%);
-      opacity: 0.7;
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), transparent 55%),
+        radial-gradient(circle at 70% 75%, rgba(44,125,87,0.25), transparent 70%);
+      opacity: 0.9;
       z-index: -1;
       filter: blur(2px);
     }
@@ -196,7 +208,8 @@
     }
 
     .hero-title .pop {
-      color: var(--accent);
+      color: var(--accent-pop); /* POP OF COLOR BACK ON PHRASE */
+      font-weight: 650;
     }
 
     .hero-subtext {
@@ -231,8 +244,8 @@
       background: var(--ink-main);
       color: var(--bg);
       box-shadow:
-        0 10px 24px rgba(20,22,24,0.26),
-        0 0 0 1px rgba(20,22,24,0.75);
+        0 10px 24px rgba(20,22,24,0.22),
+        0 0 0 1px rgba(20,22,24,0.7);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
       white-space: nowrap;
     }
@@ -240,7 +253,7 @@
     .cta-btn:hover {
       transform: translateY(-1px);
       box-shadow:
-        0 14px 32px rgba(20,22,24,0.3),
+        0 14px 32px rgba(20,22,24,0.28),
         0 0 0 1px rgba(20,22,24,0.8);
     }
 
@@ -253,29 +266,29 @@
 
     main {
       margin-top: 4px;
-      padding-left: 28px;
+      padding-left: 26px;
     }
 
     .block {
-      margin-bottom: 44px;
+      margin-bottom: 46px;
       position: relative;
-      padding-right: 16px;
+      padding-right: 18px;
     }
 
     .block:last-of-type {
       margin-bottom: 0;
     }
 
-    /* decorative arcs per section */
+    /* section graphics – organic arcs / blobs */
     .block::before {
       content: "";
       position: absolute;
       right: -40px;
-      top: 0;
-      width: 140px;
+      top: 4px;
+      width: 150px;
       height: 80px;
       border-radius: 999px;
-      border: 1px solid rgba(45,59,64,0.14);
+      border: 1px solid rgba(33,76,60,0.16);
       border-top-color: transparent;
       border-left-color: transparent;
       transform: rotate(-6deg);
@@ -286,7 +299,7 @@
       top: -10px;
       right: auto;
       left: -40px;
-      transform: rotate(8deg);
+      transform: rotate(10deg);
     }
 
     .block--fit::before {
@@ -296,10 +309,10 @@
     }
 
     .block-title {
-      font-size: 13px;                 /* bigger */
+      font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.26em;          /* stronger */
-      color: var(--accent);
+      letter-spacing: 0.28em;
+      color: var(--accent-deep);
       margin-bottom: 18px;
       position: relative;
       padding-left: 40px;
@@ -312,7 +325,7 @@
       top: 50%;
       width: 30px;
       height: 2px;
-      background: var(--accent);
+      background: var(--accent-deep);
       transform: translateY(-50%);
       border-radius: 999px;
     }
@@ -365,7 +378,7 @@
       top: 50%;
       width: 22px;
       height: 1px;
-      background: var(--accent);
+      background: var(--accent-deep);
       transform: translateY(-50%);
       border-radius: 999px;
     }
@@ -378,12 +391,12 @@
       }
 
       .hero-wrap::before {
-        left: -28px;
+        left: -26px;
         width: 120%;
       }
 
       .hero-wrap::after {
-        right: -30px;
+        right: -28px;
       }
 
       .block--how {
@@ -393,7 +406,7 @@
       .block::before,
       .block--how::before,
       .block--fit::before {
-        display: none; /* simplify on small screens if needed */
+        display: none; /* simplify on mobile if needed */
       }
     }
   </style>
