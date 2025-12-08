@@ -12,21 +12,20 @@
 
   <style>
     :root {
-      /* Earth / sand / sea base */
-      --bg: #f3eee5;          /* soft sand */
-      --bg-soft: #e4ddcf;     /* deeper sand */
-      --bg-soft-2: #dfe6ea;   /* soft sea haze */
+      /* Base + neutrals */
+      --bg: #f4eee3;          /* sand */
+      --bg-soft: #eadfcf;     /* deeper sand */
+      --bg-soft-2: #e0ecf2;   /* sea haze */
 
-      /* Ink */
-      --ink-main: #151819;    /* deep charcoal */
-      --ink-soft: #404648;    /* body */
-      --ink-muted: #777f80;   /* muted */
+      --ink-main: #151819;
+      --ink-soft: #42484a;
+      --ink-muted: #7b8283;
 
-      /* Accents */
-      --accent-deep: #27363b;     /* slate */
-      --accent-pop: #246c8e;      /* ocean pop */
-      --accent-crab: #c86345;     /* coral line */
-      --accent-soft: rgba(39,54,59,0.14);
+      /* Pops */
+      --teal: #1c748f;        /* ocean */
+      --coral: #ff7b55;       /* crab / sunset */
+      --moss: #5c8c63;        /* soft green */
+      --ink-deep: #223139;
 
       --max-width: 980px;
       --font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
@@ -37,13 +36,13 @@
     body {
       font-family: var(--font-sans);
       background:
-        radial-gradient(circle at 12% 0, #ffffff, transparent 58%),
-        radial-gradient(circle at 86% 100%, var(--bg-soft-2), transparent 60%),
-        radial-gradient(circle at 6% 80%, var(--bg-soft), transparent 60%),
+        radial-gradient(circle at 5% 0, #ffffff, transparent 55%),
+        radial-gradient(circle at 90% 100%, var(--bg-soft-2), transparent 60%),
+        radial-gradient(circle at 0 80%, var(--bg-soft), transparent 60%),
         var(--bg);
       color: var(--ink-main);
       line-height: 1.6;
-      padding: 40px 18px 72px;
+      padding: 40px 18px 80px;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -53,55 +52,40 @@
       position: relative;
     }
 
-    /* SPINE */
+    /* Subtle spine – we can kill this later if you hate it */
     .spine {
       position: absolute;
       left: 10px;
-      top: 18px;
-      bottom: 28px;
+      top: 20px;
+      bottom: 32px;
       width: 2px;
       background: linear-gradient(
         to bottom,
-        rgba(39,54,59,0),
-        rgba(39,54,59,0.35),
-        rgba(39,54,59,0.08),
-        rgba(39,54,59,0)
+        rgba(34,49,57,0),
+        rgba(34,49,57,0.25),
+        rgba(34,49,57,0.05),
+        rgba(34,49,57,0)
       );
       border-radius: 999px;
       pointer-events: none;
     }
 
-    .spine::before,
-    .spine::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      width: 14px;
-      height: 1px;
-      background: rgba(39,54,59,0.35);
-      transform: translateX(-50%);
-      border-radius: 999px;
-    }
-
-    .spine::before { top: 24%; }
-    .spine::after { top: 66%; }
-
     @media (max-width: 768px) {
-      body { padding: 28px 12px 56px; }
+      body { padding: 28px 12px 64px; }
       .spine { left: 4px; }
     }
 
     /* HEADER */
     header {
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       padding-left: 28px;
     }
 
     .top-row {
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 12px;
+      flex-wrap: wrap;
       text-transform: uppercase;
       letter-spacing: 0.26em;
       font-size: 12px;
@@ -120,76 +104,70 @@
     }
 
     .header-rule {
-      margin-top: 12px;
+      margin-top: 10px;
       height: 2px;
       width: 100%;
+      border-radius: 999px;
       background: linear-gradient(
         90deg,
-        rgba(21,24,26,0.6),
+        rgba(28,116,143,0.65),
+        rgba(92,140,99,0.25),
         rgba(21,24,26,0)
       );
-      border-radius: 999px;
-      position: relative;
-    }
-
-    .header-rule::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: -3px;
-      width: 120px;
-      height: 3px;
-      background: var(--accent-deep);
-      border-radius: 999px;
     }
 
     /* HERO */
     .hero-wrap {
       position: relative;
-      margin-top: 40px;
-      margin-bottom: 56px;
       padding-left: 28px;
+      margin-top: 34px;
+      margin-bottom: 52px;
     }
 
+    /* soft angled band */
     .hero-wrap::before {
       content: "";
       position: absolute;
-      left: -42px;
-      top: 6px;
-      width: 135%;
+      left: -50px;
+      top: 4px;
+      width: 140%;
       height: 210px;
-      border-radius: 44px;
+      background:
+        radial-gradient(circle at 10% 0, rgba(255,255,255,0.9), transparent 60%),
+        linear-gradient(
+          120deg,
+          rgba(234,223,207,0.98),
+          rgba(224,236,242,0.95)
+        );
       transform: skewY(-4deg);
-      background: linear-gradient(
-        130deg,
-        rgba(228,221,207,0.96),
-        rgba(223,230,234,0.8)
-      );
+      border-radius: 58px;
       z-index: -2;
     }
 
+    /* soft color blob */
     .hero-wrap::after {
       content: "";
       position: absolute;
       right: -40px;
-      top: 50px;
-      width: 240px;
-      height: 240px;
-      opacity: 0.9;
-      filter: blur(2px);
+      top: 40px;
+      width: 230px;
+      height: 230px;
       background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), transparent 52%),
-        radial-gradient(circle at 70% 75%, rgba(36,108,142,0.22), transparent 70%);
+        radial-gradient(circle at 20% 25%, rgba(255,255,255,0.9), transparent 60%),
+        radial-gradient(circle at 70% 80%, rgba(255,123,85,0.35), transparent 70%);
+      filter: blur(1.5px);
+      opacity: 0.9;
+      border-radius: 50%;
       z-index: -1;
     }
 
     .hero {
       max-width: 620px;
-      padding: 22px 26px 26px 0;
+      padding: 20px 26px 22px 0;
     }
 
     .hero-line {
-      font-size: clamp(26px, 3.6vw, 38px);  /* slightly smaller */
+      font-size: clamp(24px, 3.4vw, 36px);
       font-weight: 650;
       letter-spacing: -0.035em;
       line-height: 1.18;
@@ -200,13 +178,13 @@
       margin-top: 4px;
     }
 
-    .pop {
-      color: var(--accent-pop);
+    .hero-line .pop {
+      color: var(--teal);
       font-weight: 650;
     }
 
     .hero-subtext {
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: 15px;
       color: var(--ink-soft);
       max-width: 30rem;
@@ -216,15 +194,11 @@
       margin-bottom: 4px;
     }
 
-    .hero-subtext p:last-child {
-      margin-bottom: 0;
-    }
-
     .hero-cta-row {
-      margin-top: 22px;
+      margin-top: 20px;
       display: inline-flex;
-      gap: 14px;
       flex-wrap: wrap;
+      gap: 14px;
       align-items: center;
     }
 
@@ -237,11 +211,11 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 600;
-      background: var(--accent-pop);
+      background: var(--teal);
       color: #ffffff;
       box-shadow:
-        0 10px 24px rgba(21,24,26,0.22),
-        0 0 0 1px rgba(21,24,26,0.4);
+        0 10px 22px rgba(18,71,91,0.28),
+        0 0 0 1px rgba(18,71,91,0.5);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
       white-space: nowrap;
     }
@@ -249,8 +223,8 @@
     .cta-btn:hover {
       transform: translateY(-1px);
       box-shadow:
-        0 14px 32px rgba(21,24,26,0.28),
-        0 0 0 1px rgba(21,24,26,0.6);
+        0 14px 30px rgba(18,71,91,0.34),
+        0 0 0 1px rgba(18,71,91,0.7);
     }
 
     .cta-mini {
@@ -258,7 +232,7 @@
       color: var(--ink-muted);
     }
 
-    /* MAIN LAYOUT */
+    /* MAIN */
     main {
       padding-left: 28px;
     }
@@ -289,12 +263,33 @@
       font-weight: 650;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent-deep);
+      color: var(--ink-deep);
     }
 
-    /* WHAT I HELP WITH: grid */
+    /* WHAT I HELP WITH – flowing 3-column */
+    .section--what {
+      position: relative;
+    }
+
+    .section--what::before {
+      /* soft brush behind the grid */
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: 40px;
+      width: 120%;
+      height: 210px;
+      background:
+        radial-gradient(circle at 0 40%, rgba(28,116,143,0.13), transparent 65%),
+        radial-gradient(circle at 90% 90%, rgba(92,140,99,0.18), transparent 70%);
+      opacity: 0.9;
+      filter: blur(1.5px);
+      border-radius: 60% 40% 50% 50%;
+      z-index: -1;
+    }
+
     .what-intro {
-      max-width: 38rem;
+      max-width: 36rem;
       margin: 0 auto 18px auto;
       font-size: 15px;
       color: var(--ink-soft);
@@ -314,18 +309,37 @@
     }
 
     .what-item {
-      padding-top: 14px;
-      border-top: 1px solid rgba(39,54,59,0.18);
+      position: relative;
+      padding: 18px 16px 16px 16px;
+      border-radius: 20px;
+      background: rgba(244,238,227,0.8);
+      backdrop-filter: blur(4px);
+      box-shadow:
+        0 14px 30px rgba(21,24,26,0.12);
+      overflow: hidden;
     }
 
-    .what-item:nth-child(1) {
-      border-color: var(--accent-pop);
+    .what-item::before {
+      /* brush-stroke accent */
+      content: "";
+      position: absolute;
+      top: -18px;
+      left: -20px;
+      width: 120px;
+      height: 60px;
+      border-radius: 999px;
+      transform: rotate(-6deg);
+      opacity: 0.75;
     }
-    .what-item:nth-child(2) {
-      border-color: var(--accent-crab);
+
+    .what-item:nth-child(1)::before {
+      background: linear-gradient(90deg, rgba(28,116,143,0.4), transparent);
     }
-    .what-item:nth-child(3) {
-      border-color: var(--accent-deep);
+    .what-item:nth-child(2)::before {
+      background: linear-gradient(90deg, rgba(255,123,85,0.5), transparent);
+    }
+    .what-item:nth-child(3)::before {
+      background: linear-gradient(90deg, rgba(92,140,99,0.5), transparent);
     }
 
     .what-label {
@@ -339,7 +353,7 @@
     .what-title {
       font-size: 14px;
       font-weight: 600;
-      color: var(--accent-deep);
+      color: var(--ink-deep);
       margin-bottom: 6px;
     }
 
@@ -349,13 +363,54 @@
       line-height: 1.7;
     }
 
-    /* HOW WORKING TOGETHER FEELS: steps */
+    /* HOW – curved path with steps */
+    .section--how {
+      position: relative;
+      margin-top: 12px;
+    }
+
+    .section--how::before {
+      /* soft sweeping path */
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 10%;
+      top: 34px;
+      height: 210px;
+      background:
+        radial-gradient(circle at 0 0, rgba(255,255,255,0.8), transparent 55%),
+        radial-gradient(circle at 30% 90%, rgba(255,123,85,0.24), transparent 70%),
+        radial-gradient(circle at 85% 40%, rgba(28,116,143,0.28), transparent 70%);
+      opacity: 0.9;
+      filter: blur(1.6px);
+      border-radius: 60% 60% 50% 40%;
+      z-index: -1;
+    }
+
     .how-wrap {
       max-width: 44rem;
       margin-left: auto;
       margin-right: 18px;
-      border-left: 2px solid var(--accent-soft);
-      padding-left: 18px;
+      position: relative;
+      padding-left: 10px;
+    }
+
+    .how-path {
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 18px;
+      width: 2px;
+      border-radius: 999px;
+      background: linear-gradient(
+        to bottom,
+        rgba(34,49,57,0.0),
+        rgba(34,49,57,0.35),
+        rgba(255,123,85,0.6),
+        rgba(28,116,143,0.4),
+        rgba(34,49,57,0.0)
+      );
+      opacity: 0.7;
     }
 
     .how-step {
@@ -371,39 +426,66 @@
     .how-step::before {
       content: attr(data-step);
       position: absolute;
-      left: 0;
-      top: 2px;
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(39,54,59,0.5);
+      left: -11px;
+      top: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
       font-size: 11px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-deep);
-      background: #f8f4ec;
+      font-weight: 600;
+      color: var(--ink-deep);
+      background: #fdf8f0;
+      box-shadow:
+        0 6px 12px rgba(21,24,26,0.12),
+        0 0 0 1px rgba(21,24,26,0.08);
+    }
+
+    .how-step h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-deep);
+      margin-bottom: 4px;
     }
 
     .how-step p {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--ink-soft);
       line-height: 1.7;
     }
 
-    /* FIT / NOT FIT: two columns with band */
-    .fit-section {
-      padding: 20px 20px 22px 20px;
-      border-radius: 24px;
+    /* FIT / NOT FIT – organic band */
+    .section--fit {
+      position: relative;
+    }
+
+    .section--fit::before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      right: -20px;
+      top: 24px;
+      height: 200px;
       background:
-        linear-gradient(
-          135deg,
-          rgba(247,241,231,1),
-          rgba(227,234,239,0.95)
-        );
+        radial-gradient(circle at 15% 0, rgba(255,255,255,0.9), transparent 55%),
+        radial-gradient(circle at 80% 100%, rgba(28,116,143,0.18), transparent 70%),
+        radial-gradient(circle at 40% 60%, rgba(255,123,85,0.2), transparent 70%);
+      border-radius: 55% 60% 50% 45%;
+      opacity: 0.9;
+      filter: blur(1.8px);
+      z-index: -1;
+    }
+
+    .fit-shell {
+      border-radius: 26px;
+      padding: 18px 20px 22px 20px;
+      background: rgba(244,238,227,0.92);
+      backdrop-filter: blur(5px);
       box-shadow:
-        0 12px 26px rgba(21,24,26,0.08),
-        0 0 0 1px rgba(21,24,26,0.03);
+        0 16px 32px rgba(21,24,26,0.14),
+        0 0 0 1px rgba(21,24,26,0.04);
       margin-right: 18px;
     }
 
@@ -420,7 +502,7 @@
 
     .fit-block {
       position: relative;
-      padding-top: 8px;
+      padding-top: 10px;
     }
 
     .fit-block::before {
@@ -428,27 +510,27 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 40px;
-      height: 2px;
+      width: 60px;
+      height: 3px;
       border-radius: 999px;
-      background: var(--accent-soft);
+      background: rgba(34,49,57,0.18);
     }
 
     .fit-block.good::before {
-      background: var(--accent-pop);
+      background: linear-gradient(90deg, var(--teal), transparent);
     }
 
     .fit-block.not::before {
-      background: var(--accent-crab);
+      background: linear-gradient(90deg, var(--coral), transparent);
     }
 
     .fit-label {
-      font-weight: 700;
       font-size: 13px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--accent-deep);
-      margin-bottom: 4px;
+      letter-spacing: 0.1em;
+      color: var(--ink-deep);
+      margin-bottom: 6px;
     }
 
     .fit-text {
@@ -465,19 +547,16 @@
       }
 
       .hero-wrap::before {
-        left: -26px;
-        width: 120%;
+        left: -28px;
+        width: 125%;
       }
 
       .hero-wrap::after {
-        right: -28px;
+        right: -26px;
       }
 
-      .how-wrap {
-        margin-right: 0;
-      }
-
-      .fit-section {
+      .how-wrap,
+      .fit-shell {
         margin-right: 0;
       }
     }
@@ -495,7 +574,7 @@
       <div class="header-rule"></div>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO (still using your hero line for now; you can swap later) -->
     <div class="hero-wrap">
       <section class="hero">
         <div class="hero-line">
@@ -506,8 +585,8 @@
         </div>
 
         <div class="hero-subtext">
-          <p>The parts of the business that keep tugging at you don't have to stay heavy.</p>
-          <p>I bring clarity to how everything works together so the daily flow feels calmer.</p>
+          <p>Short supporting line here that adds context but stays light.</p>
+          <p>Second line if you need it — or remove this entirely.</p>
         </div>
 
         <div class="hero-cta-row">
@@ -515,7 +594,7 @@
             Reach Out —&gt;
           </button>
           <div class="cta-mini">
-            If it's hard to put into words, that's okay. Start wherever.
+            One simple sentence here to lower the pressure.
           </div>
         </div>
       </section>
@@ -523,79 +602,84 @@
 
     <main>
       <!-- WHAT I HELP WITH -->
-      <section id="what">
+      <section class="section--what">
         <div class="section-heading">
           <div class="section-kicker">What I Help With</div>
-          <div class="section-title">Where I Usually Step In</div>
+          <div class="section-title">You Don't Have To Hold It All</div>
         </div>
 
         <div class="what-intro">
-          Most people reach out because something in the workflow isn't adding up — Shopify shows one thing, the books show another, or the day-to-day process feels heavier than it should. It's not chaos, it's just work that isn't flowing the way it needs to.
+          One or two lines here that describe the general kind of work you step into — not the whole story, just enough to orient them.
         </div>
 
         <div class="what-grid">
           <div class="what-item">
-            <div class="what-label">Focus Area</div>
-            <div class="what-title">Shopify that stays current</div>
-            <p>Products, collections, settings, and daily updates aligned with what's happening right now — accurate, consistent, and easy to maintain.</p>
+            <div class="what-label">Area One</div>
+            <div class="what-title">Short heading goes here</div>
+            <p>One or two sentences about this focus area. Enough to be clear, but not heavy.</p>
           </div>
 
           <div class="what-item">
-            <div class="what-label">Focus Area</div>
-            <div class="what-title">Numbers that reflect the same reality</div>
-            <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
+            <div class="what-label">Area Two</div>
+            <div class="what-title">Another clear heading</div>
+            <p>Short explanation of what you support here — think skimmable and concrete.</p>
           </div>
 
           <div class="what-item">
-            <div class="what-label">Focus Area</div>
-            <div class="what-title">Operational issues that need a steady hand</div>
-            <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what's happening and get it running the way it should.</p>
+            <div class="what-label">Area Three</div>
+            <div class="what-title">Third piece of the puzzle</div>
+            <p>A quick description so they can see the pattern of what you help with.</p>
           </div>
         </div>
       </section>
 
       <!-- HOW WORKING TOGETHER FEELS -->
-      <section id="how">
+      <section class="section--how">
         <div class="section-heading" style="text-align:left; margin-bottom:16px;">
-          <div class="section-kicker">How Working Together Feels</div>
-          <div class="section-title">The Way We Work Through It</div>
+          <div class="section-kicker">How It Works</div>
+          <div class="section-title">The Shape Of Working Together</div>
         </div>
 
         <div class="how-wrap">
+          <div class="how-path"></div>
+
           <div class="how-step" data-step="01">
-            <p>You tell me what's happening — the parts that feel off, the areas you keep circling, the things that aren't matching what you expect. It can be brief. It doesn't need to be organized.</p>
+            <h3>Start with what's on your mind</h3>
+            <p>One paragraph here about how they first reach out and what you ask for — simple and low pressure.</p>
           </div>
 
           <div class="how-step" data-step="02">
-            <p>I review the setup you already have: your Shopify configuration, your financial flow, how updates are managed, and where the inconsistencies are showing up. The goal is to understand the system as it is, so we can see what's solid, what needs tightening, and what needs a fresh start.</p>
+            <h3>Look at how things are set up</h3>
+            <p>Describe how you review what already exists, what you look for, and how you think through it.</p>
           </div>
 
           <div class="how-step" data-step="03">
-            <p>From there, we make practical changes that hold — cleaning up the areas that create extra work, tightening the parts that drift, and getting the workflow to operate the way it should. It's steady, detailed work that makes the day-to-day feel easier.</p>
+            <h3>Steady changes that hold</h3>
+            <p>Explain the type of changes you make and how it feels once the operations are aligned.</p>
           </div>
         </div>
       </section>
 
       <!-- FIT / NOT FIT -->
-      <section id="fit">
+      <section class="section--fit">
         <div class="section-heading" style="text-align:left; margin-bottom:12px;">
           <div class="section-kicker">Fit / Not Fit</div>
-          <div class="section-title">Making Sure It's the Right Match</div>
+          <div class="section-title">Knowing If This Is Right For You</div>
         </div>
 
-        <div class="fit-section">
+        <div class="fit-shell">
           <div class="fit-grid">
             <div class="fit-block good">
               <div class="fit-label">A good fit</div>
               <div class="fit-text">
-                You have an active business and the core operations are established, but Shopify, bookkeeping, and daily workflows need to be aligned so everything reflects the same reality. You want clear, consistent operations supported by someone who understands the details without adding complexity.
+                A few lines describing the kind of business, pace, and mindset that tend to work well with how you operate.
               </div>
             </div>
 
             <div class="fit-block not">
               <div class="fit-label">Not a fit</div>
               <div class="fit-text">
-                This isn't the right match if you need a custom Shopify theme built from the ground up, if the business requires urgent intervention, or if you're looking for a full team or agency structure. My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.
+                Short, honest notes about what you're not set up for, so people can self-select out without friction.
               </div>
             </div>
           </div>
