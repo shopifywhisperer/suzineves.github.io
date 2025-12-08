@@ -157,6 +157,21 @@
       margin: 0 0 0.75rem;
       color: var(--ink-main);
     }
+/* Add anchor line above each support item title */
+.support-item-title {
+  position: relative;
+  padding-top: 0.9rem;
+}
+
+.support-item-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: var(--teal);
+}
 
     .support-item-text {
       font-size: 0.95rem;
