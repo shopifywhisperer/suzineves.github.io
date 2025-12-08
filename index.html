@@ -1,285 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Suzi Neves – Shopify · Bookkeeping · Operations</title>
+  <meta charset="UTF-8" />
+  <title>Suzi Neves – Shopify · Bookkeeping · Operations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #e8e5ee;           /* soft greige-lilac neutral */
+      --panel: #dcd7e5;        /* slightly deeper panel tone */
+      --ink-main: #15151c;     /* near-black */
+      --ink-soft: #3f3f50;     /* body text */
+      --ink-muted: #6b6b80;    /* muted labels */
+      --accent: #5b3c65;       /* muted plum (not bright, not orange, not blue) */
+      --max-width: 980px;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    }
 
-<style>
-:root {
-  --bg: #0b0b0c;                 /* deep charcoal */
-  --ink: #f5f5f5;                 /* soft white */
-  --ink-soft: #cccccc;            /* warm grey */
-  --muted: #8a8a8a;               /* muted neutral */
-  --accent: #c7b8a3;              /* SOFT METALLIC CHAMPAGNE – NOT COLOR */
-  --accent-line: rgba(199,184,163,0.28);
-  --stroke: rgba(255,255,255,0.06);
-  --max-width: 980px;
-  --font: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at 10% 0, #f3f0f9, transparent 55%),
+                  radial-gradient(circle at 90% 100%, #d7d2e3, transparent 60%),
+                  var(--bg);
+      color: var(--ink-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      padding: 40px 18px 72px;
+    }
 
-body {
-  font-family: var(--font);
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.06), transparent 65%),
-    radial-gradient(circle at 85% 80%, rgba(255,255,255,0.04), transparent 60%),
-    var(--bg);
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.55;
-  padding: 50px 20px 80px;
-}
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      position: relative;
+    }
 
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  position: relative;
-}
+    /* vertical design spine */
+    .spine {
+      position: absolute;
+      left: 8px;
+      top: 24px;
+      bottom: 24px;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        rgba(91,60,101,0.0),
+        rgba(91,60,101,0.4),
+        rgba(91,60,101,0.0)
+      );
+      pointer-events: none;
+    }
 
-/* HEADER */
-header {
-  margin-bottom: 40px;
-}
+    @media (max-width: 768px) {
+      .spine {
+        left: 0;
+      }
+    }
 
-.topline {
-  display: flex;
-  justify-content: space-between;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 12px;
-  color: var(--muted);
-}
+    header {
+      margin-bottom: 28px;
+      position: relative;
+      padding-left: 20px;
+    }
 
-hr.headerline {
-  margin-top: 12px;
-  height: 1px;
-  border: none;
-  background: linear-gradient(90deg, var(--accent-line), transparent);
-}
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
 
-/* HERO */
-.hero {
-  margin-top: 60px;
-  margin-bottom: 70px;
-  position: relative;
-}
+    .brand {
+      font-weight: 600;
+      color: var(--ink-main);
+    }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  left: -60px;
-  top: -40px;
-  width: 140%;
-  height: 220px;
-  background: linear-gradient(
-    115deg,
-    rgba(255,255,255,0.10),
-    rgba(255,255,255,0.00)
-  );
-  filter: blur(28px);
-  z-index: -1;
-}
+    .header-rule {
+      margin-top: 10px;
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(21,21,28,0.35),
+        rgba(21,21,28,0.0)
+      );
+      position: relative;
+    }
 
-.hero-title {
-  font-size: clamp(40px, 6vw, 68px);
-  font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  max-width: 48rem;
-}
+    .header-rule::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 64px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 999px;
+    }
 
-.hero-title .pop {
-  color: var(--accent);
-  font-weight: 700;
-}
+    /* HERO SECTION */
 
-.hero-sub {
-  margin-top: 24px;
-  font-size: 18px;
-  max-width: 34rem;
-  color: var(--ink-soft);
-}
+    .hero-wrap {
+      position: relative;
+      margin-top: 40px;
+      margin-bottom: 56px;
+      padding-left: 20px;
+    }
 
-.hero-sub p + p {
-  margin-top: 6px;
-}
+    /* big diagonal band behind hero */
+    .hero-wrap::before {
+      content: "";
+      position: absolute;
+      left: -40px;
+      top: 10px;
+      width: 130%;
+      height: 220px;
+      background: var(--panel);
+      transform: skewY(-4deg);
+      border-radius: 32px;
+      z-index: -2;
+    }
 
-/* CTA */
-.cta-row {
-  margin-top: 32px;
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  align-items: center;
-}
+    /* soft circle behind hero text */
+    .hero-wrap::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: 40px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(91,60,101,0.24), transparent 65%);
+      opacity: 0.8;
+      z-index: -1;
+      filter: blur(4px);
+    }
 
-button.cta {
-  padding: 12px 26px;
-  background: var(--ink);
-  color: var(--bg);
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  border-radius: 999px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow:
-    0 10px 25px rgba(0,0,0,0.45),
-    0 0 0 1px rgba(255,255,255,0.4);
-  transition: 0.18s ease;
-}
+    .hero {
+      max-width: 620px;
+      padding: 26px 22px 26px 0;
+    }
 
-button.cta:hover {
-  transform: translateY(-2px);
-}
+    .hero-title {
+      font-size: clamp(30px, 4.2vw, 44px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      color: var(--ink-main);
+    }
 
-.mini {
-  font-size: 14px;
-  color: var(--muted);
-}
+    .hero-title .pop {
+      color: var(--accent);
+      font-weight: 650;
+    }
 
-/* CONTENT STREAM */
+    .hero-subtext {
+      margin-top: 18px;
+      font-size: 15px;
+      color: var(--ink-soft);
+      max-width: 32rem;
+    }
 
-section.block {
-  margin-bottom: 70px;
-  position: relative;
-}
+    .hero-subtext p + p {
+      margin-top: 4px;
+    }
 
-.block-title {
-  font-size: 14px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 22px;
-  position: relative;
-  padding-left: 38px;
-}
+    .hero-cta-row {
+      margin-top: 24px;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
 
-.block-title::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 28px;
-  height: 2px;
-  background: var(--accent);
-  transform: translateY(-50%);
-}
+    .cta-btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 9px 22px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      background: var(--ink-main);
+      color: var(--bg);
+      box-shadow:
+        0 10px 22px rgba(21,21,28,0.25),
+        0 0 0 1px rgba(21,21,28,0.5);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      white-space: nowrap;
+    }
 
-.block p {
-  color: var(--ink-soft);
-  margin-bottom: 14px;
-  max-width: 40rem;
-  font-size: 16px;
-}
+    .cta-btn:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 14px 30px rgba(21,21,28,0.28),
+        0 0 0 1px rgba(21,21,28,0.6);
+    }
 
-.subhead {
-  margin-top: 22px;
-  color: var(--ink);
-  font-weight: 600;
-  font-size: 18px;
-}
+    .cta-mini {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
 
-/* ASYMMETRY */
-.block.how {
-  margin-left: auto;
-  max-width: 40rem;
-}
+    /* CONTENT STREAM */
 
-.fit-label {
-  color: var(--ink);
-  font-weight: 600;
-  margin-bottom: 6px;
-  position: relative;
-  padding-right: 40px;
-}
+    .content {
+      margin-top: 8px;
+      padding-left: 20px;
+    }
 
-.fit-label::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 28px;
-  height: 2px;
-  background: var(--accent);
-  transform: translateY(-50%);
-}
-</style>
+    .block {
+      margin-bottom: 40px;
+      position: relative;
+      padding-right: 10px;
+    }
 
+    .block:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .block-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 14px;
+      position: relative;
+      padding-left: 34px;
+    }
+
+    .block-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 26px;
+      height: 1px;
+      background: var(--accent);
+      transform: translateY(-50%);
+    }
+
+    .block p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      max-width: 40rem;
+      margin-bottom: 10px;
+    }
+
+    .block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .subhead {
+      margin-top: 16px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-main);
+    }
+
+    .subhead + p {
+      margin-top: 4px;
+    }
+
+    /* asymmetry: one block shifts right */
+
+    .block--how {
+      max-width: 40rem;
+      margin-left: auto;
+    }
+
+    .fit-sub {
+      margin-top: 10px;
+    }
+
+    .fit-label {
+      font-weight: 600;
+      color: var(--ink-main);
+      font-size: 14px;
+      margin-bottom: 4px;
+      position: relative;
+      display: inline-block;
+      padding-right: 26px;
+    }
+
+    .fit-label::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+      transform: translateY(-50%);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 28px 14px 56px;
+      }
+
+      header,
+      .hero-wrap,
+      .content {
+        padding-left: 10px;
+      }
+
+      .hero-wrap::before {
+        left: -24px;
+        width: 120%;
+      }
+
+      .hero-wrap::after {
+        right: -30px;
+      }
+
+      .block--how {
+        margin-left: 0;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="page">
+    <div class="spine"></div>
 
-<div class="container">
+    <header>
+      <div class="top-row">
+        <div class="brand">SUZI NEVES</div>
+        <div>SHOPIFY · BOOKKEEPING · OPERATIONS</div>
+      </div>
+      <div class="header-rule"></div>
+    </header>
 
-<header>
-  <div class="topline">
-    <div>SUZI NEVES</div>
-    <div>SHOPIFY · BOOKKEEPING · OPERATIONS</div>
+    <div class="hero-wrap">
+      <section class="hero">
+        <h1 class="hero-title">
+          Making sense of how your business operates<br>
+          and <span class="pop">creating systems that support your work.</span>
+        </h1>
+
+        <div class="hero-subtext">
+          <p>The parts of the business that keep tugging at you don&apos;t have to stay heavy.</p>
+          <p>I bring clarity to how everything works together so the daily flow feels calmer.</p>
+        </div>
+
+        <div class="hero-cta-row">
+          <button class="cta-btn" type="button">
+            Reach Out —&gt;
+          </button>
+          <div class="cta-mini">
+            If it&apos;s hard to put into words, that&apos;s okay. Start wherever.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <main class="content">
+      <section class="block block--what">
+        <div class="block-title">WHAT I HELP WITH</div>
+
+        <p>Most people reach out because something in the workflow isn&apos;t adding up — Shopify shows one thing, the books show another, or the day-to-day process feels heavier than it should. It&apos;s not chaos, it&apos;s just work that isn&apos;t flowing the way it needs to.</p>
+
+        <p>Here&apos;s where I usually step in:</p>
+
+        <div class="subhead">Shopify that stays current</div>
+        <p>Products, collections, settings, and daily updates aligned with what&apos;s happening right now — accurate, consistent, and easy to maintain.</p>
+
+        <div class="subhead">Numbers that reflect the same reality</div>
+        <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
+
+        <div class="subhead">Operational issues that need a steady hand</div>
+        <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what&apos;s happening and get it running the way it should.</p>
+      </section>
+
+      <section class="block block--how">
+        <div class="block-title">HOW WORKING TOGETHER FEELS</div>
+
+        <p>You tell me what&apos;s happening — the parts that feel off, the areas you keep circling, the things that aren&apos;t matching what you expect. It can be brief. It doesn&apos;t need to be organized.</p>
+
+        <p>I review the setup you already have: your Shopify configuration, your financial flow, how updates are managed, and where the inconsistencies are showing up. The goal is to understand the system as it is, so we can see what&apos;s solid, what needs tightening, and what needs a fresh start.</p>
+
+        <p>From there, we make practical changes that hold — cleaning up the areas that create extra work, tightening the parts that drift, and getting the workflow to operate the way it should. It&apos;s steady, detailed work that makes the day-to-day feel easier.</p>
+      </section>
+
+      <section class="block block--fit">
+        <div class="block-title">FIT / NOT FIT</div>
+
+        <div class="fit-sub">
+          <div class="fit-label">A good fit:</div>
+          <p>You have an active business and the core operations are established, but Shopify, bookkeeping, and daily workflows need to be aligned so everything reflects the same reality. You want clear, consistent operations supported by someone who understands the details without adding complexity.</p>
+        </div>
+
+        <div class="fit-sub">
+          <div class="fit-label">Not a fit:</div>
+          <p>This isn&apos;t the right match if you need a custom Shopify theme built from the ground up, if the business requires urgent intervention, or if you&apos;re looking for a full team or agency structure. My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.</p>
+        </div>
+      </section>
+    </main>
   </div>
-  <hr class="headerline">
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <h1 class="hero-title">
-    Making sense of how your business operates  
-    and <span class="pop">creating systems that support your work.</span>
-  </h1>
-
-  <div class="hero-sub">
-    <p>The parts of the business that keep tugging at you don’t have to stay heavy.</p>
-    <p>I bring clarity to how everything works together so the daily flow feels calmer.</p>
-  </div>
-
-  <div class="cta-row">
-    <button class="cta">Reach Out —&gt;</button>
-    <div class="mini">If it’s hard to put into words, that’s okay. Start wherever.</div>
-  </div>
-</section>
-
-<!-- CONTENT -->
-<section class="block what">
-  <div class="block-title">WHAT I HELP WITH</div>
-
-  <p>Most people reach out because something in the workflow isn’t adding up — Shopify shows one thing, the books show another, or the day-to-day process feels heavier than it should. It’s not chaos, it’s just work that isn’t flowing the way it needs to.</p>
-
-  <p>Here’s where I usually step in:</p>
-
-  <div class="subhead">Shopify that stays current</div>
-  <p>Products, collections, settings, and daily updates aligned with what’s happening right now — accurate, consistent, and easy to maintain.</p>
-
-  <div class="subhead">Numbers that reflect the same reality</div>
-  <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
-
-  <div class="subhead">Operational issues that need a steady hand</div>
-  <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what’s happening and get it running the way it should.</p>
-</section>
-
-<section class="block how">
-  <div class="block-title">HOW WORKING TOGETHER FEELS</div>
-
-  <p>You tell me what’s happening — the parts that feel off, the areas you keep circling, the things that aren’t matching what you expect. It can be brief. It doesn’t need to be organized.</p>
-
-  <p>I review the setup you already have: your Shopify configuration, your financial flow, how updates are managed, and where the inconsistencies are showing up. The goal is to understand the system as it is, so we can see what’s solid, what needs tightening, and what needs a fresh start.</p>
-
-  <p>From there, we make practical changes that hold — cleaning up the areas that create extra work, tightening the parts that drift, and getting the workflow to operate the way it should. It’s steady, detailed work that makes the day-to-day feel easier.</p>
-</section>
-
-<section class="block fit">
-  <div class="block-title">FIT / NOT FIT</div>
-
-  <div class="fit-label">A good fit:</div>
-  <p>You have an active business and the core operations are established, but Shopify, bookkeeping, and daily workflows need to be aligned so everything reflects the same reality. You want clear, consistent operations supported by someone who understands the details without adding complexity.</p>
-
-  <div class="fit-label">Not a fit:</div>
-  <p>This isn’t the right match if you need a custom Shopify theme built from the ground up, if the business requires urgent intervention, or if you’re looking for a full team or agency structure. My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.</p>
-</section>
-
-</div>
-
 </body>
 </html>
