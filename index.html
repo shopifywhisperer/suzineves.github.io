@@ -12,17 +12,20 @@
 
   <style>
     :root {
-      --bg: #f3eee5;
-      --bg-soft: #e4ddcf;
-      --bg-soft-2: #dfe6ea;
+      /* Earth / sand / sea base */
+      --bg: #f3eee5;          /* soft sand */
+      --bg-soft: #e4ddcf;     /* deeper sand */
+      --bg-soft-2: #dfe6ea;   /* soft sea haze */
 
-      --ink-main: #151819;
-      --ink-soft: #404648;
-      --ink-muted: #777f80;
+      /* Ink */
+      --ink-main: #151819;    /* deep charcoal */
+      --ink-soft: #404648;    /* body */
+      --ink-muted: #777f80;   /* muted */
 
-      --accent-deep: #314147;
-      --accent-pop: #2d6c88;
-      --accent-crab: #c86345;
+      /* Accents: rock + ocean + crab */
+      --accent-deep: #27363b;      /* slightly deeper slate */
+      --accent-pop: #246c8e;       /* ocean / sky pop */
+      --accent-crab: #c86345;      /* coral “crab” tick */
 
       --max-width: 980px;
       --font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
@@ -43,59 +46,114 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .page { max-width: var(--max-width); margin: 0 auto; position: relative; }
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      position: relative;
+    }
 
     /* SPINE */
     .spine {
-      position: absolute; left: 10px; top: 18px; bottom: 28px; width: 2px;
-      background: linear-gradient(to bottom,
-        rgba(49,65,71,0),
-        rgba(49,65,71,0.35),
-        rgba(49,65,71,0.08),
-        rgba(49,65,71,0)
+      position: absolute;
+      left: 10px;
+      top: 18px;
+      bottom: 28px;
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        rgba(39,54,59,0),
+        rgba(39,54,59,0.35),
+        rgba(39,54,59,0.08),
+        rgba(39,54,59,0)
       );
       border-radius: 999px;
     }
 
-    .spine::before, .spine::after {
-      content: ""; position: absolute; left: 50%; width: 14px; height: 1px;
-      background: rgba(49,65,71,0.35); transform: translateX(-50%);
+    .spine::before,
+    .spine::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 14px;
+      height: 1px;
+      background: rgba(39,54,59,0.35);
+      transform: translateX(-50%);
+      border-radius: 999px;
     }
     .spine::before { top: 24%; }
     .spine::after { top: 66%; }
 
     /* HEADER */
-    header { margin-bottom: 32px; padding-left: 28px; }
-
-    .top-row {
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-      text-transform: uppercase; letter-spacing: 0.26em; font-size: 12px; color: var(--ink-muted);
+    header {
+      margin-bottom: 32px;
+      padding-left: 28px;
     }
 
-    .brand { font-weight: 700; font-size: 13px; color: var(--ink-main); }
-    .tagline { font-weight: 500; }
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--ink-main);
+    }
+
+    .tagline {
+      font-weight: 500;
+      white-space: nowrap;
+    }
 
     .header-rule {
-      margin-top: 12px; height: 2px; width: 100%;
-      background: linear-gradient(90deg, rgba(21,24,26,0.6), rgba(21,24,26,0));
-      border-radius: 999px; position: relative;
+      margin-top: 12px;
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(21,24,26,0.6),
+        rgba(21,24,26,0)
+      );
+      border-radius: 999px;
+      position: relative;
     }
 
     .header-rule::before {
-      content: ""; position: absolute; left: 0; top: -3px; width: 120px; height: 3px;
-      background: var(--accent-deep); border-radius: 999px;
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -3px;
+      width: 120px;
+      height: 3px;
+      background: var(--accent-deep);
+      border-radius: 999px;
     }
 
     /* HERO BLOCK */
     .hero-wrap {
-      position: relative; margin-top: 40px; margin-bottom: 60px; padding-left: 28px;
+      position: relative;
+      margin-top: 40px;
+      margin-bottom: 60px;
+      padding-left: 28px;
     }
 
     .hero-wrap::before {
-      content: ""; position: absolute; left: -42px; top: 6px;
-      width: 135%; height: 230px; border-radius: 44px;
+      content: "";
+      position: absolute;
+      left: -42px;
+      top: 6px;
+      width: 135%;
+      height: 230px;
+      border-radius: 44px;
       transform: skewY(-4deg);
-      background: linear-gradient(130deg,
+      background: linear-gradient(
+        130deg,
         rgba(228,221,207,0.96),
         rgba(223,230,234,0.8)
       );
@@ -103,103 +161,266 @@
     }
 
     .hero-wrap::after {
-      content: ""; position: absolute; right: -40px; top: 50px;
-      width: 260px; height: 260px; opacity: 0.9; filter: blur(2px);
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: 50px;
+      width: 260px;
+      height: 260px;
+      opacity: 0.9;
+      filter: blur(2px);
       background:
         radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), transparent 52%),
-        radial-gradient(circle at 70% 75%, rgba(45,108,136,0.25), transparent 70%);
+        radial-gradient(circle at 70% 75%, rgba(36,108,142,0.25), transparent 70%);
       z-index: -1;
     }
 
-    .hero { max-width: 680px; padding: 26px 26px 28px 0; }
+    .hero {
+      max-width: 680px;
+      padding: 26px 26px 28px 0;
+    }
 
     .hero-line {
       font-size: clamp(30px, 4.3vw, 46px);
-      font-weight: 650; letter-spacing: -0.035em; line-height: 1.16;
+      font-weight: 650;
+      letter-spacing: -0.035em;
+      line-height: 1.16;
+      color: var(--ink-main);
     }
 
-    .hero-line + .hero-line { margin-top: 4px; }
+    .hero-line + .hero-line {
+      margin-top: 4px;
+    }
 
-    .pop { color: var(--accent-pop); font-weight: 650; }
+    .pop {
+      color: var(--accent-pop);
+      font-weight: 650;
+    }
 
-    .hero-subtext { margin-top: 18px; font-size: 15px; color: var(--ink-soft); max-width: 32rem; }
-    .hero-subtext p + p { margin-top: 4px; }
+    .hero-subtext {
+      margin-top: 18px;
+      font-size: 15px;
+      color: var(--ink-soft);
+      max-width: 32rem;
+    }
+
+    .hero-subtext p + p {
+      margin-top: 4px;
+    }
 
     .hero-cta-row {
-      margin-top: 24px; display: inline-flex; gap: 14px; flex-wrap: wrap; align-items: center;
+      margin-top: 24px;
+      display: inline-flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
     .cta-btn {
-      padding: 9px 22px; border-radius: 999px; border: none; cursor: pointer;
-      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-      background: var(--ink-main); color: var(--bg);
-      box-shadow: 0 10px 24px rgba(21,24,26,0.22), 0 0 0 1px rgba(21,24,26,0.7);
-      transition: 0.15s ease;
+      padding: 9px 22px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      background: var(--accent-pop);
+      color: #ffffff;
+      box-shadow:
+        0 10px 24px rgba(21,24,26,0.22),
+        0 0 0 1px rgba(21,24,26,0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      white-space: nowrap;
     }
 
     .cta-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(21,24,26,0.28), 0 0 0 1px rgba(21,24,26,0.8);
+      box-shadow:
+        0 14px 32px rgba(21,24,26,0.28),
+        0 0 0 1px rgba(21,24,26,0.6);
     }
 
-    .cta-mini { font-size: 13px; color: var(--ink-muted); }
+    .cta-mini {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
 
     /* SECTIONS */
-    main { margin-top: 8px; padding-left: 28px; }
+    main {
+      margin-top: 8px;
+      padding-left: 28px;
+    }
 
-    .block { margin-bottom: 52px; }
+    .block {
+      margin-bottom: 52px;
+      position: relative;
+    }
+
+    .block:last-of-type {
+      margin-bottom: 0;
+    }
 
     .block-head {
-      display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
     .block-icon-wrap {
-      width: 42px; height: 42px; border-radius: 999px; position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      position: relative;
       background:
-        radial-gradient(circle at 30% 30%, rgba(45,108,136,0.24), transparent 65%),
-        rgba(255,255,255,0.8);
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.9), 0 8px 18px rgba(21,24,26,0.15);
-      border: 1px solid rgba(49,65,71,0.18);
+        radial-gradient(circle at 30% 30%, rgba(36,108,142,0.24), transparent 65%),
+        rgba(255,255,255,0.9);
+      box-shadow:
+        0 0 0 4px rgba(255,255,255,0.9),
+        0 8px 18px rgba(21,24,26,0.15);
+      border: 1px solid rgba(39,54,59,0.18);
+      flex-shrink: 0;
     }
 
     .block-icon-ring {
-      position: absolute; inset: 9px; border-radius: 999px;
-      border: 1px solid rgba(49,65,71,0.38);
+      position: absolute;
+      inset: 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(39,54,59,0.38);
     }
 
     .block-icon-tick {
-      position: absolute; bottom: 8px; right: 4px;
-      width: 20px; height: 2px; border-radius: 999px;
+      position: absolute;
+      bottom: 8px;
+      right: 4px;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
       background: var(--accent-crab);
     }
 
     .block-label {
-      font-size: 11px; text-transform: uppercase;
-      letter-spacing: 0.24em; color: var(--ink-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
     }
 
     .block-title {
-      font-size: 18px; font-weight: 650; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--accent-deep);
+      font-size: 18px;
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
     }
 
-    .block-body { margin-top: 8px; max-width: 44rem; }
-    .block-body p { font-size: 15px; color: var(--ink-soft); margin-bottom: 10px; }
+    .block-body {
+      margin-top: 8px;
+      max-width: 42rem;
+    }
+
+    .block-body p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    .block-body p:last-child {
+      margin-bottom: 0;
+    }
 
     .subhead {
-      margin-top: 18px; font-size: 15px; font-weight: 600; color: var(--ink-main);
+      margin-top: 18px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent-deep);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .subhead + p {
+      margin-top: 4px;
+    }
+
+    .block--how {
+      max-width: 42rem;
+      margin-left: auto;
+    }
+
+    .fit-sub {
+      margin-top: 12px;
     }
 
     .fit-label {
-      font-weight: 700; font-size: 14px; margin-bottom: 4px; color: var(--ink-main);
-      position: relative; padding-right: 28px;
-    }
-    .fit-label::after {
-      content: ""; position: absolute; right: 0; top: 50%;
-      width: 22px; height: 1px; background: var(--accent-deep);
-      transform: translateY(-50%); border-radius: 999px;
+      font-weight: 700;
+      color: var(--ink-main);
+      font-size: 14px;
+      margin-bottom: 4px;
+      position: relative;
+      display: inline-block;
+      padding-right: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
+    .fit-label::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 22px;
+      height: 1px;
+      background: var(--accent-deep);
+      transform: translateY(-50%);
+      border-radius: 999px;
+    }
+
+    /* “What I help with” – structured chunks */
+    .pill-list {
+      margin-top: 10px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .pill-item {
+      padding-top: 10px;
+      border-top: 1px solid rgba(39,54,59,0.15);
+    }
+
+    .pill-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-deep);
+      margin-bottom: 4px;
+    }
+
+    .pill-item p {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      header,
+      .hero-wrap,
+      main {
+        padding-left: 18px;
+      }
+
+      .hero-wrap::before {
+        left: -26px;
+        width: 120%;
+      }
+
+      .hero-wrap::after {
+        right: -28px;
+      }
+
+      .block--how {
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -216,8 +437,6 @@
 
     <div class="hero-wrap">
       <section class="hero">
-
-        <!-- ⭐ YOUR EXACT HERO FIX -->
         <div class="hero-line">
           Making sense of how your business operates and
         </div>
@@ -231,16 +450,18 @@
         </div>
 
         <div class="hero-cta-row">
-          <button class="cta-btn" type="button">Reach Out —&gt;</button>
-          <div class="cta-mini">If it's hard to put into words, that's okay. Start wherever.</div>
+          <button class="cta-btn" type="button">
+            Reach Out —&gt;
+          </button>
+          <div class="cta-mini">
+            If it's hard to put into words, that's okay. Start wherever.
+          </div>
         </div>
-
       </section>
     </div>
 
     <main>
-
-      <!-- SECTION ONE -->
+      <!-- SECTION ONE: WHAT I HELP WITH -->
       <section class="block block--what">
         <div class="block-head">
           <div class="block-icon-wrap">
@@ -258,18 +479,26 @@
 
           <p>Here's where I usually step in:</p>
 
-          <div class="subhead">Shopify that stays current</div>
-          <p>Products, collections, settings, and daily updates aligned with what's happening right now — accurate, consistent, and easy to maintain.</p>
+          <div class="pill-list">
+            <div class="pill-item">
+              <div class="pill-title">Shopify that stays current</div>
+              <p>Products, collections, settings, and daily updates aligned with what's happening right now — accurate, consistent, and easy to maintain.</p>
+            </div>
 
-          <div class="subhead">Numbers that reflect the same reality</div>
-          <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
+            <div class="pill-item">
+              <div class="pill-title">Numbers that reflect the same reality</div>
+              <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
+            </div>
 
-          <div class="subhead">Operational issues that need a steady hand</div>
-          <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what's happening and get it running the way it should.</p>
+            <div class="pill-item">
+              <div class="pill-title">Operational issues that need a steady hand</div>
+              <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what's happening and get it running the way it should.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- SECTION TWO -->
+      <!-- SECTION TWO: HOW WORKING TOGETHER FEELS -->
       <section class="block block--how">
         <div class="block-head">
           <div class="block-icon-wrap">
@@ -291,7 +520,7 @@
         </div>
       </section>
 
-      <!-- SECTION THREE -->
+      <!-- SECTION THREE: FIT / NOT FIT -->
       <section class="block block--fit">
         <div class="block-head">
           <div class="block-icon-wrap">
@@ -316,7 +545,6 @@
           </div>
         </div>
       </section>
-
     </main>
   </div>
 </body>
