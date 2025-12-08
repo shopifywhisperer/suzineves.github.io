@@ -5,7 +5,7 @@
   <title>Suzi Neves – Shopify · Bookkeeping · Operations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Intentional, modern type -->
+  <!-- Type -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,10 +22,11 @@
       --ink-soft: #404648;    /* body */
       --ink-muted: #777f80;   /* muted */
 
-      /* Accents: rock + ocean + crab */
-      --accent-deep: #27363b;      /* slightly deeper slate */
-      --accent-pop: #246c8e;       /* ocean / sky pop */
-      --accent-crab: #c86345;      /* coral “crab” tick */
+      /* Accents */
+      --accent-deep: #27363b;     /* slate */
+      --accent-pop: #246c8e;      /* ocean pop */
+      --accent-crab: #c86345;     /* coral line */
+      --accent-soft: rgba(39,54,59,0.14);
 
       --max-width: 980px;
       --font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
@@ -67,6 +68,7 @@
         rgba(39,54,59,0)
       );
       border-radius: 999px;
+      pointer-events: none;
     }
 
     .spine::before,
@@ -80,8 +82,14 @@
       transform: translateX(-50%);
       border-radius: 999px;
     }
+
     .spine::before { top: 24%; }
     .spine::after { top: 66%; }
+
+    @media (max-width: 768px) {
+      body { padding: 28px 12px 56px; }
+      .spine { left: 4px; }
+    }
 
     /* HEADER */
     header {
@@ -135,11 +143,11 @@
       border-radius: 999px;
     }
 
-    /* HERO BLOCK */
+    /* HERO */
     .hero-wrap {
       position: relative;
       margin-top: 40px;
-      margin-bottom: 60px;
+      margin-bottom: 56px;
       padding-left: 28px;
     }
 
@@ -149,7 +157,7 @@
       left: -42px;
       top: 6px;
       width: 135%;
-      height: 230px;
+      height: 210px;
       border-radius: 44px;
       transform: skewY(-4deg);
       background: linear-gradient(
@@ -165,26 +173,26 @@
       position: absolute;
       right: -40px;
       top: 50px;
-      width: 260px;
-      height: 260px;
+      width: 240px;
+      height: 240px;
       opacity: 0.9;
       filter: blur(2px);
       background:
         radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), transparent 52%),
-        radial-gradient(circle at 70% 75%, rgba(36,108,142,0.25), transparent 70%);
+        radial-gradient(circle at 70% 75%, rgba(36,108,142,0.22), transparent 70%);
       z-index: -1;
     }
 
     .hero {
-      max-width: 680px;
-      padding: 26px 26px 28px 0;
+      max-width: 620px;
+      padding: 22px 26px 26px 0;
     }
 
     .hero-line {
-      font-size: clamp(30px, 4.3vw, 46px);
+      font-size: clamp(26px, 3.6vw, 38px);  /* slightly smaller */
       font-weight: 650;
       letter-spacing: -0.035em;
-      line-height: 1.16;
+      line-height: 1.18;
       color: var(--ink-main);
     }
 
@@ -198,18 +206,22 @@
     }
 
     .hero-subtext {
-      margin-top: 18px;
+      margin-top: 16px;
       font-size: 15px;
       color: var(--ink-soft);
-      max-width: 32rem;
+      max-width: 30rem;
     }
 
-    .hero-subtext p + p {
-      margin-top: 4px;
+    .hero-subtext p {
+      margin-bottom: 4px;
+    }
+
+    .hero-subtext p:last-child {
+      margin-bottom: 0;
     }
 
     .hero-cta-row {
-      margin-top: 24px;
+      margin-top: 22px;
       display: inline-flex;
       gap: 14px;
       flex-wrap: wrap;
@@ -246,159 +258,203 @@
       color: var(--ink-muted);
     }
 
-    /* SECTIONS */
+    /* MAIN LAYOUT */
     main {
-      margin-top: 8px;
       padding-left: 28px;
     }
 
-    .block {
-      margin-bottom: 52px;
-      position: relative;
+    section {
+      margin-bottom: 56px;
     }
 
-    .block:last-of-type {
+    section:last-of-type {
       margin-bottom: 0;
     }
 
-    .block-head {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
+    .section-heading {
+      text-align: center;
+      margin-bottom: 18px;
     }
 
-    .block-icon-wrap {
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      position: relative;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(36,108,142,0.24), transparent 65%),
-        rgba(255,255,255,0.9);
-      box-shadow:
-        0 0 0 4px rgba(255,255,255,0.9),
-        0 8px 18px rgba(21,24,26,0.15);
-      border: 1px solid rgba(39,54,59,0.18);
-      flex-shrink: 0;
-    }
-
-    .block-icon-ring {
-      position: absolute;
-      inset: 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(39,54,59,0.38);
-    }
-
-    .block-icon-tick {
-      position: absolute;
-      bottom: 8px;
-      right: 4px;
-      width: 20px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--accent-crab);
-    }
-
-    .block-label {
+    .section-kicker {
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.26em;
       color: var(--ink-muted);
       margin-bottom: 4px;
     }
 
-    .block-title {
+    .section-title {
       font-size: 18px;
       font-weight: 650;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent-deep);
     }
 
-    .block-body {
-      margin-top: 8px;
-      max-width: 42rem;
-    }
-
-    .block-body p {
+    /* WHAT I HELP WITH: grid */
+    .what-intro {
+      max-width: 38rem;
+      margin: 0 auto 18px auto;
       font-size: 15px;
       color: var(--ink-soft);
-      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .what-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 6px;
+    }
+
+    @media (min-width: 820px) {
+      .what-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .what-item {
+      padding-top: 14px;
+      border-top: 1px solid rgba(39,54,59,0.18);
+    }
+
+    .what-item:nth-child(1) {
+      border-color: var(--accent-pop);
+    }
+    .what-item:nth-child(2) {
+      border-color: var(--accent-crab);
+    }
+    .what-item:nth-child(3) {
+      border-color: var(--accent-deep);
+    }
+
+    .what-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .what-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-deep);
+      margin-bottom: 6px;
+    }
+
+    .what-item p {
+      font-size: 14px;
+      color: var(--ink-soft);
       line-height: 1.7;
     }
 
-    .block-body p:last-child {
+    /* HOW WORKING TOGETHER FEELS: steps */
+    .how-wrap {
+      max-width: 44rem;
+      margin-left: auto;
+      margin-right: 18px;
+      border-left: 2px solid var(--accent-soft);
+      padding-left: 18px;
+    }
+
+    .how-step {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: 18px;
+    }
+
+    .how-step:last-child {
       margin-bottom: 0;
     }
 
-    .subhead {
-      margin-top: 18px;
-      font-size: 15px;
-      font-weight: 600;
+    .how-step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(39,54,59,0.5);
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent-deep);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      background: #f8f4ec;
     }
 
-    .subhead + p {
-      margin-top: 4px;
+    .how-step p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.7;
     }
 
-    .block--how {
-      max-width: 42rem;
-      margin-left: auto;
+    /* FIT / NOT FIT: two columns with band */
+    .fit-section {
+      padding: 20px 20px 22px 20px;
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(247,241,231,1),
+          rgba(227,234,239,0.95)
+        );
+      box-shadow:
+        0 12px 26px rgba(21,24,26,0.08),
+        0 0 0 1px rgba(21,24,26,0.03);
+      margin-right: 18px;
     }
 
-    .fit-sub {
-      margin-top: 12px;
+    .fit-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    @media (min-width: 820px) {
+      .fit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .fit-block {
+      position: relative;
+      padding-top: 8px;
+    }
+
+    .fit-block::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    .fit-block.good::before {
+      background: var(--accent-pop);
+    }
+
+    .fit-block.not::before {
+      background: var(--accent-crab);
     }
 
     .fit-label {
       font-weight: 700;
-      color: var(--ink-main);
-      font-size: 14px;
-      margin-bottom: 4px;
-      position: relative;
-      display: inline-block;
-      padding-right: 28px;
+      font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .fit-label::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 22px;
-      height: 1px;
-      background: var(--accent-deep);
-      transform: translateY(-50%);
-      border-radius: 999px;
-    }
-
-    /* “What I help with” – structured chunks */
-    .pill-list {
-      margin-top: 10px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .pill-item {
-      padding-top: 10px;
-      border-top: 1px solid rgba(39,54,59,0.15);
-    }
-
-    .pill-title {
-      font-size: 14px;
-      font-weight: 600;
+      letter-spacing: 0.09em;
       color: var(--accent-deep);
       margin-bottom: 4px;
     }
 
-    .pill-item p {
-      margin-bottom: 0;
+    .fit-text {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.7;
     }
 
     @media (max-width: 768px) {
@@ -417,8 +473,12 @@
         right: -28px;
       }
 
-      .block--how {
-        margin-left: 0;
+      .how-wrap {
+        margin-right: 0;
+      }
+
+      .fit-section {
+        margin-right: 0;
       }
     }
   </style>
@@ -435,6 +495,7 @@
       <div class="header-rule"></div>
     </header>
 
+    <!-- HERO -->
     <div class="hero-wrap">
       <section class="hero">
         <div class="hero-line">
@@ -461,87 +522,82 @@
     </div>
 
     <main>
-      <!-- SECTION ONE: WHAT I HELP WITH -->
-      <section class="block block--what">
-        <div class="block-head">
-          <div class="block-icon-wrap">
-            <div class="block-icon-ring"></div>
-            <div class="block-icon-tick"></div>
-          </div>
-          <div>
-            <div class="block-label">Section One</div>
-            <div class="block-title">What I Help With</div>
-          </div>
+      <!-- WHAT I HELP WITH -->
+      <section id="what">
+        <div class="section-heading">
+          <div class="section-kicker">What I Help With</div>
+          <div class="section-title">Where I Usually Step In</div>
         </div>
 
-        <div class="block-body">
-          <p>Most people reach out because something in the workflow isn't adding up — Shopify shows one thing, the books show another, or the day-to-day process feels heavier than it should. It's not chaos, it's just work that isn't flowing the way it needs to.</p>
+        <div class="what-intro">
+          Most people reach out because something in the workflow isn't adding up — Shopify shows one thing, the books show another, or the day-to-day process feels heavier than it should. It's not chaos, it's just work that isn't flowing the way it needs to.
+        </div>
 
-          <p>Here's where I usually step in:</p>
+        <div class="what-grid">
+          <div class="what-item">
+            <div class="what-label">Focus Area</div>
+            <div class="what-title">Shopify that stays current</div>
+            <p>Products, collections, settings, and daily updates aligned with what's happening right now — accurate, consistent, and easy to maintain.</p>
+          </div>
 
-          <div class="pill-list">
-            <div class="pill-item">
-              <div class="pill-title">Shopify that stays current</div>
-              <p>Products, collections, settings, and daily updates aligned with what's happening right now — accurate, consistent, and easy to maintain.</p>
-            </div>
+          <div class="what-item">
+            <div class="what-label">Focus Area</div>
+            <div class="what-title">Numbers that reflect the same reality</div>
+            <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
+          </div>
 
-            <div class="pill-item">
-              <div class="pill-title">Numbers that reflect the same reality</div>
-              <p>Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.</p>
-            </div>
-
-            <div class="pill-item">
-              <div class="pill-title">Operational issues that need a steady hand</div>
-              <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what's happening and get it running the way it should.</p>
-            </div>
+          <div class="what-item">
+            <div class="what-label">Focus Area</div>
+            <div class="what-title">Operational issues that need a steady hand</div>
+            <p>The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what's happening and get it running the way it should.</p>
           </div>
         </div>
       </section>
 
-      <!-- SECTION TWO: HOW WORKING TOGETHER FEELS -->
-      <section class="block block--how">
-        <div class="block-head">
-          <div class="block-icon-wrap">
-            <div class="block-icon-ring"></div>
-            <div class="block-icon-tick"></div>
-          </div>
-          <div>
-            <div class="block-label">Section Two</div>
-            <div class="block-title">How Working Together Feels</div>
-          </div>
+      <!-- HOW WORKING TOGETHER FEELS -->
+      <section id="how">
+        <div class="section-heading" style="text-align:left; margin-bottom:16px;">
+          <div class="section-kicker">How Working Together Feels</div>
+          <div class="section-title">The Way We Work Through It</div>
         </div>
 
-        <div class="block-body">
-          <p>You tell me what's happening — the parts that feel off, the areas you keep circling, the things that aren't matching what you expect. It can be brief. It doesn't need to be organized.</p>
+        <div class="how-wrap">
+          <div class="how-step" data-step="01">
+            <p>You tell me what's happening — the parts that feel off, the areas you keep circling, the things that aren't matching what you expect. It can be brief. It doesn't need to be organized.</p>
+          </div>
 
-          <p>I review the setup you already have: your Shopify configuration, your financial flow, how updates are managed, and where the inconsistencies are showing up. The goal is to understand the system as it is, so we can see what's solid, what needs tightening, and what needs a fresh start.</p>
+          <div class="how-step" data-step="02">
+            <p>I review the setup you already have: your Shopify configuration, your financial flow, how updates are managed, and where the inconsistencies are showing up. The goal is to understand the system as it is, so we can see what's solid, what needs tightening, and what needs a fresh start.</p>
+          </div>
 
-          <p>From there, we make practical changes that hold — cleaning up the areas that create extra work, tightening the parts that drift, and getting the workflow to operate the way it should. It's steady, detailed work that makes the day-to-day feel easier.</p>
+          <div class="how-step" data-step="03">
+            <p>From there, we make practical changes that hold — cleaning up the areas that create extra work, tightening the parts that drift, and getting the workflow to operate the way it should. It's steady, detailed work that makes the day-to-day feel easier.</p>
+          </div>
         </div>
       </section>
 
-      <!-- SECTION THREE: FIT / NOT FIT -->
-      <section class="block block--fit">
-        <div class="block-head">
-          <div class="block-icon-wrap">
-            <div class="block-icon-ring"></div>
-            <div class="block-icon-tick"></div>
-          </div>
-          <div>
-            <div class="block-label">Section Three</div>
-            <div class="block-title">Fit / Not Fit</div>
-          </div>
+      <!-- FIT / NOT FIT -->
+      <section id="fit">
+        <div class="section-heading" style="text-align:left; margin-bottom:12px;">
+          <div class="section-kicker">Fit / Not Fit</div>
+          <div class="section-title">Making Sure It's the Right Match</div>
         </div>
 
-        <div class="block-body">
-          <div class="fit-sub">
-            <div class="fit-label">A good fit:</div>
-            <p>You have an active business and the core operations are established, but Shopify, bookkeeping, and daily workflows need to be aligned so everything reflects the same reality. You want clear, consistent operations supported by someone who understands the details without adding complexity.</p>
-          </div>
+        <div class="fit-section">
+          <div class="fit-grid">
+            <div class="fit-block good">
+              <div class="fit-label">A good fit</div>
+              <div class="fit-text">
+                You have an active business and the core operations are established, but Shopify, bookkeeping, and daily workflows need to be aligned so everything reflects the same reality. You want clear, consistent operations supported by someone who understands the details without adding complexity.
+              </div>
+            </div>
 
-          <div class="fit-sub">
-            <div class="fit-label">Not a fit:</div>
-            <p>This isn't the right match if you need a custom Shopify theme built from the ground up, if the business requires urgent intervention, or if you're looking for a full team or agency structure. My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.</p>
+            <div class="fit-block not">
+              <div class="fit-label">Not a fit</div>
+              <div class="fit-text">
+                This isn't the right match if you need a custom Shopify theme built from the ground up, if the business requires urgent intervention, or if you're looking for a full team or agency structure. My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.
+              </div>
+            </div>
           </div>
         </div>
       </section>
