@@ -12,20 +12,17 @@
 
   <style>
     :root {
-      /* Base + neutrals */
-      --bg: #f4eee3;          /* sand */
-      --bg-soft: #eadfcf;     /* deeper sand */
-      --bg-soft-2: #e0ecf2;   /* sea haze */
-
-      --ink-main: #151819;
-      --ink-soft: #42484a;
-      --ink-muted: #7b8283;
+      /* Base + ink */
+      --bg: #f2ece3;          /* warm bone */
+      --ink-main: #101216;    /* deep ink */
+      --ink-soft: #3c4145;
+      --ink-muted: #7e8488;
 
       /* Pops */
-      --teal: #1c748f;        /* ocean */
-      --coral: #ff7b55;       /* crab / sunset */
-      --moss: #5c8c63;        /* soft green */
-      --ink-deep: #223139;
+      --teal: #0e7a88;        /* ocean */
+      --coral: #ff5a3c;       /* crab */
+      --amber: #d28a1f;       /* sand/sun */
+      --slate: #202a30;
 
       --max-width: 980px;
       --font-sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
@@ -36,10 +33,7 @@
     body {
       font-family: var(--font-sans);
       background:
-        radial-gradient(circle at 5% 0, #ffffff, transparent 55%),
-        radial-gradient(circle at 90% 100%, var(--bg-soft-2), transparent 60%),
-        radial-gradient(circle at 0 80%, var(--bg-soft), transparent 60%),
-        var(--bg);
+        linear-gradient(135deg, #f7f2e8 0%, #f2ece3 50%, #ebf0f4 100%);
       color: var(--ink-main);
       line-height: 1.6;
       padding: 40px 18px 80px;
@@ -52,19 +46,19 @@
       position: relative;
     }
 
-    /* Subtle spine – we can kill this later if you hate it */
+    /* INK SPINE (subtle) */
     .spine {
       position: absolute;
       left: 10px;
-      top: 20px;
-      bottom: 32px;
-      width: 2px;
+      top: 16px;
+      bottom: 36px;
+      width: 1px;
       background: linear-gradient(
         to bottom,
-        rgba(34,49,57,0),
-        rgba(34,49,57,0.25),
-        rgba(34,49,57,0.05),
-        rgba(34,49,57,0)
+        rgba(16,18,22,0),
+        rgba(16,18,22,0.65),
+        rgba(16,18,22,0.2),
+        rgba(16,18,22,0)
       );
       border-radius: 999px;
       pointer-events: none;
@@ -84,8 +78,8 @@
     .top-row {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 12px;
       text-transform: uppercase;
       letter-spacing: 0.26em;
       font-size: 12px;
@@ -108,66 +102,42 @@
       height: 2px;
       width: 100%;
       border-radius: 999px;
-      background: linear-gradient(
-        90deg,
-        rgba(28,116,143,0.65),
-        rgba(92,140,99,0.25),
-        rgba(21,24,26,0)
-      );
+      background:
+        linear-gradient(90deg, var(--teal), transparent 55%),
+        linear-gradient(90deg, rgba(0,0,0,0.7), transparent 5%);
+      mix-blend-mode: multiply;
     }
 
     /* HERO */
     .hero-wrap {
-      position: relative;
       padding-left: 28px;
-      margin-top: 34px;
+      margin-top: 30px;
       margin-bottom: 52px;
+      position: relative;
     }
 
-    /* soft angled band */
     .hero-wrap::before {
+      /* ink swipe under hero */
       content: "";
       position: absolute;
-      left: -50px;
-      top: 4px;
-      width: 140%;
-      height: 210px;
-      background:
-        radial-gradient(circle at 10% 0, rgba(255,255,255,0.9), transparent 60%),
-        linear-gradient(
-          120deg,
-          rgba(234,223,207,0.98),
-          rgba(224,236,242,0.95)
-        );
-      transform: skewY(-4deg);
-      border-radius: 58px;
-      z-index: -2;
-    }
-
-    /* soft color blob */
-    .hero-wrap::after {
-      content: "";
-      position: absolute;
-      right: -40px;
-      top: 40px;
-      width: 230px;
-      height: 230px;
-      background:
-        radial-gradient(circle at 20% 25%, rgba(255,255,255,0.9), transparent 60%),
-        radial-gradient(circle at 70% 80%, rgba(255,123,85,0.35), transparent 70%);
-      filter: blur(1.5px);
+      left: 18px;
+      top: 24px;
+      width: 320px;
+      height: 16px;
+      background: linear-gradient(120deg, rgba(255,90,60,0.85), rgba(210,138,31,0.8));
+      border-radius: 999px;
+      transform: rotate(-2deg);
       opacity: 0.9;
-      border-radius: 50%;
       z-index: -1;
     }
 
     .hero {
-      max-width: 620px;
-      padding: 20px 26px 22px 0;
+      max-width: 640px;
+      padding-right: 40px;
     }
 
     .hero-line {
-      font-size: clamp(24px, 3.4vw, 36px);
+      font-size: clamp(24px, 3.3vw, 34px);
       font-weight: 650;
       letter-spacing: -0.035em;
       line-height: 1.18;
@@ -180,7 +150,7 @@
 
     .hero-line .pop {
       color: var(--teal);
-      font-weight: 650;
+      font-weight: 700;
     }
 
     .hero-subtext {
@@ -192,6 +162,10 @@
 
     .hero-subtext p {
       margin-bottom: 4px;
+    }
+
+    .hero-subtext p:last-child {
+      margin-bottom: 0;
     }
 
     .hero-cta-row {
@@ -211,11 +185,11 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 600;
-      background: var(--teal);
+      background: var(--ink-main);
       color: #ffffff;
       box-shadow:
-        0 10px 22px rgba(18,71,91,0.28),
-        0 0 0 1px rgba(18,71,91,0.5);
+        0 10px 24px rgba(0,0,0,0.28),
+        0 0 0 1px rgba(0,0,0,0.65);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
       white-space: nowrap;
     }
@@ -223,8 +197,8 @@
     .cta-btn:hover {
       transform: translateY(-1px);
       box-shadow:
-        0 14px 30px rgba(18,71,91,0.34),
-        0 0 0 1px rgba(18,71,91,0.7);
+        0 14px 32px rgba(0,0,0,0.34),
+        0 0 0 1px rgba(0,0,0,0.75);
     }
 
     .cta-mini {
@@ -246,7 +220,6 @@
     }
 
     .section-heading {
-      text-align: center;
       margin-bottom: 18px;
     }
 
@@ -263,33 +236,39 @@
       font-weight: 650;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--ink-deep);
+      color: var(--slate);
     }
 
-    /* WHAT I HELP WITH – flowing 3-column */
+    /* WHAT I HELP WITH – 3 columns, no boxes */
     .section--what {
-      position: relative;
+      margin-top: 4px;
     }
 
-    .section--what::before {
-      /* soft brush behind the grid */
+    .what-header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .what-header .section-title {
+      display: inline-block;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .what-header .section-title::after {
       content: "";
       position: absolute;
-      left: -30px;
-      top: 40px;
-      width: 120%;
-      height: 210px;
-      background:
-        radial-gradient(circle at 0 40%, rgba(28,116,143,0.13), transparent 65%),
-        radial-gradient(circle at 90% 90%, rgba(92,140,99,0.18), transparent 70%);
-      opacity: 0.9;
-      filter: blur(1.5px);
-      border-radius: 60% 40% 50% 50%;
-      z-index: -1;
+      left: -6px;
+      right: -18px;
+      bottom: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--teal), var(--coral));
+      transform: rotate(-1deg);
     }
 
     .what-intro {
-      max-width: 36rem;
+      max-width: 38rem;
       margin: 0 auto 18px auto;
       font-size: 15px;
       color: var(--ink-soft);
@@ -298,8 +277,8 @@
 
     .what-grid {
       display: grid;
-      gap: 18px;
-      margin-top: 6px;
+      gap: 20px;
+      margin-top: 8px;
     }
 
     @media (min-width: 820px) {
@@ -310,36 +289,30 @@
 
     .what-item {
       position: relative;
-      padding: 18px 16px 16px 16px;
-      border-radius: 20px;
-      background: rgba(244,238,227,0.8);
-      backdrop-filter: blur(4px);
-      box-shadow:
-        0 14px 30px rgba(21,24,26,0.12);
-      overflow: hidden;
+      padding-top: 14px;
+      padding-right: 8px;
     }
 
     .what-item::before {
-      /* brush-stroke accent */
+      /* top stroke */
       content: "";
       position: absolute;
-      top: -18px;
-      left: -20px;
-      width: 120px;
-      height: 60px;
+      left: 0;
+      top: 0;
+      width: 80px;
+      height: 3px;
       border-radius: 999px;
-      transform: rotate(-6deg);
-      opacity: 0.75;
+      background: linear-gradient(90deg, rgba(16,18,22,0.8), transparent);
     }
 
     .what-item:nth-child(1)::before {
-      background: linear-gradient(90deg, rgba(28,116,143,0.4), transparent);
+      background: linear-gradient(90deg, var(--teal), transparent);
     }
     .what-item:nth-child(2)::before {
-      background: linear-gradient(90deg, rgba(255,123,85,0.5), transparent);
+      background: linear-gradient(90deg, var(--coral), transparent);
     }
     .what-item:nth-child(3)::before {
-      background: linear-gradient(90deg, rgba(92,140,99,0.5), transparent);
+      background: linear-gradient(90deg, var(--amber), transparent);
     }
 
     .what-label {
@@ -353,7 +326,7 @@
     .what-title {
       font-size: 14px;
       font-weight: 600;
-      color: var(--ink-deep);
+      color: var(--ink-main);
       margin-bottom: 6px;
     }
 
@@ -363,28 +336,14 @@
       line-height: 1.7;
     }
 
-    /* HOW – curved path with steps */
+    /* HOW – vertical ink line + steps */
     .section--how {
+      margin-top: 8px;
       position: relative;
-      margin-top: 12px;
     }
 
-    .section--how::before {
-      /* soft sweeping path */
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 10%;
-      top: 34px;
-      height: 210px;
-      background:
-        radial-gradient(circle at 0 0, rgba(255,255,255,0.8), transparent 55%),
-        radial-gradient(circle at 30% 90%, rgba(255,123,85,0.24), transparent 70%),
-        radial-gradient(circle at 85% 40%, rgba(28,116,143,0.28), transparent 70%);
-      opacity: 0.9;
-      filter: blur(1.6px);
-      border-radius: 60% 60% 50% 40%;
-      z-index: -1;
+    .how-header {
+      margin-bottom: 14px;
     }
 
     .how-wrap {
@@ -392,25 +351,24 @@
       margin-left: auto;
       margin-right: 18px;
       position: relative;
-      padding-left: 10px;
+      padding-left: 20px;
     }
 
-    .how-path {
+    .how-line {
       position: absolute;
-      left: 0;
-      top: 6px;
-      bottom: 18px;
+      left: 4px;
+      top: 4px;
+      bottom: 4px;
       width: 2px;
       border-radius: 999px;
       background: linear-gradient(
         to bottom,
-        rgba(34,49,57,0.0),
-        rgba(34,49,57,0.35),
-        rgba(255,123,85,0.6),
-        rgba(28,116,143,0.4),
-        rgba(34,49,57,0.0)
+        rgba(16,18,22,0.0),
+        rgba(16,18,22,0.8),
+        rgba(255,90,60,0.9),
+        rgba(14,122,136,0.9),
+        rgba(16,18,22,0.0)
       );
-      opacity: 0.7;
     }
 
     .how-step {
@@ -426,27 +384,24 @@
     .how-step::before {
       content: attr(data-step);
       position: absolute;
-      left: -11px;
-      top: 0;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
+      left: -10px;
+      top: -2px;
+      padding: 2px 8px;
       font-size: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-weight: 600;
-      color: var(--ink-deep);
-      background: #fdf8f0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: #fdf7ee;
+      color: var(--slate);
       box-shadow:
-        0 6px 12px rgba(21,24,26,0.12),
-        0 0 0 1px rgba(21,24,26,0.08);
+        0 7px 16px rgba(0,0,0,0.18);
+      transform: rotate(-2deg);
     }
 
     .how-step h3 {
       font-size: 14px;
       font-weight: 600;
-      color: var(--ink-deep);
+      color: var(--ink-main);
       margin-bottom: 4px;
     }
 
@@ -456,42 +411,19 @@
       line-height: 1.7;
     }
 
-    /* FIT / NOT FIT – organic band */
+    /* FIT / NOT FIT – two columns, ink underlines */
     .section--fit {
-      position: relative;
+      margin-top: 8px;
     }
 
-    .section--fit::before {
-      content: "";
-      position: absolute;
-      left: -30px;
-      right: -20px;
-      top: 24px;
-      height: 200px;
-      background:
-        radial-gradient(circle at 15% 0, rgba(255,255,255,0.9), transparent 55%),
-        radial-gradient(circle at 80% 100%, rgba(28,116,143,0.18), transparent 70%),
-        radial-gradient(circle at 40% 60%, rgba(255,123,85,0.2), transparent 70%);
-      border-radius: 55% 60% 50% 45%;
-      opacity: 0.9;
-      filter: blur(1.8px);
-      z-index: -1;
-    }
-
-    .fit-shell {
-      border-radius: 26px;
-      padding: 18px 20px 22px 20px;
-      background: rgba(244,238,227,0.92);
-      backdrop-filter: blur(5px);
-      box-shadow:
-        0 16px 32px rgba(21,24,26,0.14),
-        0 0 0 1px rgba(21,24,26,0.04);
-      margin-right: 18px;
+    .fit-header {
+      margin-bottom: 14px;
     }
 
     .fit-grid {
       display: grid;
-      gap: 18px;
+      gap: 22px;
+      margin-right: 18px;
     }
 
     @media (min-width: 820px) {
@@ -508,12 +440,12 @@
     .fit-block::before {
       content: "";
       position: absolute;
-      top: 0;
       left: 0;
-      width: 60px;
+      top: 0;
+      width: 76px;
       height: 3px;
       border-radius: 999px;
-      background: rgba(34,49,57,0.18);
+      background: rgba(16,18,22,0.6);
     }
 
     .fit-block.good::before {
@@ -529,7 +461,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--ink-deep);
+      color: var(--slate);
       margin-bottom: 6px;
     }
 
@@ -546,17 +478,12 @@
         padding-left: 18px;
       }
 
-      .hero-wrap::before {
-        left: -28px;
-        width: 125%;
-      }
-
-      .hero-wrap::after {
-        right: -26px;
+      .hero {
+        padding-right: 0;
       }
 
       .how-wrap,
-      .fit-shell {
+      .fit-grid {
         margin-right: 0;
       }
     }
@@ -574,7 +501,7 @@
       <div class="header-rule"></div>
     </header>
 
-    <!-- HERO (still using your hero line for now; you can swap later) -->
+    <!-- HERO -->
     <div class="hero-wrap">
       <section class="hero">
         <div class="hero-line">
@@ -585,8 +512,8 @@
         </div>
 
         <div class="hero-subtext">
-          <p>Short supporting line here that adds context but stays light.</p>
-          <p>Second line if you need it — or remove this entirely.</p>
+          <p>Short supporting line here that adds context but doesn't make it heavier.</p>
+          <p>Second optional line if you need it — or remove this entirely.</p>
         </div>
 
         <div class="hero-cta-row">
@@ -603,84 +530,82 @@
     <main>
       <!-- WHAT I HELP WITH -->
       <section class="section--what">
-        <div class="section-heading">
+        <div class="what-header">
           <div class="section-kicker">What I Help With</div>
           <div class="section-title">You Don't Have To Hold It All</div>
         </div>
 
         <div class="what-intro">
-          One or two lines here that describe the general kind of work you step into — not the whole story, just enough to orient them.
+          One or two lines here that describe the kind of behind-the-scenes work you step into — clear, calm, not dramatic.
         </div>
 
         <div class="what-grid">
           <div class="what-item">
             <div class="what-label">Area One</div>
             <div class="what-title">Short heading goes here</div>
-            <p>One or two sentences about this focus area. Enough to be clear, but not heavy.</p>
+            <p>One or two sentences about this focus area. Enough to be specific without turning into a wall of text.</p>
           </div>
 
           <div class="what-item">
             <div class="what-label">Area Two</div>
             <div class="what-title">Another clear heading</div>
-            <p>Short explanation of what you support here — think skimmable and concrete.</p>
+            <p>Short explanation of what you support here — the kind of problems you quietly untangle.</p>
           </div>
 
           <div class="what-item">
             <div class="what-label">Area Three</div>
             <div class="what-title">Third piece of the puzzle</div>
-            <p>A quick description so they can see the pattern of what you help with.</p>
+            <p>A quick description so they can see the pattern of what you help with at a glance.</p>
           </div>
         </div>
       </section>
 
       <!-- HOW WORKING TOGETHER FEELS -->
       <section class="section--how">
-        <div class="section-heading" style="text-align:left; margin-bottom:16px;">
+        <div class="how-header">
           <div class="section-kicker">How It Works</div>
           <div class="section-title">The Shape Of Working Together</div>
         </div>
 
         <div class="how-wrap">
-          <div class="how-path"></div>
+          <div class="how-line"></div>
 
           <div class="how-step" data-step="01">
-            <h3>Start with what's on your mind</h3>
-            <p>One paragraph here about how they first reach out and what you ask for — simple and low pressure.</p>
+            <h3>Start with what's tugging at you</h3>
+            <p>One paragraph here about how people first reach out and what you ask for — simple, low-pressure, and honest.</p>
           </div>
 
           <div class="how-step" data-step="02">
-            <h3>Look at how things are set up</h3>
-            <p>Describe how you review what already exists, what you look for, and how you think through it.</p>
+            <h3>Look at how everything is set up</h3>
+            <p>Describe how you review what's already in place, what you pay attention to, and how you connect the dots.</p>
           </div>
 
           <div class="how-step" data-step="03">
-            <h3>Steady changes that hold</h3>
-            <p>Explain the type of changes you make and how it feels once the operations are aligned.</p>
+            <h3>Make steady changes that hold</h3>
+            <p>Explain the kind of changes you implement and how it feels once things are aligned and less noisy.</p>
           </div>
         </div>
       </section>
 
       <!-- FIT / NOT FIT -->
       <section class="section--fit">
-        <div class="section-heading" style="text-align:left; margin-bottom:12px;">
+        <div class="fit-header">
           <div class="section-kicker">Fit / Not Fit</div>
-          <div class="section-title">Knowing If This Is Right For You</div>
+          <div class="section-title">Knowing If This Is Yours</div>
         </div>
 
-        <div class="fit-shell">
-          <div class="fit-grid">
-            <div class="fit-block good">
-              <div class="fit-label">A good fit</div>
-              <div class="fit-text">
-                A few lines describing the kind of business, pace, and mindset that tend to work well with how you operate.
-              </div>
+        <div class="fit-grid">
+          <div class="fit-block good">
+            <div class="fit-label">A good fit</div>
+            <div class="fit-text">
+              A few lines describing the kind of business, pace, and mindset that tend to work well with how you operate.
             </div>
+          </div>
 
-            <div class="fit-block not">
-              <div class="fit-label">Not a fit</div>
-              <div class="fit-text">
-                Short, honest notes about what you're not set up for, so people can self-select out without friction.
-              </div>
+          <div class="fit-block not">
+            <div class="fit-label">Not a fit</div>
+            <div class="fit-text">
+              Short, grounded notes about what you're not set up for, so people can self-select out without guessing.
             </div>
           </div>
         </div>
