@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --page-bg: #f4efe7;          /* clay-linen hybrid */
-      --ink-main: #1f2933;         /* deep, soft slate */
-      --ink-soft: #4b5563;         /* softer body text */
-      --ink-muted: #6b7280;        /* muted labels */
-      --accent: #d96a25;           /* warm ember orange */
-      --line-soft: rgba(15, 23, 42, 0.20);
+      --page-bg: #f3ece2;          /* slightly stronger clay-linen */
+      --ink-main: #111827;         /* deeper, more confident slate */
+      --ink-soft: #374151;         /* body text */
+      --ink-muted: #6b7280;        /* subtle labels */
+      --accent: #c65a1a;           /* richer burnt ember orange */
+      --line-soft: rgba(15, 23, 42, 0.28);
       --max-width: 960px;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
@@ -58,7 +58,7 @@
       align-items: baseline;
       gap: 16px;
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
     }
 
@@ -86,7 +86,7 @@
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 72px;
+      width: 120px;
       height: 2px;
       background-color: var(--accent);
     }
@@ -107,18 +107,31 @@
     }
 
     .hero-title {
-      font-size: clamp(28px, 3.2vw, 36px);
-      line-height: 1.16;
-      letter-spacing: -0.03em;
+      font-size: clamp(30px, 3.6vw, 40px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
       font-weight: 600;
       color: var(--ink-main);
-      margin-bottom: 16px;
-      max-width: 38rem;
+      margin-bottom: 18px;
+      max-width: 40rem;
     }
 
     .hero-title .pop {
-      color: var(--accent);
-      white-space: nowrap;
+      position: relative;
+      display: inline-block;
+      padding: 0 0.12em;
+    }
+
+    .hero-title .pop::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.08em;
+      height: 0.45em;
+      background-color: rgba(198, 90, 26, 0.34);
+      z-index: -1;
+      border-radius: 8px;
     }
 
     .hero-subtext {
@@ -144,9 +157,9 @@
       padding: 10px 22px 11px;
       border-radius: 999px;
       font-size: 13px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
       color: #fdfaf6;
       background-color: var(--accent);
       box-shadow:
@@ -179,13 +192,13 @@
     /* FLOWING CONTENT – single stream, no boxes */
 
     .content-stream {
-      margin-top: 22px;
+      margin-top: 24px;
       padding-top: 18px;
       border-top: 1px solid var(--line-soft);
     }
 
     .block {
-      margin-bottom: 30px;
+      margin-bottom: 32px;
       position: relative;
     }
 
@@ -195,10 +208,10 @@
 
     .block-title {
       font-size: 12px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 12px;
+      color: var(--accent);
+      margin-bottom: 14px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -206,7 +219,7 @@
 
     .block-title::before {
       content: "";
-      width: 32px;
+      width: 26px;
       height: 1px;
       background-color: var(--accent);
     }
@@ -220,7 +233,7 @@
     }
 
     .subhead {
-      margin-top: 16px;
+      margin-top: 18px;
       font-weight: 600;
       color: var(--ink-main);
       font-size: 14px;
@@ -238,7 +251,7 @@
     }
 
     .fit-subblock {
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .fit-label {
