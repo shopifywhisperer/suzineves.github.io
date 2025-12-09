@@ -25,7 +25,6 @@
   <meta property="twitter:description" content="I help small business owners align their Shopify, bookkeeping, and operations so everything reflects the same reality." />
   <meta property="twitter:image" content="https://suzineves.com/og-image.jpg" />
   
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,14 +61,13 @@
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 0 4%;
     }
 
-    /* Header */
     header {
-      padding: 1.5rem 0 1rem;
+      padding: 1.5rem 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
@@ -94,19 +92,9 @@
       background: var(--coral);
     }
 
-    /* Main Layout */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 4rem;
-      padding: 3rem 0 2rem;
-      min-height: calc(100vh - 150px);
-      align-items: center;
-    }
-
-    /* Left Column */
-    .hero-content {
-      position: relative;
+    /* Hero */
+    .hero {
+      padding: 3rem 0 3.5rem;
     }
 
     .hero-tag {
@@ -120,23 +108,24 @@
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 4.5vw, 4rem);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
       line-height: 1.15;
       font-weight: 300;
       color: var(--ink);
       margin-bottom: 1.5rem;
+      max-width: 1000px;
       position: relative;
     }
 
     .hero-title::before {
       content: '';
       position: absolute;
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       background: radial-gradient(circle, var(--softsun) 0%, transparent 70%);
-      top: -40px;
-      right: -40px;
-      opacity: 0.3;
+      top: -50px;
+      right: -50px;
+      opacity: 0.35;
       z-index: -1;
       border-radius: 63% 37% 54% 46% / 42% 68% 32% 58%;
     }
@@ -160,15 +149,34 @@
       z-index: -1;
     }
 
+    .hero-lower {
+      display: flex;
+      gap: 5rem;
+      align-items: flex-start;
+      margin-top: 2rem;
+    }
+
     .hero-text {
-      font-size: 1.1rem;
+      flex: 1;
+      font-size: 1.15rem;
       line-height: 1.65;
       color: var(--charcoal);
-      margin-bottom: 2rem;
       max-width: 550px;
     }
 
-    .hero-cta {
+    .hero-action {
+      flex-shrink: 0;
+      max-width: 320px;
+    }
+
+    .hero-action p {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      color: var(--charcoal);
+    }
+
+    .hero-btn {
       font-family: "Inter", sans-serif;
       display: inline-block;
       padding: 0;
@@ -184,7 +192,7 @@
       padding-bottom: 0.2rem;
     }
 
-    .hero-cta::before {
+    .hero-btn::before {
       content: '→';
       position: absolute;
       right: -25px;
@@ -194,45 +202,82 @@
       transition: all 0.3s ease;
     }
 
-    .hero-cta:hover {
+    .hero-btn:hover {
       color: var(--coral);
       border-bottom-color: var(--deepteal);
     }
 
-    .hero-cta:hover::before {
+    .hero-btn:hover::before {
       right: -30px;
     }
 
-    /* Right Column - Cards */
-    .info-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    /* Support */
+    .support {
+      padding: 3.5rem 0;
+      background: var(--warmlight);
     }
 
-    .info-card {
+    .section-header {
+      max-width: 650px;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-label {
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--coral);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      font-weight: 300;
+      color: var(--ink);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 3px;
+      background: var(--warmgold);
+      bottom: -12px;
+      left: 0;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .support-card {
       padding: 2rem;
       background: white;
       border-left: 3px solid var(--teal);
       transition: transform 0.3s ease;
     }
 
-    .info-card:hover {
+    .support-card:hover {
       transform: translateX(5px);
     }
 
-    .info-card:nth-child(2) {
+    .support-card:nth-child(2) {
       border-left-color: var(--warmgold);
-      background: var(--warmlight);
     }
 
-    .info-card:nth-child(3) {
+    .support-card:nth-child(3) {
       border-left-color: var(--coral);
     }
 
     .card-title {
       font-family: "Inter", sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 0.75rem;
       color: var(--ink);
@@ -244,9 +289,185 @@
       color: var(--charcoal);
     }
 
+    /* Process */
+    .process {
+      padding: 3.5rem 0;
+    }
+
+    .process-header {
+      max-width: 700px;
+      margin: 0 0 2.5rem auto;
+      text-align: right;
+    }
+
+    .process-steps {
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .process-step {
+      padding-left: 2rem;
+      border-left: 3px solid var(--teal);
+      position: relative;
+    }
+
+    .process-step::before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--coral);
+      left: -6.5px;
+      top: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .step-title {
+      font-family: "Inter", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    .step-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--charcoal);
+      max-width: 650px;
+    }
+
+    /* Fit */
+    .fit {
+      padding: 3.5rem 0;
+      background: var(--warmlight);
+    }
+
+    .fit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .fit-block {
+      padding: 0;
+    }
+
+    .fit-tag {
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .fit-block:first-child .fit-tag {
+      color: var(--teal);
+    }
+
+    .fit-block:first-child .fit-tag::after {
+      content: '';
+      position: absolute;
+      width: 120%;
+      height: 2px;
+      background: var(--teal);
+      bottom: -6px;
+      left: 0;
+    }
+
+    .fit-block:last-child .fit-tag {
+      color: var(--coral);
+    }
+
+    .fit-block:last-child .fit-tag::after {
+      content: '';
+      position: absolute;
+      width: 120%;
+      height: 2px;
+      background: var(--coral);
+      bottom: -6px;
+      left: 0;
+    }
+
+    .fit-title {
+      font-family: "Inter", sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+
+    .fit-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--charcoal);
+    }
+
+    /* Final CTA */
+    .final {
+      padding: 3.5rem 0;
+      text-align: center;
+    }
+
+    .final-title {
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      line-height: 1.2;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .final-accent {
+      color: var(--deepteal);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .final-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--charcoal);
+      margin-bottom: 2rem;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .final-btn {
+      font-family: "Inter", sans-serif;
+      display: inline-block;
+      padding: 0;
+      background: none;
+      color: var(--coral);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.03em;
+      transition: all 0.3s ease;
+      position: relative;
+      border-bottom: 3px solid var(--teal);
+      padding-bottom: 0.3rem;
+    }
+
+    .final-btn:hover {
+      color: var(--deepteal);
+      border-bottom-color: var(--coral);
+      transform: translateX(3px);
+    }
+
     /* Footer */
     footer {
-      padding: 1.5rem 0;
+      padding: 2rem 0;
       text-align: center;
       color: var(--charcoal);
       border-top: 1px solid rgba(0, 0, 0, 0.05);
@@ -259,15 +480,23 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .main-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 2.5rem 0;
-        min-height: auto;
+      .hero-lower {
+        flex-direction: column;
+        gap: 2rem;
       }
 
-      .hero-title {
-        font-size: 2.5rem;
+      .hero-action {
+        max-width: 100%;
+      }
+
+      .support-grid,
+      .fit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-header {
+        text-align: left;
+        margin-left: 0;
       }
     }
 
@@ -276,21 +505,13 @@
         padding: 0 5%;
       }
 
-      .main-grid {
-        padding: 2rem 0;
-        gap: 2rem;
+      .hero, .support, .process, .fit, .final {
+        padding: 2.5rem 0;
       }
 
-      .hero-title {
-        font-size: 2rem;
-      }
-
-      .info-cards {
-        gap: 1.25rem;
-      }
-
-      .info-card {
-        padding: 1.5rem;
+      .section-header,
+      .process-header {
+        margin-bottom: 2rem;
       }
     }
   </style>
@@ -302,54 +523,135 @@
     </div>
   </header>
 
-  <main>
+  <section class="hero">
     <div class="container">
-      <div class="main-grid">
-        <!-- Left: Hero -->
-        <div class="hero-content">
-          <div class="hero-tag">SHOPIFY · BOOKKEEPING · OPERATIONS</div>
-          
-          <h1 class="hero-title">
-            Support built for how your business <span class="hero-emphasis">actually runs.</span>
-          </h1>
+      <div class="hero-tag">SHOPIFY · BOOKKEEPING · OPERATIONS</div>
+      
+      <h1 class="hero-title">
+        Support built for how your business <span class="hero-emphasis">actually runs.</span>
+      </h1>
 
-          <p class="hero-text">
-            It all gets easier once the systems make sense. I help small business owners align their Shopify, bookkeeping, and operations so everything reflects the same reality.
-          </p>
+      <div class="hero-lower">
+        <p class="hero-text">
+          It all gets easier once the systems make sense. I help small business owners align their Shopify, bookkeeping, and operations so everything reflects the same reality.
+        </p>
 
-          <a href="mailto:suzi@radpurpose.com" class="hero-cta">Tell me what's going on</a>
-        </div>
-
-        <!-- Right: Info Cards -->
-        <div class="info-cards">
-          <div class="info-card">
-            <h3 class="card-title">Shopify that stays current</h3>
-            <p class="card-text">
-              Products, collections, settings, and daily updates aligned with what's happening right now.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <h3 class="card-title">Numbers that reflect reality</h3>
-            <p class="card-text">
-              Payouts, refunds, discounts, fees all lining up so the financial side matches Shopify.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <h3 class="card-title">Operational snags sorted</h3>
-            <p class="card-text">
-              The recurring glitches and mismatched data that keep slowing things down—fixed properly.
-            </p>
-          </div>
+        <div class="hero-action">
+          <p>Ready to make sense of the chaos?</p>
+          <a href="mailto:suzi@radpurpose.com" class="hero-btn">Tell me what's going on</a>
         </div>
       </div>
     </div>
-  </main>
+  </section>
+
+  <section class="support">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">WHAT I DO</div>
+        <h2 class="section-title">Support That Matters</h2>
+      </div>
+
+      <div class="support-grid">
+        <div class="support-card">
+          <h3 class="card-title">Shopify that stays current</h3>
+          <p class="card-text">
+            Products, collections, settings, and daily updates aligned with what's happening right now — accurate, consistent, and easy to maintain.
+          </p>
+        </div>
+
+        <div class="support-card">
+          <h3 class="card-title">Numbers that reflect reality</h3>
+          <p class="card-text">
+            Payouts, refunds, discounts, fees, and deposits all lining up so the financial side and Shopify side match without extra work or second-guessing.
+          </p>
+        </div>
+
+        <div class="support-card">
+          <h3 class="card-title">Sorting Out Operational Snags</h3>
+          <p class="card-text">
+            The recurring glitches — mismatched data, duplicate behavior, processes that keep slowing things down. I sort through what's happening and get it running the way it should.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="container">
+      <div class="process-header">
+        <div class="section-label">THE PROCESS</div>
+        <h2 class="section-title">What Working Together Looks Like</h2>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <h3 class="step-title">You tell me what's happening.</h3>
+          <p class="step-text">
+            The parts that feel off, the areas you keep circling, the things that aren't matching what you expect. It can be brief. It doesn't need to be organized.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <h3 class="step-title">I review how everything is set up.</h3>
+          <p class="step-text">
+            Your Shopify configuration, your financial flow, how updates are managed, and where inconsistencies are showing up. The goal is to understand the system as it is, so we can see what's solid, what needs tightening, and what needs a fresh start.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <h3 class="step-title">We make practical changes that hold.</h3>
+          <p class="step-text">
+            Cleaning up the areas that create extra work, tightening the parts that drift, and getting your workflow operating the way it should. Steady, detailed work that makes the day-to-day feel easier.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fit">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">FIT CHECK</div>
+        <h2 class="section-title">When This Is a Good Fit</h2>
+      </div>
+
+      <div class="fit-grid">
+        <div class="fit-block">
+          <div class="fit-tag">A GOOD FIT</div>
+          <h3 class="fit-title">You have an established business that needs alignment</h3>
+          <p class="fit-text">
+            Core operations are in place, but Shopify, bookkeeping, and daily workflows need to be aligned so everything reflects the same reality. You want clear, consistent operations supported by someone who understands the details without adding complexity.
+          </p>
+        </div>
+
+        <div class="fit-block">
+          <div class="fit-tag">NOT A FIT</div>
+          <h3 class="fit-title">You need urgent intervention or full rebuilds</h3>
+          <p class="fit-text">
+            This isn't the right match if you need a custom Shopify theme built from the ground up, if the business requires urgent intervention, or if you're looking for a full team or agency structure. My work is steady, detailed operational support — not surface-level shortcuts or full-scale rebuilds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="container">
+      <h2 class="final-title">
+        If this sounds like <span class="final-accent">the support you need</span>
+      </h2>
+      <p class="final-text">
+        Start with a few sentences in plain language about what's going on. I'll read it closely and let you know whether I'm the right match — or point you in a better direction if not.
+      </p>
+      <a href="mailto:suzi@radpurpose.com" class="final-btn">Reach out</a>
+    </div>
+  </section>
 
   <footer>
     <div class="container">
-      <p><strong>Suzi Neves</strong> · Shopify · Bookkeeping · Operations · © 2025</p>
+      <p><strong>Suzi Neves</strong></p>
+      <p>Shopify · Bookkeeping · Operations</p>
+      <p>© 2025</p>
     </div>
   </footer>
 </body>
